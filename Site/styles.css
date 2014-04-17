@@ -1,0 +1,233 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+    font-weight: 300;
+}
+
+#cornerPic {
+    position:absolute;
+    top: 10px;
+    right:10px;
+}
+#sidebar-wrapper{
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.8);
+    -moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.8);
+    box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.8);
+}
+.sidebar-nav {
+    height: 100%;
+}
+#guidesLink {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+
+
+/*
+ * Synergy page CSS - Parallax!
+ */
+    .synergyBG {
+        width: auto !important; 
+        text-align: center;
+        background: url('pics/SynergyBgBlur.jpg') no-repeat;
+        background-size: cover;
+    }
+    .synergyBG .content-header {
+        height: 188px;
+        padding-top: 80px;
+        margin-bottom: 30px;
+    }
+    .synergyBG .page-content {
+        color: white;
+    }
+    .synergyPic img {
+        max-width: 100%;
+    }
+    .leadSyn {
+        margin-bottom: 40px;
+        font-size: 21px;
+    }
+    .secondSyn {
+        margin-bottom: 30px;
+    }
+    #synTripPics {
+        margin-top: 30px;
+    }
+
+
+/*
+ * Downloads page CSS
+ */
+    .downloadTexture {
+        background: url('pics/DownloadBG.gif') repeat;
+    }
+
+
+
+/*
+ * Threadless page CSS
+ */
+    #threadlessTitleBox {
+        background-color:#000;
+        height: 200px;
+        color: #eee;
+        text-align:center;
+        padding: 20px 25px;
+    }
+    .threadlessBG {
+        background-color: rgb(236,236,236);
+    }
+    /* The main container, this is what masonry.js is moving round */
+    .threadlessBox {
+        width: 384px;
+        height: 309px;
+        margin-left:10px;
+        margin-bottom:20px;
+        background-color: white;
+        
+        -webkit-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.47);
+        -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.47);
+        box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.47);
+    }
+    /* Within the main container */
+    .threadlessPic {
+    }
+    .threadlessWords {
+        padding: 0px 10px;
+    }
+    /* The sub containers */
+    #KidTee { height: 290px; }
+    #sheepTee { height: 330px; }
+    #spaceTee { height: 290px; }
+    #aliTee { height: 290px; }
+    #georgeTee { height: 290px; }
+    #jimiTee { height: 290px; }
+    #napTee { height: 270px; }
+
+
+/*
+ * Misc. page CSS
+ */
+     #miscTitleBox {
+        background-color:#000;
+        height: 160px;
+        color: #eee;
+        text-align:center;
+        padding: 20px 25px;
+    }
+    .miscBG {
+        background-color: rgb(236,236,236);
+    }
+    /* The main container, this is what masonry.js is moving round */
+    .miscBox {
+        width: 384px;
+        height: 309px;
+        margin-left:10px;
+        margin-bottom:20px;
+        background-color: white;
+        
+        -webkit-box-shadow: 0px 0px 15px 0px rgba(50, 50, 50, 0.47);
+        -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.47);
+        box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.47);
+    }
+    #dclogoBox { height: 410px; }
+    #silogoBox { height: 350px; }
+    #modUxFlyersBox { height: 330px; }
+    #myAberdeenBox { height: 370px; }
+    #keithFarnanBox { height: 330px; }
+    #simonEvansBox { height: 520px; }
+    #headHeartBox { height: 260px; }
+    #coachedCouchBox { height: 330px; }
+    #glasgowBigPrintsBox { height: 1130px; }
+
+
+/*
+ * Wikilogic page CSS
+ */
+
+
+
+/*
+ * Tools page CSS
+ */
+    /* The page background */
+    .psdTexture {
+        background: url('pics/BG.gif') repeat; 
+    }
+    .sprite { 
+        background: url('pics/sprite.png') no-repeat top left; 
+        width: 64px; 
+        height: 64px;  
+    } 
+    .toolBox {
+        width: 92px;
+        height: 92px;
+        margin-left: 32px;
+        margin-top: 32px;
+        padding-left: 14px;
+        padding-top: 14px;
+        //background-color:white;
+    }
+    .tooltip {
+        width: 200%;
+    }
+    .sprite.s_adm { background-position: 0px 0px;  } 
+    .sprite.s_ae { background-position: 0px -65px;  } 
+    .sprite.s_ai { background-position: 0px -130px;  } 
+    .sprite.s_co { background-position: 0px -195px;  } 
+    .sprite.s_css { background-position: 0px -260px;  } 
+    .sprite.s_dw { background-position: 0px -325px;  } 
+    .sprite.s_extjs { background-position: 0px -390px;  } 
+    .sprite.s_git { background-position: 0px -455px;  } 
+    .sprite.s_html { background-position: 0px -520px;  } 
+    .sprite.s_id { background-position: 0px -585px;  } 
+    .sprite.s_Intel { background-position: 0px -650px;  } 
+    .sprite.s_Jira { background-position: 0px -715px;  } 
+    .sprite.s_js { background-position: 0px -780px;  } 
+    .sprite.s_maya { background-position: 0px -845px;  } 
+    .sprite.s_mon { background-position: 0px -910px;  } 
+    .sprite.s_node { background-position: 0px -975px;  } 
+    .sprite.s_osx { background-position: 0px -1040px;  } 
+    .sprite.s_php { background-position: 0px -1105px;  } 
+    .sprite.s_phps { background-position: 0px -1170px;  } 
+    .sprite.s_ps { background-position: 0px -1235px;  } 
+    .sprite.s_sails { background-position: 0px -1300px;  } 
+    .sprite.s_sass { background-position: 0px -1365px;  } 
+    .sprite.s_sencha { background-position: 0px -1430px;  } 
+    .sprite.s_sequelPro { background-position: 0px -1495px;  } 
+    .sprite.s_Sketch { background-position: 0px -1560px;  } 
+    .sprite.s_sub { background-position: 0px -1625px;  } 
+    .sprite.s_Term { background-position: 0px -1690px;  } 
+    .sprite.s_unity { background-position: 0px -1755px;  } 
+    .sprite.s_wp { background-position: 0px -1820px;  } 
+
+/*
+ * Guides page CSS
+ */
+    .guidemap {
+        float:right;
+    }
+/*
+ * Secret area CSS
+ */
+    #secretContainer {
+        position: absolute;
+        top: 65px;
+        right: 0px;
+        width: 260px;
+        overflow: hidden;
+        height: 0px;
+    }
+    #secretSection {
+        width: 250px;
+        position: absolute;
+        right: -250px;
+        top: 10px;
+        background-color: black;
+        color: white;
+        padding-left:10px;
+        padding-right: 10px;
+    }
