@@ -1,10 +1,7 @@
 <?php $iainPageTitle = 'Guides'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<ol class="breadcrumb">
-	<li><a href=<?php echo $homePath . 'guides.php"' ?>>Guides</a></li>
-  <li class="active">Web servers</li>
-</ol>
+<?php include '../partials/breadcrumbs.php'; ?>
 
 <div class="row">
     <div class="col-md-6">

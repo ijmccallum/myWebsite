@@ -75,6 +75,7 @@
             $( "#secretSection" ).animate({right: "-250px"}, 500);
         }
     </script>
+    <script src=<?php echo $homePath . "js/console.js" . '"' ?>></script>
 </body>
 
 </html>

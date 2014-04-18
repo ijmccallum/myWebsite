@@ -1,5 +1,10 @@
 <ol class="breadcrumb">
     <?php 
+    	/*
+    	 * This requires a couple of things ot be set:
+    	 * 		$homePath = relative path of the site
+    	 *		$crumbCut = number of links to ignore in the trail
+    	 */
 
     	/*
     	 * This get's the location of the config file to include,
@@ -29,7 +34,7 @@
          * loop is small enough to be of no worries!
          * I loop through each string in the exploded URI array.
          * The first few (as defined by $crumbCut in config.php) are ignored.
-         * This is to accont for the varying positions the breadcrumbs may begin from 
+         * This is to account for the varying positions the breadcrumbs may begin from 
          * within varying directories.  For me, I only want to start the trail from 'Guides'
          */
         $crumbCounter = 0;
@@ -50,7 +55,12 @@
             //Increment the crumbCounter,
             $crumbCounter++;
         }
-    //Finally add in my litte flourish and bob's your uncle! A dynamic breadcrumb trail!
+    /* Finally add in my litte flourish and bob's your uncle! A dynamic breadcrumb trail!
+     * Actually, one final thought: this is done server side, it would be cool to work up a client side JS version
+     * Then, somehow have a variable set in config that would indicate whether the server is under load
+     * if it is - tell the client machien to do all the wee things like this, if it's not, then do it on the
+     * server as it's probably quicker.  Food for thought!  Ideas for when there's time!
+     */
     ?>
   <li class="guidemap"><a href=<?php echo $homePath . 'guides/map.php"' ?>>map</a></li>
 </ol>
