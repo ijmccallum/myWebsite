@@ -35,4 +35,5 @@
 |_ Inspiration
 </pre>
                 
-<?php include '../partials/footer.php'; ?>
+<?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
+<?php include $footerAddress; ?>

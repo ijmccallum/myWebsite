@@ -1,7 +1,8 @@
 <?php $iainPageTitle = 'Guides'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php include '../partials/breadcrumbs.php'; ?>
+<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
+<?php include $breadcrumbAddress; ?>
 
 <div class="row">
     <div class="col-md-6">
@@ -17,4 +18,5 @@
   <a href="guides/cms.php" class="list-group-item">Nginx</a>
 </div>
                 
-<?php include '../partials/footer.php'; ?>
+<?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
+<?php include $footerAddress; ?>

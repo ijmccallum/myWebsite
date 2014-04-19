@@ -20,4 +20,5 @@
   <a href="CMS/mediawiki.php" class="list-group-item">MediaWiki</a>
 </div>
                 
-<?php include '../partials/footer.php'; ?>
+<?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
+<?php include $footerAddress; ?>

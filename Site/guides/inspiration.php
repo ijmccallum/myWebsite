@@ -21,4 +21,6 @@
     	<iframe src="http://embed.ted.com/talks/ken_robinson_says_schools_kill_creativity.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
     </div> <!-- END column -->
 </div>
-<?php include '../partials/footer.php'; ?>
+
+<?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
+<?php include $footerAddress; ?>
