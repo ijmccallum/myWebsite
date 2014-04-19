@@ -1,7 +1,8 @@
 <?php $iainPageTitle = 'Content Managment Systems'; $docDepth = 1; ?>
 <?php include '../partials/head.php'; ?>
 
-<?php include '../partials/breadcrumbs.php'; ?>
+<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
+<?php include $breadcrumbAddress; ?>
 
 <div class="row">
     <div class="col-md-6">

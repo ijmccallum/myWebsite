@@ -18,7 +18,7 @@
   <a href="guides/cms.php" class="list-group-item">Content Managment Systems</a>
   <a href="guides/databases.php" class="list-group-item">Database Systems</a>
   <a href="guides/designtheory.php" class="list-group-item">Design Theory</a>
-  <a href="inspiration.php" class="list-group-item">Inspiration</a>
+  <a href="guides/inspiration.php" class="list-group-item">Inspiration</a>
 </div>
                 
 <?php include 'partials/footer.php'; ?>
