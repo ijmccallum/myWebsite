@@ -1,4 +1,4 @@
-<?php $iainPageTitle = 'Guides'; $docDepth = 1;?>
+<?php $iainPageTitle = 'Design theory'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
 <?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
@@ -7,15 +7,12 @@
 <div class="row">
     <div class="col-md-6">
         <p>
-            The consolodation and refinment of my learning, if you find anything in here that you disagree with or know to be out of date, get in contact with me!  Let me know!
-            <br />To understand things myself I have a need to write them out in language that is easilay understandable, this dissemination away from technical jargon... helps translate into actual understanding
+            As part of my Honors project in Computer Arts I put together as full a study as I could manage on Design Theory.  You can see the long-form version <a href="http://issuu.com/ijmccallum/docs/the_end_of_baba">here</a> but I do intend to translate the fundamentals into summary form to add to this set of guides.
         </p>
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
 <div class="list-group">
-  <a href="guides/webservers.php" class="list-group-item">NodeJS</a>
-  <a href="guides/frameworks.php" class="list-group-item">Apache</a>
-  <a href="guides/cms.php" class="list-group-item">Nginx</a>
+  <a href="#" class="list-group-item">To do</a>
 </div>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>

@@ -9,15 +9,16 @@
 
 <ul>
 <li>PHP</li>
-<li>SQL</li>
+<li>MD</li>
 <li>HTML</li>
 <li>CSS</li>
-<li>JS</li>
 </ul>
 
-<p><em>The default for small projects that will be handed over to a customer.</em></p>
+<p><em>If we begin launching products that might require their own sites this type of thing would be a good way to go.</em></p>
 
-<p>We know it, a simple, easy to use blogging solution, not as powerful as Drupal or Joomla but so many extensions!  Limited design flexibility.  Good at multiple users</p>
+<p>No database makes it fast &amp; very easy to version control.</p>
+
+<p>Write content in md, nav structure = file structure, dynamic pages, great for a simple site or maybe for those growing in complexity, not quite up there for SI or Swarm though. </p>
 
 
 

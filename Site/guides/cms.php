@@ -7,17 +7,19 @@
 <div class="row">
     <div class="col-md-6">
         <p>
-            Note on my experiance with various Content Managment Systems
+            WordPress is my number 1 here, for ease of understanding from the point of view of a client it seems to be unbeatable.  But for the more interesting, technical and exciting projects, I like to move beyond the WP bubble.
         </p>
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
 
 <div class="list-group">
   <a href="CMS/wordpress.php" class="list-group-item">WordPress</a>
-  <a href="CMS/joomla.php" class="list-group-item">Joomla</a>
-  <a href="CMS/drupal.php" class="list-group-item">Drupal</a>
   <a href="CMS/keystone.php" class="list-group-item">KeystoneJS</a>
   <a href="CMS/mediawiki.php" class="list-group-item">MediaWiki</a>
+  <a href="#" class="list-group-item">Ghost</a>
+  <a href="CMS/joomla.php" class="list-group-item">Joomla</a>
+  <a href="CMS/drupal.php" class="list-group-item">Drupal</a>
+  <a href="CMS/kirby.php" class="list-group-item">Kirby</a>
 </div>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>

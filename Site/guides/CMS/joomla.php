@@ -1,22 +1,23 @@
-<?php $iainPageTitle = 'Content Managment Systems'; ?>
-<?php include 'partials/head.php'; ?>
+<?php $iainPageTitle = 'Joomla'; $docDepth = 2;?>
+<?php include '../../partials/head.php'; ?>
 
-<?php include '../partials/breadcrumbs.php'; ?>
+<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
+<?php include $breadcrumbAddress; ?>
 
-<div class="row">
-    <div class="col-md-6">
-        <p>
-            Note on my experiance with various Content Managment Systems
-        </p>
-    </div> <!-- END 6 column for text -->
-</div> <!-- END intro row -->
+<h5>Tech</h5>
 
-<div class="list-group">
-  <a href="CMS/wordpress.php" class="list-group-item">WordPress</a>
-  <a href="CMS/joomla.php" class="list-group-item">Joomla</a>
-  <a href="CMS/drupal.php" class="list-group-item">Drupal</a>
-  <a href="CMS/keystone.php" class="list-group-item">KeystoneJS</a>
-  <a href="CMS/mediawiki.php" class="list-group-item">MediaWiki</a>
-</div>
+<ul>
+<li>PHP</li>
+<li>SQL</li>
+<li>Any other language you want (plugins galore!)</li>
+</ul>
+
+<p><em>If we were diving deeper into large website development to accompany our software this would be a very good thing to learn.</em></p>
+
+<p>More flexible and capable than WP, bigger community than Drupal.  It does have limited capabilities with user permissions and SEO but I imagine there will be resources out there for the Users and SEO isn't hard to implement technically.</p>
+
+
+
                 
-<?php include 'partials/footer.php'; ?>
+<?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
+<?php include $footerAddress; ?>

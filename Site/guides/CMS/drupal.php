@@ -1,19 +1,22 @@
-<?php $iainPageTitle = 'Content Managment Systems'; $docDepth = 2; ?>
+<?php $iainPageTitle = 'Drupal'; $docDepth = 2;?>
 <?php include '../../partials/head.php'; ?>
 
 <?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
 <?php include $breadcrumbAddress; ?>
 
-<div class="row">
-    <div class="col-md-6">
-        <p>
-            Note's here
-        </p>
-    </div> <!-- END 6 column for text -->
-</div> <!-- END intro row -->
+<h5>Tech</h5>
 
-<div class="list-group">
-  <a href="CMS/wordpress.php" class="list-group-item">Content</a>
-</div>
+<ul>
+<li>PHP</li>
+<li>SQL</li>
+</ul>
+
+<p><em>Only if we are building a massive enterprise site with super complex structures going on.</em></p>
+
+<p>Full-fledged enterprise grade CMS for large projects where stability, scalability and power come above ease of use and aesthetics</p>
+
+
+
                 
-<?php include '../../partials/footer.php'; ?>
+<?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
+<?php include $footerAddress; ?>

@@ -1,22 +1,11 @@
-<?php $iainPageTitle = 'Content Managment Systems'; ?>
-<?php include 'partials/head.php'; ?>
+<?php $iainPageTitle = 'MediaWiki'; $docDepth = 2;?>
+<?php include '../../partials/head.php'; ?>
 
-<?php include '../partials/breadcrumbs.php'; ?>
+<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
+<?php include $breadcrumbAddress; ?>
 
-<div class="row">
-    <div class="col-md-6">
-        <p>
-            Note on my experiance with various Content Managment Systems
-        </p>
-    </div> <!-- END 6 column for text -->
-</div> <!-- END intro row -->
+<p>This is the system I have used to get the knowledge base behing WikiLogic together, it's good but weirdly big.</p>
 
-<div class="list-group">
-  <a href="CMS/wordpress.php" class="list-group-item">WordPress</a>
-  <a href="CMS/joomla.php" class="list-group-item">Joomla</a>
-  <a href="CMS/drupal.php" class="list-group-item">Drupal</a>
-  <a href="CMS/keystone.php" class="list-group-item">KeystoneJS</a>
-  <a href="CMS/mediawiki.php" class="list-group-item">MediaWiki</a>
-</div>
                 
-<?php include 'partials/footer.php'; ?>
+<?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
+<?php include $footerAddress; ?>
