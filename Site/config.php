@@ -1,5 +1,5 @@
 <?php
 
-$crumbCut = 2;
+$crumbCut = 0;
 
 ?>

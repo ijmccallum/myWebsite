@@ -31,14 +31,6 @@
     <script src=<?php echo $homePath . "bootstrap/js/jquery-1.10.2.js" . '"' ?>></script>
     <script src=<?php echo $homePath . "bootstrap/js/bootstrap.js" . '"' ?>></script>
 
-    <!-- Custom JavaScript for the Menu Toggle -->
-    <script>
-    $("#menu-toggle").click(function(e) { http://www.fueljack.com/images/FJlogo.png
-        e.preventDefault();
-        $("#wrapper").toggleClass("active");
-    });
-    </script>
-
     <!-- Masonry JS init -->
     <script>
         
