@@ -13,12 +13,18 @@
         </p>
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
+<h4>Guides for web development</h4>
 <div class="list-group">
   <a href="guides/webservers.php" class="list-group-item">Web servers</a>
   <a href="guides/optimisation.php" class="list-group-item">Optimisation</a>
   <a href="guides/frameworks.php" class="list-group-item">Frameworks</a>
+  <a href="guides/languages.php" class="list-group-item">Languages</a>
   <a href="guides/cms.php" class="list-group-item">Content Managment Systems</a>
   <a href="guides/databases.php" class="list-group-item">Database Systems</a>
+  <a href="guides/attacks.php" class="list-group-item">Attack Methods</a>
+</div>
+<h4>A few extra ones</h4>
+<div class="list-group">
   <a href="guides/designtheory.php" class="list-group-item">Design Theory</a>
   <a href="guides/inspiration.php" class="list-group-item">Inspiration</a>
 </div>

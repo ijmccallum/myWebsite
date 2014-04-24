@@ -15,10 +15,10 @@
 <div class="list-group">
   <a href="#" class="list-group-item">ExpressJS</a>
   <a href="#" class="list-group-item">SailsJS</a>
-  <a href="#" class="list-group-item">Sencha</a>
-  <a href="#" class="list-group-item">ExtJS</a>
-  <a href="#" class="list-group-item">Django</a>
-  <a href="#" class="list-group-item">Rails</a>
+  <a href="#" class="list-group-item greyout">Sencha</a>
+  <a href="#" class="list-group-item greyout">ExtJS</a>
+  <a href="#" class="list-group-item greyout">Django</a>
+  <a href="#" class="list-group-item greyout">Rails</a>
  <!--  <a href="guides/webservers.php" class="list-group-item">ExpressJS</a>
   <a href="guides/frameworks.php" class="list-group-item">SailsJS</a>
   <a href="guides/cms.php" class="list-group-item">Sencha</a>

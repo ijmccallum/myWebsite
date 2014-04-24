@@ -24,6 +24,10 @@ body {
     width: 100%;
 }
 
+.list-group .greyout {
+    background-color: #eee;
+    color: #aaa;
+}
 
 
 /*

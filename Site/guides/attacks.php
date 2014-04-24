@@ -1,4 +1,4 @@
-<?php $iainPageTitle = 'Optimisation'; $docDepth = 1;?>
+<?php $iainPageTitle = 'Attack Methods, and how to protect a site from them'; $docDepth = 1; ?>
 <?php include '../partials/head.php'; ?>
 
 <?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
@@ -11,10 +11,11 @@
         </p>
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
+
 <div class="list-group">
-  <a href="optimisation/seo.php" class="list-group-item">SEO</a>
-  <a href="optimisation/speed.php" class="list-group-item">Speed</a>
-  <a href="optimisation/smo.php" class="list-group-item greyout">SMO</a>
+  <a href="#" class="list-group-item greyout">SQL Injection</a>
+  <a href="#" class="list-group-item greyout">Cross Site Scripting (XSS)</a>
+  <a href="#" class="list-group-item greyout">Cross Site Request Forgery (same as XSS?)</a>
 </div>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>

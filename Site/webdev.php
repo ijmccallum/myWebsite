@@ -4,9 +4,7 @@
 <div class="row">
     <div class="col-md-6">
         <p class="lead">
-        	As a result of working on Synergy, code happened, I started freelancing as a web developer then became an 
-        	in-house contractor with SwarmOnline before emigrating from Scotland to America where I continued to contract 
-        	for Swarm but also branched out …<br />
+        	Working on Synergy sparked an interest in code for me, and I'm incredibly glad it did.  I started working Website design and development into my freelance work and haven't looked back since.
         	Here are a few of the best websites I have built:
         </p>
     </div> <!-- END 6 column for text -->
