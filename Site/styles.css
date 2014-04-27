@@ -103,7 +103,7 @@ body {
         padding: 0px 10px;
     }
     /* The sub containers */
-    #KidTee { height: 290px; }
+    #KidTee { height: 270px; }
     #sheepTee { height: 330px; }
     #spaceTee { height: 290px; }
     #aliTee { height: 290px; }
@@ -137,15 +137,18 @@ body {
         -moz-box-shadow:    0px 0px 15px 0px rgba(50, 50, 50, 0.47);
         box-shadow:         0px 0px 15px 0px rgba(50, 50, 50, 0.47);
     }
-    #dclogoBox { height: 410px; }
+    #sglogoBox { height: 350px; }
+    #dclogoBox { height: 390px; }
     #silogoBox { height: 350px; }
     #modUxFlyersBox { height: 330px; }
+    #sxswbox {height: 285px;}
     #myAberdeenBox { height: 370px; }
     #keithFarnanBox { height: 330px; }
     #simonEvansBox { height: 520px; }
     #headHeartBox { height: 260px; }
     #coachedCouchBox { height: 330px; }
-    #glasgowBigPrintsBox { height: 1130px; }
+    #glasgowBigPrintsBox { height: 1110px; }
+    #hipoctobox {height: 290px;}
 
 
 /*
@@ -162,7 +165,7 @@ body {
         background: url('pics/BG.gif') repeat; 
     }
     .sprite { 
-        background: url('pics/sprite.png') no-repeat top left; 
+        background: url('pics/sprite.jpg') no-repeat top left; 
         width: 64px; 
         height: 64px;  
     } 
@@ -207,6 +210,7 @@ body {
     .sprite.s_Term { background-position: 0px -1690px;  } 
     .sprite.s_unity { background-position: 0px -1755px;  } 
     .sprite.s_wp { background-position: 0px -1820px;  } 
+    .sprite.s_jade { background-position: 0px -1885px;  } 
 
 /*
  * Guides page CSS

@@ -12,6 +12,28 @@
             </div>
         </div>
         
+        <div id="wllogoBox" class="miscBox">
+            <div class="threadlessPic">
+                <img src="pics/misc/WLlogo.jpg" alt="">
+            </div>
+            <div class="threadlessWords">
+                <h4><em>WikiLogic Logo</em></h4>
+                <p>WikiLogic is a project that is trying to do for logic what Wikipedia has done for knowledge.  This logo was a spur of the moment 
+                    idea that just stuck.</p>
+            </div>
+        </div>
+
+        <div id="sglogoBox" class="miscBox">
+            <div class="threadlessPic">
+                <img src="pics/misc/SGlogo.jpg" alt="">
+            </div>
+            <div class="threadlessWords">
+                <h4><em>Sophie's Games logo</em></h4>
+                <p>What do you see, an owl?  Or an old man?  Sophie's Games is a game development group I am involved with.  We have a focus on 
+                    thought provoking games and an aim to integrat meaningful messages and ideas without compromising entertainment in our designs.</p>
+            </div>
+        </div>
+
         <div id="dclogoBox" class="miscBox">
             <div class="threadlessPic">
                 <img src="pics/misc/DClogo.jpg" alt="">
@@ -72,7 +94,7 @@
             </div>
         </div>
         
-        <div class="miscBox">
+        <div id="sxswbox" class="miscBox">
             <div class="threadlessPic">
                 <img src="pics/misc/gangnamGeeks.jpg" alt="">
             </div>
@@ -157,7 +179,7 @@
             </div>
         </div>
         
-        <div class="miscBox">
+        <div id="hipoctobox" class="miscBox">
             <div class="threadlessPic">
                 <img src="pics/threadless/HipsterOctopus.jpg" alt="">
             </div>

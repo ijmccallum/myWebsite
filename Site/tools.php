@@ -63,9 +63,9 @@
             <div class='sprite s_mon'></div>
         </div> -->
         
-<!--         <div class="toolBox">
+        <div class="toolBox">
             <div class='sprite s_node'></div>
-        </div> -->
+        </div>
         
         <div class="toolBox">
             <div data-toggle="tooltip" data-placement="top" title="Having my origins in design it might seem strange that I began using Apples around the same time I began getting into code... strange indeed!" class='sprite s_osx'></div>
@@ -117,6 +117,10 @@
         
         <div class="toolBox">
             <div data-toggle="tooltip" data-placement="top" title="WordPress and it's fantastic community took me from hobbiest to profesional developer, thank you WordPress." class='sprite s_wp'></div>
+        </div>
+        
+        <div class="toolBox">
+            <div data-toggle="tooltip" data-placement="top" title="I love Jade, using it for templating with ExpressJS makes life a breeze!" class='sprite s_jade'></div>
         </div>
                         
      
