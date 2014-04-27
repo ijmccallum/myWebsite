@@ -18,6 +18,7 @@
   <a href="#" class="list-group-item">HTML</a>
   <a href="#" class="list-group-item">CSS</a>
   <a href="#" class="list-group-item">PHP</a>
+  <a href="#" class="list-group-item greyout">Ruby</a>
 </div>
 <h4>Templating Languages</h4>
 <div class="list-group">
@@ -25,6 +26,9 @@
   <a href="#" class="list-group-item">EJS (Javascript)</a>
   <a href="#" class="list-group-item greyout">Haml (HTML ??)</a>
   <a href="#" class="list-group-item greyout">Handlebars</a>
+  <a href="#" class="list-group-item greyout">JSP (Java)</a>
+  <a href="#" class="list-group-item greyout">Smarty (PHP)</a>
+  <a href="#" class="list-group-item greyout">ERB (Ruby)</a>
 </div>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>

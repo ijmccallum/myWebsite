@@ -11,15 +11,24 @@
         </p>
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
+<h4>Virtual private: cheap, moderate to scale</h4>
+<h4>Dedicated: pricy, slow to scale</h4>
+<h4>Cloud, v pricey, v quick to scale</h4>
 <div class="list-group">
-  <a href="#" class="list-group-item greyout">NodeJS</a>
+  <a href="#" class="list-group-item greyout">AWS (ec2)</a>
+  <a href="#" class="list-group-item greyout">rackspace</a>
+  <a href="#" class="list-group-item greyout">Azure</a>
+</div>
+<div class="list-group">
+  <a href="webservers/node.php" class="list-group-item">NodeJS: fast for interactive apps</a>
   <a href="#" class="list-group-item greyout">Apache</a>
   <a href="#" class="list-group-item greyout">IIS</a>
-  <a href="#" class="list-group-item greyout">Nginx</a>
+  <a href="#" class="list-group-item greyout">Nginx: fast for static files</a>
   <!-- <a href="guides/webservers.php" class="list-group-item">NodeJS</a>
   <a href="guides/frameworks.php" class="list-group-item">Apache</a>
   <a href="guides/cms.php" class="list-group-item">Nginx</a> -->
 </div>
+<p>Node behind Nginx: Nginx deals with mass static, anything interactive it passes to node.</p>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>

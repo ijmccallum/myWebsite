@@ -13,6 +13,11 @@
         </p>
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
+<h4>Key:</h4>
+<div class="list-group">
+  <a href="#" class="list-group-item">Live link: I have filled out content for these pages, click to explore!</a>
+  <a href="#" class="list-group-item greyout">To do: no content yet but it's coming.</a>
+</div>
 <h4>Guides for web development</h4>
 <div class="list-group">
   <a href="guides/webservers.php" class="list-group-item">Web servers</a>

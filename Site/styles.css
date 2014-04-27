@@ -10,11 +10,11 @@ body {
     top: 10px;
     right:10px;
 }
-#sidebar-wrapper{
+/*#sidebar-wrapper{
     -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.8);
     -moz-box-shadow:    0px 0px 5px 0px rgba(50, 50, 50, 0.8);
     box-shadow:         0px 0px 5px 0px rgba(50, 50, 50, 0.8);
-}
+}*/
 .sidebar-nav {
     height: 100%;
 }
