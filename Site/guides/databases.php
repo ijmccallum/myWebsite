@@ -14,13 +14,22 @@
         </p>
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
+<h4>NoSQL Databases</h4>
+<p>Dealing with large amounts of data, so much that it can't comfortably fit on one server? Then NoSQL over a cluster.  Or for easier development depending on the data models.</p>
+<div class="list-group">
+  <a href="#" class="list-group-item greyout">MongoDB - For large amounts of data</a>
+  <a href="#" class="list-group-item greyout">CouchDB</a>
+  <a href="#" class="list-group-item greyout">Memcached</a>
+  <a href="#" class="list-group-item greyout">Redis - for user sessions</a>
+</div>
+<h4>Relational Databases</h4>
 <div class="list-group">
   <a href="#" class="list-group-item greyout">MySQL</a>
   <a href="#" class="list-group-item greyout">PostgreSQL</a>
-  <a href="#" class="list-group-item greyout">MongoDB</a>
-  <a href="#" class="list-group-item greyout">Redis</a>
+</div>
+<h4>Others</h4>
+<div class="list-group">
   <a href="#" class="list-group-item greyout">Flat File</a>
-  <a href="#" class="list-group-item greyout">Memcached</a>
 </div>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
