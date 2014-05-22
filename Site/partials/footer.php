@@ -2,6 +2,7 @@
             <div id="footerBar">
                 <p>Hello</p>
             </div>
+
         </div> <!-- END page-content-wrapper -->
 
     </div> <!-- END wrapper -->
@@ -33,6 +34,13 @@
     <!-- JavaScript -->
     <script src=<?php echo $homePath . "bootstrap/js/jquery-1.10.2.js" . '"' ?>></script>
     <script src=<?php echo $homePath . "bootstrap/js/bootstrap.js" . '"' ?>></script>
+
+    <!-- Slide sidebar -->
+    <script>
+        $("#menu-toggle").click(function() {
+            $("#wrapper").toggleClass("active");
+        });
+    </script>
 
     <!-- Masonry JS init -->
     <script>
