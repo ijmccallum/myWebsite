@@ -1,8 +1,19 @@
 @charset "UTF-8";
 /* CSS Document */
-
+html, body, #wrapper {
+    height:100%;
+}
 body {
     font-weight: 300;
+}
+.makeSmallPageFullHeight {
+height: 100%;
+}
+/*#page-content-wrapper {
+    height: 100%;
+}*/
+.page-content {
+    min-height: 100%;
 }
 
 #cornerPic {
@@ -28,6 +39,10 @@ body {
     background-color: #eee;
     color: #aaa;
 }
+.content-header {
+    min-height: 65px;
+    height:auto;
+}
 
 
 /*
@@ -40,9 +55,13 @@ body {
         background-size: cover;
     }
     .synergyBG .content-header {
-        height: 188px;
-        padding-top: 80px;
+        /*height: 188px;*/
         margin-bottom: 30px;
+        padding-top: 10px;
+    }
+    .synergyBG h1 {
+        text-align: left;
+        display: block;
     }
     .synergyBG .page-content {
         color: white;
@@ -239,3 +258,45 @@ body {
         padding-left:10px;
         padding-right: 10px;
     }
+
+/*
+ * Footer bar
+ */ 
+#footerBar {
+    padding: 5px;
+    background-color: black;
+    color: white;
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/*
+ * Responsive tweaks
+ */
+
+@media (max-width: 400px) {
+    .content-header h1 {
+        font-size: 26px;
+        max-width:230px;
+    }
+    code {
+        white-space:inherit;
+    }
+    .synergyBG .content-header h1 {
+        max-width:85%;
+    }
+    .synergyBG .content-header h1 img {
+        max-width: 100%;
+    }
+    .synergyBG iframe {
+        max-width:100%;
+    }
+    .miscBox {
+        width:auto;
+        max-width: 95%;
+    }
+    .miscBox img {
+        max-width:100%;
+    }
+}

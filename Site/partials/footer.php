@@ -1,4 +1,7 @@
             </div> <!-- END page-content -->
+            <div id="footerBar">
+                <p>Hello</p>
+            </div>
         </div> <!-- END page-content-wrapper -->
 
     </div> <!-- END wrapper -->

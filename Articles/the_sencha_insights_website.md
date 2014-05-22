@@ -2,7 +2,11 @@
 
 After working at Swarm for a few months this was my first big (solo) project and a huge milestone in my professional development.  The sites I had built up until this point had all been WordPress themes using a fairly simple production process: edit the php / front end code, run the server.  Easy.  The Sencha site was slightly more complex.
 
-It runs on NodeJS using KeystoneJS as the back end, a very young CMS which is still in development.  The theme was translated from HTML to Jade and threaded into Keystone with a fair amount of manipulation to get the site working as we desired.
+It runs on NodeJS using KeystoneJS as the back end, a very young CMS which is still in development.  The theme was translated from HTML to Jade and threaded into Keystone with a fair amount of manipulation to get the site working as we desired.  Some of the things I had to develop were:  
+
+* Pagination
+* Search
+* 
 
 The data also proved quite interesting as I had to combine the content from SQL dbs on two seporate sites into the new MongoDB.  For the various articles that had been written I exported them as JSON and used the fantastic capabilities of Sublime Text to reorganise and reformat the data for mongo.  I also had to set up the original Swarm blog to run locally in order to export the existing WP comments in a format that would allow me to import them into the Disqus system that I am using on Sencha Insights.
 

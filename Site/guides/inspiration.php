@@ -21,6 +21,16 @@
     	<iframe src="http://embed.ted.com/talks/ken_robinson_says_schools_kill_creativity.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
     </div> <!-- END column -->
 </div>
+<div class="row">
+    <div class="col-md-6 text-center">
+        <iframe src="http://embed.ted.com/talks/simon_sinek_why_good_leaders_make_you_feel_safe.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div> <!-- END column -->
+</div>
+<div class="row">
+    <div class="col-md-6 text-center">
+        <iframe src="http://embed.ted.com/talks/simon_sinek_how_great_leaders_inspire_action.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div> <!-- END column -->
+</div>
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>

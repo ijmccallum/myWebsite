@@ -58,6 +58,8 @@ for ($x=0; $x<$docDepth; $x++){
                 $iainPageClass="threadlessBG";
             } else if ($iainPageTitle == "Synergy") {
                 $iainPageClass="synergyBG";
+            } else {
+                $iainPageClass = "makeSmallPageFullHeight";
             }
         ?>
         
