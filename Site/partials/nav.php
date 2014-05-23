@@ -14,6 +14,8 @@
                 </li>
                 <li><a href=<?php echo $homePath . 'tools.php"' ?>>Tools</a>
                 </li>
+                <li><a href=<?php echo $homePath . 'experiments.php"' ?>>Experiments</a>
+                </li>
                 <li id="guidesLink"><a href=<?php echo $homePath . 'guides.php"' ?>>Guides</a>
                 </li>
 
