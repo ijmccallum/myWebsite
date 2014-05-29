@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body onLoad="init();">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+
+        <canvas id="demoCanvas" width="960" height="580">
+            alternate content
+        </canvas>
+        <div id="explanation">
+            <p>
+                From the first sound experiment, this one just uses the volume to controll the red dot.<br />
+                Ohh! Cool idea - as targets scroll by you have to controll the dot to get it at the right height then tap the screen to fire, closer to the target for higher score!<br />
+                <br />
+                Unfortunatly the Web Audio API is not yet supported accross all Android devices so the development of this as an app was brought to a halt.  Instead it's just an experiment now, built in the canvas.
+            </p>
+        </div>
+
+        <script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
+        <script type="text/javascript" src="http://code.createjs.com/tweenjs-0.5.1.min.js"></script>
+    <!--
+        <script type="text/javascript" src="libs/easeljs-0.5.0.min.js"></script>
+        <script type="text/javascript" src="libs/preloadjs-0.2.0.min.js"></script>
+        <script type="text/javascript" src="libs/Filter.js"></script>
+        <script type="text/javascript" src="libs/ColorFilter.js"></script>
+    -->
+        <script type="text/javascript" src="libs/particleEmitterJs-0.5.0.js"></script>
+        <script src="main.js"></script>
+
+    </body>
+</html>
