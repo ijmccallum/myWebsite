@@ -26,7 +26,7 @@
   <a href="guides/languages.php" class="list-group-item">Languages</a>
   <a href="guides/cms.php" class="list-group-item">Content Managment Systems</a>
   <a href="guides/databases.php" class="list-group-item">Database Systems</a>
-  <a href="guides/attacks.php" class="list-group-item">Attack Methods</a>
+  <a href="guides/security.php" class="list-group-item">Security</a>
 </div>
 <h4>A few extra ones</h4>
 <div class="list-group">
