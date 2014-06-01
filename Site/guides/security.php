@@ -14,7 +14,7 @@
 
 <div class="list-group">
   <a href="#" class="list-group-item greyout">SQL Injection</a>
-  <a href="#" class="list-group-item greyout">Cross Site Scripting (XSS)</a>
+  <a href="security/XSS.php" class="list-group-item">Cross Site Scripting (XSS)</a>
   <a href="#" class="list-group-item greyout">Mutation XSS</a>
   <a href="#" class="list-group-item greyout">Cross Site Request Forgery (same as XSS?)</a>
 </div>
