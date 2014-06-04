@@ -4,6 +4,10 @@
 <?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
 <?php include $breadcrumbAddress; ?>
 
+<p>
+	Posting a message on a website with embedded javascript that, when opened by another user, will access their cookie data (username/password...) and do something with it.  Usually sending it to a site owned by the XSS author.
+</p>
+
 <h3>How to do XSS?</h3>
 
 <p>

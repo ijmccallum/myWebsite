@@ -13,10 +13,10 @@
 </div> <!-- END intro row -->
 
 <div class="list-group">
-  <a href="#" class="list-group-item greyout">SQL Injection</a>
   <a href="security/XSS.php" class="list-group-item">Cross Site Scripting (XSS)</a>
+  <a href="security/CSRF.php" class="list-group-item">Cross Site Request Forgery (CSRF)</a>
+  <a href="#" class="list-group-item greyout">SQL Injection</a>
   <a href="#" class="list-group-item greyout">Mutation XSS</a>
-  <a href="#" class="list-group-item greyout">Cross Site Request Forgery (same as XSS?)</a>
 </div>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
