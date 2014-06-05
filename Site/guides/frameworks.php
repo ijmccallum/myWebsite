@@ -12,6 +12,7 @@
         </p>
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
+<p>Frameworks</p>
 <div class="list-group">
   <a href="#" class="list-group-item">ExpressJS</a>
   <a href="#" class="list-group-item">SailsJS</a>
@@ -19,12 +20,22 @@
   <a href="#" class="list-group-item greyout">ExtJS</a>
   <a href="#" class="list-group-item greyout">Django</a>
   <a href="#" class="list-group-item greyout">Rails</a>
- <!--  <a href="guides/webservers.php" class="list-group-item">ExpressJS</a>
-  <a href="guides/frameworks.php" class="list-group-item">SailsJS</a>
-  <a href="guides/cms.php" class="list-group-item">Sencha</a>
-  <a href="guides/databases.php" class="list-group-item">ExtJS</a>
-  <a href="guides/designtheory.php" class="list-group-item">Django</a>
-  <a href="inspiration.php" class="list-group-item">Rails</a> -->
+</div>
+<hr />
+<p>Tools</p>
+<div class="list-group">
+  <a href="#" class="list-group-item greyout">Socket.IO</a>
+  <a href="#" class="list-group-item greyout">Web Audio API</a>
+  <a href="#" class="list-group-item greyout">Proximity API</a>
+  <a href="#" class="list-group-item greyout">Web Notifications API</a>
+  <a href="#" class="list-group-item greyout">Web Speech API</a>
+</div>
+<hr />
+<p>MiddleWare / cross platform</p>
+<div class="list-group">
+  <a href="#" class="list-group-item greyout">PhoneGap | Cordova</a>
+  <a href="#" class="list-group-item greyout">RhoMobile</a>
+  <a href="#" class="list-group-item greyout">Appcelerator</a>
 </div>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
