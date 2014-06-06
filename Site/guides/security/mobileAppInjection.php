@@ -66,7 +66,8 @@ And:
 </ol>
 <p>Note - the above example comes from the source in which they owned a shorter domain.</p>
 <p>All it needs is to make sure the 5th shows up last.</p>
-
+<hr />
+<p>Currently there arn't many vulnerable apps, but there will be more as the uptake of HTML5 continues.  A good solution, like in XSS, is good filtering.</p>
 <hr />
 Sources:
 <ul>
