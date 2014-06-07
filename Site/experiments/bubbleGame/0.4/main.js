@@ -1,23 +1,5 @@
 //Gameplay variables
-if (typeof(Storage)!=="undefined") {
-      console.log("Local storage available, updating gameplay variables");
-      score = Number(localStorage.getItem("score"));
-      speedMin = Number(localStorage.getItem("speedMin"));
-      speedMax = Number(localStorage.getItem("speedMax"));
-      popScoreMin = Number(localStorage.getItem("popScoreMin"));
-      popScoreMax = Number(localStorage.getItem("popScoreMax"));
-      ambientPop = Number(localStorage.getItem("ambientPop"));
-      bubbleRate = Number(localStorage.getItem("bubbleRate"));
-    } else {
-      console.log("No local storage available, setting gameplay variables to baseline");
-      score = 0;
-      speedMin = 2;
-      speedMax = 4;
-      popScoreMin = 1;
-      popScoreMax = 1;
-      ambientPop = 0;
-      bubbleRate = 5;
-    }
+
 
 // for the animation stuff
 var stage, circle, arm, target, returnLevel, circleY, score, topScore, bmpList, flySeq, flyY, fly, flyImg, bitmap, txt, play, gameTxt, saveTxt, pauseTxt, clicked, mouseTarget, mvTargets = [], state = [], startTxt;
@@ -48,15 +30,31 @@ function init() {
 
     //todo: get top score from memory.
     if (typeof(Storage)!=="undefined") {
-      score = Number(localStorage.getItem("bubbleScore"));
-      console.log("Retrieving score: " + score);
-      if (score == null) {
-        console.log("Local storage available, no score saved")
-        score = 0;
-      }
+      score = Number(localStorage.getItem("score"));
+      speedMin = Number(localStorage.getItem("speedMin"));
+      speedMax = Number(localStorage.getItem("speedMax"));
+      popScoreMin = Number(localStorage.getItem("popScoreMin"));
+      popScoreMax = Number(localStorage.getItem("popScoreMax"));
+      ambientPop = Number(localStorage.getItem("ambientPop"));
+      bubbleRate = Number(localStorage.getItem("bubbleRate"));
+      console.log("Local storage available, updating gameplay variables");
     } else {
       score = 0;
+      speedMin = 2;
+      speedMax = 4;
+      popScoreMin = 1;
+      popScoreMax = 1;
+      ambientPop = 0;
+      bubbleRate = 5;
     }
+
+    console.log("score " + score);
+    console.log("speedMin " + speedMin);
+    console.log("speedMax " + speedMax);
+    console.log("popScoreMin " + popScoreMin);
+    console.log("popScoreMax " + popScoreMax);
+    console.log("ambientPop " + ambientPop);
+    console.log("bubbleRate " + bubbleRate);
 
     startScreen();
 
