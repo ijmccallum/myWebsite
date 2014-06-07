@@ -5,17 +5,19 @@ speedMax = 4;
 popScoreMin = 1;
 popScoreMax = 1;
 ambientPop = 10000;
-bubbleRate = 20;
+bubbleRate = 1;
+//createNewBubbles(?) makes new bubbles :)
 
 // for the animation stuff
-var stage, circle, target, circleY, score, bmpList, bitmap, txt, play, pauseTxt, clicked, mouseTarget, mvTargets = [], state = [], startTxt;
+var stage, circle, target, circleY, score, bitmap, txt, play, pauseTxt, clicked, mouseTarget, mvTargets = [], state = [], startTxt;
 var canvas = document.getElementById('demoCanvas');
 var noTgts = 5;
 var tgtBlurFilter = [];
 var particleImage;
 var puff = [], emitter = [], emitterAlive = [];
 var emitterCount = 0;
-
+var bubbleContainer = new createjs.Container();
+var bmpList = [];
 
 /* =====================================================
  * =====================================================
@@ -77,15 +79,12 @@ function makeUpgradeBar() {
 /**
  * Create a number of targets
  */
-function createTargets(event) {
-    var image = event.target;
-    var container = new createjs.Container();
-    stage.addChild(container);
+function startGamePlay() {
+    stage.addChild(bubbleContainer);
 
-    bmpList = [];
     for (var i = 0; i < bubbleRate; i ++) {
         emitterAlive[i] = false;
-        bitmap = container.addChild(new createjs.Shape());
+        bitmap = bubbleContainer.addChild(new createjs.Shape());
         bitmap.name = "tgt" + i;
         resetTgt(bitmap, i);
         bmpList.push(bitmap);
@@ -151,6 +150,26 @@ function tick(event) {
   txt.text = score;
 
   stage.update(event);
+}
+
+/**
+ * Creating new bubbles while the game is running
+ * every time the bubble rate is increased, we must add more bubbles!
+ */
+function createNewBubbles(numBubblesToAdd) {
+    totalBubbles = bubbleRate + numBubblesToAdd;
+
+    /*
+     * the counter is set to the bubble rate as it is used to create the bubble's name, so it can't clash with any existing bubbles
+     * by counting from there to the total number of bubbles, we add the required amount of bubbles!
+     */
+    for (var i = bubbleRate; i < totalBubbles; i ++) {
+        emitterAlive[i] = false;
+        bitmap = bubbleContainer.addChild(new createjs.Shape());
+        bitmap.name = "tgt" + i;
+        resetTgt(bitmap, i);
+        bmpList.push(bitmap);
+    }
 }
 
 /**
@@ -354,16 +373,15 @@ function handleClick() {
 
   canvas.onClick = null;
 
+  //When the very first screen is clicked, start the game!
   if (state =="start") {
     stage.removeChild(startTxt);
     makeUpgradeBar();
-    var movingTarget = new Image();
-    movingTarget.src = "img/dot.png";
-    movingTarget.onload = createTargets;
+    startGamePlay();
     play = true;
     state = "playing";
     ambientPopInit();
-  } 
+  }
   // } else if (state =="playing") {
   //   console.log("%cPausing game", "color:blue;");
   //   play = false;
