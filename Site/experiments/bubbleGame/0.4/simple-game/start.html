@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Easel simple game</title>
+<script src="lib/easel.js"></script>
+<script>
+var canvas;
+var stage;
+var bg;
+var score;
+
+function init() {
+	canvas = document.getElementById("canvas");
+	stage = new Stage(canvas);
+	score = 0;
+	
+	bg = new Image();
+	bg.src = "img/space.jpg";
+	bg.onload = setBG;
+}
+
+function setBG(event){
+	var bgrnd = new Bitmap(bg);
+	stage.addChild(bgrnd);
+	stage.update();
+}
+</script>
+</head>
+
+<body onload="init();">
+	<canvas id="canvas" width="960" height="580"></canvas>
+    <p>getObjectUnderPoint used in the tutorial only works if the HTML page is served from a web server, unless you have Safari.</p>
+</body>
+</html>

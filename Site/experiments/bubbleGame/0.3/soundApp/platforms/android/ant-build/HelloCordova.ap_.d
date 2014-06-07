@@ -1,0 +1,27 @@
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/ant-build/HelloCordova.ap_ \
+ : /Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/res/drawable/icon.png \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/res/drawable-hdpi/icon.png \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/res/drawable-ldpi/icon.png \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/res/drawable-mdpi/icon.png \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/res/drawable-xhdpi/icon.png \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/res/values/strings.xml \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/res/xml/config.xml \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/ant-build/res/drawable/icon.png \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/ant-build/res/drawable-hdpi/icon.png \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/ant-build/res/drawable-ldpi/icon.png \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/ant-build/res/drawable-mdpi/icon.png \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/_where-is-www.txt \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www/cordova.js \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www/cordova_plugins.js \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www/css \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www/img \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www/index.html \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www/js \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www/css/index.css \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www/css/main.css \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www/img/logo.png \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www/js/index.js \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/assets/www/js/main.js \
+/Users/user/Projects/soundApp/Repo/0.3/soundApp/platforms/android/ant-build/AndroidManifest.xml \
