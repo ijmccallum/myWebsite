@@ -1,12 +1,16 @@
 //Gameplay variables
-score = 0;
-speedMin = 2;
-speedMax = 4;
-popScoreMin = 1;
-popScoreMax = 1;
-ambientPop = 10000;
-bubbleRate = 1;
-//createNewBubbles(?) makes new bubbles :)
+var score = 0,
+    speedMin = 2,
+    speedMax = 4,
+    popScoreMin = 1,
+    popScoreMax = 1,      //<< this cab be increased, needs a panel
+    ambientPop = 10000,   //<< this cab be increased, needs a panel
+    bubbleRate = 10;       //<< this cab be increased, needs a panel
+
+//The UI
+var numBubblesPanel,
+    bubbleValuePanel,
+    ambientPopPanel;
 
 // for the animation stuff
 var stage, circle, target, circleY, score, bitmap, txt, play, pauseTxt, clicked, mouseTarget, mvTargets = [], state = [], startTxt;
@@ -17,6 +21,7 @@ var particleImage;
 var puff = [], emitter = [], emitterAlive = [];
 var emitterCount = 0;
 var bubbleContainer = new createjs.Container();
+var upgradeBarContainer = new createjs.Container();
 var bmpList = [];
 
 /* =====================================================
@@ -69,10 +74,65 @@ function init() {
  * Create the upgrade bar
  */
 function makeUpgradeBar() {
+  /*
+   * The background
+   */
+  stage.addChild(upgradeBarContainer);
+
   var barBG = new createjs.Shape();
   barBG.graphics
     .beginFill("rgba(0,0,0,1)").rect(0, (canvas.height-40), canvas.width, canvas.height);
-  stage.addChild(barBG);
+
+  upgradeBarContainer.addChild(barBG);
+
+  /*
+   * The upgrade buttons
+   */
+
+  var numBubblesBtn = new createjs.Text ("Number of bubbles", "18px arial", "#fff");
+  numBubblesBtn.textAlign = "center";
+  numBubblesBtn.x = canvas.width * 0.25;
+  numBubblesBtn.y = canvas.height - 30;
+
+  var bubbleValueBtn = new createjs.Text ("Value of bubbles", "18px arial", "#fff");
+  bubbleValueBtn.textAlign = "center";
+  bubbleValueBtn.x = canvas.width * 0.5;
+  bubbleValueBtn.y = canvas.height - 30;
+
+  var ambientPopBtn = new createjs.Text ("Ambient pop rate", "18px arial", "#fff");
+  ambientPopBtn.textAlign = "center";
+  ambientPopBtn.x = canvas.width * 0.75;
+  ambientPopBtn.y = canvas.height - 30;
+
+  upgradeBarContainer.addChild(numBubblesBtn);
+  upgradeBarContainer.addChild(bubbleValueBtn);
+  upgradeBarContainer.addChild(ambientPopBtn);
+
+  /*
+   * The upgrade panels
+   */
+
+   //300 by 450
+   var pPos1 = (canvas.width / 2) - 150; //top left x
+   var pPos2 = 50; //top left y
+   var pPos3 = 300; //width
+   var pPos4 = canvas.height-120; //height 
+
+   numBubblesPanel = new createjs.Shape();
+   numBubblesPanel.graphics
+      .beginFill("rgba(0,0,0,0.8)").rect(pPos1, pPos2, pPos3, pPos4);
+   //createNewBubbles(?) makes new bubbles :)
+
+   bubbleValuePanel = new createjs.Shape();
+   bubbleValuePanel.graphics
+      .beginFill("rgba(0,0,0,0.8)").rect(pPos1, pPos2, pPos3, pPos4);
+
+
+   ambientPopPanel = new createjs.Shape();
+   ambientPopPanel.graphics
+      .beginFill("rgba(0,0,0,0.8)").rect(pPos1, pPos2, pPos3, pPos4);
+   stage.addChild(ambientPopPanel);
+
 
 }
 
