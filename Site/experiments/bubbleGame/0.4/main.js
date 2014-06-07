@@ -1,5 +1,11 @@
 //Gameplay variables
-
+score = 0;
+speedMin = 2;
+speedMax = 4;
+popScoreMin = 1;
+popScoreMax = 1;
+ambientPop = 10000;
+bubbleRate = 5;
 
 // for the animation stuff
 var stage, circle, arm, target, returnLevel, circleY, score, topScore, bmpList, flySeq, flyY, fly, flyImg, bitmap, txt, play, gameTxt, saveTxt, pauseTxt, clicked, mouseTarget, mvTargets = [], state = [], startTxt;
@@ -10,6 +16,7 @@ var tgtBlurFilter = [], flyBlurFilter, flyBounds;
 var particleImage;
 var puff = [], emitter = [], emitterAlive = [];
 var speedMin = 2, speedMax = 4;
+var emitterCount = 0;
 
 
 /* =====================================================
@@ -27,6 +34,7 @@ function init() {
     particleImage = new Image();
     //particleImage.onload = initCanvas;
     particleImage.src = "img/particle_base.png";
+    
 
     //todo: get top score from memory.
     if (typeof(Storage)!=="undefined") {
@@ -39,13 +47,7 @@ function init() {
       bubbleRate = Number(localStorage.getItem("bubbleRate"));
       console.log("Local storage available, updating gameplay variables");
     } else {
-      score = 0;
-      speedMin = 2;
-      speedMax = 4;
-      popScoreMin = 1;
-      popScoreMax = 1;
-      ambientPop = 0;
-      bubbleRate = 5;
+      console.log("No saved values found, gameplay variables set to baseline");
     }
 
     console.log("score " + score);
@@ -129,7 +131,7 @@ function resetTgt(tgt, i) {
   //Behaviour
     tgt.rndWidth = rndWidth;
     tgt.speed = (Math.random()*speedMax)+speedMin;
-    tgt.score = Math.floor((Math.random() * speedMax) + speedMin);
+    tgt.score = Math.floor((Math.random() * popScoreMax) + popScoreMin);
     console.log("Tgt score = " + tgt.score);
     tgtBlurFilter[i] = new createjs.BlurFilter((tgt.speed/2), 0, 1);
     tgtBlurFilter[i+1] = new createjs.BlurFilter(1, 1, 1);
@@ -224,49 +226,65 @@ function tick(event) {
 
     //Check for clicking
     if (!clicked && stage.mouseX && stage.mouseY) {
-      //Get the object under the mouse point
-      mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY);
+        //Get the object under the mouse point
+        mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY);
     }
 
     if (clicked && mouseTarget) {
-      var tempTxt = String(mouseTarget.name);
-      tempTxt = tempTxt.substring(0,3);
+        var tempTxt = String(mouseTarget.name);
+        tempTxt = tempTxt.substring(0,3);
 
-    //If a bubble has been clicked
-    if (tempTxt!=null && tempTxt=='tgt') {
-      emitter[i] = new createjs.ParticleEmitter(particleImage);
-      puff[i] = createParticlePuff(emitter[i], mouseTarget.rndWidth);
-      emitter[i].position = new createjs.Point(mouseTarget.x, mouseTarget.y);
-      emitterAlive[i] = "on";
-      stage.addChild(emitter[i]);
-      score += mouseTarget.score;
-      clicked = false;
-      speedMax += 0.1;
-      speedMin += 0.01;
-      resetTgt(mouseTarget);
-      saveScore();
+        //If a bubble has been clicked
+        if (tempTxt!=null && tempTxt=='tgt') {
+            popBubble(mouseTarget);
+        }
     }
-  }
 
 
   //Move the targets
   if (play == true) {
-    var noTgts = bmpList.length;
-    for (var i = 0; i < noTgts; i++) {
-      var bmp = bmpList[i];
-      if (bmp.x > -100) {
-        bmp.x -= bmp.speed;
+      var noTgts = bmpList.length;
+      for (var i = 0; i < noTgts; i++) {
+          var bmp = bmpList[i];
+          if (bmp.x > -100) {
+              bmp.x -= bmp.speed;
 
-      } else {
-        resetTgt(bmp);
-        console.log("%cOne escaped!", "color:red;");
+          } else {
+              resetTgt(bmp);
+              console.log("%cOne escaped!", "color:red;");
+          }
       }
-    }
   }
 
   txt.text = score;
 
   stage.update(event);
+}
+
+//ambient pop
+setInterval(function(){
+    rndBubble = Math.floor((Math.random() * bubbleRate) + 1);
+    bubbleToPop = bmpList[rndBubble];
+
+    console.log("Random pop: " + rndBubble);
+    //is random bubble in the screen?  if it is pop if not, find another one
+
+    popBubble(bubbleToPop);
+},ambientPop);
+
+function popBubble(bubble) {
+    emitter[emitterCount] = new createjs.ParticleEmitter(particleImage);
+    puff[emitterCount] = createParticlePuff(emitter[emitterCount], bubble.rndWidth);
+    emitter[emitterCount].position = new createjs.Point(bubble.x, bubble.y);
+    emitterAlive[emitterCount] = "on";
+    stage.addChild(emitter[emitterCount]);
+    score += bubble.score;
+    clicked = false;
+    speedMax += 0.1;
+    speedMin += 0.01;
+    resetTgt(bubble);
+    saveScore();
+    emitterCount ++;
 }
 
 
