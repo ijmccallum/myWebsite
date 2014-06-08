@@ -269,11 +269,12 @@ function makeUpgrade(container, title, containerY) {
       container.addChild(upgradeBG);
 
     //How many bought?
-    var upgradeCount = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "18px arial", "#fff");
-    upgradeCount.textAlign = "center";
-    upgradeCount.x = (canvas.width / 2);
-    upgradeCount.y = textHeight;
-      container.addChild(upgradeCount);
+    var upgradeCountTxt = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "18px arial", "#fff");
+    upgradeCountTxt.textAlign = "center";
+    upgradeCountTxt.x = (canvas.width / 2);
+    upgradeCountTxt.y = textHeight;
+    upgradeCountTxt.name = "upgradeCountTxt";
+      container.addChild(upgradeCountTxt);
 
     //Make the title
     var upgradeTitle = new createjs.Text(title, "18px arial", "#fff");
@@ -661,6 +662,7 @@ function handleUpgrade(upgrade) {
                 createNewBubbles(upgrade.upgradeValue);
                 bubbleRate = bubbleRate + upgrade.upgradeValue;
                 upgrade.upgradeCount ++;
+                upgrade.getChildByName("upgradeCountTxt").text = "(" + upgrade.upgradeCount + "/" + upgrade.maxUpgradeCount + ")";
                 score = score - upgrade.upgradeCost;
                 console.log("Bubble rate: " + bubbleRate);
             }
@@ -678,6 +680,7 @@ function handleUpgrade(upgrade) {
                 popScoreMin = Math.round(popScoreMax + (upgrade.upgradeValue/2));
                 popScoreMax = popScoreMax + upgrade.upgradeValue;
                 upgrade.upgradeCount ++;
+                upgrade.getChildByName("upgradeCountTxt").text = "(" + upgrade.upgradeCount + "/" + upgrade.maxUpgradeCount + ")";
                 score = score - upgrade.upgradeCost;
                 console.log("Upgraded value, max: " + popScoreMax + " | min : " + popScoreMin);
             }
@@ -693,11 +696,13 @@ function handleUpgrade(upgrade) {
                  */
                 ambientPop = Math.round(ambientPop * 0.9); //1 10th speed increace
                 upgrade.upgradeCount ++;
+                upgrade.getChildByName("upgradeCountTxt").text = "(" + upgrade.upgradeCount + "/" + upgrade.maxUpgradeCount + ")";
                 score = score - upgrade.upgradeCost;
                 console.log("Ambient pop rate: " + ambientPop);
             }
         }
     }
+    stage.update();
 }
 
 /* =====================================================
