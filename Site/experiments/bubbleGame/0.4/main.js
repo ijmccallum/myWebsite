@@ -71,6 +71,12 @@ function init() {
 
 }
 
+/* =====================================================
+ * =====================================================
+ * ====================  INTERFACE  ====================
+ * =====================================================
+ * =====================================================
+ */
 /**
  * Create the upgrade bar
  */
@@ -91,22 +97,13 @@ function makeUpgradeBar() {
    */
 
   var numBubblesBtn = new createjs.Text ("Number of bubbles", "18px arial", "#fff");
-  numBubblesBtn.textAlign = "center";
-  numBubblesBtn.x = canvas.width * 0.25;
-  numBubblesBtn.y = canvas.height - 30;
-  numBubblesBtn.name = "upgradeNumBtn";
+  makeText(numBubblesBtn, (canvas.width * 0.25), (canvas.height - 30), "upgradeNumBtn");
 
   var bubbleValueBtn = new createjs.Text ("Value of bubbles", "18px arial", "#fff");
-  bubbleValueBtn.textAlign = "center";
-  bubbleValueBtn.x = canvas.width * 0.5;
-  bubbleValueBtn.y = canvas.height - 30;
-  bubbleValueBtn.name = "upgradeValueBtn";
+  makeText(bubbleValueBtn, (canvas.width * 0.5), (canvas.height - 30), "upgradeValueBtn");
 
   var ambientPopBtn = new createjs.Text ("Ambient pop rate", "18px arial", "#fff");
-  ambientPopBtn.textAlign = "center";
-  ambientPopBtn.x = canvas.width * 0.75;
-  ambientPopBtn.y = canvas.height - 30;
-  ambientPopBtn.name = "upgradeAmbientBtn"
+  makeText(ambientPopBtn, (canvas.width * 0.75), (canvas.height - 30), "upgradeAmbientBtn");
 
   upgradeBarContainer.addChild(numBubblesBtn);
   upgradeBarContainer.addChild(bubbleValueBtn);
@@ -118,15 +115,52 @@ function makeUpgradeBar() {
 
     /*
      * Building the upgrade panel for the NUMBER of bubbles
+     *
+     *    ,gPPRg,   ,gPPRg,   ,gPPRg,                    
+     *   dP'   `Yb dP'   `Yb dP'   `Yb
+     *   8)     (8 8)     (8 8)     (8
+     *   Yb     dP Yb     dP Yb     dP
+     *    "8ggg8"   "8ggg8"   "8ggg8" 
      */
     var numBubblesPanelBG = new createjs.Shape();
     var numBubblesPanelTitle = new createjs.Text ("Number of bubbles", "18px arial", "#fff");
     var numBubblesplayBtn = new createjs.Text ("Play", "18px arial", "#fff");
 
     genericBits(numBubblesPanel, numBubblesPanelBG, numBubblesPanelTitle, numBubblesplayBtn);
+
+        /*
+         * Adding the upgrade options for the NUMBER of bubbles
+         */
+         var numUp = [];
+
+         numUp[1] = new createjs.Container();
+
+         var yIncriment = 100;
+
+         numUp[1].name = "number";
+         numUp[1].upgradeValue = 10;
+         numUp[1].upgradeCost = 1;
+         numUp[1].upgradeCount = 0;
+         makeUpgrade(numUp[1], "10 more!", yIncriment);
+
+         //numUp[1].addEventListener("click", handleUpgrade);
+
+         numBubblesPanel.addChild(numUp[1]);
  
     /*
      * Building the upgrade panel for the VALUE of the bubbles
+     *       $           $           $    
+     *    ,$$$$$,     ,$$$$$,     ,$$$$$, 
+     *  ,$$$'$`$$$  ,$$$'$`$$$  ,$$$'$`$$$
+     *  $$$  $   `  $$$  $   `  $$$  $   `
+     *  '$$$,$      '$$$,$      '$$$,$     
+     *    '$$$$,      '$$$$,      '$$$$,   
+     *      '$$$$,      '$$$$,      '$$$$, 
+     *       $ $$$,      $ $$$,      $ $$$,
+     *   ,   $  $$$  ,   $  $$$  ,   $  $$$
+     *   $$$,$.$$$'  $$$,$.$$$'  $$$,$.$$$'
+     *    '$$$$$'     '$$$$$'     '$$$$$'  
+     *       $           $           $
      */
     var bubbleValuePanelBG = new createjs.Shape();
     var bubbleValuePanelTitle = new createjs.Text ("Value of bubbles", "18px arial", "#fff");
@@ -146,6 +180,9 @@ function makeUpgradeBar() {
 
 }
 
+/*
+ * Making the generic upgrade panels
+ */
 function genericBits(container, BGpanel, upTitle, playBtn) {
     //300 by 450
     var pPos1 = (canvas.width / 2) - 150; //top left x
@@ -167,6 +204,53 @@ function genericBits(container, BGpanel, upTitle, playBtn) {
     container.addChild(BGpanel);
     container.addChild(upTitle);
     container.addChild(playBtn);
+}
+
+/*
+ * Setting the generic upgrade options
+ */
+function makeUpgrade(container, title, containerY) {
+
+    var topLeftX = (canvas.width / 2) - 145; //top left x
+    var topLeftY = containerY; //top left y
+    var bgWidth = 290; //width
+    var bgHeight = 50; //height 
+    var leftEdge = topLeftX + 10;
+    var rightEdge = (canvas.width / 2) + 135;
+    var textHeight = containerY + 15;
+
+    var upgradeBG = new createjs.Shape();
+    upgradeBG.graphics.beginFill("rgba(255,255,255,0.8)").rect(topLeftX, topLeftY, bgWidth, bgHeight);
+      container.addChild(upgradeBG);
+
+    //How many bought?
+    var upgradeCount = new createjs.Text("(" + container.upgradeCount + ")", "18px arial", "#fff");
+    upgradeCount.textAlign = "center";
+    upgradeCount.x = (canvas.width / 2);
+    upgradeCount.y = textHeight;
+      container.addChild(upgradeCount);
+
+    //Make the title
+    var upgradeTitle = new createjs.Text(title, "18px arial", "#fff");
+    upgradeTitle.textAlign = "left";
+    upgradeTitle.x = leftEdge;
+    upgradeTitle.y = textHeight;
+      container.addChild(upgradeTitle);
+
+    //show the cost
+    var upgradeCost = new createjs.Text(container.upgradeCost, "18px arial", "#fff");
+    upgradeCost.textAlign = "right";
+    upgradeCost.x = rightEdge
+    upgradeCost.y = textHeight;
+      container.addChild(upgradeCost);
+}
+
+
+function makeText(object, xPos, yPos, name) {
+    object.textAlign = "center";
+    object.x = xPos;
+    object.y = yPos;
+    object.name = name;
 }
 
 /**
@@ -217,7 +301,7 @@ function tick(event) {
 
           } else {
               resetTgt(bmp);
-              console.log("%cOne escaped!", "color:red;");
+              console.log("%cOne escaped!", "color:green;");
           }
       }
   }
@@ -274,7 +358,6 @@ function resetTgt(tgt, i) {
     tgt.rndWidth = rndWidth;
     tgt.speed = (Math.random()*speedMax)+speedMin;
     tgt.score = Math.floor((Math.random() * popScoreMax) + popScoreMin);
-    console.log("Tgt score = " + tgt.score);
     tgtBlurFilter[i] = new createjs.BlurFilter((tgt.speed/2), 0, 1);
     tgtBlurFilter[i+1] = new createjs.BlurFilter(1, 1, 1);
     tgt.alpha = 0.7;
@@ -350,7 +433,6 @@ function ambientPopInit(){
                 if (checkCount > bubbleRate) {
                   break;
                 }
-                console.log("Check count " + checkCount);
                 rndBubble = Math.floor((Math.random() * bubbleRate) + 1);
                 bubbleToPop = bmpList[rndBubble];
 
@@ -448,7 +530,6 @@ function createParticlePuff(emitter, rwidth) {
 
 function handleClick() {
     canvas.onClick = null;
-    console.log("State = " + state);
 
     /*
      * For dev, when state is start then we're on the start screen, time to begin the game!
@@ -469,7 +550,6 @@ function handleClick() {
 
     if (stage.mouseX && stage.mouseY) {
         mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY);
-        console.log("Mouse target: " + mouseTarget);
 
         if (mouseTarget) {
             var tempTxt = String(mouseTarget.name);
@@ -477,7 +557,6 @@ function handleClick() {
 
             if (tgtCheck!=null && tgtCheck=='tgt' && state=='playing') {
                 // The game is playing & the object clicked was a bubble, time to pop it!
-                console.log("It's a bubble!");
                 popBubble(mouseTarget);
 
             } else if (tempTxt!=null && tempTxt=='play') {
@@ -501,11 +580,36 @@ function handleClick() {
                 removePanels();
                 stage.addChild(ambientPopPanel);
                 pause();
+            } else if (mouseTarget.parent) {
+                if (mouseTarget.parent.name == "number" || mouseTarget.parent.name == "value" || mouseTarget.parent.name == "ambient"){
+                    handleUpgrade(mouseTarget.parent);
+                } else {
+
+                }
             }
-                // The player wants to start playing again!
-                //removePanels();
-                //play();
         }
+    }
+}
+
+/**
+ * Dealing with the upgrade
+ * removes the cost from the points
+ */
+function handleUpgrade(upgrade) {
+    if (score < upgrade.upgradeCost) {
+      console.log("Google wallet, here we go!");
+    } else {
+      //they have enough points, guess we've got to give them the upgrade, ugh.
+      score = score - upgrade.upgradeCost
+      if (upgrade.name == "number") {
+        createNewBubbles(upgrade.upgradeValue);
+        upgrade.upgradeCount ++;
+      } else if (upgrade.name == "value") {
+        //upgrade value of bubbles
+      } else if (upgrade.name == "ambient") {
+        //upgrade ambient pop rate
+      }
+
     }
 }
 
@@ -529,7 +633,6 @@ function startScreen() {
 }
 
 function removePanels() {
-  console.log("removing panels");
   if (stage.contains(numBubblesPanel)) {
       stage.removeChild(numBubblesPanel);
   }
@@ -554,7 +657,6 @@ function playGame() {
 
 function saveScore() {
   if(typeof(Storage)!=="undefined") {
-    console.log("Score saved to local storage: " + score);
     localStorage.setItem("score", score);
     localStorage.setItem("speedMin", speedMin);
     localStorage.setItem("speedMax", speedMax);
