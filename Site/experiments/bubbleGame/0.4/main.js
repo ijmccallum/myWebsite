@@ -56,10 +56,8 @@ function init() {
     // }
 
     console.log("score " + score);
-    console.log("speedMin " + speedMin);
-    console.log("speedMax " + speedMax);
-    console.log("popScoreMin " + popScoreMin);
-    console.log("popScoreMax " + popScoreMax);
+    console.log("speed Min: " + speedMin + " | Max: " + speedMax);
+    console.log("Value Min: " + popScoreMin + " | Max: " + popScoreMax);
     console.log("ambientPop " + ambientPop);
     console.log("bubbleRate " + bubbleRate);
 
@@ -138,12 +136,11 @@ function makeUpgradeBar() {
          var yIncriment = 100;
 
          numUp[1].name = "number";
-         numUp[1].upgradeValue = 10;
-         numUp[1].upgradeCost = 1;
+         numUp[1].upgradeValue = 1;
+         numUp[1].upgradeCost = 10;
          numUp[1].upgradeCount = 0;
+         numUp[1].maxUpgradeCount = 50;
          makeUpgrade(numUp[1], "10 more!", yIncriment);
-
-         //numUp[1].addEventListener("click", handleUpgrade);
 
          numBubblesPanel.addChild(numUp[1]);
  
@@ -167,9 +164,40 @@ function makeUpgradeBar() {
     var bubbleValueplayBtn = new createjs.Text ("Play", "18px arial", "#fff");
 
     genericBits(bubbleValuePanel, bubbleValuePanelBG, bubbleValuePanelTitle, bubbleValueplayBtn);
+
+        /*
+         * Adding the upgrade options for the VALUE of bubbles
+         */
+         var valueUp = [];
+
+         valueUp[1] = new createjs.Container();
+
+         var yIncriment = 100;
+
+         valueUp[1].name = "value";
+         valueUp[1].upgradeValue = 1;
+         valueUp[1].upgradeCost = 10;
+         valueUp[1].upgradeCount = 0;
+         valueUp[1].maxUpgradeCount = 50;
+         makeUpgrade(valueUp[1], "10 more!", yIncriment);
+
+         bubbleValuePanel.addChild(valueUp[1]);
  
     /*
      * Building the upgrade panel for the AMBIENT popping rate
+     *
+     *                             |      
+     *                         \        /
+     *                                  
+     *                     '    ,gPPRg,   '                  
+     *                         dP'   `Yb 
+     *                   --    8)     (8   -- 
+     *                         Yb     dP 
+     *                     .    "8ggg8"   .
+     *                                  
+     *                        /         \
+     *                             |      
+     *
      */
     var ambientPopPanelBG = new createjs.Shape();
     var ambientPopPanelTitle = new createjs.Text ("Ambient popping rate", "18px arial", "#fff");
@@ -177,6 +205,23 @@ function makeUpgradeBar() {
 
     genericBits(ambientPopPanel, ambientPopPanelBG, ambientPopPanelTitle, ambientPopplayBtn);
 
+        /*
+         * Adding the upgrade options for the AMBIENT of bubbles
+         */
+         var ambientUp = [];
+
+         ambientUp[1] = new createjs.Container();
+
+         var yIncriment = 100;
+
+         ambientUp[1].name = "ambient";
+         ambientUp[1].upgradeValue = 1000;
+         ambientUp[1].upgradeCost = 10;
+         ambientUp[1].upgradeCount = 0;
+         ambientUp[1].maxUpgradeCount = 10;
+         makeUpgrade(ambientUp[1], "Increase!", yIncriment);
+
+         ambientPopPanel.addChild(ambientUp[1]);
 
 }
 
@@ -224,7 +269,7 @@ function makeUpgrade(container, title, containerY) {
       container.addChild(upgradeBG);
 
     //How many bought?
-    var upgradeCount = new createjs.Text("(" + container.upgradeCount + ")", "18px arial", "#fff");
+    var upgradeCount = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "18px arial", "#fff");
     upgradeCount.textAlign = "center";
     upgradeCount.x = (canvas.width / 2);
     upgradeCount.y = textHeight;
@@ -300,8 +345,9 @@ function tick(event) {
               bmp.x -= bmp.speed;
 
           } else {
+              score = score - Math.round(bmp.score/2);
               resetTgt(bmp);
-              console.log("%cOne escaped!", "color:green;");
+              //console.log("%cOne escaped!", "color:green;");
           }
       }
   }
@@ -596,20 +642,61 @@ function handleClick() {
  * removes the cost from the points
  */
 function handleUpgrade(upgrade) {
-    if (score < upgrade.upgradeCost) {
-      console.log("Google wallet, here we go!");
-    } else {
-      //they have enough points, guess we've got to give them the upgrade, ugh.
-      score = score - upgrade.upgradeCost
-      if (upgrade.name == "number") {
-        createNewBubbles(upgrade.upgradeValue);
-        upgrade.upgradeCount ++;
-      } else if (upgrade.name == "value") {
-        //upgrade value of bubbles
-      } else if (upgrade.name == "ambient") {
-        //upgrade ambient pop rate
-      }
 
+    if (score < upgrade.upgradeCost) {
+        console.log("Google wallet, here we go!");
+    } else {
+        //they have enough points, now is the upgrade maxed out?
+
+        if (upgrade.name == "number") {
+
+            if (upgrade.upgradeCount >= upgrade.maxUpgradeCount) {
+                console.log("Hello google wallet again!")
+            } else {
+                /*
+                 * The bubble rate upgrade
+                 * Difficult one - it adds the specified number of bubbles but the computer can only handle so many
+                 * This needs to be an expensive one or the bubbles need to be made simpler when the numbers increace.
+                 */
+                createNewBubbles(upgrade.upgradeValue);
+                bubbleRate = bubbleRate + upgrade.upgradeValue;
+                upgrade.upgradeCount ++;
+                score = score - upgrade.upgradeCost;
+                console.log("Bubble rate: " + bubbleRate);
+            }
+
+        } else if (upgrade.name == "value") {
+
+            if (upgrade.upgradeCount >= upgrade.maxUpgradeCount) {
+                console.log("Hello google wallet again!")
+            } else {
+                /*
+                 * The value upgrade
+                 * Increases the mamximum possible value by the amount specified
+                 * also increases the minimum amount possible by 1/2 the amount specified
+                 */
+                popScoreMin = Math.round(popScoreMax + (upgrade.upgradeValue/2));
+                popScoreMax = popScoreMax + upgrade.upgradeValue;
+                upgrade.upgradeCount ++;
+                score = score - upgrade.upgradeCost;
+                console.log("Upgraded value, max: " + popScoreMax + " | min : " + popScoreMin);
+            }
+
+        } else if (upgrade.name == "ambient") {
+
+            if (upgrade.upgradeCount >= upgrade.maxUpgradeCount) {
+                console.log("Hello google wallet again!")
+            } else {
+                /*
+                 * The ambient upgrade
+                 * at the moment it only increases the pop rate by 1/10th
+                 */
+                ambientPop = Math.round(ambientPop * 0.9); //1 10th speed increace
+                upgrade.upgradeCount ++;
+                score = score - upgrade.upgradeCost;
+                console.log("Ambient pop rate: " + ambientPop);
+            }
+        }
     }
 }
 
