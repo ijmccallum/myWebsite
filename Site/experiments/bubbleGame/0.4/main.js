@@ -8,9 +8,9 @@ var score = 0,
     bubbleRate = 10;       //<< this cab be increased, needs a panel
 
 //The UI
-var numBubblesPanel,
-    bubbleValuePanel,
-    ambientPopPanel;
+var numBubblesPanel = new createjs.Container(),
+    bubbleValuePanel = new createjs.Container(),
+    ambientPopPanel = new createjs.Container();
 
 // for the animation stuff
 var stage, circle, target, circleY, score, bitmap, txt, play, pauseTxt, clicked, mouseTarget, mvTargets = [], state = [], startTxt;
@@ -65,8 +65,9 @@ function init() {
 
     startScreen();
 
-    canvas.onmousedown = onMouseDown;
-    canvas.onmouseup = onMouseUp;
+    //canvas.onmousedown = onMouseDown;
+    //canvas.onmouseup = onMouseUp;
+    canvas.onclick = handleClick;
 
 }
 
@@ -93,47 +94,79 @@ function makeUpgradeBar() {
   numBubblesBtn.textAlign = "center";
   numBubblesBtn.x = canvas.width * 0.25;
   numBubblesBtn.y = canvas.height - 30;
+  numBubblesBtn.name = "upgradeNumBtn";
 
   var bubbleValueBtn = new createjs.Text ("Value of bubbles", "18px arial", "#fff");
   bubbleValueBtn.textAlign = "center";
   bubbleValueBtn.x = canvas.width * 0.5;
   bubbleValueBtn.y = canvas.height - 30;
+  bubbleValueBtn.name = "upgradeValueBtn";
 
   var ambientPopBtn = new createjs.Text ("Ambient pop rate", "18px arial", "#fff");
   ambientPopBtn.textAlign = "center";
   ambientPopBtn.x = canvas.width * 0.75;
   ambientPopBtn.y = canvas.height - 30;
+  ambientPopBtn.name = "upgradeAmbientBtn"
 
   upgradeBarContainer.addChild(numBubblesBtn);
   upgradeBarContainer.addChild(bubbleValueBtn);
   upgradeBarContainer.addChild(ambientPopBtn);
 
-  /*
-   * The upgrade panels
-   */
+   /*
+    * The upgrade panels
+    */
 
-   //300 by 450
-   var pPos1 = (canvas.width / 2) - 150; //top left x
-   var pPos2 = 50; //top left y
-   var pPos3 = 300; //width
-   var pPos4 = canvas.height-120; //height 
+    /*
+     * Building the upgrade panel for the NUMBER of bubbles
+     */
+    var numBubblesPanelBG = new createjs.Shape();
+    var numBubblesPanelTitle = new createjs.Text ("Number of bubbles", "18px arial", "#fff");
+    var numBubblesplayBtn = new createjs.Text ("Play", "18px arial", "#fff");
 
-   numBubblesPanel = new createjs.Shape();
-   numBubblesPanel.graphics
-      .beginFill("rgba(0,0,0,0.8)").rect(pPos1, pPos2, pPos3, pPos4);
-   //createNewBubbles(?) makes new bubbles :)
+    genericBits(numBubblesPanel, numBubblesPanelBG, numBubblesPanelTitle, numBubblesplayBtn);
+ 
+    /*
+     * Building the upgrade panel for the VALUE of the bubbles
+     */
+    var bubbleValuePanelBG = new createjs.Shape();
+    var bubbleValuePanelTitle = new createjs.Text ("Value of bubbles", "18px arial", "#fff");
+    var bubbleValueplayBtn = new createjs.Text ("Play", "18px arial", "#fff");
 
-   bubbleValuePanel = new createjs.Shape();
-   bubbleValuePanel.graphics
-      .beginFill("rgba(0,0,0,0.8)").rect(pPos1, pPos2, pPos3, pPos4);
+    genericBits(bubbleValuePanel, bubbleValuePanelBG, bubbleValuePanelTitle, bubbleValueplayBtn);
+ 
+    /*
+     * Building the upgrade panel for the AMBIENT popping rate
+     */
+    var ambientPopPanelBG = new createjs.Shape();
+    var ambientPopPanelTitle = new createjs.Text ("Ambient popping rate", "18px arial", "#fff");
+    var ambientPopplayBtn = new createjs.Text ("Play", "18px arial", "#fff");
+
+    genericBits(ambientPopPanel, ambientPopPanelBG, ambientPopPanelTitle, ambientPopplayBtn);
 
 
-   ambientPopPanel = new createjs.Shape();
-   ambientPopPanel.graphics
-      .beginFill("rgba(0,0,0,0.8)").rect(pPos1, pPos2, pPos3, pPos4);
-   stage.addChild(ambientPopPanel);
+}
 
+function genericBits(container, BGpanel, upTitle, playBtn) {
+    //300 by 450
+    var pPos1 = (canvas.width / 2) - 150; //top left x
+    var pPos2 = 50; //top left y
+    var pPos3 = 300; //width
+    var pPos4 = canvas.height-120; //height 
 
+    BGpanel.graphics.beginFill("rgba(0,0,0,0.8)").rect(pPos1, pPos2, pPos3, pPos4);
+
+    upTitle.textAlign = "center";
+    upTitle.x = canvas.width * 0.5;
+    upTitle.y = 70;
+
+    playBtn.textAlign = "center";
+    playBtn.x = canvas.width * 0.5;
+    playBtn.y = canvas.height - 100;
+    playBtn.name = "play";
+
+    container.addChild(BGpanel);
+    container.addChild(upTitle);
+    container.addChild(playBtn);
 }
 
 /**
@@ -170,27 +203,9 @@ function startGamePlay() {
 
 /**
  * The Ticker! The heart and soul of this game
- * preforming hit test
  * moving the targets
  */
 function tick(event) {
-
-    //Check for clicking
-    if (!clicked && stage.mouseX && stage.mouseY) {
-        //Get the object under the mouse point
-        mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY);
-    }
-
-    if (clicked && mouseTarget) {
-        var tempTxt = String(mouseTarget.name);
-        tempTxt = tempTxt.substring(0,3);
-
-        //If a bubble has been clicked
-        if (tempTxt!=null && tempTxt=='tgt') {
-            popBubble(mouseTarget);
-        }
-    }
-
 
   //Move the targets
   if (play == true) {
@@ -325,25 +340,27 @@ function selectColour() {
  */
 function ambientPopInit(){
     setInterval(function(){
-        var bPos = -1;
-        var rndBubble, bubbleToPop;
-        var checkCount = 0;
+        if (state == "playing") {
+            var bPos = -1;
+            var rndBubble, bubbleToPop;
+            var checkCount = 0;
 
-        while (bPos < 0 || bPos > canvas.width) {
-            checkCount ++;
-            if (checkCount > bubbleRate) {
-              break;
+            while (bPos < 0 || bPos > canvas.width) {
+                checkCount ++;
+                if (checkCount > bubbleRate) {
+                  break;
+                }
+                console.log("Check count " + checkCount);
+                rndBubble = Math.floor((Math.random() * bubbleRate) + 1);
+                bubbleToPop = bmpList[rndBubble];
+
+                if (bubbleToPop) {
+                    bPos = bubbleToPop.x;
+                }
             }
-            console.log("Check count " + checkCount);
-            rndBubble = Math.floor((Math.random() * bubbleRate) + 1);
-            bubbleToPop = bmpList[rndBubble];
-
             if (bubbleToPop) {
-                bPos = bubbleToPop.x;
+                popBubble(bubbleToPop);
             }
-        }
-        if (bubbleToPop) {
-            popBubble(bubbleToPop);
         }
     },ambientPop);
 }
@@ -387,37 +404,37 @@ function popBubble(bubble) {
 function createParticlePuff(emitter, rwidth) {
   //emitter.emitterType = createjs.ParticleEmitterType.OneShot;
   //var emitter = new createjs.ParticleEmitter(REPLACE_WITH_IMAGE_VARIABLE);
-emitter.emitterType = createjs.ParticleEmitterType.OneShot;
-emitter.emissionRate = rwidth/4;
-emitter.maxParticles = rwidth/4;
-emitter.life = 300;
-emitter.lifeVar = 100;
-emitter.speed = 150;
-emitter.speedVar = 50;
-emitter.positionVarX = rwidth;
-emitter.positionVarY = rwidth;
-emitter.accelerationX = 0;
-emitter.accelerationY = 2000;
-emitter.radialAcceleration = 0;
-emitter.radialAccelerationVar = 0;
-emitter.tangentalAcceleration = 0;
-emitter.tangentalAccelerationVar = 0;
-emitter.angle = 0;
-emitter.angleVar = 360;
-emitter.startSpin = 0;
-emitter.startSpinVar = 0;
-emitter.endSpin = null;
-emitter.endSpinVar = null;
-emitter.startColor = [255, 255, 255];
-emitter.startColorVar = [0, 0, 0];
-emitter.startOpacity = 1;
-emitter.endColor = null;
-emitter.endColorVar = null;
-emitter.endOpacity = null;
-emitter.startSize = 5;
-emitter.startSizeVar = 2;
-emitter.endSize = 0;
-emitter.endSizeVar = null;
+  emitter.emitterType = createjs.ParticleEmitterType.OneShot;
+  emitter.emissionRate = rwidth/4;
+  emitter.maxParticles = rwidth/4;
+  emitter.life = 300;
+  emitter.lifeVar = 100;
+  emitter.speed = 150;
+  emitter.speedVar = 50;
+  emitter.positionVarX = rwidth;
+  emitter.positionVarY = rwidth;
+  emitter.accelerationX = 0;
+  emitter.accelerationY = 2000;
+  emitter.radialAcceleration = 0;
+  emitter.radialAccelerationVar = 0;
+  emitter.tangentalAcceleration = 0;
+  emitter.tangentalAccelerationVar = 0;
+  emitter.angle = 0;
+  emitter.angleVar = 360;
+  emitter.startSpin = 0;
+  emitter.startSpinVar = 0;
+  emitter.endSpin = null;
+  emitter.endSpinVar = null;
+  emitter.startColor = [255, 255, 255];
+  emitter.startColorVar = [0, 0, 0];
+  emitter.startOpacity = 1;
+  emitter.endColor = null;
+  emitter.endColorVar = null;
+  emitter.endOpacity = null;
+  emitter.startSize = 5;
+  emitter.startSizeVar = 2;
+  emitter.endSize = 0;
+  emitter.endSizeVar = null;
   //return emitter;
 }
 
@@ -428,43 +445,68 @@ emitter.endSizeVar = null;
  * =====================================================
  */
 
-canvas.onclick = handleClick;
+
 function handleClick() {
+    canvas.onClick = null;
+    console.log("State = " + state);
 
-  canvas.onClick = null;
+    /*
+     * For dev, when state is start then we're on the start screen, time to begin the game!
+     */
 
-  //When the very first screen is clicked, start the game!
-  if (state =="start") {
-    stage.removeChild(startTxt);
-    makeUpgradeBar();
-    startGamePlay();
-    play = true;
-    state = "playing";
-    ambientPopInit();
-  }
-  // } else if (state =="playing") {
-  //   console.log("%cPausing game", "color:blue;");
-  //   play = false;
-  //   pause();
-  //   state = "pause";
+    if (state =="start") {
+      stage.removeChild(startTxt);
+      makeUpgradeBar();
+      startGamePlay();
+      play = true;
+      state = "playing";
+      ambientPopInit();
+    }
 
-  // } else if (state == "pause") {
-  //   console.log("%cUnpausing game", "color:blue;");
-  //   play = true;
-  //   stage.removeChild(pauseTxt);
-  //   state = "playing";
+    /*
+     * Dealing with the object that was clicked
+     */
 
-  // } 
-}
+    if (stage.mouseX && stage.mouseY) {
+        mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY);
+        console.log("Mouse target: " + mouseTarget);
 
-function onMouseDown() {
-  if (!e) {var e = window.event;}
-  clicked = true;
-  console.log("State = " + state);
-}
+        if (mouseTarget) {
+            var tempTxt = String(mouseTarget.name);
+            tgtCheck = tempTxt.substring(0,3);
 
-function onMouseUp() {
-  clicked = false;
+            if (tgtCheck!=null && tgtCheck=='tgt' && state=='playing') {
+                // The game is playing & the object clicked was a bubble, time to pop it!
+                console.log("It's a bubble!");
+                popBubble(mouseTarget);
+
+            } else if (tempTxt!=null && tempTxt=='play') {
+                // The player wants to increace the ambient pop rate!
+                removePanels();
+                playGame();
+            } else if (tempTxt!=null && tempTxt=='upgradeNumBtn') {
+                // The player wants to increase the number of bubbles!
+                removePanels();
+                stage.addChild(numBubblesPanel);
+                pause();
+
+            } else if (tempTxt!=null && tempTxt=='upgradeValueBtn') {
+                // The player wants to increase the value of the bubbles!
+                removePanels();
+                stage.addChild(bubbleValuePanel);
+                pause();
+
+            } else if (tempTxt!=null && tempTxt=='upgradeAmbientBtn') {
+                // The player wants to increace the ambient pop rate!
+                removePanels();
+                stage.addChild(ambientPopPanel);
+                pause();
+            }
+                // The player wants to start playing again!
+                //removePanels();
+                //play();
+        }
+    }
 }
 
 /* =====================================================
@@ -486,13 +528,27 @@ function startScreen() {
   //canvas.onclick = handleClick("gameStart");
 }
 
+function removePanels() {
+  console.log("removing panels");
+  if (stage.contains(numBubblesPanel)) {
+      stage.removeChild(numBubblesPanel);
+  }
+  if (stage.contains(bubbleValuePanel)) {
+      stage.removeChild(bubbleValuePanel);
+  }
+  if (stage.contains(ambientPopPanel)) {
+      stage.removeChild(ambientPopPanel);
+  }
+}
+
 function pause() {
-  pauseTxt = new createjs.Text("Game Paused\n\n", "18px arial", "#fff");
-  pauseTxt.text += "Click to start playing again";
-  pauseTxt.textAlign = "center";
-  pauseTxt.x = canvas.width / 2;
-  pauseTxt.y = canvas.height / 3;
-  stage.addChild(pauseTxt);
+  play = false;
+  state = "pause";
+}
+
+function playGame() {
+  play = true;
+  state = "playing";
 }
 
 
