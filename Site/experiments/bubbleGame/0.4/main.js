@@ -11,6 +11,7 @@ var score = 0,
 var numBubblesPanel = new createjs.Container(),
     bubbleValuePanel = new createjs.Container(),
     ambientPopPanel = new createjs.Container();
+var theTop = 100; //Distance from the top before upgrade panels begin
 
 // for the animation stuff
 var stage, circle, target, circleY, score, bitmap, txt, play, pauseTxt, clicked, mouseTarget, mvTargets = [], state = [], startTxt;
@@ -121,7 +122,8 @@ function makeUpgradeBar() {
      *    "8ggg8"   "8ggg8"   "8ggg8" 
      */
     var numBubblesPanelBG = new createjs.Shape();
-    var numBubblesPanelTitle = new createjs.Text ("Number of bubbles", "18px arial", "#fff");
+    var numBubblesPanelTitle = new createjs.Text ("Number of bubbles: " + bubbleRate, "18px arial", "#fff");
+    numBubblesPanelTitle.name = "numBubblesPanelTitle";
     var numBubblesplayBtn = new createjs.Text ("Play", "18px arial", "#fff");
 
     genericBits(numBubblesPanel, numBubblesPanelBG, numBubblesPanelTitle, numBubblesplayBtn);
@@ -131,19 +133,26 @@ function makeUpgradeBar() {
          */
          var numUp = [];
 
-         numUp[1] = new createjs.Container();
+         makeNumberUpgrades(0, 1, 10, 50);
+         makeNumberUpgrades(1, 5, 100, 10);
+         makeNumberUpgrades(2, 10, 1000, 5);
+         makeNumberUpgrades(3, 50, 10000, 5);
+         makeNumberUpgrades(4, 500, 100000, 5);
+         makeNumberUpgrades(5, 1000, 1000000, 1);
+         function makeNumberUpgrades(i, value, cost, maxCount) {
 
-         var yIncriment = 100;
+             numUp[i] = new createjs.Container();
+             var yIncriment = theTop + (i * 55);
 
-         numUp[1].name = "number";
-         numUp[1].upgradeValue = 1;
-         numUp[1].upgradeCost = 10;
-         numUp[1].upgradeCount = 0;
-         numUp[1].maxUpgradeCount = 50;
-         makeUpgrade(numUp[1], "10 more!", yIncriment);
+             numUp[i].name = "number";
+             numUp[i].upgradeValue = value;
+             numUp[i].upgradeCost = cost;
+             numUp[i].upgradeCount = 0;
+             numUp[i].maxUpgradeCount = maxCount;
+             makeUpgrade(numUp[i], ("add " + value), yIncriment);
 
-         numBubblesPanel.addChild(numUp[1]);
- 
+             numBubblesPanel.addChild(numUp[i]);
+         }
     /*
      * Building the upgrade panel for the VALUE of the bubbles
      *       $           $           $    
@@ -160,7 +169,8 @@ function makeUpgradeBar() {
      *       $           $           $
      */
     var bubbleValuePanelBG = new createjs.Shape();
-    var bubbleValuePanelTitle = new createjs.Text ("Value of bubbles", "18px arial", "#fff");
+    var bubbleValuePanelTitle = new createjs.Text ("Value of bubbles: " + popScoreMin + " ~ " + popScoreMax, "18px arial", "#fff");
+    bubbleValuePanelTitle.name = "bubbleValuePanelTitle";
     var bubbleValueplayBtn = new createjs.Text ("Play", "18px arial", "#fff");
 
     genericBits(bubbleValuePanel, bubbleValuePanelBG, bubbleValuePanelTitle, bubbleValueplayBtn);
@@ -170,19 +180,26 @@ function makeUpgradeBar() {
          */
          var valueUp = [];
 
-         valueUp[1] = new createjs.Container();
+         makeValueUpgrades(0, 10, 100, 5);
+         makeValueUpgrades(1, 10, 100, 5);
+         makeValueUpgrades(2, 10, 100, 5);
+         makeValueUpgrades(3, 10, 100, 5);
+         makeValueUpgrades(4, 10, 100, 5);
+         makeValueUpgrades(5, 10, 100, 5);
+         function makeValueUpgrades(i, value, cost, maxCount) {
+             valueUp[i] = new createjs.Container();
+             var yIncriment = theTop + (i * 55);
 
-         var yIncriment = 100;
+             valueUp[i].name = "value";
+             valueUp[i].upgradeValue = 1;
+             valueUp[i].upgradeCost = 10;
+             valueUp[i].upgradeCount = 0;
+             valueUp[i].maxUpgradeCount = 50;
+             makeUpgrade(valueUp[i], "10 more!", yIncriment);
 
-         valueUp[1].name = "value";
-         valueUp[1].upgradeValue = 1;
-         valueUp[1].upgradeCost = 10;
-         valueUp[1].upgradeCount = 0;
-         valueUp[1].maxUpgradeCount = 50;
-         makeUpgrade(valueUp[1], "10 more!", yIncriment);
+             bubbleValuePanel.addChild(valueUp[i]);
+         }
 
-         bubbleValuePanel.addChild(valueUp[1]);
- 
     /*
      * Building the upgrade panel for the AMBIENT popping rate
      *
@@ -200,7 +217,8 @@ function makeUpgradeBar() {
      *
      */
     var ambientPopPanelBG = new createjs.Shape();
-    var ambientPopPanelTitle = new createjs.Text ("Ambient popping rate", "18px arial", "#fff");
+    var ambientPopPanelTitle = new createjs.Text ("Ambient pop rate: " + (ambientPop/1000), "18px arial", "#fff");
+    ambientPopPanelTitle.name = "ambientPopPanelTitle";
     var ambientPopplayBtn = new createjs.Text ("Play", "18px arial", "#fff");
 
     genericBits(ambientPopPanel, ambientPopPanelBG, ambientPopPanelTitle, ambientPopplayBtn);
@@ -210,18 +228,25 @@ function makeUpgradeBar() {
          */
          var ambientUp = [];
 
-         ambientUp[1] = new createjs.Container();
+         makeAmbientUpgrades(0, 10, 100, 10);
+         makeAmbientUpgrades(1, 10, 100, 10);
+         makeAmbientUpgrades(2, 10, 100, 10);
+         makeAmbientUpgrades(3, 10, 100, 10);
+         makeAmbientUpgrades(4, 10, 100, 10);
+         makeAmbientUpgrades(5, 10, 100, 10);
+         function makeAmbientUpgrades(i, value, cost, maxCount) {
+             ambientUp[i] = new createjs.Container();
+             var yIncriment = theTop + (i * 55);
 
-         var yIncriment = 100;
+             ambientUp[i].name = "ambient";
+             ambientUp[i].upgradeValue = 1000;
+             ambientUp[i].upgradeCost = 10;
+             ambientUp[i].upgradeCount = 0;
+             ambientUp[i].maxUpgradeCount = 10;
+             makeUpgrade(ambientUp[i], "Increase!", yIncriment);
 
-         ambientUp[1].name = "ambient";
-         ambientUp[1].upgradeValue = 1000;
-         ambientUp[1].upgradeCost = 10;
-         ambientUp[1].upgradeCount = 0;
-         ambientUp[1].maxUpgradeCount = 10;
-         makeUpgrade(ambientUp[1], "Increase!", yIncriment);
-
-         ambientPopPanel.addChild(ambientUp[1]);
+             ambientPopPanel.addChild(ambientUp[i]);
+         }
 
 }
 
@@ -663,6 +688,7 @@ function handleUpgrade(upgrade) {
                 bubbleRate = bubbleRate + upgrade.upgradeValue;
                 upgrade.upgradeCount ++;
                 upgrade.getChildByName("upgradeCountTxt").text = "(" + upgrade.upgradeCount + "/" + upgrade.maxUpgradeCount + ")";
+                numBubblesPanel.getChildByName("numBubblesPanelTitle").text = "Number of bubbles: " + bubbleRate;
                 score = score - upgrade.upgradeCost;
                 console.log("Bubble rate: " + bubbleRate);
             }
@@ -681,6 +707,7 @@ function handleUpgrade(upgrade) {
                 popScoreMax = popScoreMax + upgrade.upgradeValue;
                 upgrade.upgradeCount ++;
                 upgrade.getChildByName("upgradeCountTxt").text = "(" + upgrade.upgradeCount + "/" + upgrade.maxUpgradeCount + ")";
+                bubbleValuePanel.getChildByName("bubbleValuePanelTitle").text = "Value of bubbles: " + popScoreMin + " ~ " + popScoreMax;
                 score = score - upgrade.upgradeCost;
                 console.log("Upgraded value, max: " + popScoreMax + " | min : " + popScoreMin);
             }
@@ -697,6 +724,7 @@ function handleUpgrade(upgrade) {
                 ambientPop = Math.round(ambientPop * 0.9); //1 10th speed increace
                 upgrade.upgradeCount ++;
                 upgrade.getChildByName("upgradeCountTxt").text = "(" + upgrade.upgradeCount + "/" + upgrade.maxUpgradeCount + ")";
+                ambientPopPanel.getChildByName("ambientPopPanelTitle").text = "Ambient pop rate: " + (ambientPop/1000);
                 score = score - upgrade.upgradeCost;
                 console.log("Ambient pop rate: " + ambientPop);
             }
