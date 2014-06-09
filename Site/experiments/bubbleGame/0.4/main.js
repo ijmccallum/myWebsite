@@ -11,6 +11,9 @@ var score = 0,
 var numBubblesPanel = new createjs.Container(),
     bubbleValuePanel = new createjs.Container(),
     ambientPopPanel = new createjs.Container();
+    numBubblesPanel.active = false;
+    bubbleValuePanel.active = false;
+    ambientPopPanel.active = false;
 var theTop = 100; //Distance from the top before upgrade panels begin
 
 // for the animation stuff
@@ -96,7 +99,7 @@ function makeUpgradeBar() {
    */
 
   var numBubblesBtn = new createjs.Container();
-  makeBarBtn(numBubblesBtn, (canvas.width * 0.25), "Number of Bubbles");
+  makeBarBtn(numBubblesBtn, (canvas.width * 0.25), "Number of bubbles");
  
   var bubbleValueBtn = new createjs.Container();
   makeBarBtn(bubbleValueBtn, (canvas.width * 0.5), "Value of bubbles");
@@ -669,23 +672,41 @@ function handleClick() {
 
                 var clickedName = mouseTarget.parent.name;
 
-                if (clickedName == 'Number of bubbles') {
+                if (clickedName == 'Number of bubbles' && numBubblesPanel.active == false) {
                     // The player wants to find out about increasing the number of bubbles!
                     removePanels();
                     stage.addChild(numBubblesPanel);
+                    numBubblesPanel.active = true;
                     pause();
 
-                } else if (clickedName == 'Value of bubbles') {
+                } else if (clickedName == 'Number of bubbles' && numBubblesPanel.active == true) {
+                    //This panel is already open, play the game!
+                    removePanels();
+                    playGame();
+
+                } else if (clickedName == 'Value of bubbles' && bubbleValuePanel.active == false) {
                     // The player wants to find out about increasing the value of the bubbles!
                     removePanels();
                     stage.addChild(bubbleValuePanel);
+                    bubbleValuePanel.active = true;
                     pause();
 
-                } else if (clickedName == 'Ambient pop rate') {
+                } else if (clickedName == 'Value of bubbles' && bubbleValuePanel.active == true) {
+                    //This panel is already open, play the game!
+                    removePanels();
+                    playGame();
+
+                } else if (clickedName == 'Ambient pop rate' && ambientPopPanel.active == false) {
                     // The player wants to find out about increacing the ambient pop rate!
                     removePanels();
                     stage.addChild(ambientPopPanel);
+                    ambientPopPanel.active = true;
                     pause();
+
+                } else if (clickedName == 'Ambient pop rate' && ambientPopPanel.active == true) {
+                    // The player wants to find out about increacing the ambient pop rate!
+                    removePanels();
+                    playGame();
 
                 } else if (clickedName == "number" || clickedName == "value" || clickedName == "ambient"){
                     //The player has decided they actually want an upgrade!!
@@ -696,12 +717,20 @@ function handleClick() {
                     removePanels();
                     playGame();
 
-                } else {
-                    //They clicked something but it doesn't have a name... hmm
-                    console.log("Not sure why you clicked there partner!  Maybe click something else?")
+                } else if (tgtCheck!=null && tgtCheck=='tgt' && state=='pause') {
+                    //I think they clicked a bubble when the game was paused... yikes! Better start the game again!
+                    removePanels();
+                    playGame();
 
+                } else {
+                    //They clicked something but it doesn't have a name... hmm, probably a gap between buttons
+                    console.log("Not sure why you clicked there partner!  Maybe click something else?")
                 }
             }
+        } else {
+          //It appears nothing was clicked - I think that means the blank canvas was clicked.  Lets play!
+          removePanels();
+          playGame();
         }
     }
 }
@@ -796,6 +825,9 @@ function startScreen() {
 }
 
 function removePanels() {
+  numBubblesPanel.active = false;
+  bubbleValuePanel.active = false;
+  ambientPopPanel.active = false;
   if (stage.contains(numBubblesPanel)) {
       stage.removeChild(numBubblesPanel);
   }
