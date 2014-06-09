@@ -95,14 +95,34 @@ function makeUpgradeBar() {
    * The upgrade buttons
    */
 
-  var numBubblesBtn = new createjs.Text ("Number of bubbles", "18px arial", "#fff");
-  makeText(numBubblesBtn, (canvas.width * 0.25), (canvas.height - 30), "upgradeNumBtn");
+  var numBubblesBtn = new createjs.Container();
+  makeBarBtn(numBubblesBtn, (canvas.width * 0.25), "Number of Bubbles");
+ 
+  var bubbleValueBtn = new createjs.Container();
+  makeBarBtn(bubbleValueBtn, (canvas.width * 0.5), "Value of bubbles");
 
-  var bubbleValueBtn = new createjs.Text ("Value of bubbles", "18px arial", "#fff");
-  makeText(bubbleValueBtn, (canvas.width * 0.5), (canvas.height - 30), "upgradeValueBtn");
+  var ambientPopBtn = new createjs.Container();
+  makeBarBtn(ambientPopBtn, (canvas.width * 0.75), "Ambient pop rate");
 
-  var ambientPopBtn = new createjs.Text ("Ambient pop rate", "18px arial", "#fff");
-  makeText(ambientPopBtn, (canvas.width * 0.75), (canvas.height - 30), "upgradeAmbientBtn");
+  function makeBarBtn(container, xPos, name) {
+
+      container.name = name;
+
+      var topLeftX = xPos - 100; //top left x
+      var topLeftY = (canvas.height - 35); //top left y
+      var bgWidth = 200; //width
+      var bgHeight = 30; //height 
+      var panelBtnBG = new createjs.Shape();
+      panelBtnBG.graphics.beginFill("rgba(0,0,255,0.8)").rect(topLeftX, topLeftY, bgWidth, bgHeight)
+        container.addChild(panelBtnBG);
+
+      var panelBtnTxt = new createjs.Text (name, "18px arial", "#fff");
+      panelBtnTxt.textAlign = "center";
+      panelBtnTxt.x = xPos;
+      panelBtnTxt.y = topLeftY + 5;
+      panelBtnTxt.name = "play";
+        container.addChild(panelBtnTxt);
+  }
 
   upgradeBarContainer.addChild(numBubblesBtn);
   upgradeBarContainer.addChild(bubbleValueBtn);
@@ -124,7 +144,7 @@ function makeUpgradeBar() {
     var numBubblesPanelBG = new createjs.Shape();
     var numBubblesPanelTitle = new createjs.Text ("Number of bubbles: " + bubbleRate, "18px arial", "#fff");
     numBubblesPanelTitle.name = "numBubblesPanelTitle";
-    var numBubblesplayBtn = new createjs.Text ("Play", "18px arial", "#fff");
+    var numBubblesplayBtn = new createjs.Container();
 
     genericBits(numBubblesPanel, numBubblesPanelBG, numBubblesPanelTitle, numBubblesplayBtn);
 
@@ -171,7 +191,7 @@ function makeUpgradeBar() {
     var bubbleValuePanelBG = new createjs.Shape();
     var bubbleValuePanelTitle = new createjs.Text ("Value of bubbles: " + popScoreMin + " ~ " + popScoreMax, "18px arial", "#fff");
     bubbleValuePanelTitle.name = "bubbleValuePanelTitle";
-    var bubbleValueplayBtn = new createjs.Text ("Play", "18px arial", "#fff");
+    var bubbleValueplayBtn = new createjs.Container();
 
     genericBits(bubbleValuePanel, bubbleValuePanelBG, bubbleValuePanelTitle, bubbleValueplayBtn);
 
@@ -219,7 +239,7 @@ function makeUpgradeBar() {
     var ambientPopPanelBG = new createjs.Shape();
     var ambientPopPanelTitle = new createjs.Text ("Ambient pop rate: " + (ambientPop/1000), "18px arial", "#fff");
     ambientPopPanelTitle.name = "ambientPopPanelTitle";
-    var ambientPopplayBtn = new createjs.Text ("Play", "18px arial", "#fff");
+    var ambientPopplayBtn = new createjs.Container();
 
     genericBits(ambientPopPanel, ambientPopPanelBG, ambientPopPanelTitle, ambientPopplayBtn);
 
@@ -266,10 +286,26 @@ function genericBits(container, BGpanel, upTitle, playBtn) {
     upTitle.x = canvas.width * 0.5;
     upTitle.y = 70;
 
-    playBtn.textAlign = "center";
-    playBtn.x = canvas.width * 0.5;
-    playBtn.y = canvas.height - 100;
+
+
+
+    //The panel play button
     playBtn.name = "play";
+
+    var topLeftX = (canvas.width / 2) - 145; //top left x
+    var topLeftY = canvas.height-125; //top left y
+    var bgWidth = 290; //width
+    var bgHeight = 50; //height 
+    var playBtnBG = new createjs.Shape();
+    playBtnBG.graphics.beginFill("rgba(0,255,0,0.8)").rect(topLeftX, topLeftY, bgWidth, bgHeight)
+      playBtn.addChild(playBtnBG);
+
+    var playBtnTxt = new createjs.Text ("Play", "18px arial", "#fff");
+    playBtnTxt.textAlign = "center";
+    playBtnTxt.x = canvas.width * 0.5;
+    playBtnTxt.y = topLeftY + 15;
+    playBtnTxt.name = "play";
+      playBtn.addChild(playBtnTxt);
 
     container.addChild(BGpanel);
     container.addChild(upTitle);
@@ -314,14 +350,6 @@ function makeUpgrade(container, title, containerY) {
     upgradeCost.x = rightEdge
     upgradeCost.y = textHeight;
       container.addChild(upgradeCost);
-}
-
-
-function makeText(object, xPos, yPos, name) {
-    object.textAlign = "center";
-    object.x = xPos;
-    object.y = yPos;
-    object.name = name;
 }
 
 /**
@@ -621,9 +649,14 @@ function handleClick() {
      */
 
     if (stage.mouseX && stage.mouseY) {
+        //the click was on the canvas, time to investigate
+
         mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY);
 
         if (mouseTarget) {
+            //Something in the canvas was indeed clicked!  Lets see what it was
+            console.log("Clicked: " + mouseTarget);
+
             var tempTxt = String(mouseTarget.name);
             tgtCheck = tempTxt.substring(0,3);
 
@@ -631,31 +664,41 @@ function handleClick() {
                 // The game is playing & the object clicked was a bubble, time to pop it!
                 popBubble(mouseTarget);
 
-            } else if (tempTxt!=null && tempTxt=='play') {
-                // The player wants to increace the ambient pop rate!
-                removePanels();
-                playGame();
-            } else if (tempTxt!=null && tempTxt=='upgradeNumBtn') {
-                // The player wants to increase the number of bubbles!
-                removePanels();
-                stage.addChild(numBubblesPanel);
-                pause();
-
-            } else if (tempTxt!=null && tempTxt=='upgradeValueBtn') {
-                // The player wants to increase the value of the bubbles!
-                removePanels();
-                stage.addChild(bubbleValuePanel);
-                pause();
-
-            } else if (tempTxt!=null && tempTxt=='upgradeAmbientBtn') {
-                // The player wants to increace the ambient pop rate!
-                removePanels();
-                stage.addChild(ambientPopPanel);
-                pause();
             } else if (mouseTarget.parent) {
-                if (mouseTarget.parent.name == "number" || mouseTarget.parent.name == "value" || mouseTarget.parent.name == "ambient"){
+                //So it's not a bubble, everything else that's clickable has a named parent, lets see who was clicked
+
+                var clickedName = mouseTarget.parent.name;
+
+                if (clickedName == 'Number of bubbles') {
+                    // The player wants to find out about increasing the number of bubbles!
+                    removePanels();
+                    stage.addChild(numBubblesPanel);
+                    pause();
+
+                } else if (clickedName == 'Value of bubbles') {
+                    // The player wants to find out about increasing the value of the bubbles!
+                    removePanels();
+                    stage.addChild(bubbleValuePanel);
+                    pause();
+
+                } else if (clickedName == 'Ambient pop rate') {
+                    // The player wants to find out about increacing the ambient pop rate!
+                    removePanels();
+                    stage.addChild(ambientPopPanel);
+                    pause();
+
+                } else if (clickedName == "number" || clickedName == "value" || clickedName == "ambient"){
+                    //The player has decided they actually want an upgrade!!
                     handleUpgrade(mouseTarget.parent);
+
+                } else if (mouseTarget.parent.name == "play") {
+                    //Yep, so they want to play the game now. Fine.
+                    removePanels();
+                    playGame();
+
                 } else {
+                    //They clicked something but it doesn't have a name... hmm
+                    console.log("Not sure why you clicked there partner!  Maybe click something else?")
 
                 }
             }
