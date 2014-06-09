@@ -16,6 +16,7 @@
   <a href="security/XSS.php" class="list-group-item">Cross Site Scripting (XSS)</a>
   <a href="security/mobileAppInjection.php" class="list-group-item">HTML5 Mobile app code injection</a>
   <a href="security/CSRF.php" class="list-group-item">Cross Site Request Forgery (CSRF)</a>
+  <a href="security/clickjacking.php" class="list-group-item">Clickjacking</a>
   <a href="#" class="list-group-item greyout">SQL Injection</a>
   <a href="#" class="list-group-item greyout">Mutation XSS</a>
 </div>
