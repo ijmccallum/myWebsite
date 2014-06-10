@@ -10,7 +10,8 @@ var ambientTimer; //the setInterval function for ambient popping!
 //The UI
 var numBubblesPanel = new createjs.Container(),
     bubbleValuePanel = new createjs.Container(),
-    ambientPopPanel = new createjs.Container();
+    ambientPopPanel = new createjs.Container(),
+    speedPanel = new createjs.Container();
     numBubblesPanel.active = false;
     bubbleValuePanel.active = false;
     ambientPopPanel.active = false;
@@ -99,22 +100,25 @@ function makeUpgradeBar() {
    */
 
   var numBubblesBtn = new createjs.Container();
-  makeBarBtn(numBubblesBtn, (canvas.width * 0.25), "Number of bubbles");
+  makeBarBtn(numBubblesBtn, (canvas.width * 0.2), "Number of bubbles");
  
   var bubbleValueBtn = new createjs.Container();
-  makeBarBtn(bubbleValueBtn, (canvas.width * 0.5), "Value of bubbles");
+  makeBarBtn(bubbleValueBtn, (canvas.width * 0.4), "Value of bubbles");
 
   var ambientPopBtn = new createjs.Container();
-  makeBarBtn(ambientPopBtn, (canvas.width * 0.75), "Ambient pop rate");
+  makeBarBtn(ambientPopBtn, (canvas.width * 0.6), "Ambient pop rate");
+
+  var slowBubblesBtn = new createjs.Container();
+  makeBarBtn(slowBubblesBtn, (canvas.width * 0.8), "Bubble speed");
 
   function makeBarBtn(container, xPos, name) {
 
       container.name = name;
 
-      var topLeftX = xPos - 100; //top left x
-      var topLeftY = (canvas.height - 35); //top left y
-      var bgWidth = 200; //width
+      var bgWidth = 150; //width
       var bgHeight = 30; //height 
+      var topLeftX = xPos - (bgWidth/2); //top left x
+      var topLeftY = (canvas.height - (bgHeight+5)); //top left y
       var panelBtnBG = new createjs.Shape();
       panelBtnBG.graphics.beginFill("rgba(0,0,255,0.8)").rect(topLeftX, topLeftY, bgWidth, bgHeight)
         container.addChild(panelBtnBG);
@@ -130,6 +134,7 @@ function makeUpgradeBar() {
   upgradeBarContainer.addChild(numBubblesBtn);
   upgradeBarContainer.addChild(bubbleValueBtn);
   upgradeBarContainer.addChild(ambientPopBtn);
+  upgradeBarContainer.addChild(slowBubblesBtn);
 
    /*
     * The upgrade panels
@@ -269,6 +274,42 @@ function makeUpgradeBar() {
              makeUpgrade(ambientUp[i], ("+" + value + "/sec"), yIncriment);
 
              ambientPopPanel.addChild(ambientUp[i]);
+         }
+
+    /*
+     * Building the upgrade panel for the bubble speed
+     */
+
+    var speedPanelBG = new createjs.Shape();
+    var speedPanelTitle = new createjs.Text ("Speed: " + ambientPop + "/sec", "18px arial", "#fff");
+    speedPanelTitle.name = "speedPanelTitle";
+    var speedplayBtn = new createjs.Container();
+
+    genericBits(speedPanel, speedPanelBG, speedPanelTitle, speedplayBtn);
+
+        /*
+         * Adding the upgrade options for the SPEED of bubbles
+         */
+         var speedUp = [];
+
+         makeSpeedUpgrades(0, 0.1, 10, 50);
+         makeSpeedUpgrades(1, 0.2, 20, 10);
+         makeSpeedUpgrades(2, 0.5, 50, 10);
+         makeSpeedUpgrades(3, 1, 100, 10);
+         makeSpeedUpgrades(4, 5, 500, 5);
+         makeSpeedUpgrades(5, 100, 10000, 1);
+         function makeSpeedUpgrades(i, value, cost, maxCount) {
+             speedUp[i] = new createjs.Container();
+             var yIncriment = theTop + (i * 55);
+
+             speedUp[i].name = "speed";
+             speedUp[i].upgradeValue = value;
+             speedUp[i].upgradeCost = cost;
+             speedUp[i].upgradeCount = 0;
+             speedUp[i].maxUpgradeCount = maxCount;
+             makeUpgrade(speedUp[i], ("+" + value + "/sec"), yIncriment);
+
+             speedPanel.addChild(speedUp[i]);
          }
 
 }
@@ -709,6 +750,24 @@ function handleClick() {
                     removePanels();
                     playGame();
 
+
+
+
+                } else if (clickedName == 'Bubble speed' && speedPanel.active == false) {
+                    // The player wants to find out about increacing the ambient pop rate!
+                    removePanels();
+                    stage.addChild(speedPanel);
+                    speedPanel.active = true;
+                    pause();
+
+                } else if (clickedName == 'Bubble speed' && speedPanel.active == true) {
+                    // The player wants to find out about increacing the ambient pop rate!
+                    removePanels();
+                    playGame();
+
+
+
+
                 } else if (clickedName == "number" || clickedName == "value" || clickedName == "ambient"){
                     //The player has decided they actually want an upgrade!!
                     handleUpgrade(mouseTarget.parent);
@@ -842,6 +901,7 @@ function removePanels() {
   numBubblesPanel.active = false;
   bubbleValuePanel.active = false;
   ambientPopPanel.active = false;
+  speedPanel.active = false;
   if (stage.contains(numBubblesPanel)) {
       stage.removeChild(numBubblesPanel);
   }
@@ -850,6 +910,9 @@ function removePanels() {
   }
   if (stage.contains(ambientPopPanel)) {
       stage.removeChild(ambientPopPanel);
+  }
+  if (stage.contains(speedPanel)) {
+      stage.removeChild(speedPanel);
   }
 }
 
