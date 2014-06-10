@@ -14,6 +14,55 @@
 <div class="list-group">
   <a href="#" class="list-group-item">To do</a>
 </div>
-                
+<hr />
+<h3>Typography</h3>
+<p>Quick & popular, rough typography guidelines that work</p>
+<ul>
+	<li>
+		Headlines - Sans-serif: Arial | Helvetica | Verdana
+	</li>
+	<li>
+		Headlines - Serif: Georgia | Baskerville
+	</li>
+	<li>
+		Body - Sans-serif: Arial | Verdana | Lucida Grande
+	</li>
+	<li>
+		Body - Serif: Georgis | Times New Roman
+	</li>
+	<li>
+		White background, slightly lighter than black text
+	</li>
+	<li>
+		Headline font-size: 18 to 29
+	</li>
+	<li>
+		Body font-size: 12 to 14, err on the larger
+	</li>
+	<li>
+		Headline size / body size = 2
+	</li>
+	<li>
+		Line height / body size = 1.5
+	</li>
+	<li>
+		55 to 75 characters per line
+	</li>
+	<li>
+		Don't justify text
+	</li>
+	<li>
+		Padding 12px
+	</li>
+</ul>
+
+<hr />
+Sources:
+<ul>
+	<li>
+		This is free! <a href="http://www.smashingmagazine.com/2013/05/07/smashing-editors-choice-free-ebook/">Smashing Magazine Editors Choice eBook</a>
+	</li>
+</ul>
+
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
