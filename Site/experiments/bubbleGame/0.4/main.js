@@ -4,9 +4,9 @@ var score = 0,
     speedMax = 4,
     popScoreMin = 1,
     popScoreMax = 1,      //<< this cab be increased, needs a panel
-    ambientPop = 10000,   //<< this cab be increased, needs a panel
+    ambientPop = 0.1,   //<< this cab be increased, needs a panel
     bubbleRate = 10;       //<< this cab be increased, needs a panel
-
+var ambientTimer; //the setInterval function for ambient popping!
 //The UI
 var numBubblesPanel = new createjs.Container(),
     bubbleValuePanel = new createjs.Container(),
@@ -203,22 +203,22 @@ function makeUpgradeBar() {
          */
          var valueUp = [];
 
-         makeValueUpgrades(0, 10, 100, 5);
-         makeValueUpgrades(1, 10, 100, 5);
-         makeValueUpgrades(2, 10, 100, 5);
-         makeValueUpgrades(3, 10, 100, 5);
-         makeValueUpgrades(4, 10, 100, 5);
-         makeValueUpgrades(5, 10, 100, 5);
+         makeValueUpgrades(0, 1, 10, 5);
+         makeValueUpgrades(1, 2, 40, 5);
+         makeValueUpgrades(2, 5, 100, 5);
+         makeValueUpgrades(3, 10, 500, 5);
+         makeValueUpgrades(4, 20, 5000, 5);
+         makeValueUpgrades(5, 50, 100000, 1);
          function makeValueUpgrades(i, value, cost, maxCount) {
              valueUp[i] = new createjs.Container();
              var yIncriment = theTop + (i * 55);
 
              valueUp[i].name = "value";
-             valueUp[i].upgradeValue = 1;
-             valueUp[i].upgradeCost = 10;
+             valueUp[i].upgradeValue = value;
+             valueUp[i].upgradeCost = cost;
              valueUp[i].upgradeCount = 0;
-             valueUp[i].maxUpgradeCount = 50;
-             makeUpgrade(valueUp[i], "10 more!", yIncriment);
+             valueUp[i].maxUpgradeCount = maxCount;
+             makeUpgrade(valueUp[i], ("+~" + value + "/bubble"), yIncriment);
 
              bubbleValuePanel.addChild(valueUp[i]);
          }
@@ -240,7 +240,7 @@ function makeUpgradeBar() {
      *
      */
     var ambientPopPanelBG = new createjs.Shape();
-    var ambientPopPanelTitle = new createjs.Text ("Ambient pop rate: " + (ambientPop/1000), "18px arial", "#fff");
+    var ambientPopPanelTitle = new createjs.Text ("Ambient pop rate: " + ambientPop + "/sec", "18px arial", "#fff");
     ambientPopPanelTitle.name = "ambientPopPanelTitle";
     var ambientPopplayBtn = new createjs.Container();
 
@@ -251,22 +251,22 @@ function makeUpgradeBar() {
          */
          var ambientUp = [];
 
-         makeAmbientUpgrades(0, 10, 100, 10);
-         makeAmbientUpgrades(1, 10, 100, 10);
-         makeAmbientUpgrades(2, 10, 100, 10);
-         makeAmbientUpgrades(3, 10, 100, 10);
-         makeAmbientUpgrades(4, 10, 100, 10);
-         makeAmbientUpgrades(5, 10, 100, 10);
+         makeAmbientUpgrades(0, 0.1, 10, 50);
+         makeAmbientUpgrades(1, 0.2, 20, 10);
+         makeAmbientUpgrades(2, 0.5, 50, 10);
+         makeAmbientUpgrades(3, 1, 100, 10);
+         makeAmbientUpgrades(4, 5, 500, 5);
+         makeAmbientUpgrades(5, 100, 10000, 1);
          function makeAmbientUpgrades(i, value, cost, maxCount) {
              ambientUp[i] = new createjs.Container();
              var yIncriment = theTop + (i * 55);
 
              ambientUp[i].name = "ambient";
-             ambientUp[i].upgradeValue = 1000;
-             ambientUp[i].upgradeCost = 10;
+             ambientUp[i].upgradeValue = value;
+             ambientUp[i].upgradeCost = cost;
              ambientUp[i].upgradeCount = 0;
-             ambientUp[i].maxUpgradeCount = 10;
-             makeUpgrade(ambientUp[i], "Increase!", yIncriment);
+             ambientUp[i].maxUpgradeCount = maxCount;
+             makeUpgrade(ambientUp[i], ("+" + value + "/sec"), yIncriment);
 
              ambientPopPanel.addChild(ambientUp[i]);
          }
@@ -525,29 +525,30 @@ function selectColour() {
  * won't even try to pop it.  A bit of random luck is alwayse a good thing when trying to hook people!
  */
 function ambientPopInit(){
-    setInterval(function(){
-        if (state == "playing") {
-            var bPos = -1;
-            var rndBubble, bubbleToPop;
-            var checkCount = 0;
+    ambientTimer = setInterval(ambientPoppings,(1000/ambientPop)); //  1sec / pop rate = number of millisecs between pops!
+}
+function ambientPoppings() {
+    if (state == "playing") {
+        var bPos = -1;
+        var rndBubble, bubbleToPop;
+        var checkCount = 0;
 
-            while (bPos < 0 || bPos > canvas.width) {
-                checkCount ++;
-                if (checkCount > bubbleRate) {
-                  break;
-                }
-                rndBubble = Math.floor((Math.random() * bubbleRate) + 1);
-                bubbleToPop = bmpList[rndBubble];
-
-                if (bubbleToPop) {
-                    bPos = bubbleToPop.x;
-                }
+        while (bPos < 0 || bPos > canvas.width) {
+            checkCount ++;
+            if (checkCount > bubbleRate) {
+              break;
             }
+            rndBubble = Math.floor((Math.random() * bubbleRate) + 1);
+            bubbleToPop = bmpList[rndBubble];
+
             if (bubbleToPop) {
-                popBubble(bubbleToPop);
+                bPos = bubbleToPop.x;
             }
         }
-    },ambientPop);
+        if (bubbleToPop) {
+            popBubble(bubbleToPop);
+        }
+    }
 }
 
 /**
@@ -735,9 +736,11 @@ function handleClick() {
     }
 }
 
-/**
- * Dealing with the upgrade
- * removes the cost from the points
+/* =====================================================
+ * =====================================================
+ * ==============  UPGRADING MY BUBBLES!  ==============
+ * =====================================================
+ * =====================================================
  */
 function handleUpgrade(upgrade) {
 
@@ -792,12 +795,23 @@ function handleUpgrade(upgrade) {
                 /*
                  * The ambient upgrade
                  * at the moment it only increases the pop rate by 1/10th
+                 * values passed: 
+                 *    0.1 - to increace by 0.1/sec (-100) * 1000
+                 *    0.2 - to increace by 0.2/sec
+                 *    0.5/sec
+                 *    1/sec
+                 *    
+                 *  rate = 0.1/sec  sec/value = popTime
+                 *  rate = 1/sec 
+                 *  rate = 2/sec
                  */
-                ambientPop = Math.round(ambientPop * 0.9); //1 10th speed increace
+                ambientPop = ambientPop + upgrade.upgradeValue;
                 upgrade.upgradeCount ++;
                 upgrade.getChildByName("upgradeCountTxt").text = "(" + upgrade.upgradeCount + "/" + upgrade.maxUpgradeCount + ")";
-                ambientPopPanel.getChildByName("ambientPopPanelTitle").text = "Ambient pop rate: " + (ambientPop/1000);
+                ambientPopPanel.getChildByName("ambientPopPanelTitle").text = "Ambient pop rate: " + (Math.round( ambientPop * 10) / 10) + "/sec";
                 score = score - upgrade.upgradeCost;
+                clearInterval(ambientTimer);
+                ambientTimer = setInterval(ambientPoppings, 1000/ambientPop);
                 console.log("Ambient pop rate: " + ambientPop);
             }
         }
