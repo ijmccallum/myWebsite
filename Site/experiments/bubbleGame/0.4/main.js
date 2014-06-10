@@ -11,7 +11,7 @@ var ambientTimer; //the setInterval function for ambient popping!
 var numBubblesPanel = new createjs.Container(),
     bubbleValuePanel = new createjs.Container(),
     ambientPopPanel = new createjs.Container(),
-    speedPanel = new createjs.Container();
+    pausePanel = new createjs.Container();
     numBubblesPanel.active = false;
     bubbleValuePanel.active = false;
     ambientPopPanel.active = false;
@@ -109,7 +109,7 @@ function makeUpgradeBar() {
   makeBarBtn(ambientPopBtn, (canvas.width * 0.6), "Ambient pop rate");
 
   var slowBubblesBtn = new createjs.Container();
-  makeBarBtn(slowBubblesBtn, (canvas.width * 0.8), "Bubble speed");
+  makeBarBtn(slowBubblesBtn, (canvas.width * 0.8), "Pause");
 
   function makeBarBtn(container, xPos, name) {
 
@@ -277,40 +277,69 @@ function makeUpgradeBar() {
          }
 
     /*
-     * Building the upgrade panel for the bubble speed
+     * Building the Pause panel
+     *
+     *        |||         |||   \         >\.
+     *        |||         |||    \        >>>>>\.
+     *        |||         |||     \       >>>>>>>>>\.
+     *        |||         |||      \      >>>>>>>>>>>>>\.
+     *        |||         |||       \     >>>>>>>>>>>>>/'
+     *        |||         |||        \    >>>>>>>>>/'
+     *        |||         |||         \   >>>>>/'
+     *        |||         |||          \  >/'
      */
 
-    var speedPanelBG = new createjs.Shape();
-    var speedPanelTitle = new createjs.Text ("Speed: " + ambientPop + "/sec", "18px arial", "#fff");
-    speedPanelTitle.name = "speedPanelTitle";
-    var speedplayBtn = new createjs.Container();
+    var pausePanelBG = new createjs.Shape();
+    var pausePanelTitle = new createjs.Text ("Take a breather!", "18px arial", "#fff");
+    pausePanelTitle.name = "pausePanelTitle";
+    var pauseplayBtn = new createjs.Container();
 
-    genericBits(speedPanel, speedPanelBG, speedPanelTitle, speedplayBtn);
+    genericBits(pausePanel, pausePanelBG, pausePanelTitle, pauseplayBtn);
 
         /*
-         * Adding the upgrade options for the SPEED of bubbles
+         * Adding the options for the PAUSE panel
          */
-         var speedUp = [];
+         var pauseOptions = [];
 
-         makeSpeedUpgrades(0, 0.1, 10, 50);
-         makeSpeedUpgrades(1, 0.2, 20, 10);
-         makeSpeedUpgrades(2, 0.5, 50, 10);
-         makeSpeedUpgrades(3, 1, 100, 10);
-         makeSpeedUpgrades(4, 5, 500, 5);
-         makeSpeedUpgrades(5, 100, 10000, 1);
-         function makeSpeedUpgrades(i, value, cost, maxCount) {
-             speedUp[i] = new createjs.Container();
-             var yIncriment = theTop + (i * 55);
+         //OPTION 1
+         pauseOptions[0] = new createjs.Container();
+         var yIncriment = theTop + (0 * 55);
 
-             speedUp[i].name = "speed";
-             speedUp[i].upgradeValue = value;
-             speedUp[i].upgradeCost = cost;
-             speedUp[i].upgradeCount = 0;
-             speedUp[i].maxUpgradeCount = maxCount;
-             makeUpgrade(speedUp[i], ("+" + value + "/sec"), yIncriment);
+         pauseOptions[0].name = "speed";
+         pauseOptions[0].upgradeValue = 0.5;
+         pauseOptions[0].upgradeCost = 50;
+         pauseOptions[0].upgradeCount = 0;
+         pauseOptions[0].maxUpgradeCount = 1000;
+         makePauseOpt(pauseOptions[0], ("Half bubble speed"), yIncriment);
 
-             speedPanel.addChild(speedUp[i]);
-         }
+         pausePanel.addChild(pauseOptions[0]);
+
+         //OPTION 2
+         pauseOptions[1] = new createjs.Container();
+         var yIncriment = theTop + (1 * 55);
+
+         pauseOptions[1].name = "speed";
+         pauseOptions[1].upgradeValue = 0.25;
+         pauseOptions[1].upgradeCost = 100;
+         pauseOptions[1].upgradeCount = 0;
+         pauseOptions[1].maxUpgradeCount = 1000;
+         makePauseOpt(pauseOptions[1], ("Quarter bubble speed"), yIncriment);
+
+         pausePanel.addChild(pauseOptions[1]);
+
+         //OPTION 3
+         pauseOptions[2] = new createjs.Container();
+         var yIncriment = theTop + (2 * 55);
+
+         pauseOptions[2].name = "speed";
+         pauseOptions[2].upgradeValue = 0.1;
+         pauseOptions[2].upgradeCost = 1000;
+         pauseOptions[2].upgradeCount = 0;
+         pauseOptions[2].maxUpgradeCount = 1000;
+         makePauseOpt(pauseOptions[2], ("1/10th bubble speed"), yIncriment);
+
+         pausePanel.addChild(pauseOptions[2]);
+
 
 }
 
@@ -380,6 +409,43 @@ function makeUpgrade(container, title, containerY) {
     upgradeCountTxt.y = textHeight;
     upgradeCountTxt.name = "upgradeCountTxt";
       container.addChild(upgradeCountTxt);
+
+    //Make the title
+    var upgradeTitle = new createjs.Text(title, "18px arial", "#fff");
+    upgradeTitle.textAlign = "left";
+    upgradeTitle.x = leftEdge;
+    upgradeTitle.y = textHeight;
+      container.addChild(upgradeTitle);
+
+    //show the cost
+    var upgradeCost = new createjs.Text(container.upgradeCost, "18px arial", "#fff");
+    upgradeCost.textAlign = "right";
+    upgradeCost.x = rightEdge
+    upgradeCost.y = textHeight;
+      container.addChild(upgradeCost);
+}
+
+function makePauseOpt(container, title, containerY){
+
+    var topLeftX = (canvas.width / 2) - 145; //top left x
+    var topLeftY = containerY; //top left y
+    var bgWidth = 290; //width
+    var bgHeight = 50; //height 
+    var leftEdge = topLeftX + 10;
+    var rightEdge = (canvas.width / 2) + 135;
+    var textHeight = containerY + 15;
+
+    var upgradeBG = new createjs.Shape();
+    upgradeBG.graphics.beginFill("rgba(255,255,255,0.8)").rect(topLeftX, topLeftY, bgWidth, bgHeight);
+      container.addChild(upgradeBG);
+
+    // //How many bought?
+    // var upgradeCountTxt = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "18px arial", "#fff");
+    // upgradeCountTxt.textAlign = "center";
+    // upgradeCountTxt.x = (canvas.width / 2);
+    // upgradeCountTxt.y = textHeight;
+    // upgradeCountTxt.name = "upgradeCountTxt";
+    //   container.addChild(upgradeCountTxt);
 
     //Make the title
     var upgradeTitle = new createjs.Text(title, "18px arial", "#fff");
@@ -753,14 +819,14 @@ function handleClick() {
 
 
 
-                } else if (clickedName == 'Bubble speed' && speedPanel.active == false) {
+                } else if (clickedName == 'Pause' && pausePanel.active == false) {
                     // The player wants to find out about increacing the ambient pop rate!
                     removePanels();
-                    stage.addChild(speedPanel);
-                    speedPanel.active = true;
+                    stage.addChild(pausePanel);
+                    pausePanel.active = true;
                     pause();
 
-                } else if (clickedName == 'Bubble speed' && speedPanel.active == true) {
+                } else if (clickedName == 'Pause' && pausePanel.active == true) {
                     // The player wants to find out about increacing the ambient pop rate!
                     removePanels();
                     playGame();
@@ -768,7 +834,7 @@ function handleClick() {
 
 
 
-                } else if (clickedName == "number" || clickedName == "value" || clickedName == "ambient"){
+                } else if (clickedName == "number" || clickedName == "value" || clickedName == "ambient" || clickedName == "speed"){
                     //The player has decided they actually want an upgrade!!
                     handleUpgrade(mouseTarget.parent);
 
@@ -873,6 +939,28 @@ function handleUpgrade(upgrade) {
                 ambientTimer = setInterval(ambientPoppings, 1000/ambientPop);
                 console.log("Ambient pop rate: " + ambientPop);
             }
+        } else if (upgrade.name == "speed") {
+            /*
+             * The Speed upgrade
+             * Decreaces the speed of the bubbles
+             *    speedMin
+             *    speedMax
+             */
+            speedMin = Math.round(speedMin * upgrade.upgradeValue);
+            speedMax = Math.round(speedMax * upgrade.upgradeValue);
+            upgrade.upgradeCount ++;
+
+            //Decrease existing bubbles
+            for (var i = 0; i < noTgts; i++) {
+                var bmp = bmpList[i];
+                bmp.speed = Math.round(bmp.speed * upgrade.upgradeValue);
+            }
+
+            //upgrade.getChildByName("upgradeCountTxt").text = "(" + upgrade.upgradeCount + "/" + upgrade.maxUpgradeCount + ")";
+            //bubbleValuePanel.getChildByName("bubbleValuePanelTitle").text = "Value of bubbles: " + popScoreMin + " ~ " + popScoreMax;
+            score = score - upgrade.upgradeCost;
+            console.log("Upgraded speed, max: " + speedMax + " | min : " + speedMin);
+
         }
     }
     stage.update();
@@ -901,7 +989,7 @@ function removePanels() {
   numBubblesPanel.active = false;
   bubbleValuePanel.active = false;
   ambientPopPanel.active = false;
-  speedPanel.active = false;
+  pausePanel.active = false;
   if (stage.contains(numBubblesPanel)) {
       stage.removeChild(numBubblesPanel);
   }
@@ -911,8 +999,8 @@ function removePanels() {
   if (stage.contains(ambientPopPanel)) {
       stage.removeChild(ambientPopPanel);
   }
-  if (stage.contains(speedPanel)) {
-      stage.removeChild(speedPanel);
+  if (stage.contains(pausePanel)) {
+      stage.removeChild(pausePanel);
   }
 }
 
