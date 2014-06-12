@@ -109,7 +109,7 @@ function makeUpgradeBar() {
   makeBarBtn(ambientPopBtn, (canvas.width * 0.6), "Ambient pop rate");
 
   var slowBubblesBtn = new createjs.Container();
-  makeBarBtn(slowBubblesBtn, (canvas.width * 0.8), "Pause");
+  makeBarBtn(slowBubblesBtn, (canvas.width * 0.8), "Speed");
 
   function makeBarBtn(container, xPos, name) {
 
@@ -340,6 +340,19 @@ function makeUpgradeBar() {
 
          pausePanel.addChild(pauseOptions[2]);
 
+         //OPTION 4
+         pauseOptions[3] = new createjs.Container();
+         var yIncriment = theTop + (3 * 55);
+
+         pauseOptions[3].name = "share";
+         pauseOptions[3].upgradeValue = 4;
+         pauseOptions[3].upgradeCost = 0;
+         pauseOptions[3].upgradeCount = 0;
+         pauseOptions[3].maxUpgradeCount = 100;
+         makePauseOpt(pauseOptions[3], ("Share to quadrupal your points!"), yIncriment);
+
+         pausePanel.addChild(pauseOptions[3]);
+
 
 }
 
@@ -455,11 +468,15 @@ function makePauseOpt(container, title, containerY){
       container.addChild(upgradeTitle);
 
     //show the cost
-    var upgradeCost = new createjs.Text(container.upgradeCost, "18px arial", "#fff");
-    upgradeCost.textAlign = "right";
-    upgradeCost.x = rightEdge
-    upgradeCost.y = textHeight;
-      container.addChild(upgradeCost);
+    if (title == "Share to quadrupal your points!") {
+
+    } else {
+        var upgradeCost = new createjs.Text(container.upgradeCost, "18px arial", "#fff");
+        upgradeCost.textAlign = "right";
+        upgradeCost.x = rightEdge
+        upgradeCost.y = textHeight;
+          container.addChild(upgradeCost);
+    }
 }
 
 /**
@@ -819,14 +836,14 @@ function handleClick() {
 
 
 
-                } else if (clickedName == 'Pause' && pausePanel.active == false) {
+                } else if (clickedName == 'Speed' && pausePanel.active == false) {
                     // The player wants to find out about increacing the ambient pop rate!
                     removePanels();
                     stage.addChild(pausePanel);
                     pausePanel.active = true;
                     pause();
 
-                } else if (clickedName == 'Pause' && pausePanel.active == true) {
+                } else if (clickedName == 'Speed' && pausePanel.active == true) {
                     // The player wants to find out about increacing the ambient pop rate!
                     removePanels();
                     playGame();
@@ -834,7 +851,7 @@ function handleClick() {
 
 
 
-                } else if (clickedName == "number" || clickedName == "value" || clickedName == "ambient" || clickedName == "speed"){
+                } else if (clickedName == "number" || clickedName == "value" || clickedName == "ambient" || clickedName == "speed" || clickedName == "share"){
                     //The player has decided they actually want an upgrade!!
                     handleUpgrade(mouseTarget.parent);
 
@@ -961,6 +978,12 @@ function handleUpgrade(upgrade) {
             score = score - upgrade.upgradeCost;
             console.log("Upgraded speed, max: " + speedMax + " | min : " + speedMin);
 
+        } else if (upgrade.name == "share") {
+            /*
+             * If they tweet / or otherwise post about it they will quadrupal their points
+             */
+             console.log("Share code");
+             score = score * 4;
         }
     }
     stage.update();
