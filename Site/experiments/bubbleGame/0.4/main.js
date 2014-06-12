@@ -124,10 +124,10 @@ function makeUpgradeBar() {
       panelBtnBG.graphics.beginFill("rgba(0,0,255,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius)
         container.addChild(panelBtnBG);
 
-      var panelBtnTxt = new createjs.Text (name, "18px arial", "#fff");
+      var panelBtnTxt = new createjs.Text (name, "20px Patrick Hand", "#fff");
       panelBtnTxt.textAlign = "center";
       panelBtnTxt.x = xPos;
-      panelBtnTxt.y = topLeftY + 5;
+      panelBtnTxt.y = topLeftY;
       panelBtnTxt.name = "play";
         container.addChild(panelBtnTxt);
   }
@@ -151,7 +151,7 @@ function makeUpgradeBar() {
      *    "8ggg8"   "8ggg8"   "8ggg8" 
      */
     var numBubblesPanelBG = new createjs.Shape();
-    var numBubblesPanelTitle = new createjs.Text ("Number of bubbles: " + bubbleRate, "18px arial", "#fff");
+    var numBubblesPanelTitle = new createjs.Text ("Number of bubbles: " + bubbleRate, "20px Patrick Hand", "#fff");
     numBubblesPanelTitle.name = "numBubblesPanelTitle";
     var numBubblesplayBtn = new createjs.Container();
 
@@ -198,7 +198,7 @@ function makeUpgradeBar() {
      *       $           $           $
      */
     var bubbleValuePanelBG = new createjs.Shape();
-    var bubbleValuePanelTitle = new createjs.Text ("Value of bubbles: " + popScoreMin + " ~ " + popScoreMax, "18px arial", "#fff");
+    var bubbleValuePanelTitle = new createjs.Text ("Value of bubbles: " + popScoreMin + " ~ " + popScoreMax, "20px Patrick Hand", "#fff");
     bubbleValuePanelTitle.name = "bubbleValuePanelTitle";
     var bubbleValueplayBtn = new createjs.Container();
 
@@ -210,7 +210,7 @@ function makeUpgradeBar() {
          var valueUp = [];
 
          makeValueUpgrades(0, 1, 10, 5);
-         makeValueUpgrades(1, 2, 40, 5);
+         makeValueUpgrades(1, 2, 100, 5);
          makeValueUpgrades(2, 5, 100, 5);
          makeValueUpgrades(3, 10, 500, 5);
          makeValueUpgrades(4, 20, 5000, 5);
@@ -246,7 +246,7 @@ function makeUpgradeBar() {
      *
      */
     var ambientPopPanelBG = new createjs.Shape();
-    var ambientPopPanelTitle = new createjs.Text ("Ambient pop rate: " + ambientPop + "/sec", "18px arial", "#fff");
+    var ambientPopPanelTitle = new createjs.Text ("Ambient pop rate: " + ambientPop + "/sec", "20px Patrick Hand", "#fff");
     ambientPopPanelTitle.name = "ambientPopPanelTitle";
     var ambientPopplayBtn = new createjs.Container();
 
@@ -258,7 +258,7 @@ function makeUpgradeBar() {
          var ambientUp = [];
 
          makeAmbientUpgrades(0, 0.1, 10, 50);
-         makeAmbientUpgrades(1, 0.2, 20, 10);
+         makeAmbientUpgrades(1, 0.2, 100, 10);
          makeAmbientUpgrades(2, 0.5, 50, 10);
          makeAmbientUpgrades(3, 1, 100, 10);
          makeAmbientUpgrades(4, 5, 500, 5);
@@ -291,7 +291,7 @@ function makeUpgradeBar() {
      */
 
     var pausePanelBG = new createjs.Shape();
-    var pausePanelTitle = new createjs.Text ("Take a breather!", "18px arial", "#fff");
+    var pausePanelTitle = new createjs.Text ("Take a breather!", "20px Patrick Hand", "#fff");
     pausePanelTitle.name = "pausePanelTitle";
     var pauseplayBtn = new createjs.Container();
 
@@ -308,7 +308,7 @@ function makeUpgradeBar() {
 
          pauseOptions[0].name = "speed";
          pauseOptions[0].upgradeValue = 0.5;
-         pauseOptions[0].upgradeCost = 50;
+         pauseOptions[0].upgradeCost = 40;
          pauseOptions[0].upgradeCount = 0;
          pauseOptions[0].maxUpgradeCount = 1000;
          makePauseOpt(pauseOptions[0], ("Half bubble speed"), yIncriment);
@@ -371,7 +371,7 @@ function genericBits(container, BGpanel, upTitle, playBtn) {
 
     upTitle.textAlign = "center";
     upTitle.x = canvas.width * 0.5;
-    upTitle.y = 70;
+    upTitle.y = 60;
 
 
 
@@ -387,10 +387,10 @@ function genericBits(container, BGpanel, upTitle, playBtn) {
     playBtnBG.graphics.beginFill("rgba(0,255,0,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius);
       playBtn.addChild(playBtnBG);
 
-    var playBtnTxt = new createjs.Text ("Play", "18px arial", "#fff");
+    var playBtnTxt = new createjs.Text ("Play", "20px Patrick Hand", "#fff");
     playBtnTxt.textAlign = "center";
     playBtnTxt.x = canvas.width * 0.5;
-    playBtnTxt.y = topLeftY + 15;
+    playBtnTxt.y = topLeftY + 10;
     playBtnTxt.name = "play";
       playBtn.addChild(playBtnTxt);
 
@@ -410,14 +410,14 @@ function makeUpgrade(container, title, containerY) {
     var bgHeight = 50; //height 
     var leftEdge = topLeftX + 10;
     var rightEdge = (canvas.width / 2) + 135;
-    var textHeight = containerY + 15;
+    var textHeight = containerY + 10;
 
     var upgradeBG = new createjs.Shape();
     upgradeBG.graphics.beginFill("rgba(255,255,255,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius);
       container.addChild(upgradeBG);
 
     //How many bought?
-    var upgradeCountTxt = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "18px arial", "#fff");
+    var upgradeCountTxt = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "20px Patrick Hand", "#fff");
     upgradeCountTxt.textAlign = "center";
     upgradeCountTxt.x = (canvas.width / 2);
     upgradeCountTxt.y = textHeight;
@@ -425,14 +425,14 @@ function makeUpgrade(container, title, containerY) {
       container.addChild(upgradeCountTxt);
 
     //Make the title
-    var upgradeTitle = new createjs.Text(title, "18px arial", "#fff");
+    var upgradeTitle = new createjs.Text(title, "20px Patrick Hand", "#fff");
     upgradeTitle.textAlign = "left";
     upgradeTitle.x = leftEdge;
     upgradeTitle.y = textHeight;
       container.addChild(upgradeTitle);
 
     //show the cost
-    var upgradeCost = new createjs.Text(container.upgradeCost, "18px arial", "#fff");
+    var upgradeCost = new createjs.Text(container.upgradeCost, "20px Patrick Hand", "#fff");
     upgradeCost.textAlign = "right";
     upgradeCost.x = rightEdge
     upgradeCost.y = textHeight;
@@ -447,14 +447,14 @@ function makePauseOpt(container, title, containerY){
     var bgHeight = 50; //height 
     var leftEdge = topLeftX + 10;
     var rightEdge = (canvas.width / 2) + 135;
-    var textHeight = containerY + 15;
+    var textHeight = containerY + 10;
 
     var upgradeBG = new createjs.Shape();
     upgradeBG.graphics.beginFill("rgba(255,255,255,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius);
       container.addChild(upgradeBG);
 
     // //How many bought?
-    // var upgradeCountTxt = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "18px arial", "#fff");
+    // var upgradeCountTxt = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "20px Patrick Hand", "#fff");
     // upgradeCountTxt.textAlign = "center";
     // upgradeCountTxt.x = (canvas.width / 2);
     // upgradeCountTxt.y = textHeight;
@@ -462,7 +462,7 @@ function makePauseOpt(container, title, containerY){
     //   container.addChild(upgradeCountTxt);
 
     //Make the title
-    var upgradeTitle = new createjs.Text(title, "18px arial", "#fff");
+    var upgradeTitle = new createjs.Text(title, "20px Patrick Hand", "#fff");
     upgradeTitle.textAlign = "left";
     upgradeTitle.x = leftEdge;
     upgradeTitle.y = textHeight;
@@ -472,7 +472,7 @@ function makePauseOpt(container, title, containerY){
     if (title == "Share to quadrupal your points!") {
 
     } else {
-        var upgradeCost = new createjs.Text(container.upgradeCost, "18px arial", "#fff");
+        var upgradeCost = new createjs.Text(container.upgradeCost, "20px Patrick Hand", "#fff");
         upgradeCost.textAlign = "right";
         upgradeCost.x = rightEdge
         upgradeCost.y = textHeight;
@@ -494,7 +494,7 @@ function startGamePlay() {
         bmpList.push(bitmap);
     }
 
-    txt = new createjs.Text ("Score", "18px arial", "#fff");
+    txt = new createjs.Text ("Score", "20px Patrick Hand", "#fff");
     txt.textBaseline="top";
     txt.text = score;
     txt.textAlign = "center";
@@ -999,7 +999,7 @@ function handleUpgrade(upgrade) {
 
 function startScreen() {
   state = "start";
-  startTxt = new createjs.Text("App name!\n\n", "18px arial", "#fff");
+  startTxt = new createjs.Text("App name!\n\n", "20px Patrick Hand", "#fff");
   startTxt.text += "Click to play";
   startTxt.textAlign = "center";
   startTxt.x = canvas.width / 2;
