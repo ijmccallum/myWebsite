@@ -18,7 +18,8 @@ var numBubblesPanel = new createjs.Container(),
 var theTop = 100; //Distance from the top before upgrade panels begin
 var cRadius = 5;
 var iconSheet = new Image(), //The various icons!
-    iconSpriteSheet;
+    iconSpriteSheet,
+    icon1, icon2, icon3, icon4;
 
 // for the animation stuff
 var stage, circle, target, circleY, score, bitmap, txt, play, pauseTxt, clicked, mouseTarget, mvTargets = [], state = [], startTxt;
@@ -51,7 +52,7 @@ function init() {
 //Might have to move this into the handle click for the start screen, 
 //otherwise there's a tiny chance it'll load in time to be put on the canvas with the update :O
     iconSheet.onload = handleiconSheetLoad;
-    iconSheet.src = "img/icons.png";
+    iconSheet.src = "img/bubbleIcons.png";
     
 
     //todo: get top score from memory.
@@ -88,28 +89,23 @@ function handleiconSheetLoad() {
     // we can use the form {frameName:frameNumber} in animations because each "sequence" is only a single frame:
     var data = {
         images:[iconSheet],
-        frames:{width:80, height:80},
-        animations: {trash:0, male:1, wait:2, library:3, female:4, hanger:5, stairs:6, noparking:7}
+        frames:{width:40, height:40},
+        animations: {numberIcon:0, valueIcon:1, ambientIcon:2, lightningIcon:3}
     }
     iconSpriteSheet = new createjs.SpriteSheet(data);
 
     // create a Sprite to display frames from the sprite sheet:
-    var icon1 = new createjs.Sprite(iconSpriteSheet);
-    icon1.x = 10;
-    icon1.y = 100;
-    icon1.gotoAndStop("trash");
-    stage.addChild(icon1);
+    icon1 = new createjs.Sprite(iconSpriteSheet);
+    icon1.gotoAndStop("numberIcon");
 
-    // we'll clone icon1 to save a little work:
-    var icon2 = icon1.clone();
-    icon2.x += 111;
-    icon2.gotoAndStop("wait");
-    stage.addChild(icon2);
+    icon2 = icon1.clone();
+    icon2.gotoAndStop("valueIcon");
 
-    var icon3 = icon2.clone();
-    icon3.x += 111;
-    icon3.gotoAndStop("male");
-    stage.addChild(icon3);
+    icon3 = icon2.clone();
+    icon3.gotoAndStop("ambientIcon");
+
+    icon4 = icon3.clone();
+    icon4.gotoAndStop("lightningIcon");
 }
 
 /* =====================================================
@@ -129,7 +125,7 @@ function makeUpgradeBar() {
 
   var barBG = new createjs.Shape();
   barBG.graphics
-    .beginFill("rgba(0,0,0,1)").rect(0, (canvas.height-40), canvas.width, canvas.height);
+    .beginFill("rgba(0,0,0,1)").rect(0, (canvas.height-50), canvas.width, canvas.height);
 
   upgradeBarContainer.addChild(barBG);
 
@@ -138,35 +134,39 @@ function makeUpgradeBar() {
    */
 
   var numBubblesBtn = new createjs.Container();
-  makeBarBtn(numBubblesBtn, (canvas.width * 0.2), "Number of bubbles");
+  makeBarBtn(numBubblesBtn, (canvas.width * 0.2), "Number of bubbles", icon1);
  
   var bubbleValueBtn = new createjs.Container();
-  makeBarBtn(bubbleValueBtn, (canvas.width * 0.4), "Value of bubbles");
+  makeBarBtn(bubbleValueBtn, (canvas.width * 0.4), "Value of bubbles", icon2);
 
   var ambientPopBtn = new createjs.Container();
-  makeBarBtn(ambientPopBtn, (canvas.width * 0.6), "Ambient pop rate");
+  makeBarBtn(ambientPopBtn, (canvas.width * 0.6), "Ambient pop rate", icon3);
 
   var slowBubblesBtn = new createjs.Container();
-  makeBarBtn(slowBubblesBtn, (canvas.width * 0.8), "Speed");
+  makeBarBtn(slowBubblesBtn, (canvas.width * 0.8), "Speed", icon4);
 
-  function makeBarBtn(container, xPos, name) {
+  function makeBarBtn(container, xPos, name, barIcon) {
 
       container.name = name;
 
       var bgWidth = 150; //width
-      var bgHeight = 30; //height 
+      var bgHeight = 40; //height 
       var topLeftX = xPos - (bgWidth/2); //top left x
       var topLeftY = (canvas.height - (bgHeight+5)); //top left y
       var panelBtnBG = new createjs.Shape();
       panelBtnBG.graphics.beginFill("rgba(0,0,255,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius)
         container.addChild(panelBtnBG);
 
-      var panelBtnTxt = new createjs.Text (name, "20px Patrick Hand", "#fff");
-      panelBtnTxt.textAlign = "center";
-      panelBtnTxt.x = xPos;
-      panelBtnTxt.y = topLeftY;
-      panelBtnTxt.name = "play";
-        container.addChild(panelBtnTxt);
+      // var panelBtnTxt = new createjs.Text (name, "20px Patrick Hand", "#fff");
+      // panelBtnTxt.textAlign = "center";
+      // panelBtnTxt.x = xPos;
+      // panelBtnTxt.y = topLeftY;
+      // panelBtnTxt.name = "play";
+        
+      barIcon.x = xPos - 20;
+      barIcon.y = topLeftY;
+      container.addChild(barIcon);
+
   }
 
   upgradeBarContainer.addChild(numBubblesBtn);
@@ -560,7 +560,7 @@ function tick(event) {
       var noTgts = bmpList.length;
       for (var i = 0; i < noTgts; i++) {
           var bmp = bmpList[i];
-          if (bmp.x > -100) {
+          if (bmp.x > (bmp.rndWidth * -1)) {
               bmp.x -= bmp.speed;
 
           } else {
@@ -571,7 +571,12 @@ function tick(event) {
       }
   }
 
-  txt.text = score;
+  if (score >= 0) {
+      txt.text = "$" + score;
+  } else {
+      var tmpScore = (score * -1);
+      txt.text = "-$" + tmpScore;
+  }
 
   stage.update(event);
 }
