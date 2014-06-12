@@ -17,6 +17,8 @@ var numBubblesPanel = new createjs.Container(),
     ambientPopPanel.active = false;
 var theTop = 100; //Distance from the top before upgrade panels begin
 var cRadius = 5;
+var iconSheet = new Image(), //The various icons!
+    iconSpriteSheet;
 
 // for the animation stuff
 var stage, circle, target, circleY, score, bitmap, txt, play, pauseTxt, clicked, mouseTarget, mvTargets = [], state = [], startTxt;
@@ -45,6 +47,11 @@ function init() {
     particleImage = new Image();
     //particleImage.onload = initCanvas;
     particleImage.src = "img/particle_base.png";
+
+//Might have to move this into the handle click for the start screen, 
+//otherwise there's a tiny chance it'll load in time to be put on the canvas with the update :O
+    iconSheet.onload = handleiconSheetLoad;
+    iconSheet.src = "img/icons.png";
     
 
     //todo: get top score from memory.
@@ -73,6 +80,36 @@ function init() {
     //canvas.onmouseup = onMouseUp;
     canvas.onclick = handleClick;
 
+}
+
+function handleiconSheetLoad() {
+    console.log("Hello - icon sprite is loaded :)");
+    // define sprite sheet data describing the available icons:
+    // we can use the form {frameName:frameNumber} in animations because each "sequence" is only a single frame:
+    var data = {
+        images:[iconSheet],
+        frames:{width:80, height:80},
+        animations: {trash:0, male:1, wait:2, library:3, female:4, hanger:5, stairs:6, noparking:7}
+    }
+    iconSpriteSheet = new createjs.SpriteSheet(data);
+
+    // create a Sprite to display frames from the sprite sheet:
+    var icon1 = new createjs.Sprite(iconSpriteSheet);
+    icon1.x = 10;
+    icon1.y = 100;
+    icon1.gotoAndStop("trash");
+    stage.addChild(icon1);
+
+    // we'll clone icon1 to save a little work:
+    var icon2 = icon1.clone();
+    icon2.x += 111;
+    icon2.gotoAndStop("wait");
+    stage.addChild(icon2);
+
+    var icon3 = icon2.clone();
+    icon3.x += 111;
+    icon3.gotoAndStop("male");
+    stage.addChild(icon3);
 }
 
 /* =====================================================
