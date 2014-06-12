@@ -16,6 +16,7 @@ var numBubblesPanel = new createjs.Container(),
     bubbleValuePanel.active = false;
     ambientPopPanel.active = false;
 var theTop = 100; //Distance from the top before upgrade panels begin
+var cRadius = 5;
 
 // for the animation stuff
 var stage, circle, target, circleY, score, bitmap, txt, play, pauseTxt, clicked, mouseTarget, mvTargets = [], state = [], startTxt;
@@ -120,7 +121,7 @@ function makeUpgradeBar() {
       var topLeftX = xPos - (bgWidth/2); //top left x
       var topLeftY = (canvas.height - (bgHeight+5)); //top left y
       var panelBtnBG = new createjs.Shape();
-      panelBtnBG.graphics.beginFill("rgba(0,0,255,0.8)").rect(topLeftX, topLeftY, bgWidth, bgHeight)
+      panelBtnBG.graphics.beginFill("rgba(0,0,255,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius)
         container.addChild(panelBtnBG);
 
       var panelBtnTxt = new createjs.Text (name, "18px arial", "#fff");
@@ -366,7 +367,7 @@ function genericBits(container, BGpanel, upTitle, playBtn) {
     var pPos3 = 300; //width
     var pPos4 = canvas.height-120; //height 
 
-    BGpanel.graphics.beginFill("rgba(0,0,0,0.8)").rect(pPos1, pPos2, pPos3, pPos4);
+    BGpanel.graphics.beginFill("rgba(0,0,0,0.8)").drawRoundRect(pPos1, pPos2, pPos3, pPos4, cRadius);
 
     upTitle.textAlign = "center";
     upTitle.x = canvas.width * 0.5;
@@ -383,7 +384,7 @@ function genericBits(container, BGpanel, upTitle, playBtn) {
     var bgWidth = 290; //width
     var bgHeight = 50; //height 
     var playBtnBG = new createjs.Shape();
-    playBtnBG.graphics.beginFill("rgba(0,255,0,0.8)").rect(topLeftX, topLeftY, bgWidth, bgHeight)
+    playBtnBG.graphics.beginFill("rgba(0,255,0,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius);
       playBtn.addChild(playBtnBG);
 
     var playBtnTxt = new createjs.Text ("Play", "18px arial", "#fff");
@@ -412,7 +413,7 @@ function makeUpgrade(container, title, containerY) {
     var textHeight = containerY + 15;
 
     var upgradeBG = new createjs.Shape();
-    upgradeBG.graphics.beginFill("rgba(255,255,255,0.8)").rect(topLeftX, topLeftY, bgWidth, bgHeight);
+    upgradeBG.graphics.beginFill("rgba(255,255,255,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius);
       container.addChild(upgradeBG);
 
     //How many bought?
@@ -449,7 +450,7 @@ function makePauseOpt(container, title, containerY){
     var textHeight = containerY + 15;
 
     var upgradeBG = new createjs.Shape();
-    upgradeBG.graphics.beginFill("rgba(255,255,255,0.8)").rect(topLeftX, topLeftY, bgWidth, bgHeight);
+    upgradeBG.graphics.beginFill("rgba(255,255,255,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius);
       container.addChild(upgradeBG);
 
     // //How many bought?
