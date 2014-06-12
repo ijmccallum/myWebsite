@@ -4,7 +4,7 @@
 <?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
 <?php include $breadcrumbAddress; ?>
 
-<h3>Node JS</h3>
+<p></p>
 
 <h4>Deployment</h4>
 <p>Cloud hosting: Heroku, nodejitsu, VMware's cloud foundry, azure for node, cloud 9</p>

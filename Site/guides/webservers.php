@@ -20,7 +20,8 @@
   <a href="#" class="list-group-item greyout">Azure</a>
 </div>
 <div class="list-group">
-  <a href="webservers/node.php" class="list-group-item">NodeJS: fast for interactive apps</a>
+  <a href="webservers/node.php" class="list-group-item"><strong>NodeJS</strong><br />
+  A c++ application that you controll with v8 Javascript, this means your front-end and AND your back-end are written in Javascript!</a>
   <a href="#" class="list-group-item greyout">Apache</a>
   <a href="#" class="list-group-item greyout">IIS</a>
   <a href="#" class="list-group-item greyout">Nginx: fast for static files</a>

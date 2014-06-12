@@ -17,7 +17,8 @@
 <h4>NoSQL Databases</h4>
 <p>Dealing with large amounts of data, so much that it can't comfortably fit on one server? Then NoSQL over a cluster.  Or for easier development depending on the data models.</p>
 <div class="list-group">
-  <a href="#" class="list-group-item greyout">MongoDB - For large amounts of data</a>
+  <a href="databases/mongodb.php" class="list-group-item"><strong>MongoDB</strong><br />
+    For horizontal scaling with good functionality</a>
   <a href="#" class="list-group-item greyout">CouchDB</a>
   <a href="#" class="list-group-item greyout">Memcached</a>
   <a href="#" class="list-group-item greyout">Redis - for user sessions</a>
