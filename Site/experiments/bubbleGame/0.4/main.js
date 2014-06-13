@@ -40,6 +40,9 @@ var bmpList = [];
  * =====================================================
  */
 
+document.getElementById('demoCanvas').width = window.innerWidth;
+document.getElementById('demoCanvas').height = window.innerHeight;
+
 //When the page loads, this function is called from the body, this is where all the fun will happen!
 function init() {
     //Creating a stage and pointing it at the canvas element
@@ -108,6 +111,28 @@ function handleiconSheetLoad() {
     icon4.gotoAndStop("lightningIcon");
 }
 
+/* =======================================================
+ * =======================================================
+ * ====================  ORIENTATION  ====================
+ * =======================================================
+ * =======================================================
+ */
+
+// Listen for orientation changes
+window.addEventListener("orientationchange", function() {
+    // Announce the new orientation number
+    alert(window.orientation);
+    //+/- 90 = landscape
+    //0/180 = portraite
+}, false);
+
+// Listen for resize changes (incase device doesn't fire orientation events)
+window.addEventListener("resize", function() {
+    // Get screen size (inner/outerWidth, inner/outerHeight)
+    alert("Width: " + window.innerWidth + " | Height: " + window.innerHeight);
+    alert("Width: " + window.outerWidth + " | Height: " + window.outerHeight);
+}, false);
+
 /* =====================================================
  * =====================================================
  * ====================  INTERFACE  ====================
@@ -149,7 +174,7 @@ function makeUpgradeBar() {
 
       container.name = name;
 
-      var bgWidth = 150; //width
+      var bgWidth = canvas.width / 6; //width
       var bgHeight = 40; //height 
       var topLeftX = xPos - (bgWidth/2); //top left x
       var topLeftY = (canvas.height - (bgHeight+5)); //top left y
