@@ -20,10 +20,12 @@
   <a href="#" class="list-group-item">PHP</a>
   <a href="#" class="list-group-item greyout">Ruby</a>
 </div>
+<hr />
 <h4>Templating Languages</h4>
 <div class="list-group">
-  <a href="#" class="list-group-item">Jade (Javascript on Node)</a>
-  <a href="#" class="list-group-item">EJS (Javascript)</a>
+  <a href="#" class="list-group-item greyout">Jade (Javascript on Node)</a>
+  <a href="#" class="list-group-item greyout">Swig (on Node)</a>
+  <a href="#" class="list-group-item greyout">EJS (Javascript)</a>
   <a href="#" class="list-group-item greyout">Haml (HTML ??)</a>
   <a href="#" class="list-group-item greyout">Handlebars</a>
   <a href="#" class="list-group-item greyout">JSP (Java)</a>
