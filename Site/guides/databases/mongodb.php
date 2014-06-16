@@ -61,7 +61,7 @@ mongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
 				<code>db.collection.find({ "key" : property })</code>: shows all the documents with a "key" == 'property'
 			</li>
 			<li>
-				<code>db.collection.find({ "key" : property}, {"key2" : true, "_id" : false})</code>: same as above but only returns the "key2" of matching documents ("_id" is automatically returned unless speciically asked not to).
+				<code>db.collection.find({ "key" : property}, {"key2" : true, "_id" : false})</code>: same as above but only returns the "key2" of matching documents ("_id" is automatically returned unless speciically asked not to).  This is called <strong>Projection</strong> and the easy way to implement it in node is described lower down.
 			</li>
 			<li>
 				<code>db.collection.find( "key" : { $gt : 50 } })</code>: find operator, returns documents with a "key" greater than 50
@@ -129,11 +129,120 @@ mongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
 			</li>
 		</ul>
 	</li>
-
 	<li>
-		<code>db.collection.findOne()</code>: shows only one, the first one it comes across in the db (essentially random)
+		<code>db.collection.findOne()</code>: shows only one, the first one it comes across in the db (essentially random), query in ()
+	</li>
+	<li>
+		<code>db.collection.count()</code>: returns the number of documents found, query in ()
 	</li>
 </ul>
+<p>Most, actually all of the above are about finding documents, now for updating:</p>
+<p>The update option will only update the first document it finds matching the supplied query unless given the <strong>$multi</strong> option</p>
+<code>.update({ }, { $set : { "Key" : property }}, { <strong>multi : true</strong> })</code>: also, "{ }" acts as a selector that gets every document in the collection
+<ul>
+	<li>
+		<code>db.collection.update( { "queryKey" : property }, { "updatedKey" : property } )</code>: will remove everything in the document (except "_id") and add everything in the second update object.
+		<ul>
+			<li>
+				<code>.update({ "key":property }, { $set : { "Key" : property }})</code>: only updates the "Key" in the $set obj, if the property doesn't exist, it is added, if the object doesn't exist - nothing happens.
+			</li>
+			<li>
+				<code>.update({ "key":property }, { $inc : { "Key" : number }})</code>: increments a number field by 'number', if nonexist, adds a field with property 'number' 
+			</li>
+			<li>
+				<code>.update({ "key":property }, { $unset : { "Key" : anyValue }})</code>: removes only the "Key" defined in the $unset obj, it ignores "anyValue"
+			</li>
+			<li>
+				<code>.update({ "key":property }, { $set : { "Key" : property }, { $upsert : true }})</code>: If the object doesn not exist then it is created with the $set object added.  If the $set objects are underspecified (as in they do not have a concrete value, the document will be created but will not have any of the underspeciried objects)
+			</li>
+		</ul>
+		<p>Updating values in an array:</p>
+		<ul>
+			<li>
+				<code>{$set : {"a[2]" : 5 }}</code>: will set the third array element to 5
+			</li>
+			<li>
+				<code>{$push : { a : 6 }}</code>: will add 6 to the right side of an array
+			</li>
+			<li>
+				<code>{$pop : { a : 1 }}</code>: will remove the right most element <strong>(positive argument)</strong>
+			</li>
+			<li>
+				<code>{$pop : { a : -1 }}</code>: will remove the left most element <strong>(negative argument)</strong>
+			</li>
+			<li>
+				<code>{$pushAll : { a : [ 1, 2, 3 ]}}</code>: will add multiple elements to an array
+			</li>
+			<li>
+				<code>{$pull : { a : 5 }}</code>: removes any element from the array with the value '5'
+			</li>
+			<li>
+				<code>{$pullAll : { a : [ 5, 6, 7 ] }}</code>: removes any element from the array with matching values
+			</li>
+			<li>
+				<code>{$addToSet : { a : 5 }}</code>: in arrays that do not contain multiple instances of one value this adds 5 when there is no other 5 but will do nothing if there already is 
+			</li>
+		</ul>
+	</li>
+</ul>
+<p>Removing / deleting:</p>
+<ul>
+	<li>
+		<code>db.collection.remove( { } )</code>: will remove every document in the collection, one by one
+	</li>
+	<li>
+		<code>db.collection.drop()</code>: much faster deletion and removed metadata, which remove() doesn't delete
+	</li>
+</ul>
+
+<h3>Running in node</h3>
+<p>In essence everything runs the same way except now functions are added as callbacks so that we might do something with the data.</p>
+<ul>
+	<li>
+		<code>db.collection('collection_name')</code>: gets the collection, more functions can be added to this, it's common to save it as a variable and build up the variable through logic.  MongoDB doesn't actually run any operations until asked to by one of sevoral functions that are given as callbacks
+		<ul>
+			<li>Returning the results of a query as an array:
+<pre><code>.toArray(function(err, docs) {
+    if (err) throw err;
+    console.dir(docs);
+    db.close();
+});</code></pre>
+			</li>
+			<li>Running though each document:
+<pre><code>variable.each(function(err, doc) { 
+    if(err) throw err;
+    if(doc == null) {//meaning we have reached the end of the collection
+    	return db.close();
+	}
+	console.log(doc); prints each doc
+});</code></pre>
+			<p>The big advantage of this is that if effectivly allows you to stream large amounts of data from the database.  The curser will make sevoral round trips while the call back runs whereas with <code>.toArray</code> the curser will wait until the entire array has been built meaning you will have to wait until all the round trips have been completed.</p>
+			</li>
+			<li>Executing the function
+<pre><code>variable.exec(functoin(err, docs){
+    if(err) throw err;
+    console.log(docs);
+});</code></pre>
+			</li>
+		</ul>
+		<p>Or a callback can be added in with a normal functoin:</p>
+		<ul>
+			<li>
+<pre><code>function callback(err, doc) {
+					if(err) throw err;
+					console.dir(doc);
+					db.close();
+				}
+				db.collection('name').findOne({"key":property},callback);</code></pre>
+			</li>
+		</ul>
+	</li>
+</ul>
+<p><strong>Projection</strong> allows us to specify which elements from each document we want to see or not see, again the "_id" field is special in that is it not automatically projected out.</p>
+<pre><code>var query = {"key":property};
+var projection = {"Key1":1,"_id":0};
+db.collection('name').find(query,projection)... </code></pre><br />
+<p>Note, the second field of find can also be the callback, if you are looking to run a query, projection, and callback put them in this order.</p>
 
 <p>Value types: 
 <pre><code>{

@@ -16,6 +16,11 @@ server.listen(8000);
 console.log("Server listening at http://localhost:8000");
 </code></pre>
 
+<hr />
+<h4>Some great modules:</h4>
+<strong>Request</strong>: for making requests to other websites
+
+
 <h4>Deployment</h4>
 <p>Cloud hosting: Heroku, nodejitsu, VMware's cloud foundry, azure for node, cloud 9</p>
 <p>github.com/substack/fleet, capistrano, nodejitsu's forever, <br />
