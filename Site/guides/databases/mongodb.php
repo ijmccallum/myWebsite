@@ -28,7 +28,7 @@ mongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
 
 
 <hr />
-<h4>The mongo shell</h4>
+<h3>The mongo shell</h3>
 <p>Like NodeJS, this is just a c++ application that you controll using V8 Javascript.</p>
 <p>Some of the most common commands I've been using:</p>
 <ul>
@@ -119,7 +119,10 @@ mongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
 				<code>.next()</code>: returns the next matching document
 			</li>
 			<li>
-				<code>.sort({ "key" : -1 })</code>: returns with "key" in reverse order
+				<code>.sort({ "key" : <strong>-1</strong> })</code>: returns with "key" in <strong>descending order</strong>.
+			</li>
+			<li>
+				<code>.sort([ { "key" : -1 }, {"key2" : 1} ])</code>: documents are sorted by "key" then by "key2".  It is placed within an array as objects can be re-ordered before they reach the db (arrays stay cosistant)
 			</li>
 			<li>
 				<code>.limit(5)</code>: shows the first 5 documents
@@ -128,6 +131,14 @@ mongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
 				<code>.skip(5)</code>: skipps over the first 5 then return the rest
 			</li>
 		</ul>
+		<p>These options can be written with a slightly different format if you prefer:</p>
+<pre><code>
+var options = { 'skip' : 1,
+				'limit' : 1,
+				'sort' : [ { "key" : -1 }, {"key2" : 1} ] };
+var cursor = collection.find({}, {}, options); 
+</code></pre>
+<p>Also they should happen in this order: <code>Sort</code>, <code>Skip</code>, <code>Limit</code>: they are automatically ordered if you are using a driver (eg, in node.js)</p>
 	</li>
 	<li>
 		<code>db.collection.findOne()</code>: shows only one, the first one it comes across in the db (essentially random), query in ()
@@ -201,15 +212,15 @@ mongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
 	<li>
 		<code>db.collection('collection_name')</code>: gets the collection, more functions can be added to this, it's common to save it as a variable and build up the variable through logic.  MongoDB doesn't actually run any operations until asked to by one of sevoral functions that are given as callbacks
 		<ul>
-			<li>Returning the results of a query as an array:
-<pre><code>.toArray(function(err, docs) {
+			<li><code>.toArray()</code>Returning the results of a query as an array:
+<pre><code><strong>.toArray</strong>(function(err, docs) {
     if (err) throw err;
     console.dir(docs);
     db.close();
 });</code></pre>
 			</li>
-			<li>Running though each document:
-<pre><code>variable.each(function(err, doc) { 
+			<li><code>.each()</code>Running though each document:
+<pre><code><strong>.each</strong>(function(err, doc) { 
     if(err) throw err;
     if(doc == null) {//meaning we have reached the end of the collection
     	return db.close();
@@ -218,30 +229,89 @@ mongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
 });</code></pre>
 			<p>The big advantage of this is that if effectivly allows you to stream large amounts of data from the database.  The curser will make sevoral round trips while the call back runs whereas with <code>.toArray</code> the curser will wait until the entire array has been built meaning you will have to wait until all the round trips have been completed.</p>
 			</li>
-			<li>Executing the function
-<pre><code>variable.exec(functoin(err, docs){
+			<li><code>.exec()</code> the function
+<pre><code><strong>.exec</strong>(functoin(err, docs){
     if(err) throw err;
     console.log(docs);
 });</code></pre>
 			</li>
+			<li><code>.insert()</code> function (<code>var docToInsert = {"Key":property};</code>)
+<pre><code><strong>.insert</strong>(doc, function(err, inserted){
+	if(err) console.log(err);
+	console.log("Sucessfully inserted: " + inserted);
+	return db.close();
+});
+</code></pre>
+			</li>
+			<li><code>.update()</code> function 
+<pre><code>
+var query = { }; //Selects all the documents
+var operator = {$unset {"Key":property}}; //removes the key from any documents that have it
+var options = {'multi':true} //more than one doc
+
+db.collection('name')<strong>.update</strong>( query, operator, options, function(err,updated){
+	if(err) console.log(err);
+	console.log("successfully updated: " + updated);
+	return db.close();
+});
+</code></pre>
+			</li>
+			<li><code>.upsert()</code> option
+<pre><code>
+var query = { "Key" : property }; //Selects all the documents
+var operator = {$set {"Key":property}}; //removes the key from any documents that have it
+var options = {'upsert':true} //more than one doc
+
+db.collection('name')<strong>.update</strong>( query, operator, options, function(err,updated){
+	if(err) console.log(err);
+	console.log("successfully updated: " + updated);
+	return db.close();
+});
+</code></pre>
+<p>In this case if the query finds no doc then the query doc is added and then the operator applied, if it does exist then it is updated</p>
+			</li>
+			<li><code>.save()</code> function: inside a .findOne()/.each() callback, edit the returned doc and add it here:
+<pre><code><strong>.save</strong>(doc, functoin(err, docs){
+    if(err) throw err;
+    console.log(docs);
+});</code></pre>
+			</li>
+			<li><code>.findAndModify</code>: finds a document and updates it atomically, we can specify wither we want the new or old version
+<pre><code>var sort = []; //findAndModify only affects 1 document, if the query isn't specific enough the sort gives us extra control
+var operator = { '$inc' : { 'counter' : 1 }};
+var options = { 'new' : true };
+
+<strong>.findAndModify</strong>(query, sort, operator, options, function(err, doc){
+	if(err) console.log(err);
+	if(!doc){
+        console.log("No doc found");
+    } else {
+        console.log("counter: " + doc.counter);
+    }
+    return db.clode();
+});
+</code></pre>
+			</li>
+			<li><code>.remove(query, function(err, noRemoved){ ... });</code>: will delete all docs that match the query
+			</li>
 		</ul>
-		<p>Or a callback can be added in with a normal functoin:</p>
+		<p>Or a callback function call can be added instead of the inline function:</p>
 		<ul>
 			<li>
 <pre><code>function callback(err, doc) {
-					if(err) throw err;
-					console.dir(doc);
-					db.close();
-				}
-				db.collection('name').findOne({"key":property},callback);</code></pre>
+	if(err) throw err;
+	console.dir(doc);
+	db.close();
+}
+db.collection('name').findOne({"key":property},callback);</code></pre>
 			</li>
 		</ul>
 	</li>
 </ul>
 <p><strong>Projection</strong> allows us to specify which elements from each document we want to see or not see, again the "_id" field is special in that is it not automatically projected out.</p>
 <pre><code>var query = {"key":property};
-var projection = {"Key1":1,"_id":0};
-db.collection('name').find(query,projection)... </code></pre><br />
+var projection = <strong>{"Key1":1,"_id":0}</strong>;
+db.collection('name').find(query,<strong>projection</strong>)... </code></pre><br />
 <p>Note, the second field of find can also be the callback, if you are looking to run a query, projection, and callback put them in this order.</p>
 
 <p>Value types: 
