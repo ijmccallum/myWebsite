@@ -4,7 +4,11 @@
 <div class="row">
     <div class="col-md-6">
         <p class="lead">
-            I focus on building websites using the fantastic, and open source CMS, WordPress.  This allows me to set up sites very quickely and extend them to do almost anything you can imagine.  It is also a wonderfully simple system that lets you manage your content and even edit the structure of your site!
+            For smaller sites I use the fantastic, and open source CMS, WordPress.  
+            This allows me to set up sites very quickely and extend them to do almost anything you can imagine.  
+            It is also a wonderfully simple system that lets you manage your content and even edit the structure of your site!<br />
+            <br />
+            For larger, more complex sites I work with various Node.JS modules to create a system which, given enough time and resources, is virtually limetless.
         </p> <!-- if you would like your very own, shiney new web site, have a look at this questionaire.  It askes you all the questions that you and I need to know before starting. -->
         <hr />
     </div> <!-- END 6 column for text -->
@@ -12,20 +16,19 @@
             
 <div class="row">
     <div class="col-md-6">
-    	<h3>Some WordPress examples:</h3>
-        <br />
-        <p><strong>Christina D Gonzalez</strong> is a Landscape Architect currently based in Washington DC.  This is her personal portfolio site and blog.</p>
+        <p><strong>Christina D Gonzalez</strong> is a Landscape Architect currently based in Washington DC.  This is her personal portfolio and blog.</p>
         <code><a target="_blank" href="http://cdgonzalez.com/">www.cdgonzalez.com</a></code>
         <hr />
-        <p><strong>Wikilogic</strong> is a crowd-sourced logic mapping project.  It is a massive undertaking which, if successfull, has tremendous potential to benefit a huge number of people. For an overview of my invlovment it has it's own <a href="http://iainjmccallum.com/wikilogic.php">section</a> here on my site!  To find out more about the project, what it is, and how to get involved yourself - have a look at the home page:</p>
-        <code><a target="_blank" href="http://www.wikilogicfoundation.org/">www.WikiLogicFoundation.com</a></code>
+        <p><strong>Wikilogic</strong> is a crowd-sourced logic mapping project.  It is a massive undertaking which, if successfull, has tremendous potential to benefit a huge number of people.</p>
+        <p>One of the biggest dreams from the group behind Sophie's Games has been Wikilogic. For so long it remained a loose concept, but after developing Synergy and honing our various professional skill sets, we finally found ourselves in the right position to start realising this idea. In short: it intends to do for logic what Wikipedia is doing for knowledge.</p> 
+        <p>Rather than explain any further here, I would strongly encourage you to have a look at the foundation's site and, if you can, please consider getting involved too - we could use all the help we can get!</p>
+        <p>The project: <code><a href="http://www.wikilogicfoundation.org/" target="_blank">www.WikiLogicFoundation.org</a></code></p>
+        <p>The theory: <code><a href="http://www.wikilogicfoundation.org/wiki" target="_blank">WikiLogic Wiki</a></code></p>
+        <p>The development: <code><a href="https://github.com/WikiLogic/WikiLogic" target="_blank">GitHub</a></code></p>
         <hr />        
         <p><strong>Working Title</strong> is a UK based 3 piece band.  They needed a very simple, very quick site to list their various gigs and create an online presence.</p>
         <code><a target="_blank" href="http://workingtitletheband.co.uk/">www.workingtitletheband.co.uk</a></code>
         <hr />
-        <br />
-        <h3>Custom, Non-WordPress sites</h3>
-        <br />
         <p><strong>Sencha Insights</strong> is a tech blog focusing on Sencha and related web technologies.  I built this site on Node.JS using the still-in-development Keystone.js CMS.  As these technologies are still fairly new the choice of templates is limited / non-existant.  I took a theme without any back end and threaded it into Keystone to create a site which is effectivly a very fancy blog.  It has it's own browser plugin which allows interesting articles to be saved whenever they pop up and it publishes it's newsletter automatically every two weeks.  This site practically runs it's self!</p>
         <code><a target="_blank" href="http://www.senchainsights.com/">www.senchainsights.com</a></code>
         <hr />

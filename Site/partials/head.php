@@ -74,7 +74,7 @@ for ($x=0; $x<$docDepth; $x++){
                     <div id="hotdog3"></div>
                     </a>
                     <?php if ($iainPageTitle == "Synergy") { ?>
-                            <img src="pics/SynergyLogo.png" alt="">
+                            <img src="pics/SynergyLogo2.jpg" alt="">
                     <?php } else {
                             echo $iainPageTitle; 
                     } ?> 

@@ -33,6 +33,14 @@ var bubbleContainer = new createjs.Container();
 var upgradeBarContainer = new createjs.Container();
 var bmpList = [];
 
+//Special effects
+navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.moz || navigator.notification.vibrate || window.navigator.vibrate;
+var vibration = false;
+if (navigator.vibrate) {
+    vibration = true;
+}
+
+
 /* =====================================================
  * =====================================================
  * ======================  SET UP  =====================
@@ -45,6 +53,9 @@ document.getElementById('demoCanvas').height = window.innerHeight;
 
 //When the page loads, this function is called from the body, this is where all the fun will happen!
 function init() {
+    if (vibration) {
+        navigator.vibrate(1000);
+    }
     //Creating a stage and pointing it at the canvas element
     stage = new createjs.Stage("demoCanvas");
 
@@ -80,9 +91,9 @@ function init() {
 
     startScreen();
 
-    //canvas.onmousedown = onMouseDown;
-    //canvas.onmouseup = onMouseUp;
-    canvas.onclick = handleClick;
+    canvas.onmousedown = handleClick;
+    canvas.addEventListener('touchstart', handleClick, false);
+
 
 }
 
@@ -585,8 +596,8 @@ function tick(event) {
       var noTgts = bmpList.length;
       for (var i = 0; i < noTgts; i++) {
           var bmp = bmpList[i];
-          if (bmp.x > (bmp.rndWidth * -1)) {
-              bmp.x -= bmp.speed;
+          if (bmp.y > (bmp.rndWidth * -1)) {
+              bmp.y -= bmp.speed;
 
           } else {
               score = score - Math.round(bmp.score/2);
@@ -632,8 +643,8 @@ function createNewBubbles(numBubblesToAdd) {
  */
 function resetTgt(tgt, i) {
   //Position
-    tgt.x = canvas.width + Math.random()*500;
-    tgt.y = (canvas.height-40) * Math.random()|0;
+    tgt.y = canvas.height + Math.random()*500;
+    tgt.x = canvas.width * Math.random()|0;
 
   //Apperance
     var rndWidth = Math.random() * (35 - 15) + 15;
@@ -766,6 +777,7 @@ function popBubble(bubble) {
     clicked = false;
     speedMax += 0.1;
     speedMin += 0.01;
+
     resetTgt(bubble);
     saveScore();
     emitterCount ++;
@@ -858,6 +870,7 @@ function handleClick() {
 
             if (tgtCheck!=null && tgtCheck=='tgt' && state=='playing') {
                 // The game is playing & the object clicked was a bubble, time to pop it!
+                if (vibration) navigator.vibrate(1000);
                 popBubble(mouseTarget);
 
             } else if (mouseTarget.parent) {
