@@ -1,4 +1,4 @@
-<?php $iainPageTitle = 'Iain J McCallum'; ?>
+<?php $iainPageTitle = '@ijmccallum'; ?>
 <?php include 'partials/head.php'; ?>
             
 	<div class="row">

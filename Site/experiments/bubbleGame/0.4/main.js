@@ -1,3 +1,4 @@
+
 //Gameplay variables
 var score = 0,
     speedMin = 2,
@@ -7,6 +8,10 @@ var score = 0,
     ambientPop = 0.1,   //<< this cab be increased, needs a panel
     bubbleRate = 10;       //<< this cab be increased, needs a panel
 var ambientTimer; //the setInterval function for ambient popping!
+var clickRippleContainer, //The container for each click ripple to be added.
+    totalClickRipples, //The number of current click ripples
+    rippleWidth = 10, //the width of the clickRipples
+    clickRippleArray = [];
 //The UI
 var numBubblesPanel = new createjs.Container(),
     bubbleValuePanel = new createjs.Container(),
@@ -24,6 +29,7 @@ var iconSheet = new Image(), //The various icons!
 // for the animation stuff
 var stage, circle, target, circleY, score, bitmap, txt, play, pauseTxt, clicked, mouseTarget, mvTargets = [], state = [], startTxt;
 var canvas = document.getElementById('demoCanvas');
+FastClick.attach(canvas);
 var noTgts = 5;
 var tgtBlurFilter = [];
 var particleImage;
@@ -53,11 +59,11 @@ document.getElementById('demoCanvas').height = window.innerHeight;
 
 //When the page loads, this function is called from the body, this is where all the fun will happen!
 function init() {
-    if (vibration) {
-        navigator.vibrate(1000);
-    }
+
     //Creating a stage and pointing it at the canvas element
     stage = new createjs.Stage("demoCanvas");
+
+    clickRippleContainer = new createjs.Container();
 
     particleImage = new Image();
     //particleImage.onload = initCanvas;
@@ -91,9 +97,11 @@ function init() {
 
     startScreen();
 
-    canvas.onmousedown = handleClick;
-    canvas.addEventListener('touchstart', handleClick, false);
-
+    //canvas.onmousedown = handleClick;
+    //canvas.addEventListener('touchstart', handleClick, false);
+    //canvas.addEventListener('touchmove', handleClick, false);
+    canvas.addEventListener('click', handleClick, false);
+    //canvas.addEventListener('onmousedown', handleClick, false);
 
 }
 
@@ -122,27 +130,6 @@ function handleiconSheetLoad() {
     icon4.gotoAndStop("lightningIcon");
 }
 
-/* =======================================================
- * =======================================================
- * ====================  ORIENTATION  ====================
- * =======================================================
- * =======================================================
- */
-
-// Listen for orientation changes
-window.addEventListener("orientationchange", function() {
-    // Announce the new orientation number
-    alert(window.orientation);
-    //+/- 90 = landscape
-    //0/180 = portraite
-}, false);
-
-// Listen for resize changes (incase device doesn't fire orientation events)
-window.addEventListener("resize", function() {
-    // Get screen size (inner/outerWidth, inner/outerHeight)
-    alert("Width: " + window.innerWidth + " | Height: " + window.innerHeight);
-    alert("Width: " + window.outerWidth + " | Height: " + window.outerHeight);
-}, false);
 
 /* =====================================================
  * =====================================================
@@ -161,7 +148,7 @@ function makeUpgradeBar() {
 
   var barBG = new createjs.Shape();
   barBG.graphics
-    .beginFill("rgba(0,0,0,1)").rect(0, (canvas.height-50), canvas.width, canvas.height);
+    .beginFill("rgba(0,0,0,0.1)").rect(0, (canvas.height-50), canvas.width, canvas.height);
 
   upgradeBarContainer.addChild(barBG);
 
@@ -185,12 +172,13 @@ function makeUpgradeBar() {
 
       container.name = name;
 
-      var bgWidth = canvas.width / 6; //width
+      //var bgWidth = canvas.width / 6; //width
       var bgHeight = 40; //height 
-      var topLeftX = xPos - (bgWidth/2); //top left x
+      var circleHeight = 46;
+      var topLeftX = xPos; //top left x
       var topLeftY = (canvas.height - (bgHeight+5)); //top left y
       var panelBtnBG = new createjs.Shape();
-      panelBtnBG.graphics.beginFill("rgba(0,0,255,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius)
+      panelBtnBG.graphics.beginFill("rgba(0,0,0,0.5)").drawCircle(topLeftX, topLeftY+(bgHeight/2), (circleHeight/2))
         container.addChild(panelBtnBG);
 
       // var panelBtnTxt = new createjs.Text (name, "20px Patrick Hand", "#fff");
@@ -607,6 +595,21 @@ function tick(event) {
       }
   }
 
+  //Make the click ripples smaller
+  for ( i = 0; i <clickRippleArray.length; i++) {
+    var opacity = clickRippleArray[i].opacityState;
+    clickRippleArray[i].alpha = opacity;
+    opacity = (opacity - 0.01);
+    if (opacity < 0) {
+        clickRippleContainer.removeChild(clickRippleArray[i]);
+        clickRippleArray.splice(i,1);
+        console.log("Array length: " + clickRippleArray.length);
+        //remove from array
+    } else {
+        clickRippleArray[i].opacityState = opacity;
+    }
+  }
+
   if (score >= 0) {
       txt.text = "$" + score;
   } else {
@@ -651,12 +654,12 @@ function resetTgt(tgt, i) {
     var rndColour = selectColour();
     tgt.graphics
       .clear()
-      .beginFill("rgba(0,0,0,0.1)").drawCircle((rndWidth/10),(rndWidth/8),(rndWidth*1.01)) //3 dark circles to create a shadow
-      .beginFill("rgba(0,0,0,0.1)").drawCircle((rndWidth/10),(rndWidth/8),(rndWidth*1.1))
-      .beginFill("rgba(0,0,0,0.1)").drawCircle((rndWidth/10),(rndWidth/8),(rndWidth*1.2))
-      .beginFill("white").drawCircle(0,0,rndWidth)//outline
-      .beginFill(rndColour).drawCircle(0,0,(rndWidth - 1))//body
-      .beginFill("rgba(255,255,255,0.2)").drawCircle((-rndWidth/9),(-rndWidth/9),(rndWidth-(rndWidth/10)))//body light
+      //.beginFill("rgba(0,0,0,0.1)").drawCircle((rndWidth/10),(rndWidth/8),(rndWidth*1.01)) //3 dark circles to create a shadow
+      //.beginFill("rgba(0,0,0,0.1)").drawCircle((rndWidth/10),(rndWidth/8),(rndWidth*1.1))
+      //.beginFill("rgba(0,0,0,0.1)").drawCircle((rndWidth/10),(rndWidth/8),(rndWidth*1.2))
+      //.beginFill("white").drawCircle(0,0,rndWidth)//outline
+      .beginFill(rndColour).drawCircle(0,0,(rndWidth))//body
+      .beginFill("rgba(255,255,255,0.2)").drawCircle((-rndWidth/20),(-rndWidth/20),(rndWidth-(rndWidth/10)))//body light
       .beginFill("rgba(255,255,255,0.8)").drawCircle((-rndWidth/3),(-rndWidth/2),(rndWidth/8))//spec highlight
       
 
@@ -768,6 +771,7 @@ function ambientPoppings() {
  * haven't had a chance to test it yet, probably won't work given the hassel this particle system has been giving me!
  */
 function popBubble(bubble) {
+    if (vibration) navigator.vibrate(10);
     emitter[emitterCount] = new createjs.ParticleEmitter(particleImage);
     puff[emitterCount] = createParticlePuff(emitter[emitterCount], bubble.rndWidth);
     emitter[emitterCount].position = new createjs.Point(bubble.x, bubble.y);
@@ -850,6 +854,7 @@ function handleClick() {
       play = true;
       state = "playing";
       ambientPopInit();
+      stage.addChild(clickRippleContainer);
     }
 
     /*
@@ -857,9 +862,16 @@ function handleClick() {
      */
 
     if (stage.mouseX && stage.mouseY) {
+
         //the click was on the canvas, time to investigate
 
         mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY);
+        if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY - 40); } //compensate for fast bubbles going up
+        if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX + 20, stage.mouseY); }
+        if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX - 20, stage.mouseY); }
+        if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY + 20); }
+
+
 
         if (mouseTarget) {
             //Something in the canvas was indeed clicked!  Lets see what it was
@@ -870,7 +882,6 @@ function handleClick() {
 
             if (tgtCheck!=null && tgtCheck=='tgt' && state=='playing') {
                 // The game is playing & the object clicked was a bubble, time to pop it!
-                if (vibration) navigator.vibrate(1000);
                 popBubble(mouseTarget);
 
             } else if (mouseTarget.parent) {
@@ -956,7 +967,20 @@ function handleClick() {
           removePanels();
           playGame();
         }
+
+        //Where ever may have been clicked - lets make a ripple!
+        clickRipple(stage.mouseX, stage.mouseY);
     }
+}
+
+function clickRipple(x,y) {
+    var clickRipple = new createjs.Shape();
+    clickRipple.graphics.beginFill("rgba(255,255,255,0.2)").drawCircle(x,y,rippleWidth);
+    clickRipple.name = "clickRipple";
+    clickRipple.opacityState = 0.75;
+    clickRippleContainer.addChild(clickRipple);
+    clickRippleArray.push(clickRipple); //Keeping a list of all the cilckRipples
+    
 }
 
 /* =====================================================
