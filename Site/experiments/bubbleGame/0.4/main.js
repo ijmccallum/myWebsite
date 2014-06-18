@@ -123,7 +123,7 @@ function init() {
     console.log("Value Min: " + popScoreMin + " | Max: " + popScoreMax);
     console.log("ambientPop " + ambientPop);
     console.log("bubbleRate " + bubbleRate);
-    setTimeout(startScreen, 500);
+    setTimeout(startScreen, 200);
 
     //canvas.onmousedown = handleClick;
     //canvas.addEventListener('touchstart', handleClick, false);
@@ -156,8 +156,65 @@ function handleiconSheetLoad() {
 
     icon4 = icon3.clone();
     icon4.gotoAndStop("lightningIcon");
+
+    makeLightBeams();
 }
 
+var lightBeamList = [];
+var lightContainer = new createjs.Container();
+var noLightBeams = 10;
+
+function makeLightBeams() {
+
+    //Adds a bunch of light beams
+    for (i=0; i<noLightBeams; i++) {
+        //Making the lightbeam pic
+        var lightBeamImg = new Image();
+        lightBeamImg.src = "img/lightBeam.png";
+        var lightBeamBmp = new createjs.Bitmap(lightBeamImg);
+        lightBeam = lightContainer.addChild(lightBeamBmp); 
+
+        lightBeam.x = (Math.random() * (canvas.width / (noLightBeams * 2) )) + (i * (canvas.width / (noLightBeams) )) - 200;
+        lightBeam.y = -100;
+        lightBeam.alpha = Math.random();
+        lightBeam.speed = (Math.random() * 1.5) + 0.5;
+        console.log("==============================");
+
+        lightBeam.rotation = figureRotation(lightBeam.x);
+
+        //Setting up it's variables
+        lightBeam.direction = i%2; // +/- will make the image move right / left, reset when it leaves the screen
+        lightBeamList.push(lightBeam); //so we have a list of the light beams!
+    }
+
+    stage.addChild(lightContainer); //everything in the container is now on the stage!
+}
+
+function moveLightBeams() {
+    for (i=0; i<noLightBeams; i++) {
+        var currentBeam = lightBeamList[i];
+
+        //Move the light horizontally
+        currentBeam.x += currentBeam.direction * currentBeam.speed;
+        if (currentBeam.x < -400 || currentBeam.x > (canvas.width + 100)) {
+            currentBeam.direction = currentBeam.direction * -1;
+        }
+
+        //Figure out the beams rotation
+        lightBeam.rotation = figureRotation(lightBeam.x);
+    }
+}
+
+function figureRotation(x) {
+    var rotValue = (x + (canvas.width / 2));
+    returnValue = ((x * (rotValue)) / 20000) * -1;
+
+    console.log("Rot value: " + rotValue);
+    console.log("X = " + x);
+    console.log("Rotation = " + returnValue);
+
+    return returnValue - 20;
+}
 
 /* =====================================================
  * =====================================================
@@ -609,6 +666,7 @@ function tick(event) {
 
     //Slowly decrease the speed
     setSpeed("time");
+    moveLightBeams();
 
     //Move the targets
     if (play == true) {
