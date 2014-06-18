@@ -47,6 +47,8 @@ if (navigator.vibrate) {
 }
 
 
+
+
 /* =====================================================
  * =====================================================
  * ======================  SET UP  =====================
@@ -54,11 +56,38 @@ if (navigator.vibrate) {
  * =====================================================
  */
 
+document.addEventListener("deviceready", onDeviceReady, false);
+ 
+function onDeviceReady() {
+    navigator.splashscreen.hide();
+    //document.addEventListener("backbutton", pause, false);
+    //document.addEventListener("menubutton", exitFromApp, false);
+    document.addEventListener("pause", pause, false);
+    //document.addEventListener("volumedownbutton", pause, false);
+}
+function exitFromApp()
+    {
+        if (navigator.app) {
+           navigator.app.exitApp();
+        }
+        else if (navigator.device) {
+            navigator.device.exitApp();
+        }
+    }
+
 document.getElementById('demoCanvas').width = window.innerWidth;
 document.getElementById('demoCanvas').height = window.innerHeight;
 
 //When the page loads, this function is called from the body, this is where all the fun will happen!
 function init() {
+
+
+
+    function onConfirmQuit(button){
+       if(button == "1"){
+        navigator.app.exitApp(); 
+    }
+    }
 
     //Creating a stage and pointing it at the canvas element
     stage = new createjs.Stage("demoCanvas");
@@ -94,8 +123,7 @@ function init() {
     console.log("Value Min: " + popScoreMin + " | Max: " + popScoreMax);
     console.log("ambientPop " + ambientPop);
     console.log("bubbleRate " + bubbleRate);
-
-    startScreen();
+    setTimeout(startScreen, 500);
 
     //canvas.onmousedown = handleClick;
     //canvas.addEventListener('touchstart', handleClick, false);
@@ -579,45 +607,47 @@ function startGamePlay() {
  */
 function tick(event) {
 
-  //Move the targets
-  if (play == true) {
-      var noTgts = bmpList.length;
-      for (var i = 0; i < noTgts; i++) {
-          var bmp = bmpList[i];
-          if (bmp.y > (bmp.rndWidth * -1)) {
-              bmp.y -= bmp.speed;
+    //Slowly decrease the speed
+    setSpeed("time");
 
-          } else {
-              score = score - Math.round(bmp.score/2);
-              resetTgt(bmp);
-              //console.log("%cOne escaped!", "color:green;");
-          }
-      }
-  }
-
-  //Make the click ripples smaller
-  for ( i = 0; i <clickRippleArray.length; i++) {
-    var opacity = clickRippleArray[i].opacityState;
-    clickRippleArray[i].alpha = opacity;
-    opacity = (opacity - 0.01);
-    if (opacity < 0) {
-        clickRippleContainer.removeChild(clickRippleArray[i]);
-        clickRippleArray.splice(i,1);
-        console.log("Array length: " + clickRippleArray.length);
-        //remove from array
-    } else {
-        clickRippleArray[i].opacityState = opacity;
+    //Move the targets
+    if (play == true) {
+        var noTgts = bmpList.length;
+        for (var i = 0; i < noTgts; i++) {
+            var bmp = bmpList[i];
+            if (bmp.y > (bmp.rndWidth * -1)) {
+                bmp.y -= bmp.speed;  
+            } else {
+                score = score - Math.round(bmp.score/2);
+                resetTgt(bmp);
+                //console.log("%cOne escaped!", "color:green;");
+            }
+        }
     }
-  }
 
-  if (score >= 0) {
-      txt.text = "$" + score;
-  } else {
-      var tmpScore = (score * -1);
-      txt.text = "-$" + tmpScore;
-  }
+    //Make the click ripples smaller
+    for ( i = 0; i <clickRippleArray.length; i++) {
+        var opacity = clickRippleArray[i].opacityState;
+        clickRippleArray[i].alpha = opacity;
+        opacity = (opacity - 0.02);
+        if (opacity < 0) {
+            clickRippleContainer.removeChild(clickRippleArray[i]);
+            clickRippleArray.splice(i,1);
+            //console.log("Array length: " + clickRippleArray.length);
+            //remove from array
+        } else {
+            clickRippleArray[i].opacityState = opacity;
+        }
+    }
 
-  stage.update(event);
+    if (score >= 0) {
+        txt.text = "$" + score;
+    } else {
+        var tmpScore = (score * -1);
+        txt.text = "-$" + tmpScore;
+    }
+
+    stage.update(event);
 }
 
 /**
@@ -667,14 +697,14 @@ function resetTgt(tgt, i) {
     tgt.rndWidth = rndWidth;
     tgt.speed = (Math.random()*speedMax)+speedMin;
     tgt.score = Math.floor((Math.random() * popScoreMax) + popScoreMin);
-    tgtBlurFilter[i] = new createjs.BlurFilter((tgt.speed/2), 0, 1);
-    tgtBlurFilter[i+1] = new createjs.BlurFilter(1, 1, 1);
+    //tgtBlurFilter[i] = new createjs.BlurFilter((tgt.speed/2), 0, 1);
+    //tgtBlurFilter[i+1] = new createjs.BlurFilter(1, 1, 1);
     tgt.alpha = 0.7;
 
   //Funky filters
-    tgt.filters = [tgtBlurFilter[i], tgtBlurFilter[i+1]];
-    var bounds = tgtBlurFilter[i].getBounds();
-    tgt.cache(-50+bounds.x, -50+bounds.y, 100+bounds.width, 100+bounds.height);
+    //tgt.filters = [tgtBlurFilter[i], tgtBlurFilter[i+1]];
+    //var bounds = tgtBlurFilter[i].getBounds();
+    //tgt.cache(-50+bounds.x, -50+bounds.y, 100+bounds.width, 100+bounds.height);
     mvTargets[i] = tgt;
 }
 
@@ -735,24 +765,34 @@ function ambientPopInit(){
 }
 function ambientPoppings() {
     if (state == "playing") {
-        var bPos = -1;
-        var rndBubble, bubbleToPop;
-        var checkCount = 0;
+        var bubbleVisible = false;
+        var rndBubbleNo, bubbleToPop;
+        var bubblex, bubbley;
+        var popSent = false;
 
-        while (bPos < 0 || bPos > canvas.width) {
-            checkCount ++;
-            if (checkCount > bubbleRate) {
-              break;
-            }
-            rndBubble = Math.floor((Math.random() * bubbleRate) + 1);
-            bubbleToPop = bmpList[rndBubble];
+        //Check all the bubbles
+        for (i=0; i < bmpList.length; i++) {
 
-            if (bubbleToPop) {
-                bPos = bubbleToPop.x;
+            if (popSent) {
+                //break;
+            } else {
+
+                //Select at random
+                rndBubbleNo = Math.floor((Math.random() * bubbleRate));
+                bubbleToPop = bmpList[rndBubbleNo];
+
+                if (bubbleToPop) {
+                    //console.log("now?");
+
+                    //Checking if the bubble is within the canvas
+                    if ((bubbleToPop.y > 0) && (bubbleToPop.y < (canvas.height-40))) {
+                        bubblex = bubbleToPop.x;//saving these values to pass incase the bubble disappears in the mean time
+                        bubbley = bubbleToPop.y;
+                        popSent = true;
+                        popBubble(bubbleToPop, bubblex, bubbley);
+                    }
+                } 
             }
-        }
-        if (bubbleToPop) {
-            popBubble(bubbleToPop);
         }
     }
 }
@@ -770,19 +810,18 @@ function ambientPoppings() {
  * The emitter count is to try and create a different instance of the emitter so that it might play multiple simultaniously,
  * haven't had a chance to test it yet, probably won't work given the hassel this particle system has been giving me!
  */
-function popBubble(bubble) {
+function popBubble(bubble, x, y) {
     if (vibration) navigator.vibrate(10);
     emitter[emitterCount] = new createjs.ParticleEmitter(particleImage);
     puff[emitterCount] = createParticlePuff(emitter[emitterCount], bubble.rndWidth);
-    emitter[emitterCount].position = new createjs.Point(bubble.x, bubble.y);
+    emitter[emitterCount].position = new createjs.Point(x, y);
     emitterAlive[emitterCount] = "on";
     stage.addChild(emitter[emitterCount]);
     score += bubble.score;
     clicked = false;
-    speedMax += 0.1;
-    speedMin += 0.01;
 
     resetTgt(bubble);
+    //console.log("Pop!");
     saveScore();
     emitterCount ++;
 }
@@ -832,6 +871,76 @@ function createParticlePuff(emitter, rwidth) {
   //return emitter;
 }
 
+var activeSpeedMax = speedMax,
+    activeSpeedMin = speedMin;  //these record the speeds reached while the player was playing
+
+/*
+ *  While the player is engaged the speed increaces every time they pop a bubble
+ *  if they leave the game for a while the speed decreaces slowly.
+ *  when they return the speed will rapidly increase to it's original state
+ */
+function setSpeed(setEvent) {
+    if (setEvent == "tgt") {
+        
+        //a bubble was clicked!
+        speedMax += 0.1;
+        speedMin += 0.01;
+        catchUp(); // in case a long time has elapsed, if not this function won't do much
+
+        if (speedMax > activeSpeedMax) {activeSpeedMax = speedMax; console.log("Setting active max")}
+        if (speedMin > activeSpeedMin) {activeSpeedMin = speedMin;}
+        //console.log("Speed: " + speedMax);
+
+        //console.log("tgt speed: " + speedMax);
+    }
+
+    if (setEvent == "time") {
+        //console.log("reducing speed over time");
+        //general slowing over time
+        if (speedMax <= 0 ) {
+            //speed hs hit rock bottom
+            speedMax = 0;
+            speedMin = 0;
+
+            //move the existing bubbles up?
+        } else {
+            speedMax -= 0.002;
+            speedMin -= 0.0002;
+        }
+        
+        //console.log("Speed: " + speedMax + " | " + speedMin);
+    }
+
+    if (setEvent == "blank") {
+        if (speedMax > activeSpeedMax) {activeSpeedMax = speedMax;}
+        if (speedMin > activeSpeedMin) {activeSpeedMin = speedMin;}
+        catchUp();
+        //console.log("Blank speed: " + speedMax);
+    }
+
+    /*
+     * To catch up we find the difference in current speed and the old max then move half the difference
+     * This will likley get called every time but will cause minimal madness unless the game ha been left alone for a long time
+     */
+    function catchUp() {
+        console.log("Catch up!" + speedMax + " | " + activeSpeedMax);
+        //if the bubbles are all slow we need to iterare through them all and give them speed values again.
+        if (speedMax == 0){
+            //This means we have hit bottom, all the bubbles are likley to be stopped and so will not enter the screen when speed increaces, stalemate
+            //So we set the speeds then iterate through all the existing bubbles and reset their speed!
+            speedMax = activeSpeedMax * 0.75;
+            speedMin = activeSpeedMin * 0.75;
+            for (var i = 0; i < bmpList.length; i++) {
+                bmpList[i].speed = (Math.random()*speedMax)+speedMin;
+            }
+        }
+        if (speedMax < activeSpeedMax) {
+            speedMax += (activeSpeedMax - speedMax)/2;
+            speedMin += (activeSpeedMin - speedMin)/2;
+        }
+    }
+}
+
 /* =====================================================
  * =====================================================
  * ==============  CLICKING MY BUTTONS!  ===============
@@ -875,13 +984,15 @@ function handleClick() {
 
         if (mouseTarget) {
             //Something in the canvas was indeed clicked!  Lets see what it was
-            console.log("Clicked: " + mouseTarget);
+            //console.log("Clicked: " + mouseTarget);
 
             var tempTxt = String(mouseTarget.name);
             tgtCheck = tempTxt.substring(0,3);
 
             if (tgtCheck!=null && tgtCheck=='tgt' && state=='playing') {
                 // The game is playing & the object clicked was a bubble, time to pop it!
+                setSpeed('tgt');
+                
                 popBubble(mouseTarget);
 
             } else if (mouseTarget.parent) {
@@ -959,13 +1070,15 @@ function handleClick() {
 
                 } else {
                     //They clicked something but it doesn't have a name... hmm, probably a gap between buttons
-                    console.log("Not sure why you clicked there partner!  Maybe click something else?")
+                    console.log("Not sure why you clicked there partner!  Maybe click something else?");
+                    setSpeed('blank');
                 }
             }
         } else {
           //It appears nothing was clicked - I think that means the blank canvas was clicked.  Lets play!
           removePanels();
           playGame();
+          setSpeed('blank');
         }
 
         //Where ever may have been clicked - lets make a ripple!
@@ -1070,6 +1183,8 @@ function handleUpgrade(upgrade) {
              */
             speedMin = Math.round(speedMin * upgrade.upgradeValue);
             speedMax = Math.round(speedMax * upgrade.upgradeValue);
+            activeSpeedMax = speedMax;
+            activeSpeedMin = speedMin;
             upgrade.upgradeCount ++;
 
             //Decrease existing bubbles
@@ -1135,11 +1250,14 @@ function removePanels() {
 function pause() {
   play = false;
   state = "pause";
+  clearInterval(ambientTimer);
 }
 
 function playGame() {
   play = true;
   state = "playing";
+  clearInterval(ambientTimer);
+  ambientTimer = setInterval(ambientPoppings, 1000/ambientPop);
 }
 
 
