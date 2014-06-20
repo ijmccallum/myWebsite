@@ -5,12 +5,12 @@ var score = 0,
     speedMax = 4,
     popScoreMin = 1,
     popScoreMax = 1,      //<< this cab be increased, needs a panel
-    ambientPop = 5,   //<< this cab be increased, needs a panel
-    bubbleRate = 50;       //<< this cab be increased, needs a panel
+    ambientPop = 0.1,   //<< this cab be increased, needs a panel
+    bubbleRate = 10;       //<< this cab be increased, needs a panel
 var ambientTimer; //the setInterval function for ambient popping!
 var clickRippleContainer, //The container for each click ripple to be added.
     totalClickRipples, //The number of current click ripples
-    rippleWidth = 10, //the width of the clickRipples
+    rippleWidth = 20, //the width of the clickRipples
     clickRippleArray = [];
 //The UI
 var numBubblesPanel = new createjs.Container(),
@@ -132,6 +132,7 @@ function init() {
 
 }
 
+var popAnimation;
 function handleiconSheetLoad() {
     console.log("Hello - icon sprite is loaded :)");
     // define sprite sheet data describing the available icons:
@@ -139,7 +140,7 @@ function handleiconSheetLoad() {
     var data = {
         images:[iconSheet],
         frames:{width:40, height:40},
-        animations: {numberIcon:0, valueIcon:1, ambientIcon:2, lightningIcon:3}
+        animations: {numberIcon:0, valueIcon:1, ambientIcon:2, lightningIcon:3, "pop": [4, 7]}
     }
     iconSpriteSheet = new createjs.SpriteSheet(data);
 
@@ -155,6 +156,8 @@ function handleiconSheetLoad() {
 
     icon4 = icon3.clone();
     icon4.gotoAndStop("lightningIcon");
+
+    popAnimation = icon4.clone();
 
     makeLightBeams();
 }
@@ -178,6 +181,7 @@ function makeLightBeams() {
         lightBeam.alpha = Math.random();
         lightBeam.speed = (Math.random() * 1.5) + 0.5;
         //console.log("==============================");
+        lightBeam.name = "lightbeam";
 
         lightBeam.rotation = figureRotation(lightBeam.x);
 
@@ -296,6 +300,7 @@ function makeUpgradeBar() {
      *    "8ggg8"   "8ggg8"   "8ggg8" 
      */
     var numBubblesPanelBG = new createjs.Shape();
+    numBubblesPanelBG.name = "panelBG";
     var numBubblesPanelTitle = new createjs.Text ("Number of bubbles: " + bubbleRate, "20px Patrick Hand", "#fff");
     numBubblesPanelTitle.name = "numBubblesPanelTitle";
     var numBubblesplayBtn = new createjs.Container();
@@ -343,6 +348,7 @@ function makeUpgradeBar() {
      *       $           $           $
      */
     var bubbleValuePanelBG = new createjs.Shape();
+    bubbleValuePanelBG.name = "panelBG";
     var bubbleValuePanelTitle = new createjs.Text ("Value of bubbles: " + popScoreMin + " ~ " + popScoreMax, "20px Patrick Hand", "#fff");
     bubbleValuePanelTitle.name = "bubbleValuePanelTitle";
     var bubbleValueplayBtn = new createjs.Container();
@@ -391,6 +397,7 @@ function makeUpgradeBar() {
      *
      */
     var ambientPopPanelBG = new createjs.Shape();
+    ambientPopPanelBG.name = "panelBG";
     var ambientPopPanelTitle = new createjs.Text ("Ambient pop rate: " + ambientPop + "/sec", "20px Patrick Hand", "#fff");
     ambientPopPanelTitle.name = "ambientPopPanelTitle";
     var ambientPopplayBtn = new createjs.Container();
@@ -436,6 +443,7 @@ function makeUpgradeBar() {
      */
 
     var pausePanelBG = new createjs.Shape();
+    pausePanelBG.name = "panelBG";
     var pausePanelTitle = new createjs.Text ("Take a breather!", "20px Patrick Hand", "#fff");
     pausePanelTitle.name = "pausePanelTitle";
     var pauseplayBtn = new createjs.Container();
@@ -662,49 +670,53 @@ function startGamePlay() {
  * moving the targets
  */
 function tick(event) {
+    if (!lonleyMessageonCanvas) { //reduces overhead when player leaves the game alone for a while
 
-    //Slowly decrease the speed
-    setSpeed("time");
-    moveLightBeams();
+        //Slowly decrease the speed
+        setSpeed("time");
+        moveLightBeams();
+        console.log("Speed: " + (Math.round(speedMax * 100) / 100 )+ " | " +  (Math.round(speedMin * 100) / 100));
 
-    //Move the targets
-    if (play == true) {
-        var noTgts = bmpList.length;
-        for (var i = 0; i < noTgts; i++) {
-            var bmp = bmpList[i];
-            if (bmp.y > (bmp.rndWidth * -1)) {
-                bmp.y -= bmp.speed;  
-            } else {
-                score = score - Math.round(bmp.score/2);
-                resetTgt(bmp);
-                //console.log("%cOne escaped!", "color:green;");
+        //Move the targets
+        if (play == true) {
+            var noTgts = bmpList.length;
+            for (var i = 0; i < noTgts; i++) {
+                var bmp = bmpList[i];
+                if (bmp.y > (bmp.rndWidth * -1)) {
+                    bmp.y -= bmp.speed;  
+                } else {
+                    score = score - Math.round(bmp.score/2);
+                    resetTgt(bmp);
+                    //console.log("%cOne escaped!", "color:green;");
+                }
             }
         }
-    }
 
-    //Make the click ripples smaller
-    for ( i = 0; i <clickRippleArray.length; i++) {
-        var opacity = clickRippleArray[i].opacityState;
-        clickRippleArray[i].alpha = opacity;
-        opacity = (opacity - 0.02);
-        if (opacity < 0) {
-            clickRippleContainer.removeChild(clickRippleArray[i]);
-            clickRippleArray.splice(i,1);
-            //console.log("Array length: " + clickRippleArray.length);
-            //remove from array
-        } else {
-            clickRippleArray[i].opacityState = opacity;
+        //Make the click ripples smaller
+        for ( i = 0; i <clickRippleArray.length; i++) {
+            var opacity = clickRippleArray[i].opacityState;
+            clickRippleArray[i].alpha = opacity;
+            opacity = (opacity - 0.2);
+            if (opacity < 0) {
+                clickRippleContainer.removeChild(clickRippleArray[i]);
+                clickRippleArray.splice(i,1);
+                //console.log("Array length: " + clickRippleArray.length);
+                //remove from array
+            } else {
+                clickRippleArray[i].opacityState = opacity;
+            }
         }
-    }
 
-    if (score >= 0) {
-        txt.text = "$" + score;
-    } else {
-        var tmpScore = (score * -1);
-        txt.text = "-$" + tmpScore;
-    }
+        if (score >= 0) {
+            txt.text = "$" + score;
+        } else {
+            var tmpScore = (score * -1);
+            txt.text = "-$" + tmpScore;
+        }
 
-    stage.update(event);
+        stage.update(event);
+
+    }
 }
 
 /**
@@ -846,6 +858,8 @@ function ambientPoppings() {
                         bubblex = bubbleToPop.x;//saving these values to pass incase the bubble disappears in the mean time
                         bubbley = bubbleToPop.y;
                         popSent = true;
+                        speedMax += (0.005/ambientPop); //increase the speed very slightly for ambient poppings
+                        speedMin += (0.002/ambientPop); //as the ambient pop increases, it's ability to increase speed slows (tp stop it getting out of hand)
                         popBubble(bubbleToPop, bubblex, bubbley);
                     }
                 } 
@@ -868,9 +882,7 @@ function ambientPoppings() {
  * haven't had a chance to test it yet, probably won't work given the hassel this particle system has been giving me!
  */
 function popBubble(bubble, x, y) {
-    if (vibration) navigator.vibrate(10);
-    console.log("x: " + x);
-    console.log("Y: " + y);
+    
     createParticlePuff(x, y, bubble.rndWidth);
     
     score += bubble.score;
@@ -886,11 +898,33 @@ function popBubble(bubble, x, y) {
  * 
  */
 
+ (6.5 * 42000) / 365
+
 
 function createParticlePuff(x, y, rwidth) {
     //Sprite sheet here
+    var popClone = popAnimation.clone();
 
+    var popRadius = (rwidth/2);
+    popClone.x = x-popRadius;
+    popClone.y = y-popRadius;
+    popClone.regX = popRadius;
+    popClone.regY = popRadius;
+    popClone.rotation = -50;
+
+    var popScale = rwidth / 20;
+    popClone.scaleX = popScale;
+    popClone.scaleY = popScale;
+
+    popClone.on("animationend", function(){
+        this.stop();
+        stage.removeChild(this);
+    });
+    stage.addChild(popClone);
+    popClone.gotoAndPlay("pop");
 }
+
+
 
 
 
@@ -907,8 +941,8 @@ function setSpeed(setEvent) {
     if (setEvent == "tgt") {
         
         //a bubble was clicked!
-        speedMax += 0.1;
-        speedMin += 0.01;
+        speedMax += 0.15;
+        speedMin += 0.07;
         catchUp(); // in case a long time has elapsed, if not this function won't do much
 
         if (speedMax > activeSpeedMax) {activeSpeedMax = speedMax;}
@@ -925,20 +959,29 @@ function setSpeed(setEvent) {
             //speed hs hit rock bottom
             speedMax = 0;
             speedMin = 0;
+            feelingLonleyMessage("add");
 
             //move the existing bubbles up?
+        } else if (speedMin <= 0){
+            //incase the minimum speed goes too low, cap it off at 0
+            speedMin = 0;
+            speedMax -= 0.004;
         } else {
-            speedMax -= 0.002;
-            speedMin -= 0.0002;
+            console.log("this");
+            speedMax -= 0.004;
+            speedMin -= 0.002;
         }
         
         //console.log("Speed: " + speedMax + " | " + speedMin);
     }
 
     if (setEvent == "blank") {
+        console.log("Hi");
         if (speedMax > activeSpeedMax) {activeSpeedMax = speedMax;}
         if (speedMin > activeSpeedMin) {activeSpeedMin = speedMin;}
         catchUp();
+        clickRipple(stage.mouseX, stage.mouseY);
+        if (vibration) navigator.vibrate(10);
         //console.log("Blank speed: " + speedMax);
     }
 
@@ -947,21 +990,52 @@ function setSpeed(setEvent) {
      * This will likley get called every time but will cause minimal madness unless the game ha been left alone for a long time
      */
     function catchUp() {
+        console.log("Catchup!");
+        feelingLonleyMessage("remove");
         //console.log("Catch up!" + speedMax + " | " + activeSpeedMax);
         //if the bubbles are all slow we need to iterare through them all and give them speed values again.
+
         if (speedMax == 0){
             //This means we have hit bottom, all the bubbles are likley to be stopped and so will not enter the screen when speed increaces, stalemate
             //So we set the speeds then iterate through all the existing bubbles and reset their speed!
+            noLower();
+        }
+        if (activeSpeedMax < 2 || activeSpeedMin < 1) {
+            noLower();
+        }
+        if (speedMax < activeSpeedMax) {
+            speedMax += (activeSpeedMax - speedMax)/2;
+            speedMin += (activeSpeedMin - speedMin)/2;
+        }
+        function noLower() {
+            activeSpeedMax = 2;
+            activeSpeedMin = 1;
             speedMax = activeSpeedMax * 0.75;
             speedMin = activeSpeedMin * 0.75;
             for (var i = 0; i < bmpList.length; i++) {
                 bmpList[i].speed = (Math.random()*speedMax)+speedMin;
             }
         }
-        if (speedMax < activeSpeedMax) {
-            speedMax += (activeSpeedMax - speedMax)/2;
-            speedMin += (activeSpeedMin - speedMin)/2;
-        }
+    }
+}
+
+var lonleyMessage;
+lonleyMessageonCanvas = false;
+function feelingLonleyMessage(action) {
+    if (action == "add" && !lonleyMessageonCanvas) {
+        lonleyMessage = new createjs.Text("Feeling lonley :(\n\n", "20px Patrick Hand", "#fff");
+        lonleyMessage.text += "Tap me to wake up the bubbles";
+        lonleyMessage.textAlign = "center";
+        lonleyMessage.x = canvas.width / 2;
+        lonleyMessage.y = canvas.height / 3;
+        lonleyMessageonCanvas = true;
+        stage.addChild(lonleyMessage);
+        stage.update();
+        
+    } else if (action == "remove" && lonleyMessageonCanvas) {
+        stage.removeChild(lonleyMessage);
+        lonleyMessageonCanvas = false;
+        stage.update();
     }
 }
 
@@ -975,7 +1049,8 @@ function setSpeed(setEvent) {
 
 function handleClick() {
     canvas.onClick = null;
-
+    mouseTarget = null;
+    isClickHandeled = false;
     /*
      * For dev, when state is start then we're on the start screen, time to begin the game!
      */
@@ -988,6 +1063,7 @@ function handleClick() {
       state = "playing";
       ambientPopInit();
       stage.addChild(clickRippleContainer);
+      isClickHandeled = true;
     }
 
     /*
@@ -998,17 +1074,40 @@ function handleClick() {
 
         //the click was on the canvas, time to investigate
 
-        mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY);
-        if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY - 40); } //compensate for fast bubbles going up
-        if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX + 20, stage.mouseY); }
-        if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX - 20, stage.mouseY); }
-        if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY + 20); }
+        if (stage.mouseY > (canvas.height - 40)) {
+            //Click was on the menu bar!  Now, which button:
+            var fifthWidth = canvas.width / 5; //the spacing of the buttons
+            if ( (stage.mouseX>(fifthWidth - 20)) && (stage.mouseX<(fifthWidth + 20)) ) {
+                //number of bubbles
+                handlePanelBtn(numBubblesPanel);
+                isClickHandeled = true;
 
+            } else if ( (stage.mouseX>((fifthWidth*2) - 20)) && (stage.mouseX<((fifthWidth*2) + 20)) ){
+                //value of bubbles
+                handlePanelBtn(bubbleValuePanel);
+                isClickHandeled = true;
 
+            } else if ( (stage.mouseX>((fifthWidth*3) - 20)) && (stage.mouseX<((fifthWidth*3) + 20)) ){
+                //pop rate
+                handlePanelBtn(ambientPopPanel);
+                isClickHandeled = true;
+
+            } else if ( (stage.mouseX>((fifthWidth*4) - 20)) && (stage.mouseX<((fifthWidth*4) + 20)) ){
+                //bubble speed
+                handlePanelBtn(pausePanel);
+                isClickHandeled = true;
+
+            } 
+         } else {
+            //wasn't anything on the menu bar, give mouse target a thing so the rest of the check can happen
+            mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY);
+            if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY - 40); } //compensate for fast bubbles going up
+            if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX + 20, stage.mouseY); }
+            if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX - 20, stage.mouseY); }
+            if (!mouseTarget) { mouseTarget = stage.getObjectUnderPoint(stage.mouseX, stage.mouseY + 20); }
+        }
 
         if (mouseTarget) {
-            //Something in the canvas was indeed clicked!  Lets see what it was
-            //console.log("Clicked: " + mouseTarget);
 
             var tempTxt = String(mouseTarget.name);
             tgtCheck = tempTxt.substring(0,3);
@@ -1016,69 +1115,19 @@ function handleClick() {
             if (tgtCheck!=null && tgtCheck=='tgt' && state=='playing') {
                 // The game is playing & the object clicked was a bubble, time to pop it!
                 setSpeed('tgt');
-                
+                isClickHandeled = true;
                 popBubble(mouseTarget, mouseTarget.x, mouseTarget.y);
 
+            } else if (mouseTarget.name == "lightbeam"){
+                setSpeed("blank");
+                removePanels();
+                playGame();
             } else if (mouseTarget.parent) {
-                //So it's not a bubble, everything else that's clickable has a named parent, lets see who was clicked
+                //So it's not a bubble, the panel or a light beam everything else that's clickable has a named parent, lets see who was clicked
 
                 var clickedName = mouseTarget.parent.name;
 
-                if (clickedName == 'Number of bubbles' && numBubblesPanel.active == false) {
-                    // The player wants to find out about increasing the number of bubbles!
-                    removePanels();
-                    stage.addChild(numBubblesPanel);
-                    numBubblesPanel.active = true;
-                    pause();
-
-                } else if (clickedName == 'Number of bubbles' && numBubblesPanel.active == true) {
-                    //This panel is already open, play the game!
-                    removePanels();
-                    playGame();
-
-                } else if (clickedName == 'Value of bubbles' && bubbleValuePanel.active == false) {
-                    // The player wants to find out about increasing the value of the bubbles!
-                    removePanels();
-                    stage.addChild(bubbleValuePanel);
-                    bubbleValuePanel.active = true;
-                    pause();
-
-                } else if (clickedName == 'Value of bubbles' && bubbleValuePanel.active == true) {
-                    //This panel is already open, play the game!
-                    removePanels();
-                    playGame();
-
-                } else if (clickedName == 'Ambient pop rate' && ambientPopPanel.active == false) {
-                    // The player wants to find out about increacing the ambient pop rate!
-                    removePanels();
-                    stage.addChild(ambientPopPanel);
-                    ambientPopPanel.active = true;
-                    pause();
-
-                } else if (clickedName == 'Ambient pop rate' && ambientPopPanel.active == true) {
-                    // The player wants to find out about increacing the ambient pop rate!
-                    removePanels();
-                    playGame();
-
-
-
-
-                } else if (clickedName == 'Speed' && pausePanel.active == false) {
-                    // The player wants to find out about increacing the ambient pop rate!
-                    removePanels();
-                    stage.addChild(pausePanel);
-                    pausePanel.active = true;
-                    pause();
-
-                } else if (clickedName == 'Speed' && pausePanel.active == true) {
-                    // The player wants to find out about increacing the ambient pop rate!
-                    removePanels();
-                    playGame();
-
-
-
-
-                } else if (clickedName == "number" || clickedName == "value" || clickedName == "ambient" || clickedName == "speed" || clickedName == "share"){
+                if (clickedName == "number" || clickedName == "value" || clickedName == "ambient" || clickedName == "speed" || clickedName == "share"){
                     //The player has decided they actually want an upgrade!!
                     handleUpgrade(mouseTarget.parent);
 
@@ -1089,26 +1138,38 @@ function handleClick() {
 
                 } else if (tgtCheck!=null && tgtCheck=='tgt' && state=='pause') {
                     //I think they clicked a bubble when the game was paused... yikes! Better start the game again!
+                    setSpeed('blank');
                     removePanels();
                     playGame();
 
                 } else {
                     //They clicked something but it doesn't have a name... hmm, probably a gap between buttons
-                    //console.log("Not sure why you clicked there partner!  Maybe click something else?");
                     setSpeed('blank');
                 }
             }
-        } else {
+        } else if(!isClickHandeled) {
           //It appears nothing was clicked - I think that means the blank canvas was clicked.  Lets play!
           removePanels();
           playGame();
           setSpeed('blank');
         }
 
-        //Where ever may have been clicked - lets make a ripple!
-        clickRipple(stage.mouseX, stage.mouseY);
+        
     }
 }
+
+function handlePanelBtn(panel) {
+    if (panel.active) {
+        removePanels();
+        playGame();
+    } else {
+        removePanels();
+        stage.addChild(panel);
+        panel.active = true;
+        pause();
+    }
+}
+
 
 function clickRipple(x,y) {
     var clickRipple = new createjs.Shape();
