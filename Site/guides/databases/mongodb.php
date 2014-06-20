@@ -331,6 +331,9 @@ db.collection('name').find(query,<strong>projection</strong>)... </code></pre><b
 	}
 }
 </pre></code></p>
+<hr />
+<h3>Database Design</h3>
+
 
 <hr />
 Sources:

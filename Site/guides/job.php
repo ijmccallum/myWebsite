@@ -13,3 +13,5 @@
 -	What is the employee turn over?  How many people have left in the last year?  and roughly how many people are there in the company?
 		indicates quality of work environment.
     	</p>
+
+    	<p>Simple 1 page PDF into HTML page, centered text, font finding, formatted 2 pictures: 1hour</p>

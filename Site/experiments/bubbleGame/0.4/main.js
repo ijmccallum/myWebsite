@@ -5,8 +5,8 @@ var score = 0,
     speedMax = 4,
     popScoreMin = 1,
     popScoreMax = 1,      //<< this cab be increased, needs a panel
-    ambientPop = 0.1,   //<< this cab be increased, needs a panel
-    bubbleRate = 10;       //<< this cab be increased, needs a panel
+    ambientPop = 5,   //<< this cab be increased, needs a panel
+    bubbleRate = 50;       //<< this cab be increased, needs a panel
 var ambientTimer; //the setInterval function for ambient popping!
 var clickRippleContainer, //The container for each click ripple to be added.
     totalClickRipples, //The number of current click ripples
@@ -32,7 +32,7 @@ var canvas = document.getElementById('demoCanvas');
 FastClick.attach(canvas);
 var noTgts = 5;
 var tgtBlurFilter = [];
-var particleImage;
+var particleImage, particleBmp;
 var puff = [], emitter = [], emitterAlive = [];
 var emitterCount = 0;
 var bubbleContainer = new createjs.Container();
@@ -95,7 +95,6 @@ function init() {
     clickRippleContainer = new createjs.Container();
 
     particleImage = new Image();
-    //particleImage.onload = initCanvas;
     particleImage.src = "img/particle_base.png";
 
 //Might have to move this into the handle click for the start screen, 
@@ -178,7 +177,7 @@ function makeLightBeams() {
         lightBeam.y = -100;
         lightBeam.alpha = Math.random();
         lightBeam.speed = (Math.random() * 1.5) + 0.5;
-        console.log("==============================");
+        //console.log("==============================");
 
         lightBeam.rotation = figureRotation(lightBeam.x);
 
@@ -209,9 +208,9 @@ function figureRotation(x) {
     var rotValue = (x + (canvas.width / 2));
     returnValue = ((x * (rotValue)) / 20000) * -1;
 
-    console.log("Rot value: " + rotValue);
-    console.log("X = " + x);
-    console.log("Rotation = " + returnValue);
+    //console.log("Rot value: " + rotValue);
+    //console.log("X = " + x);
+    //console.log("Rotation = " + returnValue);
 
     return returnValue - 20;
 }
@@ -633,7 +632,7 @@ function startGamePlay() {
     stage.addChild(bubbleContainer);
 
     for (var i = 0; i < bubbleRate; i ++) {
-        emitterAlive[i] = false;
+        //emitterAlive[i] = false;
         bitmap = bubbleContainer.addChild(new createjs.Shape());
         bitmap.name = "tgt" + i;
         resetTgt(bitmap, i);
@@ -720,7 +719,7 @@ function createNewBubbles(numBubblesToAdd) {
      * by counting from there to the total number of bubbles, we add the required amount of bubbles!
      */
     for (var i = bubbleRate; i < totalBubbles; i ++) {
-        emitterAlive[i] = false;
+        //emitterAlive[i] = false;
         bitmap = bubbleContainer.addChild(new createjs.Shape());
         bitmap.name = "tgt" + i;
         resetTgt(bitmap, i);
@@ -870,64 +869,31 @@ function ambientPoppings() {
  */
 function popBubble(bubble, x, y) {
     if (vibration) navigator.vibrate(10);
-    emitter[emitterCount] = new createjs.ParticleEmitter(particleImage);
-    puff[emitterCount] = createParticlePuff(emitter[emitterCount], bubble.rndWidth);
-    emitter[emitterCount].position = new createjs.Point(x, y);
-    emitterAlive[emitterCount] = "on";
-    stage.addChild(emitter[emitterCount]);
+    console.log("x: " + x);
+    console.log("Y: " + y);
+    createParticlePuff(x, y, bubble.rndWidth);
+    
     score += bubble.score;
     clicked = false;
 
     resetTgt(bubble);
-    //console.log("Pop!");
     saveScore();
-    emitterCount ++;
 }
 
 /**
  * The particle emitter
  *
- * This defines the many settings for an emitter that gets passed.  At the moment it doesn't create it's own emitter 
- * in an attempt to try and get more than one instance running simultaniously,
- * haven't been having much luck with that but this seems to be working well enough .
+ * 
  */
 
-function createParticlePuff(emitter, rwidth) {
-  //emitter.emitterType = createjs.ParticleEmitterType.OneShot;
-  //var emitter = new createjs.ParticleEmitter(REPLACE_WITH_IMAGE_VARIABLE);
-  emitter.emitterType = createjs.ParticleEmitterType.OneShot;
-  emitter.emissionRate = rwidth/4;
-  emitter.maxParticles = rwidth/4;
-  emitter.life = 300;
-  emitter.lifeVar = 100;
-  emitter.speed = 150;
-  emitter.speedVar = 50;
-  emitter.positionVarX = rwidth;
-  emitter.positionVarY = rwidth;
-  emitter.accelerationX = 0;
-  emitter.accelerationY = 2000;
-  emitter.radialAcceleration = 0;
-  emitter.radialAccelerationVar = 0;
-  emitter.tangentalAcceleration = 0;
-  emitter.tangentalAccelerationVar = 0;
-  emitter.angle = 0;
-  emitter.angleVar = 360;
-  emitter.startSpin = 0;
-  emitter.startSpinVar = 0;
-  emitter.endSpin = null;
-  emitter.endSpinVar = null;
-  emitter.startColor = [255, 255, 255];
-  emitter.startColorVar = [0, 0, 0];
-  emitter.startOpacity = 1;
-  emitter.endColor = null;
-  emitter.endColorVar = null;
-  emitter.endOpacity = null;
-  emitter.startSize = 5;
-  emitter.startSizeVar = 2;
-  emitter.endSize = 0;
-  emitter.endSizeVar = null;
-  //return emitter;
+
+function createParticlePuff(x, y, rwidth) {
+    //Sprite sheet here
+
 }
+
+
+
 
 var activeSpeedMax = speedMax,
     activeSpeedMin = speedMin;  //these record the speeds reached while the player was playing
@@ -945,7 +911,7 @@ function setSpeed(setEvent) {
         speedMin += 0.01;
         catchUp(); // in case a long time has elapsed, if not this function won't do much
 
-        if (speedMax > activeSpeedMax) {activeSpeedMax = speedMax; console.log("Setting active max")}
+        if (speedMax > activeSpeedMax) {activeSpeedMax = speedMax;}
         if (speedMin > activeSpeedMin) {activeSpeedMin = speedMin;}
         //console.log("Speed: " + speedMax);
 
@@ -981,7 +947,7 @@ function setSpeed(setEvent) {
      * This will likley get called every time but will cause minimal madness unless the game ha been left alone for a long time
      */
     function catchUp() {
-        console.log("Catch up!" + speedMax + " | " + activeSpeedMax);
+        //console.log("Catch up!" + speedMax + " | " + activeSpeedMax);
         //if the bubbles are all slow we need to iterare through them all and give them speed values again.
         if (speedMax == 0){
             //This means we have hit bottom, all the bubbles are likley to be stopped and so will not enter the screen when speed increaces, stalemate
@@ -1051,7 +1017,7 @@ function handleClick() {
                 // The game is playing & the object clicked was a bubble, time to pop it!
                 setSpeed('tgt');
                 
-                popBubble(mouseTarget);
+                popBubble(mouseTarget, mouseTarget.x, mouseTarget.y);
 
             } else if (mouseTarget.parent) {
                 //So it's not a bubble, everything else that's clickable has a named parent, lets see who was clicked
@@ -1128,7 +1094,7 @@ function handleClick() {
 
                 } else {
                     //They clicked something but it doesn't have a name... hmm, probably a gap between buttons
-                    console.log("Not sure why you clicked there partner!  Maybe click something else?");
+                    //console.log("Not sure why you clicked there partner!  Maybe click something else?");
                     setSpeed('blank');
                 }
             }
@@ -1151,7 +1117,6 @@ function clickRipple(x,y) {
     clickRipple.opacityState = 0.75;
     clickRippleContainer.addChild(clickRipple);
     clickRippleArray.push(clickRipple); //Keeping a list of all the cilckRipples
-    
 }
 
 /* =====================================================
