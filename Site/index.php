@@ -10,7 +10,7 @@
 		<div class="col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-			    	<h3 class="panel-title">Panel title</h3>
+			    	<h3 class="panel-title">Hacker News</h3>
 				</div>
 			  	<div class="panel-body">
 			    	Panel content
@@ -20,10 +20,11 @@
 		<div class="col-md-6">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-			    	<h3 class="panel-title">Panel title</h3>
+			    	<h3 class="panel-title">Happening in the Twittersphere</h3>
 				</div>
 			  	<div class="panel-body">
-			    	Panel content
+			    	<a class="twitter-timeline" href="https://twitter.com/search?q=%23HTML5+OR+%23Javascript+OR+%23CSS+OR+%23DCTech" data-widget-id="482636761500094464">Tweets about "#HTML5 OR #Javascript OR #CSS OR #DCTech"</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			  	</div>
 			</div>
 		</div>

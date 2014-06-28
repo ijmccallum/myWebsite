@@ -29,6 +29,9 @@
   <a href="#" class="list-group-item greyout">Proximity API</a>
   <a href="#" class="list-group-item greyout">Web Notifications API</a>
   <a href="#" class="list-group-item greyout">Web Speech API</a>
+  <a href="#" class="list-group-item greyout"><strong>Webrtc</strong><br />Real time communication: http://www.webrtc.org/</a>
+  <a href="#" class="list-group-item greyout"><strong>Google's Web Fundamentals</strong><br />https://developers.google.com/web/fundamentals/</a>
+  
 </div>
 <hr />
 <p>MiddleWare / cross platform</p>

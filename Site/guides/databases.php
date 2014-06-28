@@ -32,6 +32,9 @@
 <div class="list-group">
   <a href="#" class="list-group-item greyout">Flat File</a>
 </div>
+<hr />
+<p><strong>Foreign Key constraints</strong>: </p>
+<p><strong>Transactions:</strong> </p>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>

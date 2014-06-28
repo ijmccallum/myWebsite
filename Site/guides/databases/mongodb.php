@@ -333,8 +333,50 @@ db.collection('name').find(query,<strong>projection</strong>)... </code></pre><b
 </pre></code></p>
 <hr />
 <h3>Database Design</h3>
+<p><strong>Foreign Key constraints:</strong> Mongo DB Doesn't (currently) support these, </p>
+<p><strong>Transactions:</strong> Again Mongo doesn't support transactions but it does have <strong>Atomic operations</strong>.  
+	That means that any operation is guarenteed not to find a single document that is half way updated but may find a collection 
+	which is half way through a series of document updates.  No errors but possible inconsistancy.  Generally speaking, in most 
+	systems this is not a critical issues and so we tollerate it.  In those systems in which is is critical, we will have to 
+	implement extra software to deal with the challenge in a relevant way.</p>
 
-
+<hr />
+<h3>Database preformance</h3>
+<ul>
+	<li>
+		Index: <code>db.collection.ensureIndex({"key":1})</code>, creates and ascending index on "key"
+	</li>
+	<li>
+		Compound Indexs: <code>db.collection.ensureIndex({"key":1, "Key2":-1})</code>, creates and ascending index on "key" and descending on "key2"
+	</li>
+	<li>
+		Indexs on arrays: yep, but only one - mongoDB does not support compound indexes on prarllel arrays.  As in, one object with two arrays in two elements that are compound indexes
+	</li>
+	<li>
+		Finding indexes: <code>db.system.indexes.find()</code>
+	</li>
+	<li>
+		Finding indexes in a collection: <code>db.students.getIndexes()</code>
+	</li>
+	<li>
+		Delete an index: <code>db.collection.dropIndex({"key":1})</code>
+	</li>
+	<li>
+		<strong>Ascending vs decending</strong>: doesn't really make a difference when searching but does when sorting.
+	</li>
+	<li>
+		<strong>Unique indexes</strong>: <code>db.collection.ensureIndex({"key":1},{"unique":true})</code>
+	</li>
+	<li>
+		<strong>Drop duplicate indexes</strong>: <code>db.collection.ensureIndex({"key":1},{"unique":true, "dropDups":true})</code>: no way to control which records it removes but you will end up without any duplicates!
+	</li>
+	<li>
+		<strong>Sparse indexes</strong>: when not all documents have a certain key they are considered to have that key value as <code>null</code>, therefor <code>duplicate index</code>.  Sparse indexes only create entries on documents with the specified key value.<br />
+		<code>db.collection.ensureIndex({"key":1},{"unique":true, "sparse":true})</code><br />
+		For sorting it will not use the index.  If we specify the index it will only return docs that have the index:<br />
+		<code>db.collection.find().sort({"key":1}).hint({"key":1})</code>: forces mongo to use the index, non indexed documents not returned
+	</li>
+</ul>
 <hr />
 Sources:
 <ul>
