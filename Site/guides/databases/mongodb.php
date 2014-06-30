@@ -345,6 +345,22 @@ db.collection('name').find(query,<strong>projection</strong>)... </code></pre><b
 
 <hr />
 <h3>Database preformance</h3>
+To check how your db is preforming you can set the log output to show slow queries:<br />
+When starting in the shell: <code>mongod --profile 1 --slowms 2</code> this will log any querie that takes more than 2ms.<br />
+<code>--profile 0</code>: doesn't log any queries<br />
+<code>--profile 1</code>: loggs slow queries<br />
+<code>--profile 2</code>: loggs all queries.<br />
+<br />
+<code>db.getProfilingLevel()</code>: returns the level to which the db is set<br />
+<code>db.getProfilingStatus()</code>: More details on the profiling set up<br />
+<code>db.setProfilingLevel(1,4)</code>: sets the profiling status (--profile 1 --slowms 4)<br />
+<br />
+Searching the log: <code>db.system.profile.find().pretty()</code> will output some useful info.  This is a capped collection.<br />
+<code>db.system.profile.find({"millis":{$gt:1000}}).sort(ts:-1)</code><br />
+<br />
+<code>mongotop</code>: a good profiling tool - shows how much time the database spends reading/writing by collection.  runs in intervals/<br />
+<code>mongostat</code>: gives a more system level read on how your db is preforming 
+<br />
 <ul>
 	<li>
 		Index: <code>db.collection.ensureIndex({"key":1})</code>, creates and ascending index on "key"
@@ -396,6 +412,19 @@ db.collection('name').find(query,<strong>projection</strong>)... </code></pre><b
 <code>ensureIndex({"location":"2d"})</code>: creates a geospatial index<br />
 <code>find({"location":{$near:[x,y]}}).limit(20)</code>: will return other objects in order of increasing distance <br />
 <code>db.stores.find({"loc":{$near:{$geometry:{"type":"Point", "coordinates":[-130,39]}, $maxDistance:1000000}}})</code>: finding from a geosphere!
+<hr />
+<h3>Full text search</h3>
+<code>db.collection.ensureIndex({"key":"text"})</code>: creates an index of type 'text'.<br />
+<code>db.collection.find({$text:{$search:"word"}})</code>: searches the indexed text<br />
+<br />
+<code>db.collection.find({$text:{$search:"word"}}, {score:{$meta:'textScore'}}).sort({score:{$meta:'textScore'}})</code>: for interest, will create a meta field based on the relevance of the document's text to the search term then orders them by that score
+<hr />
+<h3>Sharding!</h3>
+The database gets split by a <strong>shard key</strong> (can be compound).  So, choose a key like student_id and different ranges of those 
+documents will get placed on different <code>mongod</code>'s.  Your application will talk to a <code>mongos</code> which 
+routes requests to the correct <code>mongod</code>.  To do this it needs the full shard key. Also, each <code>mongod</code> is 
+recommended to be a <strong>replica set</strong> of 3 so if one or two in that set go down, your data is still accessable and (more importantly)
+not lost.
 <hr />
 Sources:
 <ul>
