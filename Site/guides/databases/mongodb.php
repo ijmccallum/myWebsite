@@ -146,6 +146,9 @@ var cursor = collection.find({}, {}, options);
 	<li>
 		<code>db.collection.count()</code>: returns the number of documents found, query in ()
 	</li>
+	<li>
+		<code>.explain()</code>: appended to the end of a query, it will return information on the operation preformed and not the actual documents.
+	</li>
 </ul>
 <p>Most, actually all of the above are about finding documents, now for updating:</p>
 <p>The update option will only update the first document it finds matching the supplied query unless given the <strong>$multi</strong> option</p>
@@ -376,7 +379,23 @@ db.collection('name').find(query,<strong>projection</strong>)... </code></pre><b
 		For sorting it will not use the index.  If we specify the index it will only return docs that have the index:<br />
 		<code>db.collection.find().sort({"key":1}).hint({"key":1})</code>: forces mongo to use the index, non indexed documents not returned
 	</li>
+	<li>
+		<code>db.collection.find().sort({"key":1}).hint({$natural:1})</code>: if there is an index that would normally be used this will set it back to use the basic curser<br />
+		Running in node: <code>db.collection('name').find({"key":value},{},{$hint:{"key":1}})</code>
+	</li>
+	<li>
+		Running in the <strong>Foreground</strong> or the <strong>Background</strong>: Making indexes in the foreground, blocks other writers, fast.  Opposit for the opposite! (background).  It ir recommended that databases are run in replica sets for a production env so when creating an index one can be pulled and index creation run in the foreground.
+	</li>
+	<li>
+		<strong>How big is an index:</strong> <code>db.collection.totalIndexSize()</code>: gives you the size in bites.
+	</li>
 </ul>
+<hr />
+<h3>Geospatial indexes, (2d)</h3>
+<code>"location":[x,y]</code>: a key with an array of 2 numbers (location on a cartesian plane)<br />
+<code>ensureIndex({"location":"2d"})</code>: creates a geospatial index<br />
+<code>find({"location":{$near:[x,y]}}).limit(20)</code>: will return other objects in order of increasing distance <br />
+<code>db.stores.find({"loc":{$near:{$geometry:{"type":"Point", "coordinates":[-130,39]}, $maxDistance:1000000}}})</code>: finding from a geosphere!
 <hr />
 Sources:
 <ul>
