@@ -7,6 +7,9 @@ var score = 0,
     popScoreMax = 1,      //<< this cab be increased, needs a panel
     ambientPop = 0.1,   //<< this cab be increased, needs a panel
     bubbleRate = 10;       //<< this cab be increased, needs a panel
+var upgradeCountNumBubbles = [0, 0, 0, 0, 0, 0],
+    upgradeCountValBubbles = [0, 0, 0, 0, 0, 0],
+    upgradeCountAmbtPop = [0, 0, 0, 0, 0, 0];
 var ambientTimer; //the setInterval function for ambient popping!
 var clickRippleContainer, //The container for each click ripple to be added.
     totalClickRipples, //The number of current click ripples
@@ -63,6 +66,7 @@ function onDeviceReady() {
     //document.addEventListener("backbutton", pause, false);
     //document.addEventListener("menubutton", exitFromApp, false);
     document.addEventListener("pause", pause, false);
+    init();
     //document.addEventListener("volumedownbutton", pause, false);
 }
 function exitFromApp()
@@ -104,25 +108,39 @@ function init() {
     
 
     //todo: get top score from memory.
-    // if (typeof(Storage)!=="undefined") {
-    //   score = Number(localStorage.getItem("score"));
-    //   speedMin = Number(localStorage.getItem("speedMin"));
-    //   speedMax = Number(localStorage.getItem("speedMax"));
-    //   popScoreMin = Number(localStorage.getItem("popScoreMin"));
-    //   popScoreMax = Number(localStorage.getItem("popScoreMax"));
-    //   ambientPop = Number(localStorage.getItem("ambientPop"));
-    //   bubbleRate = Number(localStorage.getItem("bubbleRate"));
-    //   console.log("Local storage available, updating gameplay variables");
-    // } else {
-    //   console.log("No saved values found, gameplay variables set to baseline");
-    // }
+    if (typeof(Storage)!=="undefined") {
+      score = Number(localStorage.getItem("score"));
+      speedMin = Number(localStorage.getItem("speedMin"));
+      speedMax = Number(localStorage.getItem("speedMax"));
+      popScoreMin = Number(localStorage.getItem("popScoreMin"));
+      popScoreMax = Number(localStorage.getItem("popScoreMax"));
+      ambientPop = Number(localStorage.getItem("ambientPop"));
+      bubbleRate = Number(localStorage.getItem("bubbleRate"));
+
+//TODO turn into arrays
+      upgradeCountNumBubbles = localStorage.getItem("upgradeCountNumBubbles");
+      upgradeCountNumBubbles = upgradeCountNumBubbles.split(",");
+
+      upgradeCountValBubbles = localStorage.getItem("upgradeCountValBubbles");
+      upgradeCountValBubbles = upgradeCountValBubbles.split(",");
+
+      upgradeCountAmbtPop = localStorage.getItem("upgradeCountAmbtPop");
+      upgradeCountAmbtPop = upgradeCountAmbtPop.split(",");
+
+      console.log("Local storage available, updating gameplay variables");
+    } else {
+      console.log("No saved values found, gameplay variables set to baseline");
+    }
 
     console.log("score " + score);
     console.log("speed Min: " + speedMin + " | Max: " + speedMax);
     console.log("Value Min: " + popScoreMin + " | Max: " + popScoreMax);
     console.log("ambientPop " + ambientPop);
     console.log("bubbleRate " + bubbleRate);
-    setTimeout(startScreen, 200);
+
+    console.log("upgradeCountNumBubbles: " + upgradeCountNumBubbles);
+    console.log("upgradeCountValBubbles: " + upgradeCountValBubbles);
+    console.log("upgradeCountAmbtPop: " + upgradeCountAmbtPop);
 
     //canvas.onmousedown = handleClick;
     //canvas.addEventListener('touchstart', handleClick, false);
@@ -130,11 +148,13 @@ function init() {
     canvas.addEventListener('click', handleClick, false);
     //canvas.addEventListener('onmousedown', handleClick, false);
 
+    setTimeout(startScreen, 2000);
+
 }
+
 
 var popAnimation;
 function handleiconSheetLoad() {
-    console.log("Hello - icon sprite is loaded :)");
     // define sprite sheet data describing the available icons:
     // we can use the form {frameName:frameNumber} in animations because each "sequence" is only a single frame:
     var data = {
@@ -180,7 +200,6 @@ function makeLightBeams() {
         lightBeam.y = -100;
         lightBeam.alpha = Math.random();
         lightBeam.speed = (Math.random() * 1.5) + 0.5;
-        //console.log("==============================");
         lightBeam.name = "lightbeam";
 
         lightBeam.rotation = figureRotation(lightBeam.x);
@@ -211,11 +230,6 @@ function moveLightBeams() {
 function figureRotation(x) {
     var rotValue = (x + (canvas.width / 2));
     returnValue = ((x * (rotValue)) / 20000) * -1;
-
-    //console.log("Rot value: " + rotValue);
-    //console.log("X = " + x);
-    //console.log("Rotation = " + returnValue);
-
     return returnValue - 20;
 }
 
@@ -312,23 +326,24 @@ function makeUpgradeBar() {
          */
          var numUp = [];
 
-         makeNumberUpgrades(0, 1, 10, 50);
-         makeNumberUpgrades(1, 5, 100, 10);
-         makeNumberUpgrades(2, 10, 1000, 5);
-         makeNumberUpgrades(3, 50, 10000, 5);
-         makeNumberUpgrades(4, 500, 100000, 5);
-         makeNumberUpgrades(5, 1000, 1000000, 1);
+         makeNumberUpgrades(0, -10, 4000, 5); //5
+         makeNumberUpgrades(1, -5, 200, 10); //10
+         makeNumberUpgrades(2, -1, 25, 20); //20
+         makeNumberUpgrades(3, 1, 25, 20); //20
+         makeNumberUpgrades(4, 5, 200, 10); //10
+         makeNumberUpgrades(5, 10, 4000, 5); //5
          function makeNumberUpgrades(i, value, cost, maxCount) {
 
              numUp[i] = new createjs.Container();
              var yIncriment = theTop + (i * 55);
 
              numUp[i].name = "number";
+             numUp[i].inc = i;
              numUp[i].upgradeValue = value;
              numUp[i].upgradeCost = cost;
-             numUp[i].upgradeCount = 0;
+             numUp[i].upgradeCount = upgradeCountNumBubbles[i];
              numUp[i].maxUpgradeCount = maxCount;
-             makeUpgrade(numUp[i], ("add " + value), yIncriment);
+             makeUpgrade(numUp[i], (value + " bubbles"), yIncriment);
 
              numBubblesPanel.addChild(numUp[i]);
          }
@@ -349,7 +364,7 @@ function makeUpgradeBar() {
      */
     var bubbleValuePanelBG = new createjs.Shape();
     bubbleValuePanelBG.name = "panelBG";
-    var bubbleValuePanelTitle = new createjs.Text ("Value of bubbles: " + popScoreMin + " ~ " + popScoreMax, "20px Patrick Hand", "#fff");
+    var bubbleValuePanelTitle = new createjs.Text ("Value of bubbles ( around: $" + (popScoreMin+popScoreMax)/2 + " )", "20px Patrick Hand", "#fff");
     bubbleValuePanelTitle.name = "bubbleValuePanelTitle";
     var bubbleValueplayBtn = new createjs.Container();
 
@@ -360,22 +375,23 @@ function makeUpgradeBar() {
          */
          var valueUp = [];
 
-         makeValueUpgrades(0, 1, 10, 5);
-         makeValueUpgrades(1, 2, 100, 5);
-         makeValueUpgrades(2, 5, 100, 5);
-         makeValueUpgrades(3, 10, 500, 5);
-         makeValueUpgrades(4, 20, 5000, 5);
-         makeValueUpgrades(5, 50, 100000, 1);
+         makeValueUpgrades(0, 2, 100, 5);
+         makeValueUpgrades(1, 10, 3000, 5);
+         makeValueUpgrades(2, 100, 68000, 5);
+         makeValueUpgrades(3, 1000, 1300000, 5);
+         makeValueUpgrades(4, 10000, 20000000, 5);
+         makeValueUpgrades(5, 100000, 273000000, 5);
          function makeValueUpgrades(i, value, cost, maxCount) {
              valueUp[i] = new createjs.Container();
              var yIncriment = theTop + (i * 55);
 
              valueUp[i].name = "value";
+             valueUp[i].inc = i;
              valueUp[i].upgradeValue = value;
              valueUp[i].upgradeCost = cost;
-             valueUp[i].upgradeCount = 0;
+             valueUp[i].upgradeCount = upgradeCountValBubbles[i];
              valueUp[i].maxUpgradeCount = maxCount;
-             makeUpgrade(valueUp[i], ("+~" + value + "/bubble"), yIncriment);
+             makeUpgrade(valueUp[i], ("+$" + value), yIncriment);
 
              bubbleValuePanel.addChild(valueUp[i]);
          }
@@ -398,7 +414,7 @@ function makeUpgradeBar() {
      */
     var ambientPopPanelBG = new createjs.Shape();
     ambientPopPanelBG.name = "panelBG";
-    var ambientPopPanelTitle = new createjs.Text ("Ambient pop rate: " + ambientPop + "/sec", "20px Patrick Hand", "#fff");
+    var ambientPopPanelTitle = new createjs.Text ("Ambient pop rate: " + (Math.round( ambientPop * 10) / 10) + "/sec", "20px Patrick Hand", "#fff");
     ambientPopPanelTitle.name = "ambientPopPanelTitle";
     var ambientPopplayBtn = new createjs.Container();
 
@@ -409,20 +425,21 @@ function makeUpgradeBar() {
          */
          var ambientUp = [];
 
-         makeAmbientUpgrades(0, 0.1, 10, 50);
-         makeAmbientUpgrades(1, 0.2, 100, 10);
-         makeAmbientUpgrades(2, 0.5, 50, 10);
-         makeAmbientUpgrades(3, 1, 100, 10);
-         makeAmbientUpgrades(4, 5, 500, 5);
-         makeAmbientUpgrades(5, 100, 10000, 1);
+         makeAmbientUpgrades(0, 0.1, 40, 50);
+         makeAmbientUpgrades(1, 0.2, 400, 10);
+         makeAmbientUpgrades(2, 0.5, 1600, 10);
+         makeAmbientUpgrades(3, 2.5, 8000, 10);
+         makeAmbientUpgrades(4, 8, 39000, 10);
+         makeAmbientUpgrades(5, 16, 156000, 1);
          function makeAmbientUpgrades(i, value, cost, maxCount) {
              ambientUp[i] = new createjs.Container();
              var yIncriment = theTop + (i * 55);
 
              ambientUp[i].name = "ambient";
+             ambientUp[i].inc = i;
              ambientUp[i].upgradeValue = value;
              ambientUp[i].upgradeCost = cost;
-             ambientUp[i].upgradeCount = 0;
+             ambientUp[i].upgradeCount = upgradeCountAmbtPop[i];
              ambientUp[i].maxUpgradeCount = maxCount;
              makeUpgrade(ambientUp[i], ("+" + value + "/sec"), yIncriment);
 
@@ -495,6 +512,7 @@ function makeUpgradeBar() {
          pausePanel.addChild(pauseOptions[2]);
 
          //OPTION 4
+         /*
          pauseOptions[3] = new createjs.Container();
          var yIncriment = theTop + (3 * 55);
 
@@ -506,7 +524,32 @@ function makeUpgradeBar() {
          makePauseOpt(pauseOptions[3], ("Share to quadrupal your points!"), yIncriment);
 
          pausePanel.addChild(pauseOptions[3]);
+         */
 
+         //Pause panel extras
+         var creditTextBG = new createjs.Shape;
+         creditTextBG.graphics.beginFill("rgba(0,0,0,0.2)").drawRoundRect( ((canvas.width / 2) - 145), (canvas.height-220), 290, 75, cRadius);
+         creditTextBG.name = "ijmccallum"
+         pausePanel.addChild(creditTextBG);
+
+         var creditText = new createjs.Text ("By\n\n Iain J McCallum", "20px Patrick Hand", "#fff");
+         creditText.textAlign = "center";
+         creditText.x = canvas.width / 2;
+         creditText.y = canvas.height - 220;
+         creditText.name = "ijmccallum";
+         pausePanel.addChild(creditText);
+
+         var resetTextBG = new createjs.Shape;
+         resetTextBG.graphics.beginFill("rgba(255,0,0,0.2)").drawRoundRect( ((canvas.width / 2) - 145), (canvas.height-300), 290, 50, cRadius);
+         resetTextBG.name = "reset"
+         pausePanel.addChild(resetTextBG);
+
+         var resetText = new createjs.Text ("RESET", "20px Patrick Hand", "#fff");
+         resetText.textAlign = "center";
+         resetText.x = canvas.width / 2;
+         resetText.y = canvas.height - 290;
+         resetText.name = "reset";
+         pausePanel.addChild(resetText);
 
 }
 
@@ -570,7 +613,7 @@ function makeUpgrade(container, title, containerY) {
       container.addChild(upgradeBG);
 
     //How many bought?
-    var upgradeCountTxt = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "20px Patrick Hand", "#fff");
+    var upgradeCountTxt = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "20px Patrick Hand", "#000");
     upgradeCountTxt.textAlign = "center";
     upgradeCountTxt.x = (canvas.width / 2);
     upgradeCountTxt.y = textHeight;
@@ -578,14 +621,14 @@ function makeUpgrade(container, title, containerY) {
       container.addChild(upgradeCountTxt);
 
     //Make the title
-    var upgradeTitle = new createjs.Text(title, "20px Patrick Hand", "#fff");
+    var upgradeTitle = new createjs.Text(title, "20px Patrick Hand", "#000");
     upgradeTitle.textAlign = "left";
     upgradeTitle.x = leftEdge;
     upgradeTitle.y = textHeight;
       container.addChild(upgradeTitle);
 
     //show the cost
-    var upgradeCost = new createjs.Text(container.upgradeCost, "20px Patrick Hand", "#fff");
+    var upgradeCost = new createjs.Text(("$" + container.upgradeCost), "20px Patrick Hand", "#f75959");
     upgradeCost.textAlign = "right";
     upgradeCost.x = rightEdge
     upgradeCost.y = textHeight;
@@ -615,7 +658,7 @@ function makePauseOpt(container, title, containerY){
     //   container.addChild(upgradeCountTxt);
 
     //Make the title
-    var upgradeTitle = new createjs.Text(title, "20px Patrick Hand", "#fff");
+    var upgradeTitle = new createjs.Text(title, "20px Patrick Hand", "#000");
     upgradeTitle.textAlign = "left";
     upgradeTitle.x = leftEdge;
     upgradeTitle.y = textHeight;
@@ -625,7 +668,7 @@ function makePauseOpt(container, title, containerY){
     if (title == "Share to quadrupal your points!") {
 
     } else {
-        var upgradeCost = new createjs.Text(container.upgradeCost, "20px Patrick Hand", "#fff");
+        var upgradeCost = new createjs.Text(("$" + container.upgradeCost), "20px Patrick Hand", "#f75959");
         upgradeCost.textAlign = "right";
         upgradeCost.x = rightEdge
         upgradeCost.y = textHeight;
@@ -675,7 +718,6 @@ function tick(event) {
         //Slowly decrease the speed
         setSpeed("time");
         moveLightBeams();
-        console.log("Speed: " + (Math.round(speedMax * 100) / 100 )+ " | " +  (Math.round(speedMin * 100) / 100));
 
         //Move the targets
         if (play == true) {
@@ -687,7 +729,6 @@ function tick(event) {
                 } else {
                     score = score - Math.round(bmp.score/2);
                     resetTgt(bmp);
-                    //console.log("%cOne escaped!", "color:green;");
                 }
             }
         }
@@ -700,10 +741,22 @@ function tick(event) {
             if (opacity < 0) {
                 clickRippleContainer.removeChild(clickRippleArray[i]);
                 clickRippleArray.splice(i,1);
-                //console.log("Array length: " + clickRippleArray.length);
                 //remove from array
             } else {
                 clickRippleArray[i].opacityState = opacity;
+            }
+        }
+
+        //hide the score text
+        for ( i=0; i<scoreTextList.length; i++) {
+            var opacity = scoreTextList[i].opacityState;
+            scoreTextList[i].alpha = opacity;
+            opacity = (opacity - 0.1);
+            if (opacity < 0) {
+                stage.removeChild(scoreTextList[i]);
+                scoreTextList.splice(i,1);
+            } else {
+                scoreTextList[i].opacityState = opacity;
             }
         }
 
@@ -741,9 +794,22 @@ function createNewBubbles(numBubblesToAdd) {
 
 /**
  * Drawing the targets (bubbles!)
- * Every time a target is reset (hit) it is redrawn with an extra circle, so they get more and more cpmplex!
  */
 function resetTgt(tgt, i) {
+
+    //If this is a bubble that escaped, show the loss of points, moa ha ha!
+    if (tgt.y < (tgt.rndWidth * -1)) {
+        console.log("Escapee!");
+        var tempscore = Math.round(tgt.score/2);
+        var scoreText = new createjs.Text(("-$" + tempscore), "40px Patrick Hand", "#f75959");
+        scoreText.x = tgt.x;
+        scoreText.y = 20;
+        scoreText.textAlign = "center";
+        scoreText.opacityState = 1;
+        stage.addChild(scoreText);
+        scoreTextList.push(scoreText)
+    }
+
   //Position
     tgt.y = canvas.height + Math.random()*500;
     tgt.x = canvas.width * Math.random()|0;
@@ -753,10 +819,6 @@ function resetTgt(tgt, i) {
     var rndColour = selectColour();
     tgt.graphics
       .clear()
-      //.beginFill("rgba(0,0,0,0.1)").drawCircle((rndWidth/10),(rndWidth/8),(rndWidth*1.01)) //3 dark circles to create a shadow
-      //.beginFill("rgba(0,0,0,0.1)").drawCircle((rndWidth/10),(rndWidth/8),(rndWidth*1.1))
-      //.beginFill("rgba(0,0,0,0.1)").drawCircle((rndWidth/10),(rndWidth/8),(rndWidth*1.2))
-      //.beginFill("white").drawCircle(0,0,rndWidth)//outline
       .beginFill(rndColour).drawCircle(0,0,(rndWidth))//body
       .beginFill("rgba(255,255,255,0.2)").drawCircle((-rndWidth/20),(-rndWidth/20),(rndWidth-(rndWidth/10)))//body light
       .beginFill("rgba(255,255,255,0.8)").drawCircle((-rndWidth/3),(-rndWidth/2),(rndWidth/8))//spec highlight
@@ -766,14 +828,8 @@ function resetTgt(tgt, i) {
     tgt.rndWidth = rndWidth;
     tgt.speed = (Math.random()*speedMax)+speedMin;
     tgt.score = Math.floor((Math.random() * popScoreMax) + popScoreMin);
-    //tgtBlurFilter[i] = new createjs.BlurFilter((tgt.speed/2), 0, 1);
-    //tgtBlurFilter[i+1] = new createjs.BlurFilter(1, 1, 1);
     tgt.alpha = 0.7;
 
-  //Funky filters
-    //tgt.filters = [tgtBlurFilter[i], tgtBlurFilter[i+1]];
-    //var bounds = tgtBlurFilter[i].getBounds();
-    //tgt.cache(-50+bounds.x, -50+bounds.y, 100+bounds.width, 100+bounds.height);
     mvTargets[i] = tgt;
 }
 
@@ -851,7 +907,6 @@ function ambientPoppings() {
                 bubbleToPop = bmpList[rndBubbleNo];
 
                 if (bubbleToPop) {
-                    //console.log("now?");
 
                     //Checking if the bubble is within the canvas
                     if ((bubbleToPop.y > 0) && (bubbleToPop.y < (canvas.height-40))) {
@@ -883,7 +938,7 @@ function ambientPoppings() {
  */
 function popBubble(bubble, x, y) {
     
-    createParticlePuff(x, y, bubble.rndWidth);
+    createParticlePuff(x, y, bubble.rndWidth, bubble.score);
     
     score += bubble.score;
     clicked = false;
@@ -900,8 +955,9 @@ function popBubble(bubble, x, y) {
 
  (6.5 * 42000) / 365
 
+var scoreTextList = [];
 
-function createParticlePuff(x, y, rwidth) {
+function createParticlePuff(x, y, rwidth, bubbleScore) {
     //Sprite sheet here
     var popClone = popAnimation.clone();
 
@@ -921,6 +977,15 @@ function createParticlePuff(x, y, rwidth) {
         stage.removeChild(this);
     });
     stage.addChild(popClone);
+
+    var scoreText = new createjs.Text(("+$" + bubbleScore), "40px Patrick Hand", "#baffac");
+    scoreText.x = x;
+    scoreText.y = (y-rwidth)-20;
+    scoreText.textAlign = "center";
+    scoreText.opacityState = 1;
+    stage.addChild(scoreText);
+    scoreTextList.push(scoreText)
+    //create function to remove score
     popClone.gotoAndPlay("pop");
 }
 
@@ -941,19 +1006,15 @@ function setSpeed(setEvent) {
     if (setEvent == "tgt") {
         
         //a bubble was clicked!
-        speedMax += 0.15;
-        speedMin += 0.07;
+        speedMax += 0.09;
+        speedMin += 0.045;
         catchUp(); // in case a long time has elapsed, if not this function won't do much
 
         if (speedMax > activeSpeedMax) {activeSpeedMax = speedMax;}
         if (speedMin > activeSpeedMin) {activeSpeedMin = speedMin;}
-        //console.log("Speed: " + speedMax);
-
-        //console.log("tgt speed: " + speedMax);
     }
 
     if (setEvent == "time") {
-        //console.log("reducing speed over time");
         //general slowing over time
         if (speedMax <= 0 ) {
             //speed hs hit rock bottom
@@ -967,22 +1028,18 @@ function setSpeed(setEvent) {
             speedMin = 0;
             speedMax -= 0.004;
         } else {
-            console.log("this");
             speedMax -= 0.004;
             speedMin -= 0.002;
         }
         
-        //console.log("Speed: " + speedMax + " | " + speedMin);
     }
 
     if (setEvent == "blank") {
-        console.log("Hi");
         if (speedMax > activeSpeedMax) {activeSpeedMax = speedMax;}
         if (speedMin > activeSpeedMin) {activeSpeedMin = speedMin;}
         catchUp();
         clickRipple(stage.mouseX, stage.mouseY);
         if (vibration) navigator.vibrate(10);
-        //console.log("Blank speed: " + speedMax);
     }
 
     /*
@@ -990,9 +1047,7 @@ function setSpeed(setEvent) {
      * This will likley get called every time but will cause minimal madness unless the game ha been left alone for a long time
      */
     function catchUp() {
-        console.log("Catchup!");
         feelingLonleyMessage("remove");
-        //console.log("Catch up!" + speedMax + " | " + activeSpeedMax);
         //if the bubbles are all slow we need to iterare through them all and give them speed values again.
 
         if (speedMax == 0){
@@ -1029,6 +1084,7 @@ function feelingLonleyMessage(action) {
         lonleyMessage.x = canvas.width / 2;
         lonleyMessage.y = canvas.height / 3;
         lonleyMessageonCanvas = true;
+        removePanels();
         stage.addChild(lonleyMessage);
         stage.update();
         
@@ -1122,6 +1178,25 @@ function handleClick() {
                 setSpeed("blank");
                 removePanels();
                 playGame();
+            } else if (mouseTarget.name == "ijmccallum") {
+                window.open("http://iainjmccallum.com/",'_blank');
+            } else if (mouseTarget.name == "reset") {
+                var resetQ = confirm("Really, start again?");
+                if (resetQ == true) {
+                    console.log("reset scores and stuff");
+                    upgradeCountNumBubbles = [0, 0, 0, 0, 0, 0],
+                    upgradeCountValBubbles = [0, 0, 0, 0, 0, 0],
+                    upgradeCountAmbtPop = [0, 0, 0, 0, 0, 0];
+                    score = 0,
+                    speedMin = 2,
+                    speedMax = 4,
+                    popScoreMin = 1,
+                    popScoreMax = 1,
+                    ambientPop = 0.1,
+                    bubbleRate = 10;
+                    saveScore();
+                    location.reload();
+                }
             } else if (mouseTarget.parent) {
                 //So it's not a bubble, the panel or a light beam everything else that's clickable has a named parent, lets see who was clicked
 
@@ -1206,6 +1281,7 @@ function handleUpgrade(upgrade) {
                 createNewBubbles(upgrade.upgradeValue);
                 bubbleRate = bubbleRate + upgrade.upgradeValue;
                 upgrade.upgradeCount ++;
+                upgradeCountNumBubbles[upgrade.inc] = upgrade.upgradeCount; //applying the upgrade count to the array to be saved
                 upgrade.getChildByName("upgradeCountTxt").text = "(" + upgrade.upgradeCount + "/" + upgrade.maxUpgradeCount + ")";
                 numBubblesPanel.getChildByName("numBubblesPanelTitle").text = "Number of bubbles: " + bubbleRate;
                 score = score - upgrade.upgradeCost;
@@ -1225,6 +1301,7 @@ function handleUpgrade(upgrade) {
                 popScoreMin = Math.round(popScoreMax + (upgrade.upgradeValue/2));
                 popScoreMax = popScoreMax + upgrade.upgradeValue;
                 upgrade.upgradeCount ++;
+                upgradeCountValBubbles[upgrade.inc] = upgrade.upgradeCount; //applying the upgrade count to the array to be saved
                 upgrade.getChildByName("upgradeCountTxt").text = "(" + upgrade.upgradeCount + "/" + upgrade.maxUpgradeCount + ")";
                 bubbleValuePanel.getChildByName("bubbleValuePanelTitle").text = "Value of bubbles: " + popScoreMin + " ~ " + popScoreMax;
                 score = score - upgrade.upgradeCost;
@@ -1251,6 +1328,7 @@ function handleUpgrade(upgrade) {
                  */
                 ambientPop = ambientPop + upgrade.upgradeValue;
                 upgrade.upgradeCount ++;
+                upgradeCountAmbtPop[upgrade.inc] = upgrade.upgradeCount; //applying the upgrade count to the array to be saved
                 upgrade.getChildByName("upgradeCountTxt").text = "(" + upgrade.upgradeCount + "/" + upgrade.maxUpgradeCount + ")";
                 ambientPopPanel.getChildByName("ambientPopPanelTitle").text = "Ambient pop rate: " + (Math.round( ambientPop * 10) / 10) + "/sec";
                 score = score - upgrade.upgradeCost;
@@ -1287,9 +1365,11 @@ function handleUpgrade(upgrade) {
              * If they tweet / or otherwise post about it they will quadrupal their points
              */
              console.log("Share code");
+
              score = score * 4;
         }
     }
+    saveScore();
     stage.update();
 }
 
@@ -1302,8 +1382,55 @@ function handleUpgrade(upgrade) {
 
 function startScreen() {
   state = "start";
-  startTxt = new createjs.Text("App name!\n\n", "20px Patrick Hand", "#fff");
-  startTxt.text += "Click to play";
+  startTxt = new createjs.Text("BUBBLES!\n\n", "18px Patrick Hand", "#fff");
+
+  var welcomeMsg = Math.floor((Math.random() * 10) + 1);
+  switch(welcomeMsg) {
+    case 1:
+        startTxt.text += "To overcome the bubbles\n\n";
+        startTxt.text += "You must become the bubbles\n\n";
+        break;
+    case 2:
+        startTxt.text += "These are not the bubbles \n\nyou need, to deserve... to need\n\n";
+        startTxt.text += "These are the deservers that\n\n bubbles need...to bubble.\n\n";
+        break;
+    case 3:
+        startTxt.text += "Bubble by bubble,\n\n";
+        startTxt.text += "pop goes the weasel.\n\n";
+        break;
+    case 4:
+        startTxt.text += "Better to have popped a bubble,\n\n";
+        startTxt.text += "than to never have popped at all.\n\n";
+        break;
+    case 5:
+        startTxt.text += "Popping bubbles is human,\n\n";
+        startTxt.text += "Popping all the bubbles... divine.\n\n";
+        break;
+    case 6:
+        startTxt.text += "A bubble under the thumb,\n\n";
+        startTxt.text += "Is worth two on the run.\n\n";
+        break;
+    case 7:
+        startTxt.text += "Whether you think\n\n you can pop,\n\n";
+        startTxt.text += "or think you can not\n\n – you are right.\n\n";
+        break;
+    case 8:
+        startTxt.text += "A bubble popped,\n\n";
+        startTxt.text += "is a bubble earned.\n\n";
+        break;
+    case 9:
+        startTxt.text += "Insanity:\n\n doing the same thing\n\n over and over again\n\n";
+        startTxt.text += "and expecting\n\n different results.\n\n";
+        break;
+    case 10:
+        startTxt.text += "Ask not\n\n what your bubbles\n\n can do for you;\n\n";
+        startTxt.text += "ask what you can do\n\n for your bubbles.\n\n";
+        break;
+    default:
+        break;
+}
+
+  startTxt.text += "Click to play!";
   startTxt.textAlign = "center";
   startTxt.x = canvas.width / 2;
   startTxt.y = canvas.height / 3;
@@ -1354,7 +1481,14 @@ function saveScore() {
     localStorage.setItem("popScoreMax", popScoreMax);
     localStorage.setItem("ambientPop", ambientPop);
     localStorage.setItem("bubbleRate", bubbleRate);
+
+    localStorage.setItem("upgradeCountNumBubbles", upgradeCountNumBubbles);
+    localStorage.setItem("upgradeCountValBubbles", upgradeCountValBubbles);
+    localStorage.setItem("upgradeCountAmbtPop", upgradeCountAmbtPop);
+
+    upgradeCountAmbtPop
   } else {
     console.log("No local storage available, can't save score :(");
+        alert("No storage available :(");
   }
 }
