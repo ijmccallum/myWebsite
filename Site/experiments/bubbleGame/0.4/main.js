@@ -109,23 +109,48 @@ function init() {
 
     //todo: get top score from memory.
     if (typeof(Storage)!=="undefined") {
-      score = Number(localStorage.getItem("score"));
-      speedMin = Number(localStorage.getItem("speedMin"));
-      speedMax = Number(localStorage.getItem("speedMax"));
-      popScoreMin = Number(localStorage.getItem("popScoreMin"));
-      popScoreMax = Number(localStorage.getItem("popScoreMax"));
-      ambientPop = Number(localStorage.getItem("ambientPop"));
-      bubbleRate = Number(localStorage.getItem("bubbleRate"));
 
-//TODO turn into arrays
+      score = Number(localStorage.getItem("score"));
+      if (score == null || isNaN(score) || score == 0) { score = 0; }
+
+      speedMin = Number(localStorage.getItem("speedMin"));
+      if (speedMin == null || isNaN(speedMin || speedMin == 0)) { speedMin = 2; }
+
+      speedMax = Number(localStorage.getItem("speedMax"));
+      if (speedMax == null || isNaN(speedMax) || speedMax == 0) { speedMax = 4; }
+
+      popScoreMin = Number(localStorage.getItem("popScoreMin"));
+      if (popScoreMin == null || isNaN(popScoreMin) || popScoreMin == 0) { popScoreMin = 1; }
+
+      popScoreMax = Number(localStorage.getItem("popScoreMax"));
+      if (popScoreMax == null || isNaN(popScoreMax) || popScoreMax == 0) { popScoreMax = 1; }
+
+      ambientPop = Number(localStorage.getItem("ambientPop"));
+      if (ambientPop == null || isNaN(ambientPop) || ambientPop == 0) { ambientPop = 0.1; }
+
+      bubbleRate = Number(localStorage.getItem("bubbleRate"));
+      if (bubbleRate == null || isNaN(bubbleRate) || bubbleRate == 0) { bubbleRate = 10; }
+
       upgradeCountNumBubbles = localStorage.getItem("upgradeCountNumBubbles");
-      upgradeCountNumBubbles = upgradeCountNumBubbles.split(",");
+      if (upgradeCountNumBubbles == null) {
+        upgradeCountNumBubbles = [0,0,0,0,0,0]
+      } else {
+        upgradeCountNumBubbles = upgradeCountNumBubbles.split(",");
+      }
 
       upgradeCountValBubbles = localStorage.getItem("upgradeCountValBubbles");
-      upgradeCountValBubbles = upgradeCountValBubbles.split(",");
+      if (upgradeCountValBubbles == null) {
+        upgradeCountValBubbles = [0,0,0,0,0,0]
+      } else {
+        upgradeCountValBubbles = upgradeCountValBubbles.split(",");
+      }
 
       upgradeCountAmbtPop = localStorage.getItem("upgradeCountAmbtPop");
-      upgradeCountAmbtPop = upgradeCountAmbtPop.split(",");
+      if (upgradeCountAmbtPop == null) {
+        upgradeCountAmbtPop = [0,0,0,0,0,0]
+      } else {
+        upgradeCountAmbtPop = upgradeCountAmbtPop.split(",");
+      }
 
       console.log("Local storage available, updating gameplay variables");
     } else {
@@ -147,9 +172,7 @@ function init() {
     //canvas.addEventListener('touchmove', handleClick, false);
     canvas.addEventListener('click', handleClick, false);
     //canvas.addEventListener('onmousedown', handleClick, false);
-
     setTimeout(startScreen, 2000);
-
 }
 
 
@@ -563,7 +586,7 @@ function genericBits(container, BGpanel, upTitle, playBtn) {
     var pPos3 = 300; //width
     var pPos4 = canvas.height-120; //height 
 
-    BGpanel.graphics.beginFill("rgba(0,0,0,0.8)").drawRoundRect(pPos1, pPos2, pPos3, pPos4, cRadius);
+    BGpanel.graphics.beginFill("rgba(0,0,0,0.5)").drawRoundRect(pPos1, pPos2, pPos3, pPos4, cRadius);
 
     upTitle.textAlign = "center";
     upTitle.x = canvas.width * 0.5;
@@ -609,11 +632,11 @@ function makeUpgrade(container, title, containerY) {
     var textHeight = containerY + 10;
 
     var upgradeBG = new createjs.Shape();
-    upgradeBG.graphics.beginFill("rgba(255,255,255,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius);
+    upgradeBG.graphics.beginFill("rgba(216,255,255,0.9)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius);
       container.addChild(upgradeBG);
 
     //How many bought?
-    var upgradeCountTxt = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "20px Patrick Hand", "#000");
+    var upgradeCountTxt = new createjs.Text("(" + container.upgradeCount + "/" + container.maxUpgradeCount + ")", "20px Patrick Hand", "#006600");
     upgradeCountTxt.textAlign = "center";
     upgradeCountTxt.x = (canvas.width / 2);
     upgradeCountTxt.y = textHeight;
@@ -621,14 +644,14 @@ function makeUpgrade(container, title, containerY) {
       container.addChild(upgradeCountTxt);
 
     //Make the title
-    var upgradeTitle = new createjs.Text(title, "20px Patrick Hand", "#000");
+    var upgradeTitle = new createjs.Text(title, "20px Patrick Hand", "#006600");
     upgradeTitle.textAlign = "left";
     upgradeTitle.x = leftEdge;
     upgradeTitle.y = textHeight;
       container.addChild(upgradeTitle);
 
     //show the cost
-    var upgradeCost = new createjs.Text(("$" + container.upgradeCost), "20px Patrick Hand", "#f75959");
+    var upgradeCost = new createjs.Text(("$" + container.upgradeCost), "20px Patrick Hand", "#006600");
     upgradeCost.textAlign = "right";
     upgradeCost.x = rightEdge
     upgradeCost.y = textHeight;
@@ -646,7 +669,7 @@ function makePauseOpt(container, title, containerY){
     var textHeight = containerY + 10;
 
     var upgradeBG = new createjs.Shape();
-    upgradeBG.graphics.beginFill("rgba(255,255,255,0.8)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius);
+    upgradeBG.graphics.beginFill("rgba(216,255,255,0.9)").drawRoundRect(topLeftX, topLeftY, bgWidth, bgHeight, cRadius);
       container.addChild(upgradeBG);
 
     // //How many bought?
@@ -658,7 +681,7 @@ function makePauseOpt(container, title, containerY){
     //   container.addChild(upgradeCountTxt);
 
     //Make the title
-    var upgradeTitle = new createjs.Text(title, "20px Patrick Hand", "#000");
+    var upgradeTitle = new createjs.Text(title, "20px Patrick Hand", "#006600");
     upgradeTitle.textAlign = "left";
     upgradeTitle.x = leftEdge;
     upgradeTitle.y = textHeight;
@@ -668,7 +691,7 @@ function makePauseOpt(container, title, containerY){
     if (title == "Share to quadrupal your points!") {
 
     } else {
-        var upgradeCost = new createjs.Text(("$" + container.upgradeCost), "20px Patrick Hand", "#f75959");
+        var upgradeCost = new createjs.Text(("$" + container.upgradeCost), "20px Patrick Hand", "#006600");
         upgradeCost.textAlign = "right";
         upgradeCost.x = rightEdge
         upgradeCost.y = textHeight;
@@ -690,7 +713,7 @@ function startGamePlay() {
         bmpList.push(bitmap);
     }
 
-    txt = new createjs.Text ("Score", "20px Patrick Hand", "#fff");
+    txt = new createjs.Text ("Score", "20px Patrick Hand", "#baffac");
     txt.textBaseline="top";
     txt.text = score;
     txt.textAlign = "center";
@@ -801,7 +824,7 @@ function resetTgt(tgt, i) {
     if (tgt.y < (tgt.rndWidth * -1)) {
         console.log("Escapee!");
         var tempscore = Math.round(tgt.score/2);
-        var scoreText = new createjs.Text(("-$" + tempscore), "40px Patrick Hand", "#f75959");
+        var scoreText = new createjs.Text(("-$" + tempscore), "40px Patrick Hand", "#cc0000");
         scoreText.x = tgt.x;
         scoreText.y = 20;
         scoreText.textAlign = "center";
@@ -1179,7 +1202,7 @@ function handleClick() {
                 removePanels();
                 playGame();
             } else if (mouseTarget.name == "ijmccallum") {
-                window.open("http://iainjmccallum.com/",'_blank');
+                window.open("http://iainjmccallum.com/",'_system');
             } else if (mouseTarget.name == "reset") {
                 var resetQ = confirm("Really, start again?");
                 if (resetQ == true) {
@@ -1265,6 +1288,7 @@ function handleUpgrade(upgrade) {
 
     if (score < upgrade.upgradeCost) {
         console.log("Google wallet, here we go!");
+        alert("Hello google wallet!");
     } else {
         //they have enough points, now is the upgrade maxed out?
 
@@ -1272,6 +1296,7 @@ function handleUpgrade(upgrade) {
 
             if (upgrade.upgradeCount >= upgrade.maxUpgradeCount) {
                 console.log("Hello google wallet again!")
+                alert("Hello google wallet!");
             } else {
                 /*
                  * The bubble rate upgrade
@@ -1292,6 +1317,7 @@ function handleUpgrade(upgrade) {
 
             if (upgrade.upgradeCount >= upgrade.maxUpgradeCount) {
                 console.log("Hello google wallet again!")
+                alert("Hello google wallet!");
             } else {
                 /*
                  * The value upgrade
@@ -1312,6 +1338,7 @@ function handleUpgrade(upgrade) {
 
             if (upgrade.upgradeCount >= upgrade.maxUpgradeCount) {
                 console.log("Hello google wallet again!")
+                alert("Hello google wallet!");
             } else {
                 /*
                  * The ambient upgrade
@@ -1381,6 +1408,7 @@ function handleUpgrade(upgrade) {
  */
 
 function startScreen() {
+
   state = "start";
   startTxt = new createjs.Text("BUBBLES!\n\n", "18px Patrick Hand", "#fff");
 
@@ -1429,7 +1457,6 @@ function startScreen() {
     default:
         break;
 }
-
   startTxt.text += "Click to play!";
   startTxt.textAlign = "center";
   startTxt.x = canvas.width / 2;
@@ -1489,6 +1516,6 @@ function saveScore() {
     upgradeCountAmbtPop
   } else {
     console.log("No local storage available, can't save score :(");
-        alert("No storage available :(");
+        //alert("No storage available :(");
   }
 }

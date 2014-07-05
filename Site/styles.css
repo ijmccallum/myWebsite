@@ -66,6 +66,16 @@ height: 100%;
 
 
 /*
+ * Index page
+ */
+.indexHeadPic .content-header {
+    background: url(pics/indexBG/Scotland-1440-900.jpg);
+    background-position: center;
+    max-width: 100%;
+    height:900px;
+}
+
+/*
  * Synergy page CSS - Parallax!
  */
 /*    .synergyBG .page-content {

@@ -25,8 +25,9 @@ mongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
 	console.log("Called findOne!")
 });
 </code></pre>
-
-
+<hr />
+<h3>MongoDB JSON documents</h3>
+<p>note: <code>_id</code> keys have to be unique, they are usually a scaler value but can also be complex documents</p>
 <hr />
 <h3>The mongo shell</h3>
 <p>Like NodeJS, this is just a c++ application that you controll using V8 Javascript.</p>
@@ -419,6 +420,107 @@ Searching the log: <code>db.system.profile.find().pretty()</code> will output so
 <br />
 <code>db.collection.find({$text:{$search:"word"}}, {score:{$meta:'textScore'}}).sort({score:{$meta:'textScore'}})</code>: for interest, will create a meta field based on the relevance of the document's text to the search term then orders them by that score
 <hr />
+<h3>The aggregation framework</h3>
+<p>Aggregate expressions: (working on specific keys)</p>
+<ul>
+	<li>
+		<code>$sum</code><br />
+		<p>eg: <code>... { _id:{"maker":"$manufacturer"}, sum_prices:{<strong>$sum:"$price"</strong>} }...</code><br />
+		will create <code>{_id:"maker","sum_prices":<strong>Total value</strong>}</code></p>
+	</li>
+	<li>
+		<code>$avg</code><br />
+		Same format as <code>$sum</code>
+	</li>
+	<li>
+		<code>$min</code><br />
+		Same format as <code>$sum</code>
+	</li>
+	<li>
+		<code>$max</code><br />
+		Same format as <code>$sum</code>
+	</li>
+	<li>
+		<code>$push</code>: builds an array<br />
+		Same format as <code>$sum</code>
+	</li>
+	<li>
+		<code>$addToSet</code>: builds an array uniquley<br />
+		Same format as <code>$sum</code>
+	</li>
+	<li><code>$first</code> & <code>$last</code>: require a sort</li>
+</ul>
+<p>An example counting the number of products that every company has in a db:</p>
+<pre><code>
+//creates a results set of all the documents with a "manufacturer" field, that field becomes the _id, if another original doc is found with the same manufacturer, 1 is added to the "num_products" field in the results set document.
+db.products.aggregate([{
+	$group:{
+		_id:"$manufacturer",
+		num_products:{$sum:1}
+    }
+}])
+</code></pre>
+<p>An example using <strong>compound grouping</strong>:</p>
+<pre><code>
+//every document with a different combination of the listed keys will create a new document in the result set
+db.products.aggregate([{
+	$group:{
+		_id:{
+			"key1":"$key1",
+			"key2":"$key2"
+	    },
+	    num_products:{$sum:1}
+    }
+}])
+</code></pre>	
+<p>The commands happen in a pipeline:<br />
+	<ol>
+		<li>
+			<strong>$project</strong> (Reshaping the documents that move through, one in one out)
+		</li>
+		<li>
+			<strong>$match</strong> (flitering for matches)
+		</li>
+		<li>
+			<strong>$group</strong> (the aggregate)
+		</li>
+		<li>
+			<strong>$sort</strong>
+		</li>
+		<li>
+			<strong>$skip</strong>
+		</li>
+		<li>
+			<strong>$limit</strong>
+		</li>
+		<li>
+			<strong>$unwind </strong>(normalises the data, flattens arrays held within keys), eg <code>"key":[1,2,3]</code> would turn into <code>"key":1,"key":2,"key":3</code>
+		</li>
+		<li>
+			<strong>$out</strong> (specifies another collection to take the data if that's where it's going)
+		</li>
+		<li>
+			<strong>$redact</strong>
+		</li>
+		<li>
+			<strong>$geonear</strong>
+		</li>
+	</ol>
+<hr />
+
+
+hw1:
+
+db.posts.aggregate([{
+	$group:{
+		_id:"$comments.author",
+		no_comments:{$sum:1}
+    }
+}])
+
+
+
+
 <h3>Sharding!</h3>
 The database gets split by a <strong>shard key</strong> (can be compound).  So, choose a key like student_id and different ranges of those 
 documents will get placed on different <code>mongod</code>'s.  Your application will talk to a <code>mongos</code> which 
