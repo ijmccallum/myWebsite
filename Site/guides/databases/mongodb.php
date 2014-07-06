@@ -76,6 +76,7 @@ mongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
 				<li><code>$gte</code>: greater than or equal</li>
 				<li><code>$lt</code>: less than</li>
 				<li><code>$lte</code>: less than or equal</li>
+				<li><code>$in</code>: <code>{ field: { $in: [value1, value2, ... valueN ] } }</code></li>
 				<li><code>$exists</code>: if the document has this key (boolean)</li>
 				<li><code>$type</code>1 = double 
 							| 2 = string 
@@ -448,7 +449,7 @@ Searching the log: <code>db.system.profile.find().pretty()</code> will output so
 		<code>$addToSet</code>: builds an array uniquley<br />
 		Same format as <code>$sum</code>
 	</li>
-	<li><code>$first</code> & <code>$last</code>: require a sort</li>
+	<li><code>$first</code> & <code>$last</code>: requires a sort, returns the first / last value in a $group operation</li>
 </ul>
 <p>An example counting the number of products that every company has in a db:</p>
 <pre><code>
@@ -473,16 +474,45 @@ db.products.aggregate([{
     }
 }])
 </code></pre>	
-<p>The commands happen in a pipeline:<br />
-	<ol>
+<p>The commands happen in a pipeline, each stage can be used more than once and in various orders:<br />
+	<ul>
 		<li>
-			<strong>$project</strong> (Reshaping the documents that move through, one in one out)
+			<strong>$project</strong> (Reshaping the documents that move through, one in one out)<br />
+			<code>$toUpper</code> <code>$toLower</code> <code>$add</code> <code>$multiply</code></li>
+<pre><code>db.collection.aggregate([{
+	$project:{
+	    "_id":0, //do not include this field
+	    "newKey": {$toLower:"$originalKey"}, //originalKey to lower case and named as newKey
+	    "newKey2": {
+	    	"newKey3": "$oldKey",
+	    	"newKey4": {$multiply:["$oldKey2", 10]} //multiplys the oldKey2 value by 10 and adds under newKey4
+	    },
+	    "newKey5":"$oldKey3"
+    }
+}])
+</code></pre>
 		</li>
 		<li>
-			<strong>$match</strong> (flitering for matches)
+			<strong>$match</strong> (flitering for matches)<br />
+			<code>$gte</code> <code>$gt</code> <code>$lt</code> <code>$lte</code> <code>$ne</code> <code>$in</code>
+<pre><code>db.collection.aggregate([{
+	$match:{
+		"pop":{ $gte : 25000 },
+		$or:[{"_id.state":"CA"},{"_id.state":"NY"}]
+	} 
+}])
+</code></pre>
 		</li>
 		<li>
-			<strong>$group</strong> (the aggregate)
+			<strong>$group</strong> groups the results by the given keys as per the examples above.</br >
+			<code>$sum</code> <code>$avg</code> <code>$min</code> <code>$max</code> <code>$push</code> <code>$addToSet</code> <code>$first</code> <code>$last</code>
+<pre><code>db.collection.aggregate([{
+	$group:{
+	    _id: ... , //Can be just a "$field" or {"name":"$field"} or {"name":"$field","name2":"$field2"...}
+	    key: ... //Some kind of operation or just a value
+    }
+}])
+</code></pre>
 		</li>
 		<li>
 			<strong>$sort</strong>
@@ -494,7 +524,12 @@ db.products.aggregate([{
 			<strong>$limit</strong>
 		</li>
 		<li>
-			<strong>$unwind </strong>(normalises the data, flattens arrays held within keys), eg <code>"key":[1,2,3]</code> would turn into <code>"key":1,"key":2,"key":3</code>
+			<strong>$unwind </strong>(normalises the data, flattens arrays held within keys), eg:<br />
+<code>{"key":"a","array":[1,2,3]}</code> Would become:<br />
+<pre><code>"key":"a","array":"1",
+"key":"a","array":"2",
+"key":"a","array":"3",
+</code></pre>
 		</li>
 		<li>
 			<strong>$out</strong> (specifies another collection to take the data if that's where it's going)
@@ -505,20 +540,9 @@ db.products.aggregate([{
 		<li>
 			<strong>$geonear</strong>
 		</li>
-	</ol>
+	</ul>
+<p>You can use each stage in the pipeline more than once, the second stage will act on the result set of the first stage.</p>
 <hr />
-
-
-hw1:
-
-db.posts.aggregate([{
-	$group:{
-		_id:"$comments.author",
-		no_comments:{$sum:1}
-    }
-}])
-
-
 
 
 <h3>Sharding!</h3>

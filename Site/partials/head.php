@@ -67,19 +67,22 @@ for ($x=0; $x<$docDepth; $x++){
         
         <!-- Page content -->
         <div id="page-content-wrapper" class="<?php echo $iainPageClass; ?>">
-            <img id="cornerPic" src=<?php echo $homePath . 'pics/me.png"' ?> onClick="secretSlide()" alt=""/>
             <div class="content-header">
-                <h1>
-                    <a id="menu-toggle" href="#" class="btn btn-default">
-                    <div id="hotdog1"></div>
-                    <div id="hotdog2"></div>
-                    <div id="hotdog3"></div>
-                    </a>
-                    <?php if ($iainPageTitle == "Synergy") { ?>
-                            <img src="pics/SynergyLogo2.jpg" alt="">
-                    <?php } else {
-                            echo $iainPageTitle; 
-                    } ?> 
-                </h1>
+                <?php if ($iainPageTitle == "@ijmccallum"){ ?>
+                    <img src="pics/indexBG/Scotland-1440-900.jpg" class="indexHeadPic">
+                <?php } else { ?>
+                    <h1>
+                        <a id="menu-toggle" href="#" class="btn btn-default">
+                        <div id="hotdog1"></div>
+                        <div id="hotdog2"></div>
+                        <div id="hotdog3"></div>
+                        </a>
+                        <?php if ($iainPageTitle == "Synergy") { ?>
+                                <img src="pics/SynergyLogo2.jpg" alt="">
+                        <?php } else {
+                                echo $iainPageTitle; 
+                        } ?> 
+                    </h1>
+                <?php } ?>
             </div>
             <div class="page-content inset">
