@@ -72,12 +72,21 @@ height: 100%;
     height:auto;
 }
 
-
 /*
  * Index page
  */
 .indexHeadPic {
     max-width: 100%;
+}
+.homeTgl {
+    position: fixed;
+    margin-top: 5px;
+    margin-left: 5px;
+    background-color: rgba(0,0,0,0);
+}
+#hotdog1, #hotdog2, #hotdog3 {
+    height: 4px;
+    margin-bottom: 4px;
 }
 
 /*

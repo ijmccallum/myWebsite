@@ -69,6 +69,11 @@ for ($x=0; $x<$docDepth; $x++){
         <div id="page-content-wrapper" class="<?php echo $iainPageClass; ?>">
             <div class="content-header">
                 <?php if ($iainPageTitle == "@ijmccallum"){ ?>
+                        <a id="menu-toggle" href="#" class="btn btn-default homeTgl">
+                        <div id="hotdog1"></div>
+                        <div id="hotdog2"></div>
+                        <div id="hotdog3"></div>
+                        </a>
                     <img src="pics/indexBG/Scotland-1440-900.jpg" class="indexHeadPic">
                 <?php } else { ?>
                     <h1>
