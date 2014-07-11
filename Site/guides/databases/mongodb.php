@@ -542,15 +542,114 @@ db.products.aggregate([{
 		</li>
 	</ul>
 <p>You can use each stage in the pipeline more than once, the second stage will act on the result set of the first stage.</p>
+<p>The stages of the aggregation pipeline are limited to 100mb by default, if a query requires more than that then it will not return.  To get around this we much <code>allowDiskUse</code>.  Also, for <strong>Sharded</strong> set ups, <code>$group</code> and <code>$sort</code> are sent to the primary shard to be processes as all the data needs to be in one place so preformance might not be what was expected.  An alternative to use might be Hadoop.</p>
 <hr />
 
 
-<h3>Sharding!</h3>
+<h3>Sharding & Replication</h3>
+<p>For each replica set: 1 primary and 2 or more secondaries.<br />
+	The app communicates with the primary<br />
+	if a primary goes down, the secondaries elect a new primary.<br />
+	A node can have more than 1 vote but that's unusual.<br />
+	Writes cannot happen during an election (usually lasts about 3 seconds)<br />
+	<br />
+	Writes have to go to the primary, reads don't.  But, if you read from a secondary you may get stale data.<br />
+
+</p>
+<p>Types of secondary nodes in a replica set:<br />
+<ul>
+	<li>
+		<strong>Regular node</strong>: normal, can be a primary or a secondary
+	</li>
+	<li>
+		<strong>Arbiter node</strong>: just there for voting, makes sure there is a strict majority if you have an even number of nodes, has no data.
+	</li>
+	<li>
+		<strong>Delayed regular node</strong>: can be set to be an hour or two behind the others, in case of disaster.  Can vote but can't become <br />
+		<code>p=0</code>: priority = 0 (you can set any node priority to 0)
+	</li>
+	<li>
+		<strong>Hidden node</strong>: Can't be primary, can vote, <code>p=0</code>
+	</li>
+</ul>
+</p>
+
+<p>Creating a replica set (in a javascript file)
+<pre><code>config = { _id: "rs1", members: [
+    { _id: 0, host: "computer.local:27017", priority: 0, slaveDelay: 5 },
+    { _id: 1, host: "computer.local:27017"},
+    { _id: 2, host: "computer.local:27017"}
+]}
+
+rs.initiate(config)
+rs.status()
+</code></pre>
+Then in the shell: <code>mongo --port 27018 &gt; javascriptFile.js</code> (you cannot initialise a replica set on the port of one that cannot become primary as in this example with 27017)
+<br />
+Now we can connect <code>mongo --port 21018</code> and we may get a secondary or a primary!<br />
+From here (while conected to the primary) we can run operations as normal.<br />
+To query secondary nodes: <code>rs.slaveOk()</code> Without slaveOk() we will get an error which looks like this: <code>error: { "$err" : "not master and slaveOk=false", code : "13435" }</code>
+</p>
+<ul>
+	<li>
+		<code>rs.status()</code>: gives us the status of the replica set
+	</li>
+	<li>
+		<code>rs.slaveOk()</code>: lets us write to a secondary node when we are connected to one
+	</li>
+	<li>
+		<code>re.isMaster</code>: lets us know if we are on the primary
+	</li>
+</ul>
+To start up a node within a replica set:<br />
+<code>mongod port-- 30001 --replSet replica_set_name --dbpath /data/db/rs1</code><br />
+<code>mongod port-- 30002 --replSet replica_set_name --dbpath /data/db/rs2</code> and so on<br />
+<code>mongo localhost:30001</code> to connect<br />
+<code> &gt; rs.initiate()</code> to start the replica set, will give a value in "me" which you use in the next command<br />
+<code> &gt; rs.add("name.local:30001")</code><br />
+<code> &gt; rs.add("name.local:30002")</code> and so on<br />
+Now <strong>within NodeJS</strong>:<br />
+<pre><code>var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect=("mongodb://localhost:30001,localhost:30001, and so on, localhost:3000n/dbname", function(err, db) {
+	//continue as usual
+	db.collection( ...
+
+	//<strong>Note: you only actually have to give one member of the set above, if it is up the driver will find the rest</strong>
+});
+</code></pre>
+
 The database gets split by a <strong>shard key</strong> (can be compound).  So, choose a key like student_id and different ranges of those 
 documents will get placed on different <code>mongod</code>'s.  Your application will talk to a <code>mongos</code> which 
 routes requests to the correct <code>mongod</code>.  To do this it needs the full shard key. Also, each <code>mongod</code> is 
 recommended to be a <strong>replica set</strong> of 3 so if one or two in that set go down, your data is still accessable and (more importantly)
-not lost.
+not lost.<br />
+<br />
+Things to know about replica sets from an app development perspective
+<ul>
+	<li>
+		<strong>Seed lists</strong>: the drivers must know about at least 1 node within the seed list in order to connect to a new primary after failover
+	</li>
+	<li>
+		<strong>Write concern</strong>: wait for a number of  nodes to acnowladge your writes through the <code>w</code> paramater.<br />
+		the <code>j</code> paramater lets you wait or not wait for the primary node to acnowladge a write<br />
+		<code>w1</code> / <code>wt</code>? w timeout paramater
+	</li>
+	<li>
+		<strong>Read prefrences</strong>: whither you want to read from your primary (normal) or your secondaries
+	</li>
+	<li>
+		<strong>Errors happen</strong>, be ready!
+	</li>
+</ul>
+<p>Replica sets are updated through the opLog: <code>db.oplog.rs.find().pretty()</code> will give you the records of what data has been replicated.</p>
+<p><strong>Rollback</strong>: data is written to the primary which then fails before being able to replicate to the secondaries.  
+	A new primary is elected.  The original primary comes back with data that hasn't been written to the new primary, 
+	it rollsback and logs the data to a seporate file that is not part of the data set.<br />
+	If a node goes down for long enough for the <code>oplog</code> to loop, it will copy the primary's entire data set (slow but it works)<br />
+<strong>To avoid rollback</strong> set the <code>w</code> (write concern) to a majority and it will make it very unlikley.</p>
+<br />
+<p><strong>Connecting Node to a replica set</strong><br />
+</p>
 <hr />
 Sources:
 <ul>
