@@ -546,7 +546,7 @@ db.products.aggregate([{
 <hr />
 
 
-<h3>Sharding & Replication</h3>
+<h3>Replica sets</h3>
 <p>For each replica set: 1 primary and 2 or more secondaries.<br />
 	The app communicates with the primary<br />
 	if a primary goes down, the secondaries elect a new primary.<br />
@@ -600,6 +600,9 @@ To query secondary nodes: <code>rs.slaveOk()</code> Without slaveOk() we will ge
 	<li>
 		<code>re.isMaster</code>: lets us know if we are on the primary
 	</li>
+	<li>
+		<code>db.shutdownServer()</code>: shuts down the server
+	</li>
 </ul>
 To start up a node within a replica set:<br />
 <code>mongod port-- 30001 --replSet replica_set_name --dbpath /data/db/rs1</code><br />
@@ -608,7 +611,7 @@ To start up a node within a replica set:<br />
 <code> &gt; rs.initiate()</code> to start the replica set, will give a value in "me" which you use in the next command<br />
 <code> &gt; rs.add("name.local:30001")</code><br />
 <code> &gt; rs.add("name.local:30002")</code> and so on<br />
-Now <strong>within NodeJS</strong>:<br />
+Now to <strong>Connect NodeJS to a replica set</strong>:<br />
 <pre><code>var MongoClient = require('mongodb').MongoClient;
 MongoClient.connect=("mongodb://localhost:30001,localhost:30001, and so on, localhost:3000n/dbname", function(err, db) {
 	//continue as usual
@@ -618,11 +621,7 @@ MongoClient.connect=("mongodb://localhost:30001,localhost:30001, and so on, loca
 });
 </code></pre>
 
-The database gets split by a <strong>shard key</strong> (can be compound).  So, choose a key like student_id and different ranges of those 
-documents will get placed on different <code>mongod</code>'s.  Your application will talk to a <code>mongos</code> which 
-routes requests to the correct <code>mongod</code>.  To do this it needs the full shard key. Also, each <code>mongod</code> is 
-recommended to be a <strong>replica set</strong> of 3 so if one or two in that set go down, your data is still accessable and (more importantly)
-not lost.<br />
+
 <br />
 Things to know about replica sets from an app development perspective
 <ul>
@@ -646,10 +645,110 @@ Things to know about replica sets from an app development perspective
 	A new primary is elected.  The original primary comes back with data that hasn't been written to the new primary, 
 	it rollsback and logs the data to a seporate file that is not part of the data set.<br />
 	If a node goes down for long enough for the <code>oplog</code> to loop, it will copy the primary's entire data set (slow but it works)<br />
-<strong>To avoid rollback</strong> set the <code>w</code> (write concern) to a majority and it will make it very unlikley.</p>
+<strong>To avoid rollback</strong> set the <code>w</code> (write concern) to a majority and it will make it very unlikley.<br />
 <br />
-<p><strong>Connecting Node to a replica set</strong><br />
+When NodeJS is connected via the mongo driver and the primary node of the replica set fails, the driver will buffer reads & writes until the election has happened.</p>
+<p><strong>Write concern</strong>
+<ul>
+	<li>
+		<code>w:0</code>: the driver will call the callback immidiatly without waiting for a response (for very high throughout things of low value)
+	</li>
+	<li>
+		<code>w:1</code>: waits for only the primary to respond with success
+	</li>
+	<li>
+		<code>w:2</code>: waits for the primary and 1 secondary
+	</li>
+	<li>
+		<code>w:...</code>: you can specify as many as you like (if you specify more than you have, the driver will wait forever)
+	</li>
+	<li>
+		<code>w:j</code>: write to the primary's journal, this makes sure the write has persisted to disk before returning
+	</li>
+	<li>
+		<code>w:majority</code>: waits until the majority of nodes have been written to
+	</li>
+</ul>
+<strong>Using write concern in NodeJS with the mongo driver</strong>:
+<pre><code>var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect=("mongodb://localhost:30001,localhost:30001, and so on, localhost:3000n/dbname<strong>?w=1</strong>", function(err, db) {
+
+	if (err) { throw err; }
+	//defaults to a write concern of 1, the primary (as specified above in the connection)
+	db.collection("name").insert({ 'x' : 1 }, function(err,doc){
+		if (err) { throw err; }
+		console.log(doc);
+
+		//setting the write concern to 2
+		db.collection("name").insert({ 'x' : 2 }, <strong>{ 'w' : 2 }</strong>, function(err,doc){
+			if (err) { throw err; }
+			console.log(doc);
+			db.close();
+		});
+	});
+
+});
+</code></pre>
 </p>
+<p><strong>Setting read prefrence</strong>: which node you would like to read from if not the primary<br />
+	You can set a preffered type of node which the driver will try to read from unless it is not available in which case it will move onto the next node
+<ul>
+	<li>
+		<strong>Primary</strong>
+	</li>
+	<li>
+		<strong>Secondary</strong>
+	</li>
+	<li>
+		<strong>nearest</strong>
+	</li>
+	<li>
+		<strong>Tagged</strong>
+	</li>
+</ul>
+<pre><code>var MongoClient = require('mongodb').MongoClient,
+	<strong>ReadPrefrence = require('mongodb').ReadPrefrence;</strong>
+
+MongoClient.connect=("mongodb://localhost:30001,localhost:30001, and so on, localhost:3000n/dbname<strong>?readPrefrence=secondary</strong>", function(err, db) {
+
+	if (err) { throw err; }
+	//defaults to reading from a secondary
+	db.collection("name").find({ 'x' : 1 }, function(err,doc){
+		if (err) { throw err; }
+		console.log(doc);
+
+		//setting the readPrefrence to primary
+		db.collection("name").find({ 'x' : 2 }, <strong>{ 'readPrefrence' : ReadPrefrence.PRIMARY }</strong>, function(err,doc){
+			if (err) { throw err; }
+			console.log(doc);
+			db.close();
+		});
+	});
+
+});
+</code></pre>
+</p>
+<p><strong>Network errors</strong>: occasionally your system may preform a write but the response is lost in some kind of network problem. This gives you an error but the write was actually completed.</p>
+
+
+<hr />
+<h3>Sharding</h3>
+The database gets split by a <strong>shard key</strong> (can be compound).  So, choose a key like student_id and different ranges of those 
+documents will get placed on different <code>mongod</code>'s.  Your application will talk to a <code>mongos</code> which 
+routes requests to the correct <code>mongod</code>.  To do this it needs the full shard key. Also, each <code>mongod</code> is 
+recommended to be a <strong>replica set</strong> of 3 so if one or two in that set go down, your data is still accessable and (more importantly)
+not lost.<br />
+<p><strong>The shard key</strong>: an element of each object used to split the collection into chunks.<br />
+It is required in order to preform an insert<br />
+It is not required to do a find but without it the request will be scattered to all the servers.<br />
+Once set it cannot be changed - think carefully about what you are going to use as a key.<br />
+The shard key must be indexed, and it will not take a multi key index<br />
+You <strong>cannot have a unique index unless it is the shard key</strong>, this is because there is no way for the shard to know whither the index is actually in fact unique</p>
+<p>Currently collections that are not sharded will live on shard 0, this may change in the future.</p>
+<p><strong>Sharding config servers</strong> must also be up and running - they are in charge of figureing out the chunking</p>
+<p>There can be more than 1 mongoS!  If there is then they are treated like a replica set - if one goes down the application driver will connect to another.</p>
+<p>When connected to a sharded environment:<code>sh.help()</code></p>
+
 <hr />
 Sources:
 <ul>
