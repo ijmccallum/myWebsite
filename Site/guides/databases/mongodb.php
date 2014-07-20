@@ -750,6 +750,31 @@ You <strong>cannot have a unique index unless it is the shard key</strong>, this
 <p>When connected to a sharded environment:<code>sh.help()</code></p>
 
 <hr />
+<h3>Mongoose</h3>
+<p>Built on the NodeJS MongoDriver, this makes life a little easier: <code>npm install mongoose --save</code> (save adds it to our package.json file)</p>
+<p>To begin (in Node): 
+<pre><code>var mongoose = require('mongoose');
+	
+mongoose.connect('mongodb://localhost', function (err) {
+	...
+	mongoose.disconnect();
+});</code></pre></p>
+<p>To build on that, using express:
+<pre><code>var mongoose = require('mongoose');
+<strong>var express = require('express');</strong>
+	
+mongoose.connect('mongodb://localhost', function (err) {
+	if (err) throw err;
+
+	<strong>var app = express();
+	app.get('/', function(req, res){
+		res.send(200, "hello");
+	});
+	app.listen(3000, function(){
+		console.log('now listening on http://localhost:3000')
+	});</strong>
+});</code></pre></p>
+<hr />
 Sources:
 <ul>
 	<li>

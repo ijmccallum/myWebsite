@@ -23,7 +23,7 @@
 <hr />
 <h4>Templating Languages</h4>
 <div class="list-group">
-  <a href="#" class="list-group-item greyout">Jade (Javascript on Node)</a>
+  <a href="languages/jade.php" class="list-group-item greyout">Jade (Javascript on Node)</a>
   <a href="#" class="list-group-item greyout">Swig (on Node)</a>
   <a href="#" class="list-group-item greyout">EJS (Javascript)</a>
   <a href="#" class="list-group-item greyout">Haml (HTML ??)</a>
