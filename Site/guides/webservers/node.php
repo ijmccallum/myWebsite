@@ -79,7 +79,53 @@ html
 
 <hr />
 <h3>Error handeling</h3>
-<p>In app.js include the errors.js file: <code>var errors = require('./errors');</code></p>
+<p>In app.js include the errors.js file: <code>var errors = require('./errors');</code> 
+	Then after the routes are defined add this line: <code>errors(app);</code></p>
+<p>In errors.js:
+<pre><code>module.exports = function(app) {
+
+	//for 404's when express can't match any of the routes it gets to here
+	app.use(function(req, res, next){
+		res.status(404);
+		if (req.accepts('html'){
+			return res.send('<h2>404: no page</h2>');
+		});
+		if (req.accepts('json'){
+			return res.json({ error : 'Not found' });
+		});
+		res.type('txt');
+		res.send('no page');
+	});
+
+	//for errors (500) express expects specific syntax(4 inputs meaning this is an error handler):
+	app.use(function(err,req,res,next){
+		console.error('error at %s/n', req.url, err);
+		res.send(500, "oops");
+	});
+
+};</code></pre></p>
+
+<hr />
+<h3>Middleware</h3>
+<p>this is logic that is preformed before the routes are handled, a great place for logic which will 
+	be used by many different routes.  Usually placed in a <strong>/middleware</strong> directory and 
+	within that, a <code>index.js</code> file:
+<pre><code>var express = require('express');
+
+module.exports = function(app){
+	app.use(express.logger('dev')); //this is how you define middleware (app.use(...))
+
+	app.use(express.bodyParser());  //bodyParser (has to be required individually now) parses incoming form data into objects
+
+	app.use(function(req,res,next){
+		...
+		res.locals = ... //.locals is an object that can be accessed from the views
+		next();
+	});
+};
+</code></pre>
+</p>
+
 <hr />
 <h3>Some great modules:</h3>
 <strong>Request</strong>: for making requests to other websites

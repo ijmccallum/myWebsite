@@ -774,6 +774,24 @@ mongoose.connect('mongodb://localhost', function (err) {
 		console.log('now listening on http://localhost:3000')
 	});</strong>
 });</code></pre></p>
+
+<p>Mongoose models, these define a schema for a model in a collection:
+<pre><code>var mongoose = require('mongoose');
+var validEmail = require('../helpers/validate/email');
+
+var schema = mongoose.Schema({
+	_id: { type:String, validate:validEmail },  //don't normally have to define this but you can if you wish
+	name: { first:String, last:String },
+	salt: { type:String, required:true },
+	hash: { type:String, required:true }, //these two are used so that we don't have to store the users password in plane text
+	created: { type:Date, default:date.now, index:true }
+});
+
+mongoose.model('User', schema);
+</code></pre>
+Now, in whichever file you may be using the schema you must include <code>var User = mongoose.model('User');</code>
+</p>
+
 <hr />
 Sources:
 <ul>
@@ -783,3 +801,5 @@ Sources:
 </ul>
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
+
+
