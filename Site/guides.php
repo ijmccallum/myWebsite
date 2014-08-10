@@ -20,17 +20,18 @@
 </div>
 <h4>Guides for web development</h4>
 <div class="list-group">
-  <a href="guides/webservers.php" class="list-group-item">Web servers</a>
-  <a href="guides/optimisation.php" class="list-group-item">Optimisation</a>
-  <a href="guides/tools.php" class="list-group-item">Tools</a>
-  <a href="guides/languages.php" class="list-group-item">Languages</a>
   <a href="guides/cms.php" class="list-group-item">Content Managment Systems</a>
   <a href="guides/databases.php" class="list-group-item">Database Systems</a>
+  <a href="guides/webservers.php" class="list-group-item">Web servers</a>
+  <a href="guides/languages.php" class="list-group-item">Web Stacks (Languages/combinations...)</a>
   <a href="guides/security.php" class="list-group-item">Security</a>
-</div>
-<h4>A few extra ones</h4>
-<div class="list-group">
+  <a href="guides/optimisation.php" class="list-group-item">Optimisation</a>
+  <a href="guides/tools.php" class="list-group-item">Handy Web Development Tools</a>
   <a href="guides/designtheory.php" class="list-group-item">Design Theory</a>
+  
+</div>
+<h4>A few extra ones (guides for life?)</h4>
+<div class="list-group">
   <a href="guides/inspiration.php" class="list-group-item">Inspiration</a>
 </div>
                 
