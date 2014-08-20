@@ -11,6 +11,18 @@
         </p>
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
+
+<h3>software</h3>
+<div class="list-group">
+  <a href="#" class="list-group-item greyout">Apache</a>
+  <a href="webservers/node.php" class="list-group-item"><strong>NodeJS</strong><br />
+  A c++ application that you controll with v8 Javascript, this means your front-end and AND your back-end are written in Javascript!</a>
+  <a href="#" class="list-group-item greyout">Nginx: fast for static files</a>
+  <a href="#" class="list-group-item greyout">IIS</a>
+</div>
+<p>Node behind Nginx: Nginx deals with mass static, anything interactive it passes to node.</p>
+   
+<h3>hardware</h3>        
 <h4>Virtual private: cheap, moderate to scale</h4>
 <h4>Dedicated: pricy, slow to scale</h4>
 <h4>Cloud, v pricey, v quick to scale</h4>
@@ -19,19 +31,6 @@
   <a href="#" class="list-group-item greyout">rackspace</a>
   <a href="#" class="list-group-item greyout">Azure</a>
 </div>
-<div class="list-group">
-  <a href="webservers/node.php" class="list-group-item"><strong>NodeJS</strong><br />
-  A c++ application that you controll with v8 Javascript, this means your front-end and AND your back-end are written in Javascript!</a>
-  <a href="#" class="list-group-item greyout">Apache</a>
-  <a href="#" class="list-group-item greyout">IIS</a>
-  <a href="#" class="list-group-item greyout">Nginx: fast for static files</a>
-  <!-- <a href="guides/webservers.php" class="list-group-item">NodeJS</a>
-  <a href="guides/frameworks.php" class="list-group-item">Apache</a>
-  <a href="guides/cms.php" class="list-group-item">Nginx</a> -->
-</div>
-<p>Node behind Nginx: Nginx deals with mass static, anything interactive it passes to node.</p>
-
-
 
 
 <hr />
