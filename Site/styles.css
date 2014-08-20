@@ -154,6 +154,10 @@ height: 100%;
     right:0px;
     top:0px;
 }
+@media (max-width:1300px) { #homeBtnsWrap { top:330px; } }
+@media (max-width:1200px) { #homeBtnsWrap { top:280px; } }
+@media (max-width:1050px) { #homeBtnsWrap { top:240px; } }
+@media (max-width:980px) { #homeBtnsWrap { display: none; } }
 
 /*
  * Synergy page CSS - Parallax!
