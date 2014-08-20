@@ -111,8 +111,32 @@ $.when(getProfile, getFriend).then(function(profile, friend){
 </code></pre>
 	</li>
 </ul>
-
 <p>Source: <a href="https://www.youtube.com/watch?v=obaSQBBWZLk">LearnCode.academy on youtube</a></p>
+
+<hr />
+
+<h2>Javascript Generators</h2>
+
+<p>A simple generator:</p>
+<pre><code>var myGenerator = function*(){
+	var one = yield 1; //pauses here (without blocking) and waits for .next to be called on this function
+	var two = yield 2;
+}
+
+var gen = myGenerator();
+
+//When .next is first called, the first yielded value is returned
+console.log(gen.next()); //{value:1, done:false}
+
+//The second time .next is called the second yield is returned.
+//We are also passing in a value which will be applied to the variable 'two'
+console.log(gen.next(4)); //{value:2, done:false}
+
+console.log(gen.next()); //{value:undefined, done:true}
+console.log(gen.next()); //errors
+</code></pre>
+
+<p>Source: <a href="https://www.youtube.com/watch?v=QO07THdLWQo">LearnCode.academy on youtube</a></p>
 
 
 

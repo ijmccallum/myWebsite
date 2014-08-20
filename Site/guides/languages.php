@@ -18,7 +18,7 @@
   <a href="#" class="list-group-item">CSS</a>
   <a href="#" class="list-group-item">Javascript</a>
 </div>
-<hr />
+
 <h4>Back End</h4>
 <div class="list-group">
   <a href="#" class="list-group-item">PHP (twig/laravel/WordPress/MySQL...)</a>
@@ -26,6 +26,11 @@
   <a href="#" class="list-group-item">Javascript (Jade/Node/MongoDB...)</a>
   <a href="languages/jade.php" class="list-group-item greyout">Jade (Javascript on Node)</a>
 </div>
+
+<hr />
+<h2>Web application layers</h2>
+
+...
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
