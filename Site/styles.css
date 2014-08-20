@@ -70,6 +70,7 @@ height: 100%;
 .content-header {
     min-height: 65px;
     height:auto;
+    position: relative;
 }
 
 /*
@@ -87,6 +88,71 @@ height: 100%;
 #hotdog1, #hotdog2, #hotdog3 {
     height: 4px;
     margin-bottom: 4px;
+}
+
+#homeBtnsWrap {
+    position: absolute;
+    top: 400px;
+    height: 200px;
+    width:100%;
+}
+#homeBtnsCenter {
+    width: 382px;
+    margin-right:auto;
+    margin-left:auto;
+    position: relative;
+}
+#homeBtnsWrap a img {
+    width:189px;
+    height:189px;
+    background-color: rgba(70, 174, 149, 0.4);
+    border-radius: 189px;
+}
+#projectsBtn {
+    position: relative;
+    right: -20px;
+}
+
+#projectsBtnOverlay {
+    left: 115px;
+}
+#homeBtnsCenter a:hover #projectsBtnOverlay {
+    left: 20px;
+}
+
+#toolsBtnOverlay {
+    right: 95px;
+}
+#homeBtnsCenter a:hover #toolsBtnOverlay {
+    right:0px;
+}
+
+.homeBtnReveal {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 189px;
+    height:0px;
+    width:0px;
+    top: 95px;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+#homeBtnsCenter a:hover .homeBtnReveal {
+    height:189px;
+    width:189px;
+    top:0px;
+}
+
+.homeBtnReveal img {
+    position: relative;
+    top:-95px;
+    right:94px;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+#homeBtnsCenter a:hover .homeBtnReveal img {
+    right:0px;
+    top:0px;
 }
 
 /*

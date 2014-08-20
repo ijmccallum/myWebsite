@@ -68,14 +68,30 @@ for ($x=0; $x<$docDepth; $x++){
         <!-- Page content -->
         <div id="page-content-wrapper" class="<?php echo $iainPageClass; ?>">
             <div class="content-header">
+
                 <?php if ($iainPageTitle == "@ijmccallum"){ ?>
+                <?php //The home page ?>
                         <a id="menu-toggle" href="#" class="btn btn-default homeTgl">
                         <div id="hotdog1"></div>
                         <div id="hotdog2"></div>
                         <div id="hotdog3"></div>
                         </a>
                     <img src="pics/indexBG/Scotland-1440-900.jpg" class="indexHeadPic">
+                    <div id="homeBtnsWrap">
+                        <div id="homeBtnsCenter">
+                            <a href="/webdev.php">
+                                <img src="pics/projectsBtn.png" id="projectsBtn">
+                                <div id="projectsBtnOverlay" class="homeBtnReveal"><img src="pics/projectsBtn.png"></div>
+                            </a>
+                            <a href="/guides.php" id="toolsBtn">
+                                <img src="pics/toolsBtn.png" id="toolsBtn">
+                                <div id="toolsBtnOverlay" class="homeBtnReveal"><img src="pics/toolsBtn.png"></div>
+                            </a>
+                        </div>
+                    </div>
+
                 <?php } else { ?>
+                <?php //other pages ?>
                     <h1>
                         <a id="menu-toggle" href="#" class="btn btn-default">
                         <div id="hotdog1"></div>
@@ -89,5 +105,6 @@ for ($x=0; $x<$docDepth; $x++){
                         } ?> 
                     </h1>
                 <?php } ?>
+
             </div>
             <div class="page-content inset">
