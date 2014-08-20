@@ -21,7 +21,8 @@
 <hr />
 <h4>Back End</h4>
 <div class="list-group">
-  <a href="#" class="list-group-item">PHP (twig/WordPress/MySQL...)</a>
+  <a href="#" class="list-group-item">PHP (twig/laravel/WordPress/MySQL...)</a>
+  In new project file:  <code>composer create-project laravel/laravel your-project-name</code>
   <a href="#" class="list-group-item">Javascript (Jade/Node/MongoDB...)</a>
   <a href="languages/jade.php" class="list-group-item greyout">Jade (Javascript on Node)</a>
 </div>
