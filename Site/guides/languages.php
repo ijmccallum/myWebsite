@@ -16,7 +16,7 @@
 <div class="list-group">
   <a href="#" class="list-group-item">HTML</a>
   <a href="#" class="list-group-item">CSS</a>
-  <a href="#" class="list-group-item">Javascript</a>
+  <a href="languages/javascript.php" class="list-group-item">Javascript</a>
 </div>
 
 <h4>Back End</h4>

@@ -4,7 +4,40 @@
 <?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
 <?php include $breadcrumbAddress; ?>
 
+<h2>Ajax</h2>
+Data is sent with an <strong>XMLHttpRequest object</strong> (an ActiveXObjact for IE5 & 6):
+<pre><code>var xmlhttp;
+if (window.XMLHttpRequest) {
+  xmlhttp=new XMLHttpRequest();
+} else {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+}
+</code></pre>
 
+<strong>Prepare</strong> the object with .open( (GET or POST), url, async(Boolean))<br />
+<strong>Send</strong> with .send(String(only with POST))<br />
+<ul>
+	<li>A GET:
+<pre><code>xmlhttp.open("GET","ajax_info.txt",true);
+xmlhttp.send();
+</code></pre>
+	</li>
+	<li>A POST:
+<pre><code>xmlhttp.open("POST","ajax_info.php",true);
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xmlhttp.send();
+</code></pre>
+	</li>
+</ul>
+
+The <strong>Responce</strong>:<br />
+For non-XML: <code>document.getElementById("myDiv").innerHTML=xmlhttp.responseText;</code><br />
+For XML: <code>xmlDoc=xmlhttp.responseXML;</code>
+
+
+
+<p>Source: <a href="http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp">W3 Schools tutorial on Ajax</a></p>
+<hr />
 <h2>Async & Callbacks </h2>
 <ul>
 	<li>First off - the bad way, callbacks within an Ajax request's success function - leads to the <strong>pyramid of doom / callback hell</strong> (technical term).
