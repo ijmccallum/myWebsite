@@ -1,6 +1,33 @@
 <?php $iainPageTitle = 'Misc.'; ?>
 <?php include 'partials/head.php'; ?>
 
+<div class="row" style="text-align:center;">
+    <div class="col-md-12">
+        <div class="iconBox">
+            <img src="pics/photoshop-logo.jpg" width="50" height="50">
+            <p>Photoshop</p>
+        </div>
+        <div class="iconBox">
+            <img src="pics/illustrator-logo.jpg" width="50" height="50">
+            <p>Illustrator</p>
+        </div>
+        <div class="iconBox">
+            <img src="pics/indesign-logo.jpg" width="50" height="50">
+            <p>InDesign</p>
+        </div>
+        <div class="iconBox">
+            <img src="pics/after-effects-logo.jpg" width="50" height="50">
+            <p>AfterEffects</p>
+        </div>
+        <div class="iconBox">
+            <img src="pics/maya-logo.jpg" width="50" height="50">
+            <p>Maya</p>
+        </div>
+    </div> <!-- END 6 column for text -->
+</div> <!-- END intro row -->
+
+<hr />
+
 <div class="row">
     <div id="misclist">
         

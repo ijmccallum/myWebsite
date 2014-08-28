@@ -16,6 +16,10 @@
                 </li> -->
                 <li><a href=<?php echo $homePath . 'misc.php"' ?>><span class="glyphicon glyphicon-picture"></span> Misc.</a>
                 </li>
+                <!--
+                <li><a href=<?php echo $homePath . 'help.php"' ?>><span class="glyphicon glyphicon-info-sign"></span> Need my help?</a>
+                </li>
+            -->
                 <li id="guidesLink"><a href=<?php echo $homePath . 'guides.php"' ?>><span class="glyphicon glyphicon-folder-open"></span> Knowledge</a>
                 </li>
 

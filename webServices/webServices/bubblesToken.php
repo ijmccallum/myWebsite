@@ -170,7 +170,13 @@ class JWT
 
 
 $sellerIdentifier = "11647741613972529059";
-$sellerSecret = "c4XarvRPriBAkX6IYZp2Cw";
+
+
+//Sandbox:
+//$sellerSecret = "c4XarvRPriBAkX6IYZp2Cw";
+
+//Real:
+$sellerSecret = "soYu1NbsaQ7RDRORvkuEOA";
 
 //Recieve type from app
 //$type = 1, 2, 3, 4, 5

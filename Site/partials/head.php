@@ -26,7 +26,7 @@ for ($x=0; $x<$docDepth; $x++){
     <link href=<?php echo $homePath . 'bootstrap/css/simple-sidebar.css"' ?> rel="stylesheet">
     <link href=<?php echo $homePath . 'bootstrap/css/font-awesome.min.css"' ?> rel="stylesheet">
     <link href=<?php echo $homePath . 'styles.css"' ?>  rel="stylesheet">
-
+    <link href='http://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise' rel='stylesheet' type='text/css'>
 
 <!-- Universal analytics -->
 <script>
@@ -76,7 +76,10 @@ for ($x=0; $x<$docDepth; $x++){
                         <div id="hotdog2"></div>
                         <div id="hotdog3"></div>
                         </a>
-                    <img src="pics/indexBG/Scotland-1440-900.jpg" class="indexHeadPic">
+                    <div class="indexHeadPicWrap">
+                        <img src="pics/indexBG/Scotland-1440-900.jpg" class="indexHeadPic">
+                    </div>
+                    <!--
                     <div id="homeBtnsWrap">
                         <div id="homeBtnsCenter">
                             <a href="/webdev.php">
@@ -89,6 +92,7 @@ for ($x=0; $x<$docDepth; $x++){
                             </a>
                         </div>
                     </div>
+                    -->
 
                 <?php } else { ?>
                 <?php //other pages ?>
