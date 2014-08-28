@@ -7,7 +7,7 @@
 		<div class="col-md-6">
 
 			<h2>Web App Development</h2>
-			<p><em>An interactive service accessable through any browser from any device.<br />
+			<p><em>An interactive service accessible through any browser from any device.<br />
 				Intended as a tool as opposed to a resource.<br />
 				e.g., <a href="http://trello.com">Trello</a>, 
 				<a href="http://prezi.com/" target="_blank">Prezi</a>, 
@@ -77,7 +77,7 @@
     		<p>Software as a Service</p>
     		<img src="pics/wikilogic-shot.png" class="indexProjectPic">
     		<ul class="list-group">
-				<li class="list-group-item">A logic mapping project with an almost incomprehendibly large goal.  This is still in the earliest stages of development.</li>
+				<li class="list-group-item">A logic mapping project with an almost incomprehensibly large goal.  This is still in the earliest stages of development.</li>
 				<li class="list-group-item"><a href="http://wikilogicfoundation.org/" target="_blank">Get involved</a></li>
 			</ul>
     	</div>

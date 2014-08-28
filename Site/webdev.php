@@ -65,7 +65,7 @@
         <img src="pics/webDev/wikilogic.jpg" class="webDevScreenshot">
     </div>
     <div class="col-md-6">
-        <p><strong>Wikilogic</strong> is a crowd-sourced logic mapping project.  It is a massive undertaking which, if successfull, has tremendous potential to benefit a huge number of people.</p>
+        <p><strong>Wikilogic</strong> is a crowd-sourced logic mapping project.  It is a massive undertaking which, if successful, has tremendous potential to benefit a huge number of people.</p>
         <p>One of the biggest dreams from the group behind Sophie's Games has been Wikilogic. For so long it remained a loose concept, but after developing Synergy and honing our various professional skill sets, we finally found ourselves in the right position to start realising this idea. In short: it intends to do for logic what Wikipedia is doing for knowledge.</p> 
         <p>Rather than explain any further here, I would strongly encourage you to have a look at the foundation's site and, if you can, please consider getting involved too - we could use all the help we can get!</p>
         <p>The project: <code><a href="http://www.wikilogicfoundation.org/" target="_blank">www.WikiLogicFoundation.org</a></code></p>
@@ -102,7 +102,7 @@
         <img src="pics/webDev/sophies-games.jpg" class="webDevScreenshot">
     </div>
     <div class="col-md-6">
-        <p><strong>Sophie's Games</strong> is the group behind <a href="http://iainjmccallum.com/synergy.php">Synergy</a>.  We were brought together by a common interest in using games to create a positive impact or inspire thought on important issues.  The website is ment as a simple, clean area that describes us and points to our games without any extra fuss.</p>
+        <p><strong>Sophie's Games</strong> is the group behind <a href="http://iainjmccallum.com/synergy.php">Synergy</a>.  We were brought together by a common interest in using games to create a positive impact or inspire thought on important issues.  The website is meant as a simple, clean area that describes us and points to our games without any extra fuss.</p>
         <code><a target="_blank" href="http://sophiesgames.com/">www.sophiesgames.com</a></code>
     </div>
 </div>
@@ -126,7 +126,7 @@
         <img src="pics/webDev/iain-chrissy.jpg" class="webDevScreenshot">
     </div>
     <div class="col-md-6">
-        <p><strong>Wedding site</strong>, a simple, minimal, statment of design.  As this is our own I was able to create it explicitly to my own taste and desire for simplicity.</p>
+        <p><strong>Wedding site</strong>, a simple, minimal, statement of design.  As this is our own I was able to create it explicitly to my own taste and desire for simplicity.</p>
         <code><a target="_blank" href="">www.iainandchrissy.com</a></code>
     </div>
 </div>

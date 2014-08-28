@@ -58,7 +58,7 @@
         <img src="pics/webDev/audioControl.jpg" class="webDevScreenshot">
     </div>
     <div class="col-md-6">
-        <p><strong>Mic control</strong> an experiment useing the Web Audio API to play with audio analysis as a form of controller - finger free gaming!
+        <p><strong>Mic control</strong> an experiment using the Web Audio API to play with audio analysis as a form of controller - finger free gaming!
         <i>(Best viewed on larger screens - not optimised for mobile screens)</i></em></p>
         <code><a target="_blank" href="/experiments/audioControl/index.html">Play</a></code>
     </div>
