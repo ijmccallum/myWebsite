@@ -24,7 +24,7 @@
 <h4>Front End Frameworks / ...</h4>
 <div class="list-group">
   <a href="languages/angularjs.php" class="list-group-item"><strong>AngularJS</strong><br />
-    Making HTML dynamic</a>
+    Making HTML dynamic, like ExpressJS except it runs <em>in the browser!</em></a>
 </div>
 
 <hr />
@@ -60,6 +60,17 @@
 <h2>Programming Patterns</h2>
 
 ...
+
+<h4>Factories</h4>
+
+...
+
+<h4>MVC</h4>
+
+...
+
+<h4>Single Page Application (SPA) - is this a pattern?</h4>
+<p>Initially load a shell page, the user navigates through views loaded into that shell - no reloading.</p>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
