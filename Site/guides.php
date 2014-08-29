@@ -20,14 +20,24 @@
 </div>
 <h4>Guides for web development</h4>
 <div class="list-group">
-  <a href="guides/cms.php" class="list-group-item">Content Managment Systems</a>
-  <a href="guides/databases.php" class="list-group-item">Database Systems</a>
-  <a href="guides/webservers.php" class="list-group-item">Web servers</a>
-  <a href="guides/languages.php" class="list-group-item">Web Stacks (Languages/Technologies/combinations...)</a>
-  <a href="guides/security.php" class="list-group-item">Security</a>
-  <a href="guides/optimisation.php" class="list-group-item">Optimisation</a>
-  <a href="guides/tools.php" class="list-group-item">Handy Web Development Tools</a>
-  <a href="guides/designtheory.php" class="list-group-item">Design Theory</a>
+  <a href="guides/cms.php" class="list-group-item"><strong>Content Managment Systems</strong><br />
+    Handing control over to the client</a>
+  <a href="guides/languages.php" class="list-group-item"><strong>Development Stacks</strong><br />
+    Languages, Frameworks for the front & Back ends...</a>
+  <a href="guides/databases.php" class="list-group-item"><strong>Database Systems</strong><br />
+    Designs & Interactions</a>
+  <a href="guides/webservers.php" class="list-group-item"><strong>Web servers</strong><br />
+    And a bit about how the web works</a>
+  <a href="guides/security.php" class="list-group-item"><strong>Security</strong><br />
+    Types of attacks and how to defend against them</a>
+  <a href="guides/optimisation.php" class="list-group-item"><strong>Optimisation</strong><br />
+    Speed, Search ...</a>
+  <a href="guides/tools.php" class="list-group-item greyout"><strong>Web Development helpers</strong><br />
+    Google page speed, ..., ...</a>
+  <a href="guides/cross-platform.php" class="list-group-item greyout"><strong>Cross Platform</strong><br />
+    Wrappers, ...</a>
+  <a href="guides/designtheory.php" class="list-group-item"><strong>Design Theory</strong><br />
+    Typography, ...</a>
   
 </div>
 <h4>A few extra ones (guides for life?)</h4>

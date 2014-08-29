@@ -13,13 +13,13 @@
 </div> <!-- END intro row -->
 
 <div class="list-group">
-  <a href="CMS/wordpress.php" class="list-group-item">WordPress</a>
-  <a href="CMS/keystone.php" class="list-group-item">KeystoneJS</a>
-  <a href="CMS/mediawiki.php" class="list-group-item">MediaWiki</a>
+  <a href="CMS/wordpress.php" class="list-group-item greyout">WordPress</a>
+  <a href="CMS/keystone.php" class="list-group-item greyout">KeystoneJS</a>
+  <a href="CMS/mediawiki.php" class="list-group-item greyout">MediaWiki</a>
   <a href="#" class="list-group-item greyout">Ghost</a>
-  <a href="CMS/joomla.php" class="list-group-item">Joomla</a>
-  <a href="CMS/drupal.php" class="list-group-item">Drupal</a>
-  <a href="CMS/kirby.php" class="list-group-item">Kirby</a>
+  <a href="CMS/joomla.php" class="list-group-item greyout">Joomla</a>
+  <a href="CMS/drupal.php" class="list-group-item greyout">Drupal</a>
+  <a href="CMS/kirby.php" class="list-group-item greyout">Kirby</a>
 </div>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
