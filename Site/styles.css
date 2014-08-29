@@ -24,7 +24,23 @@ body {
     }
 
 }
-
+#menu-toggle {
+    z-index:10;
+}
+.homeTgl,
+#menu-toggle {
+    position: fixed;
+    margin-top: 3px;
+    margin-left: -35px;
+    background-color: rgba(0,0,0,0);
+}
+.content-header h1 {
+    margin-left:47px;
+}
+.homeTgl {
+    margin-left:5px !important;
+    margin-top: 5px !important;
+}
 /*
 #sidebar-wrapper {
     width: 210px;
@@ -34,6 +50,9 @@ body {
 */
 hr {
     margin-top:40px;
+}
+h1 {
+    line-height:35px !important;
 }
 .iconBox {
     display: inline-block;
@@ -114,12 +133,12 @@ height: 100%;
     max-width: 100%;
     height: 400px;
     overflow: hidden;
+    background-image: url('pics/indexBG/Scotland-1440-900.jpg');
+    background-size: cover;
+    background-position: center 30%;
 }
-.homeTgl {
-    position: fixed;
-    margin-top: 5px;
-    margin-left: 5px;
-    background-color: rgba(0,0,0,0);
+.indexHeadPicWrap img {
+    display: none;
 }
 #hotdog1, #hotdog2, #hotdog3 {
     height: 4px;
