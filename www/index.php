@@ -6,7 +6,7 @@
 	<div class="row" style="text-align:center;">
 		<div class="col-md-6">
 
-			<h2>Web App Development</h2>
+			<h2><a href="appdev.php">Web App Development</a></h2>
 			<p><em>An interactive service accessible through any browser from any device.<br />
 				Intended as a tool as opposed to a resource.<br />
 				e.g., <a href="http://trello.com">Trello</a>, 
@@ -30,7 +30,7 @@
 		</div>
 		<div class="col-md-6">
 
-			<h2>Web Site Development</h2>
+			<h2><a href="webdev.php">Web Site Development</a></h2>
 			<p><em>An online display or resource<br />
 				whose primary function is to serve information.<br />
 				May contain a Web App.</em></p>
@@ -53,7 +53,7 @@
 	</div>
     <div class="row" style="text-align:center;">
     	<div class="col-md-3">
-    		<h3>Synergy</h3>
+    		<h3><a href="appdev.php#synergy">Synergy</a></h3>
     		<p>Browser Game</p>
     		<img src="pics/synergyShot.png" class="indexProjectPic">
     		<ul class="list-group">
@@ -63,7 +63,7 @@
 			</ul>
     	</div>
     	<div class="col-md-3">
-    		<h3>Bubbles!</h3>
+    		<h3><a href="appdev.php#bubbles">Bubbles!</a></h3>
     		<p>Web App</p>
     		<img src="pics/bubbles-shot.png" class="indexProjectPic">
     		<ul class="list-group">
@@ -73,7 +73,7 @@
 			</ul>
     	</div>
     	<div class="col-md-3">
-    		<h3>Wikilogic</h3>
+    		<h3><a href="webdev.php#wikilogic">Wikilogic</a></h3>
     		<p>Software as a Service</p>
     		<img src="pics/wikilogic-shot.png" class="indexProjectPic">
     		<ul class="list-group">
@@ -82,7 +82,7 @@
 			</ul>
     	</div>
     	<div class="col-md-3">
-    		<h3>Wedding Shows</h3>
+    		<h3><a href="webdev.php#wedding-shows">Wedding Shows</a></h3>
     		<p>Web Site</p>
     		<img src="pics/nws-shot.png" class="indexProjectPic">
     		<ul class="list-group">

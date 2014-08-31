@@ -22,7 +22,7 @@
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
 
-<hr />
+<hr id="wedding-shows" />
 
 <div class="row">
     <div class="col-md-6">
@@ -58,7 +58,7 @@
     </div>
 </div>
 
-<hr />
+<hr id="wikilogic" />
 
 <div class="row">
     <div class="col-md-6">

@@ -26,7 +26,7 @@
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
 
-<hr />
+<hr id="bubbles" />
 
 <div class="row">
     <div class="col-md-6">
@@ -38,7 +38,7 @@
     </div>
 </div>
 
-<hr />
+<hr id="synergy" />
 
 <div class="row">
     <div class="col-md-6">
