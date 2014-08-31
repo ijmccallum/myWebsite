@@ -34,6 +34,7 @@
                 <h4>Pros</h4>
                 <ul>
                     <li>Angular is looking very cool and clean.</li>
+                    <li>Seems to run mostly in the browser - security?</li>
                 </ul>
             </div>
             <div class="col-md-6">
