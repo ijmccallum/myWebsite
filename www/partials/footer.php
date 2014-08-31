@@ -34,6 +34,7 @@
     <!-- JavaScript -->
     <script src=<?php echo $homePath . "bootstrap/js/jquery-1.10.2.js" . '"' ?>></script>
     <script src=<?php echo $homePath . "bootstrap/js/bootstrap.js" . '"' ?>></script>
+    <script src=<?php echo $homePath . "prism/prism.js" . '"' ?>></script>
 
     <!-- Slide sidebar -->
     <script>

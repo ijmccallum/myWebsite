@@ -27,6 +27,7 @@ for ($x=0; $x<$docDepth; $x++){
     <link href=<?php echo $homePath . 'bootstrap/css/font-awesome.min.css"' ?> rel="stylesheet">
     <link href=<?php echo $homePath . 'styles.css"' ?>  rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise' rel='stylesheet' type='text/css'>
+    <link href=<?php echo $homePath . 'prism/prism.css"' ?> rel="stylesheet" />
 
 <!-- Universal analytics -->
 <script>
@@ -44,7 +45,7 @@ for ($x=0; $x<$docDepth; $x++){
 </head>
     
 
-<body>
+<body class="language-js">
 
     <div id="wrapper">
         <?php $navLocation = (ltrim($homePath,'"')) . 'partials/nav.php' ?>

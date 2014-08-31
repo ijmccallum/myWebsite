@@ -1,4 +1,4 @@
-<?php $iainPageTitle = 'Timeline'; ?>
+<?php $iainPageTitle = 'Timeline'; $docDepth = 0; ?>
 <?php include 'partials/head.php'; ?>
             
 <!--	<div class="row">

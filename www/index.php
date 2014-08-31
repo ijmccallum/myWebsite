@@ -1,4 +1,4 @@
-<?php $iainPageTitle = '@ijmccallum'; ?>
+<?php $iainPageTitle = '@ijmccallum'; $docDepth = 0;?>
 <?php include 'partials/head.php'; ?>
 	<div class="row" style="text-align:center;">
 		<h2 class="quirkyHeading">The things I do</h2>
