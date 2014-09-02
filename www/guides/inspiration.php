@@ -9,28 +9,86 @@
         <p class="lead">
         	A series of talks that contain, in my opinion, some of the most valuable ideas for life.
         </p>
-    </div> <!-- END 6 column for text -->
-</div> <!-- END intro row -->
+    </div>
+</div>
+
+
+<hr />
+
 <div class="row">
     <div class="col-md-6 text-center">
-        <iframe src="http://embed.ted.com/talks/alain_de_botton_a_kinder_gentler_philosophy_of_success.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-    </div> <!-- END column -->
+        <iframe src="http://embed.ted.com/talks/ken_robinson_says_schools_kill_creativity.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div> 
+    <div class="col-md-6 text-left">
+        <strong>Summary:</strong>
+    </div>
 </div>
+
+<hr />
+
 <div class="row">
 	<div class="col-md-6 text-center">
-    	<iframe src="http://embed.ted.com/talks/ken_robinson_says_schools_kill_creativity.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-    </div> <!-- END column -->
-</div>
-<div class="row">
-    <div class="col-md-6 text-center">
         <iframe src="http://embed.ted.com/talks/simon_sinek_why_good_leaders_make_you_feel_safe.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
     </div> <!-- END column -->
+    <div class="col-md-6 text-left">
+        <p><strong>Summary:</strong> 
+            <ul>
+                <li>For good teamwork in any organisation, the individuals must feel safe.  If they fear the loss of their jobs due to bad preformance, the effectivness of the team will decrease.</li>
+                <li>Saftey is defined by the attitude of the organisations leader.</li>
+            </ul>
+            <blockquote>"Leadership is a chioce, it is not a rank.  
+                I know many people at the senior most levels of organisations who are absolutly not leaders.
+                They are authorities, and we do what they say because they have authority over us, but we would not follow them.
+                And I know many people who are at the bottoms of organisations who have no authority and they are absolutly leaders.
+                And this is because they have chosen to look after the person to the left of them
+                and they have chosen to look after the person to the right of them.
+                This is what a leader is.
+            </blockquote></p>
+    </div> <!-- END column -->
 </div>
+
+<hr />
+
 <div class="row">
     <div class="col-md-6 text-center">
         <iframe src="http://embed.ted.com/talks/simon_sinek_how_great_leaders_inspire_action.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-    </div> <!-- END column -->
+    </div>
+    <div class="col-md-6 text-left">
+        <strong>Summary:</strong>
+    </div>
 </div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6 text-center">
+        <iframe src="http://embed.ted.com/talks/alain_de_botton_a_kinder_gentler_philosophy_of_success.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
+    <div class="col-md-6 text-left">
+        <strong>Summary:</strong>
+        <ul>
+            <li>We cannot know the true value of a person based on something as small as what they do, but we believe we can.</li>
+            <li>We are often told everyone is equal yet there are deep inequalities, this causes envy.</li>
+            <li>We believe in a meritocratic society: those who work hard rise to the top, those who don't - they deserve to be at the bottom.</li> 
+            <li>Meritocratic society is an impossibility, our belief in it makes chance failure feel like your own fault.</li>
+            <li>We may think we fear a lack of success but it is actually the judgment and ridicule of others that we fear, as witnessed daily through stories in the media.</li>
+            <li>We are the first society to worship ourselves (successfull people) as opposed to trancendent beings, this is a new and rather unique situation.</li>
+            <li>Success and failure are not mutually exclusive.</li>
+        </ul>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6 text-center">
+        <iframe src="https://embed-ssl.ted.com/talks/david_steindl_rast_want_to_be_happy_be_grateful.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+    </div>
+    <div class="col-md-6 text-left">
+        <strong>Summary:</strong>
+    </div>
+</div>
+<!--
 
 <p>Stumbled upon this from i09:
     <blockquote>On Twitter, Pixar storyboard artist Emma Coats has compiled nuggets of narrative wisdom she's received working for the animation studio over the years. </blockquote>
@@ -79,7 +137,7 @@
 
 #22: What's the essence of your story? Most economical telling of it? If you know that, you can build out from there.
 </pre>
-</p>
+</p>-->
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
