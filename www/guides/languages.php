@@ -12,29 +12,48 @@
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
 
+
 <h4>Languages</h4>
 <div class="list-group">
-  <a href="#" class="list-group-item greyout">HTML</a>
-  <a href="#" class="list-group-item greyout">CSS</a>
+  <a href="#" class="list-group-item greyout">HTML / HTML5</a>
+  <a href="#" class="list-group-item greyout">CSS / CSS3</a>
   <a href="languages/javascript.php" class="list-group-item">Javascript</a>
   <a href="languages/jade.php" class="list-group-item">Jade</a>
   <a href="#" class="list-group-item greyout">PHP</a>
 </div>
 
-<h4>Front End Frameworks / ...</h4>
+<h4>Client side</h4>
 <div class="list-group">
   <a href="languages/angularjs.php" class="list-group-item"><strong>AngularJS</strong><br />
     Making HTML dynamic, like ExpressJS except it runs <em>in the browser!</em></a>
+  <a href="#" class="list-group-item greyout"><strong>Twitter Bootstrap</strong><br />
+    A lot of very useful HTML, CSS and Javascript elements. (used on this site)</a>
 </div>
 
 <hr />
 
-<h4>Back End Frameworks / ...</h4>
+<h4>Server side</h4>
 <div class="list-group">
   <a href="#" class="list-group-item greyout"><strong>ExpressJS</strong><br />
     MVC (and more?) for NodeJS</a>
   <a href="#" class="list-group-item greyout"><strong>Laravel</strong><br />
     Looks like a closs PHP equivolent of ExpressJS</a>
+</div>
+
+<hr />
+
+<h4>Development Tools</h4>
+<div class="list-group">
+  <a href="#" class="list-group-item greyout"><strong>npm</strong><br />
+    The Node package manager</a>
+  <a href="#" class="list-group-item greyout"><strong>Bower</strong><br />
+    A package manager for client side js (like npm)</a>
+    <a href="#" class="list-group-item greyout"><strong>Yeoman</strong><br />
+    ...</a>
+  <a href="#" class="list-group-item greyout"><strong>Grunt</strong><br />
+    ...</a>
+  <a href="#" class="list-group-item greyout"><strong>Karma</strong><br />
+    ...</a>
 </div>
 
 <hr />
@@ -50,6 +69,16 @@
   <a href="#" class="list-group-item greyout"><strong>Google's Web Fundamentals</strong><br />https://developers.google.com/web/fundamentals/</a>
   
 </div>
+
+<hr />
+
+<h2>Stacks</h2>
+<h3>MEAN.js</h3>
+MongoDB, Express, Angular, NodeJS.
+
+<h3>LAMP</h3>
+Linux, Apache, MySQL, PHP.
+<hr />
 
 <h2>Web application layers</h2>
 

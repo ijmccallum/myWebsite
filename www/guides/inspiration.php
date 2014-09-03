@@ -4,12 +4,8 @@
 <?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
 <?php include $breadcrumbAddress; ?>
 
-<div class="row">
-    <div class="col-md-6">
-        <p class="lead">
-        	A series of talks that contain, in my opinion, some of the most valuable ideas for life.
-        </p>
-    </div>
+<div class="row" style="text-align:center;">
+    <h2 class="quirkyHeading">If you haven't already, watch these.</h2>
 </div>
 
 
@@ -21,6 +17,14 @@
     </div> 
     <div class="col-md-6 text-left">
         <strong>Summary:</strong>
+        <ul>
+            <li>Education is meant to bring in the future, but the system is stuck in the past and has placed an over inflated importance on academia.</li>
+            <li>There are more educated people now than in the whole of history, this has created academic inflation: degrees arn't worth what they once were.</li>
+            <li>Every education system in the world has the same hierarchy. 1: Mathematics & languages, 2:humanities, 3: The Arts. This worked in the industrial revolution, now it is profoundly wrong.</li>
+            <li><strong>Creativity in education is as important as literacy.</strong> (creativity being the ability to have original ideas that have value).</li>
+            <li>If you're not prepared to be wrong, you'll never come up with anything original. Children don't have a fear of being wrong, it is educated into them and turned into a stigma.</li>
+            <li>Intelligence is diverse (visual, audiable, kinesthetic), it is interactive, it is creative.</li>
+        </ul>
     </div>
 </div>
 
@@ -55,6 +59,25 @@
     </div>
     <div class="col-md-6 text-left">
         <strong>Summary:</strong>
+        <ul>
+            <li>How do some people defy the odds: Apple, Martin Luther King, the Wright brothers... They think, act and communicate in the exact opposit to everyone else.</li>
+            <li>What | Every organisation knows what they do.<br />
+                How  | Some know how (USP, differenting value proposition, proprietary process)<br />
+                Why  | Very few know why they do what they do. (not to make a profit, that's a result - it means purpose, cause, belief)
+            </li>
+            <li>Most go from what to why, the inspired ones go from why to what.</li>
+            <li>People don't buy what you do they buy why you do it.</li>
+            <li>Based on biology:<br />
+                What | Neocortex - the newest part of the brain, rational & analytical thought, language.<br />
+                How, Why  | Limbic brains - feelings, behaviour, <strong>decision making</strong>, it has no capacity for language.
+            </li>
+            <li>The goal is not to do business with people who want what you have, it's to do business with the people who believe what you believe</li>
+            <li>If you hire people because they have the skills they'll work for your money.  If you hire people who believe what you believe, they'll give you their blood sweat and tears.</li>
+            <li>The law of diffusion of innovation, bell curve describing innovators(1st 2.5% of population), early adopters (13.5%), early majority (34%), late majority (34%), laggards (16%)<br />
+                If you want mass market success / acceptance of an idea, you can't have it until achieving the tipping point at 15 - 18% market penetration.  These are the people who buy with their hearts - the Why.</li>
+                <li>What you do simply proves what you believe. People will do what proves what they believe.</li>
+
+        </ul>
     </div>
 </div>
 
@@ -85,7 +108,8 @@
         <iframe src="https://embed-ssl.ted.com/talks/david_steindl_rast_want_to_be_happy_be_grateful.html" width="640" height="360" frameborder="0" scrolling="no" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
     </div>
     <div class="col-md-6 text-left">
-        <strong>Summary:</strong>
+        <strong>Summary:</strong><br />
+        A very simple message in this one - be grateful for the things you take for granted.  Find moments to pause and think about it, write notes, get into the habit, however you do it, it'll make you happier!
     </div>
 </div>
 <!--
