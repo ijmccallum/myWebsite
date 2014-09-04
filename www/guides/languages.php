@@ -22,12 +22,31 @@
   <a href="#" class="list-group-item greyout">PHP</a>
 </div>
 
+<hr />
+
 <h4>Client side</h4>
+Front end frameworks
 <div class="list-group">
   <a href="languages/angularjs.php" class="list-group-item"><strong>AngularJS</strong><br />
-    Making HTML dynamic, like ExpressJS except it runs <em>in the browser!</em></a>
+    ...</a>
+  <a class="list-group-item greyout"><strong>Backbone</strong><br />
+    ...</a>
+  <a class="list-group-item greyout"><strong>Knockout</strong><br />
+    ...</a>
+</div>
+
+Front end libraries
+<div class="list-group">
   <a href="#" class="list-group-item greyout"><strong>Twitter Bootstrap</strong><br />
-    A lot of very useful HTML, CSS and Javascript elements. (used on this site)</a>
+    CSS framework.  A lot of very useful HTML, CSS and Javascript elements. (used on this site)</a>
+  <a class="list-group-item greyout"><strong>Ember</strong><br />
+    ...</a>
+  <a class="list-group-item greyout"><strong>jQuery</strong><br />
+    ...</a>
+  <a class="list-group-item greyout"><strong>underscore</strong><br />
+    ...</a>
+  <a class="list-group-item greyout"><strong>Modernizer</strong><br />
+    ...</a>
 </div>
 
 <hr />
@@ -42,21 +61,6 @@
 
 <hr />
 
-<h4>Development Tools</h4>
-<div class="list-group">
-  <a href="#" class="list-group-item greyout"><strong>npm</strong><br />
-    The Node package manager</a>
-  <a href="#" class="list-group-item greyout"><strong>Bower</strong><br />
-    A package manager for client side js (like npm)</a>
-    <a href="#" class="list-group-item greyout"><strong>Yeoman</strong><br />
-    ...</a>
-  <a href="#" class="list-group-item greyout"><strong>Grunt</strong><br />
-    ...</a>
-  <a href="#" class="list-group-item greyout"><strong>Karma</strong><br />
-    ...</a>
-</div>
-
-<hr />
 
 <h4>API's and things, need to sort out</h4>
 <div class="list-group">

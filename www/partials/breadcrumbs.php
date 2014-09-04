@@ -62,5 +62,5 @@
      * server as it's probably quicker.  Food for thought!  Ideas for when there's time!
      */
     ?>
-  <li class="guidemap"><a href=<?php echo $homePath . 'guides/map.php"' ?>>map</a></li>
+  <!--<li class="guidemap"><a href=<?php echo $homePath . 'guides/map.php"' ?>>map</a></li>-->
 </ol>
