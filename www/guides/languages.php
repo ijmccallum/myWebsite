@@ -19,6 +19,8 @@
   <a href="#" class="list-group-item greyout">CSS / CSS3</a>
   <a href="languages/javascript.php" class="list-group-item">Javascript</a>
   <a href="languages/jade.php" class="list-group-item">Jade</a>
+  <a class="list-group-item greyout"><strong>Handlebars</strong><br />
+    A templating language, came after and improved upon Moustache.</a>
   <a href="#" class="list-group-item greyout">PHP</a>
 </div>
 
@@ -28,10 +30,12 @@
 Front end frameworks
 <div class="list-group">
   <a href="languages/angularjs.php" class="list-group-item"><strong>AngularJS</strong><br />
-    ...</a>
+    Data binding, single page web app framework.</a>
   <a class="list-group-item greyout"><strong>Backbone</strong><br />
-    ...</a>
+    One of the first MVC frameworks in Javascript, a lot of boiler plate for a new web app.</a>
   <a class="list-group-item greyout"><strong>Knockout</strong><br />
+    ...</a>
+    <a class="list-group-item greyout"><strong>ember</strong><br />
     ...</a>
 </div>
 
@@ -39,14 +43,18 @@ Front end libraries
 <div class="list-group">
   <a href="#" class="list-group-item greyout"><strong>Twitter Bootstrap</strong><br />
     CSS framework.  A lot of very useful HTML, CSS and Javascript elements. (used on this site)</a>
-  <a class="list-group-item greyout"><strong>Ember</strong><br />
-    ...</a>
   <a class="list-group-item greyout"><strong>jQuery</strong><br />
-    ...</a>
+    Industry standard DOM manipulation library</a>
   <a class="list-group-item greyout"><strong>underscore</strong><br />
-    ...</a>
+    Being replaced by Lo-Dash?</a>
   <a class="list-group-item greyout"><strong>Modernizer</strong><br />
     ...</a>
+  <a class="list-group-item greyout"><strong>Promises (Q)</strong><br />
+    The current (2014) industry standard for dealing with async callbacks</a>
+  <a class="list-group-item greyout"><strong>AMD</strong><br />
+    Lets you split javascript accross multiple files by requiring and listing dependencies</a>
+  <a class="list-group-item greyout"><strong>Require JS</strong><br />
+    Deals with loading required js libraries and files in the proper order</a>
 </div>
 
 <hr />

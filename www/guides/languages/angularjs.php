@@ -3,19 +3,16 @@
 
 <?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
 <?php include $breadcrumbAddress; ?>
-
-<blockquote><em>"a structural framework for dynamic web apps."</em></blockquote>
+<p>It is primarily a front end framework for single page web apps. It is a data binding frameworrk.</p>
 <ul>
-	<li>
-		Gives your front end a solid, single core to build on rather than piecing together a web of scripts 
-		(thus avoiding some nightmares in maintenance!).
-	</li>
-	<li>
-		Single Page Application framework (although it doesn't have to be!), it manages the history, templates, data binding...
-	</li>
+	<li>Routing (for any changes in the URL after the #)</li>
+	<li>Templating</li>
+	<li>Data binding</li>
 	<li>MVC</li>
-	<li>Routing handled into the shell view (wow!)</li>
+	<li>Routing handled into the shell view.</li>
 </ul>
+
+It also includes small versions of other libraries: q for promises, jqlite for jquery, dependencie injection kind of inspired by AMD, and a templatng language similar to handlebars. 
 
 <hr />
 
