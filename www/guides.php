@@ -32,9 +32,14 @@
   <a href="guides/optimisation.php" class="list-group-item"><strong>Optimisation</strong><br />
     Speed, Search ...</a>
   <a href="guides/cross-platform.php" class="list-group-item greyout"><strong>Cross Platform</strong><br />
-    Wrappers, ...</a>
+    Wrappers and things for Mobile Apps</a>
   
 </div>
+
+<h5>Google's refrence:</h5>
+<a href="https://developers.google.com/web/fundamentals/" target="_blank" class="list-group-item greyout"><strong>Google's Web Fundamentals</strong><br />
+  https://developers.google.com/web/fundamentals/</a>
+
 <h4>Extra bonus section!</h4>
 <div class="list-group">
   <a href="guides/inspiration.php" class="list-group-item">Inspiration</a>

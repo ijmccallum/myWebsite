@@ -13,21 +13,17 @@
 </div> <!-- END intro row -->
 
 
-<h4>Languages</h4>
+<h2>Stacks</h2>
 <div class="list-group">
-  <a href="#" class="list-group-item greyout">HTML / HTML5</a>
-  <a href="#" class="list-group-item greyout">CSS / CSS3</a>
-  <a href="languages/javascript.php" class="list-group-item">Javascript</a>
-  <a href="languages/jade.php" class="list-group-item">Jade</a>
-  <a class="list-group-item greyout"><strong>Handlebars</strong><br />
-    A templating language, came after and improved upon Moustache.</a>
-  <a href="#" class="list-group-item greyout">PHP</a>
+    <a href="languages/mean.php" class="list-group-item"><strong>MEAN.JS</strong><br />
+      MongoDB, Express, Angular, NodeJS.</a>
+    <a class="list-group-item greyout"><strong>LAMP</strong><br />
+      Linux, Apache, MySQL, PHP.</a>
 </div>
 
 <hr />
 
-<h4>Client side</h4>
-Front end frameworks
+<h2>Front end frameworks</h2>
 <div class="list-group">
   <a href="languages/angularjs.php" class="list-group-item"><strong>AngularJS</strong><br />
     Data binding, single page web app framework.</a>
@@ -39,7 +35,19 @@ Front end frameworks
     ...</a>
 </div>
 
-Front end libraries
+<hr />
+
+<h2>Back end frameworks</h2>
+<div class="list-group">
+  <a href="#" class="list-group-item greyout"><strong>ExpressJS</strong><br />
+    MVC (and more?) for NodeJS</a>
+  <a href="#" class="list-group-item greyout"><strong>Laravel</strong><br />
+    Looks like a closs PHP equivolent of ExpressJS</a>
+</div>
+
+<hr />
+
+<h2>Libraries</h2>
 <div class="list-group">
   <a href="#" class="list-group-item greyout"><strong>Twitter Bootstrap</strong><br />
     CSS framework.  A lot of very useful HTML, CSS and Javascript elements. (used on this site)</a>
@@ -55,41 +63,29 @@ Front end libraries
     Lets you split javascript accross multiple files by requiring and listing dependencies</a>
   <a class="list-group-item greyout"><strong>Require JS</strong><br />
     Deals with loading required js libraries and files in the proper order</a>
-</div>
 
-<hr />
-
-<h4>Server side</h4>
-<div class="list-group">
-  <a href="#" class="list-group-item greyout"><strong>ExpressJS</strong><br />
-    MVC (and more?) for NodeJS</a>
-  <a href="#" class="list-group-item greyout"><strong>Laravel</strong><br />
-    Looks like a closs PHP equivolent of ExpressJS</a>
-</div>
-
-<hr />
-
-
-<h4>API's and things, need to sort out</h4>
-<div class="list-group">
   <a href="#" class="list-group-item greyout">Socket.IO</a>
   <a href="#" class="list-group-item greyout">Web Audio API</a>
   <a href="#" class="list-group-item greyout">Proximity API</a>
   <a href="#" class="list-group-item greyout">Web Notifications API</a>
   <a href="#" class="list-group-item greyout">Web Speech API</a>
   <a href="#" class="list-group-item greyout"><strong>Webrtc</strong><br />Real time communication: http://www.webrtc.org/</a>
-  <a href="#" class="list-group-item greyout"><strong>Google's Web Fundamentals</strong><br />https://developers.google.com/web/fundamentals/</a>
   
 </div>
 
 <hr />
 
-<h2>Stacks</h2>
-<h3>MEAN.js</h3>
-MongoDB, Express, Angular, NodeJS.
+<h4>Languages</h4>
+<div class="list-group">
+  <a href="#" class="list-group-item greyout">HTML / HTML5</a>
+  <a href="#" class="list-group-item greyout">CSS / CSS3</a>
+  <a href="languages/javascript.php" class="list-group-item">Javascript</a>
+  <a href="languages/jade.php" class="list-group-item">Jade</a>
+  <a class="list-group-item greyout"><strong>Handlebars</strong><br />
+    A templating language, came after and improved upon Moustache.</a>
+  <a href="#" class="list-group-item greyout">PHP</a>
+</div>
 
-<h3>LAMP</h3>
-Linux, Apache, MySQL, PHP.
 <hr />
 
 <h2>Web application layers</h2>
