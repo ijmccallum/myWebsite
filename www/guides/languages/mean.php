@@ -86,7 +86,20 @@
 					<li><code>grunt test</code>: Env:test (change the environment), MochaTest (server tests), Karma:unit (angular tests)</li>
 				</ul>
 			</li>
-			<li><strong>karma.conf.js</strong></li>
+			<li><strong>karma.conf.js</strong> configuring karma tests</li>
+			<li><strong>package.json</strong> npm configuration</li>
+			<li><strong>procfile</strong> Heroku process file</li>
+		</ul>
+	</li>
+	<li><h4>hidden application files (/root)</h4>
+		<ul>
+			<li><strong>.bowerrc</strong> tells bower where to install components</li>
+			<li><strong>.csslintrc</strong> configuring CSSLint properties</li>
+			<li><strong>.editconfig</strong> defining code styles between whatever editors/IDEs you/your team uses</li>
+			<li><strong>.gitignore</strong> exactly what it says on the tin</li>
+			<li><strong>.jshintrc</strong> JSHint configuration</li>
+			<li><strong>.slugignore</strong> for Heroku</li>
+			<li><strong>.travis.yml</strong> travis configuraton for builds</li>
 		</ul>
 	</li>
 </ul>
