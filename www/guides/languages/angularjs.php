@@ -25,15 +25,66 @@ It also includes small versions of other libraries: q for promises, jqlite for j
 <h2>The pieces</h2>
 
 <h3>Directives</h3>
+
+
 <p>Elements which can be added to HTML in order to extend it (teach it new tricks!).  
 	A little like the functions you get in Jade but these are incorporated into the HTML tags and they are a lot more powerful.  
 	Anything starting with <code>ng-</code> is a built in directive, you can also start with <code>data-ng-</code> if you like.</p>
+<ul>
+	<li>
+		<h4>ng-app</h4>
+		When the script runs, this directive initialises the whole app.<br />
+		<code>&lt;html <strong>ng-app</strong> &gt;</code>
+		<br />
+		<br />
+	</li>
+	<li>
+		<h4>ng-model</h4>
+		Adds data into the <code>input</code>, <code>select</code>, and <code>textarea</code> elements.<br />
+		<code>&lt;input type="text" <strong>ng-model="name"</strong> &gt; <strong>{{ name }}</strong></code>
+		<br />
+		<br />
+	</li>
+	<li>
+		<h4>ng-repeat</h4>
+		Like a for-each for the data that was initialised / attached to the $scope.<br />
+		<code>&lt;li <strong>ng-repeat="name in names"</strong> &gt; <strong>{{ name }}</strong>&lt;/li&gt;</code><br />
+		When iterating through a model array we can also use <code>$index</code> to get the element's position within the array.
+		<br />
+		<br />
+	</li>
+	<li>
+		<h4>ng-submit</h4>
+		This bindes an angular function to the submit action of a form.<br />
+		In the HTML:
+<pre><code>&lt;form ng-submit="functionName()"&gt; 
+	... 
+	&lt;input type="submit"&gt;
+&lt;/form&gt;</code></pre>
+		and in the relevant controller:
+<pre><code>$scope.functionName = function() {
+	...
+};</code></pre>
+		<br />
+	</li>
+	<li>
+		<h4>ng-click</h4>
+		The angular verison of onClick.<br />
+		<code>ng-click="function()"</code>
+		<br />
+		<br />
+	</li>
+	<li>
+		<h4>ng-init</h4>
+		Initialising a piece of data, wouldn't normally hard code like this though.<br />
+		<code>&lt;body <strong>ng-init="names=['name1','name2','name3']"</strong> &gt;</code>
+		<br />
+		<br />
+	</li>
+</ul>
 
-<code>&lt;html <strong>ng-app</strong> &gt;</code> When the script runs, this directive initialises the whole app.<br />
-<code>&lt;input type="text" <strong>ng-model="name"</strong> &gt; <strong>{{ name }}</strong></code> Refrences a model then writes out with a data binding expression.<br />
-<code>&lt;body <strong>ng-init="names=['name1','name2','name3']"</strong> &gt;</code> Initialising a piece of data, wouldn't normally hard code like this though.<br />
-<code>&lt;li <strong>ng-repeat="name in names"</strong> &gt; <strong>{{ name }}</strong>&lt;/li&gt;</code> Like a for-each for the data that was initialised.<br />
 All the info: <a href="https://docs.angularjs.org/api"> in the api docs</a>
+
 
 <h3>Filters (and some data binding)</h3>
 
@@ -179,6 +230,17 @@ Now that the controllers are handeled through the routes, in the HTML we can use
 		$scope.customers = simpleFactory.getCustomers();
 	});
 </code></pre>
+
+<hr />
+
+<h3>Testing</h3>
+<strong>Karma</strong><br />
+<p>
+	To begin make sure any bower components are listed within the files array of the karma.conf.js file 
+	(their file paths).<br />
+	The individual tests are set up in <strong>test/spec/controllers/___.js</strong>
+</p>
+
 
 <hr />
 
