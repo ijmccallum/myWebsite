@@ -104,6 +104,13 @@
 	</li>
 </ul>
 
+<hr />
+
+<h2>$resource</h2>
+<blockquote>"A factory which creates a resource object that lets you interact with RESTful server-side data sources." 
+	- from <a href="https://docs.angularjs.org/api/ngResource/service/$resource">the docs</a></blockquote>
+
+
 <hr id="modules" />
 
 <h2>Modules</h2>
@@ -133,6 +140,39 @@ ApplicationConfiguration.registerModule('moduleName');
 </code></pre>
 </p>
 	</li>
+</ul>
+
+<hr />
+
+<h2>CRUD Modules</h2>
+
+To create a new module (view/screen...) we can start with the Yeoman generator:<br />
+<code>yo meanjs:crud-module &lt;name&gt;</code>
+This will add the following:<br />
+<strong>Server side (in the /app folder)</strong>
+<ul>
+	<li>create /controllers/&lt;controller-File-Name&gt;.js</li>
+	<li>create /models/&lt;model-File-Name&gt;.js</li>
+	<li>create /routes/&lt;route-File-Name&gt;.js</li>
+	<li>create /tests/&lt;test-File-Name&gt;.js</li>
+</ul>
+<strong>Client side (in the /public/modules/&lt;module-name&gt; folder)</strong>
+<ul>
+	<li>create /config/&lt;module-name.routes&gt;.js</li>
+	<li>create /config/&lt;module-name.config&gt;.js</li>
+	<li>create /controllers/&lt;module-name.controller&gt;.js</li>
+	<li>create /services/&lt;module-name.service&gt;.js</li>
+	<li>create /tests/&lt;module-name.test&gt;.js</li>
+	<li>In the /views folder:
+		<ul>
+			<li>create &lt;create-module-name&gt;.js</li>
+			<li>create &lt;edit-module-name&gt;.js</li>
+			<li>create &lt;list-module-name&gt;.js</li>
+			<li>create &lt;view-module-name&gt;.js</li>
+		</ul>
+	</li>
+	<li>create &lt;module-name.module&gt;.js</li>
+
 </ul>
 
 <hr />
