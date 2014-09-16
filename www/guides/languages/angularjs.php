@@ -202,6 +202,28 @@ Now that the controllers are handeled through the routes, in the HTML we can use
 <code>&lt;div ng-view&gt;</code>  This div is placed in the shell page and the view, with data from the controller, is injected dynamically.
 </p>
 
+<hr />
+
+<h3><code>$resource</code></h3>
+Allows us to interact with a RESTful service / the back end.<br />
+Requires:
+<ul>
+	<li>Resource script source</li>
+	<li><code>ng-resource</code> module ( <code>var app = new angular.module("app", ["ngResource"]);</code> )</li>
+	<li>injected into the controller: <code>app.controller("name",["$scope","$resource", function($scope, $resource){ ... }]);</code></li>
+</ul>
+For example, creating the object with which you can interact:
+<pre><code>var item = $resource("/route/:variable", {variable:value}, {});</code></pre>
+The first value is the route you wish to use,<br />
+the second is any path variables to be passed,<br />
+the third is route something... don't need, express handles it!<br />
+Then later on you can:
+<pre><code>item.get({variable:value}, function(data){
+	//This is the callback!
+});</code></pre>
+
+<hr />
+
 <h3>Encapsulating data functionality</h3>
 <p>Rather than hardcoding data manipulation in each controller we can extract it and reuse it between multiple controllers.</p>
 <ul>
