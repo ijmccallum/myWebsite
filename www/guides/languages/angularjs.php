@@ -236,7 +236,45 @@ angular.module('myApp.services').factory('serviceName', function(dependancies) {
 angular.module('myApp').controller('mainController', function($scope, serviceName){
 	$scope.functionName = serviceName.functionName;
 });</code></pre>
+<p>_</p>
+<h4>service()</h4>
+<p>Similar to <code>factory()</code> </p>
+<pre><code>//Creating a service with service()
+angular.module('myApp.services').service('serviceName', function(dependancies) {
+	var self = this;
+	this.someData = {};
+	this.setName = function(newName) {
+		self.someData['name'] = newName;
+	}
+});
+</code></pre>
+<p>Injecting this service is the same as the <code>factory()</code> example above</p>
+<p>Neigher the <code>factory()</code> nor the <code>service()</code> methods can be configured from the <code>.config()</code> function, where as the next one can!</p>
+<p>_</p>
 
+<h4>provide()</h4>
+<p>Allows us to configure the service before the app runs - useful when distributing on a different env.</p>
+<pre><code>//Creating a service with provide()
+angular.module('myApp.services').provider('serviceName', function(){
+	this.someData = {};
+	this.$get = function(dependancies) { //injecting dependancies here rather than earlier
+		var self = this;
+		var service = {
+			functionName: function(input) {
+				//do fancy things here!
+			}
+		};
+		return service;
+	}
+});</code></pre>
+<p>And here's where we inject it into the <code>.config()</code> function:</p>
+<pre><code>angular.module('myApp').config(function(serviceName) {
+	//stuff
+})</code></pre>
+<p>Finally it can be used in the app like normal</p>
+<pre><code>angular.module('myApp').controller('MainController', function($scope, User) {
+	//things
+});</code></pre>
 <p>source: the <a href="http://www.ng-newsletter.com/">ng-newsletter</a> book</p>
 <hr />
 
