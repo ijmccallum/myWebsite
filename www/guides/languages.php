@@ -86,6 +86,19 @@
   <a href="#" class="list-group-item greyout">PHP</a>
 </div>
 
+<p>Static vs Dynamically typed:
+  Some defenitions
+<ul>
+  <li>Staticly typed: you must specify the type of variable. Allows more error checking</li>
+  <li>Dynamically typed: You don't - the system figures out what the type is by itself.</li>
+  <li>Instantiate:</li>
+  <li>Constructor: </li>
+  <li>Monkey patch: </li>
+  <li>Unit testing: </li>
+  <li>E2E testing: </li>
+</ul>
+</p>
+
 <hr />
 
 <h2>Web application layers</h2>

@@ -4,6 +4,9 @@
 <?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
 <?php include $breadcrumbAddress; ?>
 
+
+<hr />
+
 <h2>Ajax</h2>
 Data is sent with an <strong>XMLHttpRequest object</strong> (an ActiveXObjact for IE5 & 6):
 <pre><code>var xmlhttp;
