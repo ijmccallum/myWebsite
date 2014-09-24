@@ -81,6 +81,17 @@ It also includes small versions of other libraries: q for promises, jqlite for j
 		<br />
 		<br />
 	</li>
+	<li>
+		<h4>ng-class</h4>
+		Setting the class of an element based on an angular variable. It can be used a few different ways:<br />
+		<ul>
+			<li><code>ng-class="variable"</code> it will just add the variable as the class</li>
+			<li><code>ng-class="[variable1, variable2]"</code> same as above but with multiple</li>
+			<li><code>ng-class="{ 'class' : variable, 'class2' : variable2 }"</code> if variable is true, adds class</li>
+			<li><code>ng-class="{variable ? 'class-if-true' : 'class-if-false' }"</code>short hand for either or</li>
+		</ul>
+		source: <a href="http://scotch.io/tutorials/javascript/the-many-ways-to-use-ngclass" target="_blank">scotch.io article</a>
+	</li>
 </ul>
 
 All the info: <a href="https://docs.angularjs.org/api"> in the api docs</a>
