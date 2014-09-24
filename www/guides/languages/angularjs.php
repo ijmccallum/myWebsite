@@ -215,6 +215,31 @@ Now that the controllers are handeled through the routes, in the HTML we can use
 
 <hr />
 
+<h3>Services</h3>
+
+<p>They stick around until the application is closed (controllers are tidied when no longer needed).	
+This allows them to courier data between controllers.</p>
+
+<h4>factory()</h4> 
+<p>Used to create a service.  Can be injected into controllers at run time.  Great to create simple functions and data.</p>
+<pre><code>//Creating a service with factory()
+angular.module('myApp.services').factory('serviceName', function(dependancies) {
+	var service = {
+		data: {},
+		functionName: function(input){
+			//do something fancy!
+		}
+	}
+	return service;
+});</code></pre>
+<pre><code>//Injecting the service into our app
+angular.module('myApp').controller('mainController', function($scope, serviceName){
+	$scope.functionName = serviceName.functionName;
+});</code></pre>
+
+<p>source: the <a href="http://www.ng-newsletter.com/">ng-newsletter</a> book</p>
+<hr />
+
 <h3><code>$resource</code></h3>
 Allows us to interact with a RESTful service / the back end.<br />
 Requires:
