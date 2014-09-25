@@ -188,30 +188,101 @@ demoApp,controller(controllers)
 </p>
 
 <h3>Routes</h3>
-<p>Defined in the app's config object as follows:
+<p>There are two routing modules that I currently know of.  <br />
+	ngRoute: <code>$ bower install --save angular-route</code> <br />
+	and angular-ui-router: <code>$ bower install --save angular-ui-router</code>. <br />
+	I will be focusing on angular-ui-router, for the difference between them in detail check out <a href="http://stackoverflow.com/questions/21023763/difference-between-angular-route-and-angular-ui-router#answers">this conversation</a> on stackoverflow</p>
+<p>To set up:
+	<ul>
+		<li>Run the bower (or other package manager) command, so we have the routing magic.</li>
+		<li>Make sure the source files are included in index.html, so our app knows we have the routng magic - and where to find it.</li>
+		<li>define in the app's main module (this is for angular-ui-router): <code>angular.module('appName',[<strong>'ui.router'</strong>]);</code>, so that finally the angular code knows about the routing magic!</li>
+		<li>Add the directive to the index.html template: <code>&lt;div <strong>ui-view</strong>&gt;&lt;/div&gt;</code>.  This div will be filled with the apropriate view template when the time comes.</li>
+		<li>Wire up the views:
 <pre><code>var demoApp = angular.module('demoApp',[]);
 
-demoApp.config(function ($routeProvider) {
+appName.config(function ($stateProvider, $urlRouterProvider) {
 
-	$routeProvider
-		.when('/', {
-			controller: 'simpleController',
-			templateUrl: 'view1.html' //the file address
+	//any unmatched url goes here
+	$urlRouterProvider.otherwise("/");
+
+	//When the url is matched, the template @ templateUrl will be placed in the previously specified div (along with it's controller)
+	$stateProvider
+		.state('state1', {
+			url: '/state1',
+			templateUrl: 'state1.html',
+			controller: 'state1Controller'
 		})
-		.when('/partial2', {
-			controller: 'simpleController',
-			templateUrl: 'view2.html'
+		.state('state2', {
+			url: '/state2',
+			templateUrl: 'state2.html',
+			controller: 'state2Controller'
 		})
-		.otherwise({ 
-			redirectTo: '/' 
-		});
 
 });
 </code></pre>
-
-Now that the controllers are handeled through the routes, in the HTML we can use a different directive:
-<code>&lt;div ng-view&gt;</code>  This div is placed in the shell page and the view, with data from the controller, is injected dynamically.
+		</li>
+	</ul>
 </p>
+<p>One of the biggest advantages of the ui-router over the ngRouter is it's ability to have <strong>nested views</strong>.  To do this:</p>
+<ul>
+	<li>in state1.html, add another div with the <code>ui-view</code> directive.</li>
+	<li>in the <code>.config()</code> function we define a child state:
+<pre><code>.state('state1.childStateName', {
+	url: '/state1.child',
+	templateUrl: 'state1.child.html',
+	controller: 'state1Controller'
+})
+</code></pre>
+			I believe the router knows that by specifying parent.child as the state name we mean to add the template into the child <code>&lt;div ui-view&gt;</code>
+	</li>
+</ul>
+
+<p>Another nice thing to have is the ability to have <strong>multiple nested views</strong> in a single template.  To do this:</p>
+<ul>
+	<li>In whichever template you are working in:
+<pre><code>&lt;div ui-view="viewA"&gt;&lt;/div&gt;
+&lt;div ui-view="viewB"&gt;&lt;/div&gt;</code></pre>
+	</li>
+	<li>In the <code>.config()</code> function, we can add multiple views to each state defenition:
+<pre><code>.state('state1', {
+	url: '/state1',
+	views: {
+		'view1': {template:'state1.view1.html'},
+		'view2': {template:'state1.view2.html'}
+	}
+});
+</code></pre>
+	</li>
+</ul>
+<p>we can also <strong>pass paramaters through urls</strong> by:</p>
+<ul>
+	<li>
+<pre><code>.state('state1.childStateName', {
+	url: '/state1:paramName',
+	templateUrl: 'state1.html',
+	controller: function ($scope, $stateParams) {
+		var passedData = $stateParams.paramName;
+	}
+})
+</code></pre>
+	</li>
+</ul>
+
+<p>angular-ui-router also comes with some handy directives of it's own, they are listed in the <a href="https://github.com/angular-ui/ui-router/wiki/Quick-Reference#statetransitiontoto-toparams--options">docs</a> but here's one very handy one:</p>
+<ul>
+	<li>plain link: <code>&lt;a <strong>ui-sref="stateName"</strong>&gt;&lt;/a&gt;</code> will navigate to the url associated with the specified state</li>
+	<li>with params: <code>&lt;a <strong>ui-sref="stateName({param: value, param: value})"</strong>&gt;&lt;/a&gt;</code></li>
+	<li>with <code>ui-sref-active</code> to add/remove class based if active
+<pre><code>&lt;ul>
+  &lt;li ui-sref-active='class1 class2 class3'&gt; //can live on the same element or parent. When active these classes will be added
+    &lt;a ui-sref="app.user"&gt;link&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+	</li>
+</ul>
+
+<p>source: <a href="https://github.com/angular-ui/ui-router">the angular-ui-router docs</a> on github</p>
 
 <hr />
 
@@ -298,35 +369,10 @@ Then later on you can:
 
 <hr />
 
-<h3>Encapsulating data functionality</h3>
-<p>Rather than hardcoding data manipulation in each controller we can extract it and reuse it between multiple controllers.</p>
-<ul>
-	<li>
-		<strong>Factories</strong>: Create an object inside the facotry and return it.
-	</li>
-	<li>
-		<strong>Service</strong>: Standard function using <code>this</code> to define functions.
-	</li>
-	<li>
-		<strong>Provider</strong>: uses a $get object which can be used to get the data.
-	</li>
-</ul>
+<h3>Typeahead</h3>
+<p>Kind of like the thing google does when you start typing</p>
 
-<p>For example, a Factory:</p>
-<pre><code>var demoApp = angular.module('demoApp', [])
-	.factory('simpleFactory', function() {
-		var factory = {};
-		var customers = [ ... ];
-		factory.getCustomers = function() {
-			return customers;
-		};
-		return factory;
-	})
-	.controller('simpleController', function($scope, simpleFactory) {
-		$scope.customers = simpleFactory.getCustomers();
-	});
-</code></pre>
-
+<p>source: the <a href="http://angular-ui.github.io/bootstrap/">angular bootstrap</a> library</p>
 <hr />
 
 <h3>Testing</h3>
