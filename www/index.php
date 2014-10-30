@@ -15,15 +15,15 @@
 				<a href="http://grooveshark.com/">Grooveshark</a></em></p>
 			<br />
 			<div class="iconBox">
-				<img src="pics/nodejs-logo.png" width="50" height="50">
+				<img src="pics/mongo-logo.png" width="50" height="50">
 				<p>MongoDB</p>
 			</div>
 			<div class="iconBox">
-				<img src="pics/nodejs-logo.png" width="50" height="50">
+				<img src="pics/express-logo.png" width="50" height="50">
 				<p>ExpressJS</p>
 			</div>
 			<div class="iconBox">
-				<img src="pics/nodejs-logo.png" width="50" height="50">
+				<img src="pics/angular-logo.png" width="50" height="50">
 				<p>AngularJS</p>
 			</div>
 			<div class="iconBox">
@@ -115,6 +115,31 @@
 	<div class="row">
 	    <div class="col-md-12">
 	        <p class="lead">Hello and welcome to my site!  As you may have guessed, I’m Iain.  I’ve developed a love of learning (everything) and am fascinated with The Internet.  I have built websites, developed video games, and created media for almost every form of digital design there is.  I also believe in simplicity.  Not just in it being the ultimate sophistication, but in it being a necessity for a happy life – which is my biggest aim!  And I have a sneaking suspicion we may have that aim in common.  So drop me a line, I’d love to chat: <code style="font-size:70%;">IJMcCallum {at} hotmail {dot} co {dot} uk </code></p>
+	    </div> <!-- END 6 column for text -->
+	</div> <!-- END intro row -->
+
+	 <hr />
+	<div class="row" style="text-align:center;">
+		<h2 class="quirkyHeading">Some other tools I use</h2>
+	</div>
+	<div class="row" style="text-align:center;">
+	    <div class="col-md-12">
+	    	<div class="iconBox">
+				<img src="pics/photoshop-logo.jpg" width="50" height="50">
+				<p>Photoshop</p>
+			</div>
+			<div class="iconBox">
+				<img src="pics/illustrator-logo.jpg" width="50" height="50">
+				<p>Illustrator</p>
+			</div>
+			<div class="iconBox">
+				<img src="pics/indesign-logo.jpg" width="50" height="50">
+				<p>InDesign</p>
+			</div>
+			<div class="iconBox">
+				<img src="pics/after-effects-logo.jpg" width="50" height="50">
+				<p>After Effects</p>
+			</div>
 	    </div> <!-- END 6 column for text -->
 	</div> <!-- END intro row -->
 <!--

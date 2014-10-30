@@ -22,6 +22,22 @@
     </div> <!-- END 6 column for text -->
 </div> <!-- END intro row -->
 
+<hr id="wikilogic" />
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="pics/webDev/wikilogic.jpg" class="webDevScreenshot">
+    </div>
+    <div class="col-md-6">
+        <p><strong>Wikilogic</strong> is a crowd-sourced logic mapping project.  It is a massive undertaking which, if successful, has tremendous potential to benefit a huge number of people.</p>
+        <p>One of the biggest dreams from the group behind Sophie's Games has been Wikilogic. For so long it remained a loose concept, but after developing Synergy and honing our various professional skill sets, we finally found ourselves in the right position to start realising this idea. In short: it intends to do for logic what Wikipedia is doing for knowledge.</p> 
+        <p>Rather than explain any further here, I would strongly encourage you to have a look at the foundation's site and, if you can, please consider getting involved too - we could use all the help we can get!</p>
+        <p>The project: <code><a href="http://www.wikilogicfoundation.org/" target="_blank">www.WikiLogicFoundation.org</a></code></p>
+        <p>The theory: <code><a href="http://www.wikilogicfoundation.org/wiki" target="_blank">WikiLogic Wiki</a></code></p>
+        <p>The development: <code><a href="https://github.com/WikiLogic/WikiLogic" target="_blank">GitHub</a></code></p>
+    </div>
+</div>
+
 <hr id="wedding-shows" />
 
 <div class="row">
@@ -55,22 +71,6 @@
     <div class="col-md-6">
         <p><strong>Christina D Gonzalez</strong> is a Landscape Architect currently based in Washington DC.  This is her personal portfolio and blog.</p>
         <code><a target="_blank" href="http://cdgonzalez.com/">www.cdgonzalez.com</a></code>
-    </div>
-</div>
-
-<hr id="wikilogic" />
-
-<div class="row">
-    <div class="col-md-6">
-        <img src="pics/webDev/wikilogic.jpg" class="webDevScreenshot">
-    </div>
-    <div class="col-md-6">
-        <p><strong>Wikilogic</strong> is a crowd-sourced logic mapping project.  It is a massive undertaking which, if successful, has tremendous potential to benefit a huge number of people.</p>
-        <p>One of the biggest dreams from the group behind Sophie's Games has been Wikilogic. For so long it remained a loose concept, but after developing Synergy and honing our various professional skill sets, we finally found ourselves in the right position to start realising this idea. In short: it intends to do for logic what Wikipedia is doing for knowledge.</p> 
-        <p>Rather than explain any further here, I would strongly encourage you to have a look at the foundation's site and, if you can, please consider getting involved too - we could use all the help we can get!</p>
-        <p>The project: <code><a href="http://www.wikilogicfoundation.org/" target="_blank">www.WikiLogicFoundation.org</a></code></p>
-        <p>The theory: <code><a href="http://www.wikilogicfoundation.org/wiki" target="_blank">WikiLogic Wiki</a></code></p>
-        <p>The development: <code><a href="https://github.com/WikiLogic/WikiLogic" target="_blank">GitHub</a></code></p>
     </div>
 </div>
 
