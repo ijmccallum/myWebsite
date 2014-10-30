@@ -16,8 +16,21 @@
 			<br />
 			<div class="iconBox">
 				<img src="pics/nodejs-logo.png" width="50" height="50">
+				<p>MongoDB</p>
+			</div>
+			<div class="iconBox">
+				<img src="pics/nodejs-logo.png" width="50" height="50">
+				<p>ExpressJS</p>
+			</div>
+			<div class="iconBox">
+				<img src="pics/nodejs-logo.png" width="50" height="50">
+				<p>AngularJS</p>
+			</div>
+			<div class="iconBox">
+				<img src="pics/nodejs-logo.png" width="50" height="50">
 				<p>NodeJS</p>
 			</div>
+			<!--
 			<div class="iconBox">
 				<img src="pics/cordova-logo.png" width="50" height="50">
 				<p>Cordova</p>
@@ -26,6 +39,7 @@
 				<img src="pics/sencha-logo.png" width="50" height="50">
 				<p>Sencha</p>
 			</div>
+			-->
 
 		</div>
 		<div class="col-md-6">
@@ -39,10 +53,12 @@
 				<img src="pics/wordpress-logo.png" width="50" height="50">
 				<p>WordPress</p>
 			</div>
+			<!--
 			<div class="iconBox">
 				<img src="pics/keystone-logo.png" width="50" height="50">
 				<p>KeystoneJS</p>
 			</div>
+			-->
 			
 		</div>
 	</div>
