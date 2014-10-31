@@ -3,6 +3,10 @@
             
 <div class="row" style="text-align:center;">
     <div class="col-md-12">
+        <p>Below are some of my key projects roughly in chronological order.<br />
+            Through them I have worked with a variety of different 
+            technologies that have lead me to my current favourite: Angular.</p>
+        <!--
         <div class="iconBox">
             <img src="pics/wordpress-logo.png" width="50" height="50">
             <p>WordPress</p>
@@ -19,46 +23,76 @@
             <img src="pics/javascript-logo.png" width="50" height="50">
             <p>Javascript</p>
         </div>
-    </div> <!-- END 6 column for text -->
-</div> <!-- END intro row -->
+    -->
+    </div> 
+</div>
 
 <hr id="wikilogic" />
 
 <div class="row">
     <div class="col-md-6">
+        <img src="pics/webDev/wikilogic02.jpg" class="webDevScreenshot">
+    </div>
+    <div class="col-md-6">
+        <p><strong>Wikilogic</strong> is an open source project currently being developed and looked after by myself and a few others.  
+            The idea is to create a system that will allow us to map out all logic, or as much of it as we can fit into a sharded database.  
+            This might seem a little wild but at a holistic level, it's actually quite simple.<br /><br />  We have a live demo running which I can supply a link to on request,
+            or you can get it running locally by visiting the <a href="https://github.com/WikiLogic/WikiLogic">Github</a> page.  We'll be writing about more general progress
+            on the <a href="http://www.wikilogicfoundation.org/" target="_blank">main site</a> and the in depth theory is being laid out in our <a href="http://www.wikilogicfoundation.org/wiki">meta wiki</a>.
+        </p>
+    </div>
+</div>
+<!--
+<div class="row">
+    <div class="col-md-6">
         <img src="pics/webDev/wikilogic.jpg" class="webDevScreenshot">
     </div>
     <div class="col-md-6">
-        <p><strong>Wikilogic</strong> is a crowd-sourced logic mapping project.  It is a massive undertaking which, if successful, has tremendous potential to benefit a huge number of people.</p>
-        <p>One of the biggest dreams from the group behind Sophie's Games has been Wikilogic. For so long it remained a loose concept, but after developing Synergy and honing our various professional skill sets, we finally found ourselves in the right position to start realising this idea. In short: it intends to do for logic what Wikipedia is doing for knowledge.</p> 
-        <p>Rather than explain any further here, I would strongly encourage you to have a look at the foundation's site and, if you can, please consider getting involved too - we could use all the help we can get!</p>
-        <p>The project: <code><a href="http://www.wikilogicfoundation.org/" target="_blank">www.WikiLogicFoundation.org</a></code></p>
-        <p>The theory: <code><a href="http://www.wikilogicfoundation.org/wiki" target="_blank">WikiLogic Wiki</a></code></p>
-        <p>The development: <code><a href="https://github.com/WikiLogic/WikiLogic" target="_blank">GitHub</a></code></p>
+        <p><strong>The main Wikilogic site</strong>. 
     </div>
-</div>
+</div>-->
 
 <hr id="wedding-shows" />
 
 <div class="row">
     <div class="col-md-6">
         <img src="pics/nws-shot.png" class="webDevScreenshot">
+        <code><a target="_blank" href="http://www.nationalweddingshow.co.uk/">www.nationalweddingshow.co.uk</a></code>
     </div>
     <div class="col-md-6">
-        <p><strong>The Nation Wedding Show</strong>...</p>
-        <code><a target="_blank" href="http://www.nationalweddingshow.co.uk/">www.nationalweddingshow.co.uk</a></code>
+        <p><strong>UK and National Wedding Shows</strong>, funnily enough I was working on these during the preperation for my own wedding!
+            I worked remotley with a team coordinated by <a href="http://www.tagdigital.co.uk/">Tag Digital</a> to produce these twin sites.
+            They run on WordPress with a heavily adapted version of <a href="http://theme.co/x/">x</a>, a multi-theme theme which, in my humble opinion, 
+            is more hassle than it's worth.
+        </p>
     </div>
 </div>
 
-<hr />
-
+<br />
 <div class="row">
     <div class="col-md-6">
         <img src="pics/webDev/ukshow.jpg" class="webDevScreenshot">
+        <code><a target="_blank" href="http://www.theukweddingshows.co.uk/">www.theukweddingshows.co.uk</a></code>
     </div>
     <div class="col-md-6">
-        <p><strong>UK Wedding Shows</strong>...</p>
-        <code><a target="_blank" href="http://www.theukweddingshows.co.uk/">www.theukweddingshows.co.uk</a></code>
+
+    </div>
+</div>
+
+<hr id="bubbles" />
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="pics/bubbles-shot.png" class="webDevScreenshot">
+    </div>
+    <div class="col-md-6">
+        <p><strong>Bubbles!</strong> was an experiment in app development for Android.  It was only meant to be a test to run through the process of creating and publishing
+            but it turned into a full game written with <code>Create.js</code> and wrapped with <code>Cordova</code>.  As a result of this being a small test that just kept growing, 
+            it's all written in one gigantic javascript file!  Taught me a thing or two about what not to do.  Still, got it working, pretty proud of that!<br />  
+            <br />
+            You can now downlond it onto any android device or just play it in the browser.
+        </p>
+        <code><a target="_blank" href="bubbles">Play</a></code>
     </div>
 </div>
 
@@ -67,10 +101,36 @@
 <div class="row">
     <div class="col-md-6">
         <img src="pics/webDev/chrissy.jpg" class="webDevScreenshot">
+        <code><a target="_blank" href="http://cdgonzalez.com/">www.cdgonzalez.com</a></code>
     </div>
     <div class="col-md-6">
-        <p><strong>Christina D Gonzalez</strong> is a Landscape Architect currently based in Washington DC.  This is her personal portfolio and blog.</p>
-        <code><a target="_blank" href="http://cdgonzalez.com/">www.cdgonzalez.com</a></code>
+        <p><strong>Christina D Gonzalez</strong> is a Landscape Architect currently based in Washington DC.  This is her personal WordPress portfolio and blog.  
+            She also happens to be my wife, which I think is just brilliant!</p>
+        
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="pics/webDev/senchaInsights.jpg" class="webDevScreenshot">
+    </div>
+    <div class="col-md-6">    
+        <p><strong>Tech News Blog design / working mock up</strong> This project uses <a href="http://keystonejs.com/">KeystoneJS</a> - a CMS that extends ExpressJS and runs on Node & MongoDB.  
+            I also added <a href="https://disqus.com/">Disqus</a> to handle the comments and found it an absolute joy to work with!</p>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="pics/webDev/fuel-jack.jpg" class="webDevScreenshot">
+        <code><a target="_blank" href="http://www.fueljack.com/">www.fueljack.com</a></code>
+    </div>
+    <div class="col-md-6">
+        <p><strong>Fuel Jack</strong> is a location, fuel, and theft tracking product aimed at companies with large vehicle fleets.  This brochure site was designed and built from scratch to give them a place to direct potentially interested customers.</p>
     </div>
 </div>
 
@@ -79,10 +139,12 @@
 <div class="row">
     <div class="col-md-6">
         <img src="pics/webDev/working-title.jpg" class="webDevScreenshot">
+        <code><a target="_blank" href="http://workingtitletheband.co.uk/">www.workingtitletheband.co.uk</a></code>
     </div>
     <div class="col-md-6">    
-        <p><strong>Working Title</strong> is a UK based 3 piece band.  They needed a very simple, very quick site to list their various gigs and create an online presence.</p>
-        <code><a target="_blank" href="http://workingtitletheband.co.uk/">www.workingtitletheband.co.uk</a></code>
+        <p><strong>Working Title</strong> is a UK based 3 piece band.  They needed a very simple, very quick site to list their various gigs and create an 
+            online presence, hence this paint splattered WordPress machien.</p>
+        
     </div>
 </div>
 <!--
@@ -95,32 +157,40 @@
     </div>
 </div>
 -->
-<hr />
+
+<hr id="synergy" />
+
+<div class="row">
+    <div class="col-md-6">
+        <img src="pics/synergyShot.png" class="webDevScreenshot">
+    </div>
+    <div class="col-md-6">
+        <p><strong>Synergy</strong> a browser based puzzle platformer, built in Unity3D, infused with a message about life.  At the start of this project I was purley
+        a designer, by the end I had caught the code bug.</p>
+        <code><a target="_blank" href="http://sophiesgames.com/Synergy.html">Play</a></code>
+        <p><em>Note: this requires the unity web player to run, it will prompt you to download but don't worry - it doesn't take long!</em></p>
+    </div>
+</div>
+<br />
 
 <div class="row">
     <div class="col-md-6">
         <img src="pics/webDev/sophies-games.jpg" class="webDevScreenshot">
-    </div>
-    <div class="col-md-6">
-        <p><strong>Sophie's Games</strong> is the group behind <a href="http://iainjmccallum.com/synergy.php">Synergy</a>.  We were brought together by a common interest in using games to create a positive impact or inspire thought on important issues.  The website is meant as a simple, clean area that describes us and points to our games without any extra fuss.</p>
         <code><a target="_blank" href="http://sophiesgames.com/">www.sophiesgames.com</a></code>
     </div>
-</div>
-
-<hr />
-
-<div class="row">
     <div class="col-md-6">
-        <img src="pics/webDev/fuel-jack.jpg" class="webDevScreenshot">
-    </div>
-    <div class="col-md-6">
-        <p><strong>Fuel Jack</strong> is a location, fuel, and theft tracking product aimed at companies with large vehicle fleets.  This brochure site was designed and built from scratch to give them a place to direct potentially interested customers.</p>
-        <code><a target="_blank" href="http://www.fueljack.com/">www.fueljack.com</a></code>
+        <p><strong>Sophie's Games</strong> is the group behind <a href="http://iainjmccallum.com/synergy.php">Synergy</a>.  We were brought together by a common 
+            interest in using games to create a positive impact or inspire thought on important issues.  The website is meant as a simple, clean area that 
+            describes us and points to our games without any extra fuss.  Have a look and please do listen to the fantastic music produced for us 
+            by <a href="http://www.anastasiadevana.com/">Anastasia Devana</a>, it's amazing!</p>
+        
     </div>
 </div>
 
 <hr />
 
+
+<!--
 <div class="row">
     <div class="col-md-6">
         <img src="pics/webDev/iain-chrissy.jpg" class="webDevScreenshot">
@@ -149,9 +219,9 @@
         <p>Finally, for a few extra brownie points, here's a plugin I wrote for WordPress (to allow visitors to switch between different themes on a WordPress website):</p>
         <code><a target="_blank" href="http://wordpress.org/plugins/ijm-theme-bar/">Wordpress Theme Switcher</a></code><br />
 		<br />
-    </div> <!-- END column -->
-</div> <!-- END intro row -->
-<!--
+    </div> 
+</div> 
+
 <hr />
 
 <div class="row">
@@ -167,6 +237,12 @@
 </div> 
 -->
 
+
+     <div class="row" style="text-align:center;">
+        <h2 class="quirkyHeading">There's more if you're interested!</h2>
+        <a href="misc.php">Design work >></a><br /><br />
+        <a href="guides.php">All my notes >></a>
+    </div>
 
                 
 <?php include 'partials/footer.php'; ?>
