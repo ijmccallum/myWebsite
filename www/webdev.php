@@ -60,8 +60,8 @@
         <code><a target="_blank" href="http://www.nationalweddingshow.co.uk/">www.nationalweddingshow.co.uk</a></code>
     </div>
     <div class="col-md-6">
-        <p><strong>UK and National Wedding Shows</strong>, funnily enough I was working on these during the preperation for my own wedding!
-            I worked remotley with a team coordinated by <a href="http://www.tagdigital.co.uk/">Tag Digital</a> to produce these twin sites.
+        <p><strong>UK and National Wedding Shows</strong>, funnily enough I was working on these during the preparation for my own wedding!
+            I worked remotely with a team coordinated by <a href="http://www.tagdigital.co.uk/">Tag Digital</a> to produce these twin sites.
             They run on WordPress with a heavily adapted version of <a href="http://theme.co/x/">x</a>, a multi-theme theme which, in my humble opinion, 
             is more hassle than it's worth.
         </p>
@@ -90,7 +90,7 @@
             but it turned into a full game written with <code>Create.js</code> and wrapped with <code>Cordova</code>.  As a result of this being a small test that just kept growing, 
             it's all written in one gigantic javascript file!  Taught me a thing or two about what not to do.  Still, got it working, pretty proud of that!<br />  
             <br />
-            You can now downlond it onto any android device or just play it in the browser.
+            You can now download it onto any android device or just play it in the browser.
         </p>
         <code><a target="_blank" href="bubbles">Play</a></code>
     </div>
@@ -143,7 +143,7 @@
     </div>
     <div class="col-md-6">    
         <p><strong>Working Title</strong> is a UK based 3 piece band.  They needed a very simple, very quick site to list their various gigs and create an 
-            online presence, hence this paint splattered WordPress machien.</p>
+            online presence, hence this paint splattered WordPress machine.</p>
         
     </div>
 </div>
@@ -165,7 +165,7 @@
         <img src="pics/synergyShot.png" class="webDevScreenshot">
     </div>
     <div class="col-md-6">
-        <p><strong>Synergy</strong> a browser based puzzle platformer, built in Unity3D, infused with a message about life.  At the start of this project I was purley
+        <p><strong>Synergy</strong> a browser based puzzle platformer, built in Unity3D, infused with a message about life.  At the start of this project I was purely
         a designer, by the end I had caught the code bug.</p>
         <code><a target="_blank" href="http://sophiesgames.com/Synergy.html">Play</a></code>
         <p><em>Note: this requires the unity web player to run, it will prompt you to download but don't worry - it doesn't take long!</em></p>

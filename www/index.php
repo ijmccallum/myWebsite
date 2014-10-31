@@ -91,7 +91,7 @@
 	            but it turned into a full game written with <code>Create.js</code> and wrapped with <code>Cordova</code>.  As a result of this being a small test that just kept growing, 
 	            it's all written in one gigantic javascript file!  Taught me a thing or two about what not to do.  Still, got it working, pretty proud of that!<br />  
 	            <br />
-	            You can now downlond it onto any android device or just play it in the browser.
+	            You can now download it onto any android device or just play it in the browser.
 	        </p>
 	        <code><a target="_blank" href="bubbles">Play</a></code>
 	    </div>
@@ -102,7 +102,7 @@
 	        <img src="pics/synergyShot.png" class="webDevScreenshot">
 	    </div>
 	    <div class="col-md-6">
-	        <p><strong>Synergy</strong> a browser based puzzle platformer, built in Unity3D, infused with a message about life.  At the start of this project I was purley
+	        <p><strong>Synergy</strong> a browser based puzzle platformer, built in Unity3D, infused with a message about life.  At the start of this project I was purely
 	        a designer, by the end I had caught the code bug.</p>
 	        <code><a target="_blank" href="http://sophiesgames.com/Synergy.html">Play</a></code>
 	        <p><em>Note: this requires the unity web player to run, it will prompt you to download but don't worry - it doesn't take long!</em></p>
@@ -162,19 +162,19 @@
 	    		the wheel!  <br /><br />
 
 	    		I'd had a taste of the digital world and wanted more, so I finished up my 
-	    		training and moved to one of Scotlands technology hubs, the University of Abertay in Dundee.
-	    		I learnt modelling, texturing, rigging and animtaion in 3D, special effects with particle systems, 
+	    		training and moved to one of Scotland's technology hubs, the University of Abertay in Dundee.
+	    		I learnt modeling, texturing, rigging and animtaion in 3D, special effects with particle systems, 
 	    		lighting, stereoscopics, editing, screen writing, sound effects, and, to top it all off, 
 	    		I discovered that all this was being applied procedurally in game development.  <br /><br />
 
 	    		This blew my mind and I loved all of it, but you can't run down 10 different career paths and find success.
 	    		So to find my way, I began taking on freelance projects in a few of the different industries.  
-	    		I did some 3D modelling and animation for a couple of indi movies, some VFX filled motion graphics
+	    		I did some 3D modeling and animation for a couple of indi movies, some VFX filled motion graphics
 	    		for an advertising agency, some Graphic Design and some Illustration.  <br /><br />
 
-	    		I have alwayse been described as a creative person so it was a little surprising that none of these options clicked, 
+	    		I have always been described as a creative person so it was a little surprising that none of these options clicked, 
 	    		in the end it was while working on the game art for <a href="http://sophiesgames.com/">Synergy</a> with a group of indi developers when I 
-	    		figured out what did - programming!  Looking back accross all the things I've gone through it suddenly
+	    		figured out what did - programming!  Looking back across all the things I've gone through it suddenly
 	    		seems clear that this was the thing linking it all.  Underneath everything it was the software itself
 	    		that I was finding enthralling.  From there I've had a pretty focused drive into the world of Web Development
 	    		which brings us to now!<br /><br />  
