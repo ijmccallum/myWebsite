@@ -1,8 +1,6 @@
 <?php $iainPageTitle = 'Handy tools'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
 
 <hr />
 

@@ -1,8 +1,6 @@
 <?php $iainPageTitle = 'Javascript'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
 
 
 <h4>Elements in a PHP stack</h4>

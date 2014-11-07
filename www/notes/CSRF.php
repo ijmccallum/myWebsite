@@ -1,8 +1,7 @@
 <?php $iainPageTitle = 'XSS'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
+
 
 <p>
 	When you open a website that you are logged into it may not ask for your credentials (eg a simple bank site).  So when you open another site that contains a CSRF it can open the simple bank site in the ackground and the bank site will let it in. 

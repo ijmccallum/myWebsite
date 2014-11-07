@@ -1,8 +1,6 @@
 <?php $iainPageTitle = 'Trading'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
 <h3>Forex</h3>
 <ul>
 	<li>Forex</li>

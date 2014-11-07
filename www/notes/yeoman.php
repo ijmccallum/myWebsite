@@ -1,8 +1,6 @@
 <?php $iainPageTitle = 'Yeoman'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
 
 <p>Requires NodeJS, <code>npm install -g yo</code></p>
 

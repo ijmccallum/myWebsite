@@ -1,8 +1,7 @@
 <?php $iainPageTitle = 'XSS'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
+
 <h3>What is it?</h3>
 <p>
 	...

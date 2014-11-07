@@ -1,8 +1,6 @@
 <?php $iainPageTitle = 'Security'; $docDepth = 1; ?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
 
 <div class="row">
     <div class="col-md-6">

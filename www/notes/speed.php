@@ -1,8 +1,6 @@
 <?php $iainPageTitle = 'Website speed guide'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
 
 <h2>Summary of this summary</h2>
 

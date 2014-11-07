@@ -1,8 +1,7 @@
 <?php $iainPageTitle = 'MEAN.js development'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
+
 
 <h2>Directory structure</h2>
 <h3>/Root</h3>

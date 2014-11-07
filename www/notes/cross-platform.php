@@ -1,8 +1,7 @@
 <?php $iainPageTitle = 'Cross-Platform'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
+
 
 <p>These are likley to stay grey as I've decided to focus on pure Web App development. 
 	This is because I don't really see many, if any, huge advantages to apps being native 

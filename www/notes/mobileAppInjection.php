@@ -1,8 +1,6 @@
 <?php $iainPageTitle = 'Mobile App Code Injection'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
 
 <p>
 	By recieving data from various sources (Bar codes, AR codes, RFID tags, media files, Bluetooth device ID, Wi-Fi access points... ) HTML5 apps become vulnirable to code injection, similar to XSS.

@@ -1,8 +1,7 @@
 <?php $iainPageTitle = 'SEO summary guide'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
+
 
 <h3>Site organisation</h3>
 <ul>

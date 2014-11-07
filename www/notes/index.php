@@ -1,8 +1,7 @@
 <?php $iainPageTitle = 'Notes on Web Development'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php # $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php # include $breadcrumbAddress; ?>
+
 <!--
 <p style="text-align:right;margin-bottom: 20px;font-size: 12px;"><a href="https://gist.github.com/ijmccallum/11146821">PHP Breadcrumb class in a gist >></a></p>
 -->

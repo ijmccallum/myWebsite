@@ -1,8 +1,7 @@
 <?php $iainPageTitle = 'Angular JS'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
+
 <p>It is primarily a front end framework for single page web apps. It is a data binding frameworrk.</p>
 <ul>
 	<li>Routing (for any changes in the URL after the #)</li>

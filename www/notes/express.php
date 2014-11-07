@@ -1,8 +1,7 @@
 <?php $iainPageTitle = 'Proximity API'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
+
 
 
 <p>Hello world</p>

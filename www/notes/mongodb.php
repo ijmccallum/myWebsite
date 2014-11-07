@@ -1,8 +1,6 @@
 <?php $iainPageTitle = 'Mongo DB'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
 
 <p>This is a database that aims to scale well horizontally without loosing out on any functionality. </p>
 <p>Does not support joins or transactions across multiple collections.</p>

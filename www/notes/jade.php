@@ -1,8 +1,7 @@
 <?php $iainPageTitle = 'Jade'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
+
 
 <h3>A simple NodeJS, ExpressJS app using Jade</h3>
 <p>The main encapsulation of the process, app.js in the root of the project:</p>

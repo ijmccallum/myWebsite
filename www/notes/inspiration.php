@@ -1,8 +1,7 @@
 <?php $iainPageTitle = 'Inspiration'; $docDepth = 1; ?>
 <?php include '../partials/head.php'; ?>
             
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
+
 
 <div class="row" style="text-align:center;">
     <h2 class="quirkyHeading">If you haven't already, watch these.</h2>

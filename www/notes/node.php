@@ -1,8 +1,6 @@
 <?php $iainPageTitle = 'NodeJS'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
-<?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
-<?php include $breadcrumbAddress; ?>
 
 <hr />
 <h3>Setting up a new NodeJS project</h3>
