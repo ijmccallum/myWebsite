@@ -108,7 +108,7 @@
 			</ul>
     	</div>
     </div>        
-    <hr />
+    <hr id="aboutMe" />
 	<div class="row" style="text-align:center;">
 		<h2 class="quirkyHeading">A bit about me</h2>
 	</div>
