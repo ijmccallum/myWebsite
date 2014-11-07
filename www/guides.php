@@ -40,9 +40,10 @@
 <a href="https://developers.google.com/web/fundamentals/" target="_blank" class="list-group-item greyout"><strong>Google's Web Fundamentals</strong><br />
   https://developers.google.com/web/fundamentals/</a>
 
-<h4>Extra bonus section!</h4>
+<h4>Some other areas of interest</h4>
 <div class="list-group">
-  <a href="guides/inspiration.php" class="list-group-item">Inspiration</a>
+  <a href="guides/other/inspiration.php" class="list-group-item">Inspiration</a>
+  <a href="guides/other/trading.php" class="list-group-item">Trading</a>
 </div>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>

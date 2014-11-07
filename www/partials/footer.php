@@ -1,6 +1,7 @@
             </div> <!-- END page-content -->
             <div id="footerBar">
                 <p>Say hello! I'm on <a href="https://github.com/ijmccallum">Github</a>, <a href="https://twitter.com/IJMcCallum">Twitter</a>, <a href="https://www.youtube.com/user/iamwhoiambutnotyou">YouTube</a>, <a href="https://www.threadless.com/profile/2038652/ijmccallum/designs">Threadless</a>, <a href="http://grooveshark.com/#!/ijmccallum">Grooveshark</a>, <a href="http://8tracks.com/ijmccallum">8Tracks</a>, <a href="https://www.khanacademy.org/profile/ijmccallum/">Khan Academy</a>, <a href="https://www.threadless.com/profile/2038652/ijmccallum/designs">Wikilogic</a>, and a whole lot more...</p>
+                <p>IJMcCallum {at} hotmail {dot} co {dot} uk</p>
             </div>
 
         </div> <!-- END page-content-wrapper -->
