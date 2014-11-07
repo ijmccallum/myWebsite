@@ -9,7 +9,7 @@
                <!-- <li><a href=<?php echo $homePath . 'appdev.php"' ?>><span class="glyphicon glyphicon-phone"></span> App Development</a>
                 </li> -->
               
-                <li><a href=<?php echo $homePath . 'guides.php"' ?>><span class="glyphicon glyphicon-folder-open"></span> Notes</a>
+                <li><a href=<?php echo $homePath . 'notes"' ?>><span class="glyphicon glyphicon-folder-open"></span> Notes</a>
                 </li>
                   <li><a href=<?php echo $homePath . 'misc.php"' ?>><span class="glyphicon glyphicon-picture"></span> Misc.</a>
                 </li>

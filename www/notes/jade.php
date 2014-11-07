@@ -1,5 +1,5 @@
-<?php $iainPageTitle = 'Jade'; $docDepth = 2;?>
-<?php include '../../partials/head.php'; ?>
+<?php $iainPageTitle = 'Jade'; $docDepth = 1;?>
+<?php include '../partials/head.php'; ?>
 
 <?php $breadcrumbAddress = (ltrim($homePath,'"')) . 'partials/breadcrumbs.php'; ?>
 <?php include $breadcrumbAddress; ?>
