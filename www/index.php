@@ -146,14 +146,9 @@
 				<li class="list-group-item">Visit the <a href="http://www.nationalweddingshow.co.uk/" target="_blank">National site</a><br />or the <a href="http://www.theukweddingshows.co.uk/" target="_blank">UK site</a></li>
 			</ul>
     	</div>
-<<<<<<< HEAD
-    </div>        
-    <hr id="aboutMe" />
-=======
     </div>    
     -->    
-    <hr />
->>>>>>> f535c30ee590fc7f6c40ef1d286a508084961256
+    <hr id="aboutMe" />
 	<div class="row" style="text-align:center;">
 		<h2 class="quirkyHeading">A bit about me</h2>
 	</div>
