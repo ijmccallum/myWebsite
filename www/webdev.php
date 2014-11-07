@@ -239,9 +239,7 @@
 
 
      <div class="row" style="text-align:center;">
-        <h2 class="quirkyHeading">There's more if you're interested!</h2>
-        <a href="misc.php">Design work >></a><br /><br />
-        <a href="guides.php">All my notes >></a>
+        <a href="misc.php"><h2 class="quirkyHeading">I've also done some design work >></h2></a>
     </div>
 
                 

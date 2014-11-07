@@ -309,6 +309,10 @@
      
     </div> <!-- END #threadlesslist -->
 </div> <!-- END row -->
+
+<div class="row" style="text-align:center;">
+        <a href="notes"><h2 class="quirkyHeading">But, my main passion is now Web Development >></h2></a>
+    </div>
                 
 <script src="js/masonry.js"></script>
 <?php include 'partials/footer.php'; ?>
