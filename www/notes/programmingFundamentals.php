@@ -1,8 +1,7 @@
 <?php $iainPageTitle = 'Programming Fundamentals'; $docDepth = 1; ?>
 <?php include '../partials/head.php'; ?>
 
-<p>Static vs Dynamically typed:
-  Some defenitions
+<p>The Jargon:	
 <ul>
   <li>Staticly typed: you must specify the type of variable. Allows more error checking</li>
   <li>Dynamically typed: You don't - the system figures out what the type is by itself.</li>
@@ -11,6 +10,7 @@
   <li>Monkey patch: </li>
   <li>Unit testing: </li>
   <li>E2E testing: </li>
+  <li>checksum: </li>
 </ul>
 </p>
 

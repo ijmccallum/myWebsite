@@ -127,5 +127,10 @@
   </li>
 </ul>
 
+<hr />
+<h3>Running out of IP addresses, the NAT box solution (<i>Network Address Translation</i>)</h3>
+<p>A temporary solution that's here to stay!  A public router has the public IP, all the devices behind that router have their own private IP, thus reducing the number of 
+public IP addresses required.</p>
+
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>

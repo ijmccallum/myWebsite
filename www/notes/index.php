@@ -140,6 +140,8 @@
   <div id="Internet" class="col-md-6">
     <h4>The Internet!</h4>
     <div class="list-group">
+      <a href="browserNetworking.php" class="list-group-item">Browser Networking (IP, TCP, UDP, TLS)</a>
+      <a href="wirelessNetworking.php" class="list-group-item">Wireless Networking</a>
       <a href="DNS.php" class="list-group-item">DNS</a>
       <a href="htaccess.php" class="list-group-item">.htaccess</a>
     </div>
@@ -157,7 +159,9 @@
 <div class="row">
   <div id="libraries" class="col-md-6">
     <h4>Cool libraries</h4>
-    <div class="list-group">
+    <div class="list-group"> 
+      <a href="#" class="list-group-item greyout"><strong>WebRTC</strong><br />
+        Real time communication (out of interest, it uses UDP instead of TCP)</a>
       <a href="proximity.php" class="list-group-item">Proximity</a>
       <a href="#" class="list-group-item greyout"><strong>Twitter Bootstrap</strong><br />
         CSS framework.  A lot of very useful HTML, CSS and Javascript elements. (used on this site)</a>
