@@ -77,9 +77,12 @@ for ($x=0; $x<$docDepth; $x++){
                         <div id="hotdog2"></div>
                         <div id="hotdog3"></div>
                         </a>
+                        <h1>I Build things for The Internet</h1>
+                        <!--
                     <div class="indexHeadPicWrap">
                         <img src="pics/indexBG/Scotland-1440-900.jpg" class="indexHeadPic">
                     </div>
+                        -->
                     <!--
                     <div id="homeBtnsWrap">
                         <div id="homeBtnsCenter">
@@ -110,6 +113,20 @@ for ($x=0; $x<$docDepth; $x++){
                         } ?> 
                     </h1>
                 <?php } ?>
+
+                <!-- Top right, call to action? -->
+                <div class="pull-right top-right-btn">  
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
+                        <span class="hidden-xs">Contact Me <span class="caret"></span></span>
+                        <span class="glyphicon glyphicon-envelope visible-xs"></span>
+                      </button>
+                      <ul class="dropdown-menu right-dropdown-menu" role="menu">
+                        <li><a href="#">mailto:</a></li>
+                        <li><a href="#">copy: ijmccallum</a></li>
+                      </ul>
+                    </div>
+                </div>
 
             </div>
             <div class="page-content inset">

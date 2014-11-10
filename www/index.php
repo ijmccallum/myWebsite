@@ -1,8 +1,60 @@
 <?php $iainPageTitle = '@ijmccallum'; $docDepth = 0;?>
 <?php include 'partials/head.php'; ?>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<p>Pic of me</p>
+		</div>
+		<div class="col-md-8">
+			<p>I love making things that mean something, <br />
+				Born & raised in Scotland, now living in America.<br />
+				Began professional life with Design and Digital Media. I now code web applications<br />
+			</p>
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="col-md-4">
+			<img src="pics/webDev/wikilogic02.jpg" class="webDevScreenshot">
+			<p><strong>Wikilogic</strong> is an open source project currently being developed and looked after by myself and a few others.  
+	            The idea is to create a system that will allow us to map out all logic, or as much of it as we can fit into a sharded database.  
+	            This might seem a little wild but at a holistic level, it's actually quite simple.<br /><br />  We have a live demo running which I can supply a link to on request,
+	            or you can get it running locally by visiting the <a href="https://github.com/WikiLogic/WikiLogic">Github</a> page.  We'll be writing about more general progress
+	            on the <a href="http://www.wikilogicfoundation.org/" target="_blank">main site</a> and the in depth theory is being laid out in our <a href="http://www.wikilogicfoundation.org/wiki">meta wiki</a>.
+	        </p>
+	        <a href="http://www.wikilogicfoundation.org/" target="_blank">
+				<button type="button" class="btn btn-success btn-lg">Visit Wikilogic!</button>
+			</a>
+		</div>
+		<div class="col-md-4">
+			<img src="pics/synergyShot.png" class="webDevScreenshot">
+			<p><strong>Synergy</strong> a browser based puzzle platformer, built in Unity3D, infused with a message about life.  At the start of this project I was purely
+	        a designer, by the end I had caught the code bug.</p>
+	        <a href="http://sophiesgames.com/Synergy.html" target="_blank">
+				<button type="button" class="btn btn-success btn-lg">Play Synergy!</button>
+			</a>
+			<p><em>Note: this requires the unity web player to run, it will prompt you to download but don't worry - it doesn't take long!</em></p>
+		</div>
+		<div class="col-md-4">
+			<img src="pics/bubbles-shot.png" class="webDevScreenshot">
+			<p><strong>Bubbles!</strong> was an experiment in app development for Android.  It was only meant to be a test to run through the process of creating and publishing
+	            but it turned into a full game written with <code>Create.js</code> and wrapped with <code>Cordova</code>.  As a result of this being a small test that just kept growing, 
+	            it's all written in one gigantic javascript file!  Taught me a thing or two about what not to do.  Still, got it working, pretty proud of that!<br />  
+	            <br />
+	            You can now download it onto any android device or just play it in the browser.
+	        </p>
+	        <a href="bubbles">
+				<button type="button" class="btn btn-success btn-lg">Play Bubbles!</button>
+			</a>
+		</div>
+	</div>
+
+	<!--
 	<div class="row" style="text-align:center;">
 		<h2 class="quirkyHeading">The things I do</h2>
 	</div>
+-->
+	<hr ->
 	<div class="row" style="text-align:center;">
 		<div class="col-md-6">
 
@@ -61,52 +113,6 @@
 			-->
 			
 		</div>
-	</div>
-
-	<hr />
-	<div class="row" style="text-align:center;">
-		<h2 class="quirkyHeading">Some things I've done</h2>
-	</div>
-
-	<div class="row">
-	    <div class="col-md-6">
-	        <img src="pics/webDev/wikilogic02.jpg" class="webDevScreenshot">
-	    </div>
-	    <div class="col-md-6">
-	        <p><strong>Wikilogic</strong> is an open source project currently being developed and looked after by myself and a few others.  
-	            The idea is to create a system that will allow us to map out all logic, or as much of it as we can fit into a sharded database.  
-	            This might seem a little wild but at a holistic level, it's actually quite simple.<br /><br />  We have a live demo running which I can supply a link to on request,
-	            or you can get it running locally by visiting the <a href="https://github.com/WikiLogic/WikiLogic">Github</a> page.  We'll be writing about more general progress
-	            on the <a href="http://www.wikilogicfoundation.org/" target="_blank">main site</a> and the in depth theory is being laid out in our <a href="http://www.wikilogicfoundation.org/wiki">meta wiki</a>.
-	        </p>
-	    </div>
-	</div>
-
-	<div class="row">
-	    <div class="col-md-6">
-	        <img src="pics/bubbles-shot.png" class="webDevScreenshot">
-	    </div>
-	    <div class="col-md-6">
-	        <p><strong>Bubbles!</strong> was an experiment in app development for Android.  It was only meant to be a test to run through the process of creating and publishing
-	            but it turned into a full game written with <code>Create.js</code> and wrapped with <code>Cordova</code>.  As a result of this being a small test that just kept growing, 
-	            it's all written in one gigantic javascript file!  Taught me a thing or two about what not to do.  Still, got it working, pretty proud of that!<br />  
-	            <br />
-	            You can now download it onto any android device or just play it in the browser.
-	        </p>
-	        <code><a target="_blank" href="bubbles">Play</a></code>
-	    </div>
-	</div>
-
-	<div class="row">
-	    <div class="col-md-6">
-	        <img src="pics/synergyShot.png" class="webDevScreenshot">
-	    </div>
-	    <div class="col-md-6">
-	        <p><strong>Synergy</strong> a browser based puzzle platformer, built in Unity3D, infused with a message about life.  At the start of this project I was purely
-	        a designer, by the end I had caught the code bug.</p>
-	        <code><a target="_blank" href="http://sophiesgames.com/Synergy.html">Play</a></code>
-	        <p><em>Note: this requires the unity web player to run, it will prompt you to download but don't worry - it doesn't take long!</em></p>
-	    </div>
 	</div>
 
 <!--

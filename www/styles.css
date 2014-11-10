@@ -34,15 +34,32 @@ body {
 #menu-toggle {
     position: fixed;
     margin-top: 3px;
-    margin-left: -35px;
+    margin-left: -44px;
     background-color: rgba(0,0,0,0);
 }
 .content-header h1 {
-    margin-left:47px;
+    margin-left:52px;
+    padding-left: 10px;
+    padding-top:25px;
 }
 .homeTgl {
-    margin-left:5px !important;
-    margin-top: 5px !important;
+    margin-left:16px !important;
+    margin-top: 28px !important;
+}
+.top-right-btn {
+    margin-right:15px;
+    margin-top:12px;
+}
+
+@media(max-width: 880px) and (min-width: 767px){
+    .top-right-btn { display: none; }
+}
+@media(max-width: 550px) {
+    .top-right-btn { display: none; }
+}
+.right-dropdown-menu {
+    right:0px;
+    left: inherit;
 }
 /*
 #sidebar-wrapper {
