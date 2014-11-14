@@ -77,7 +77,7 @@ for ($x=0; $x<$docDepth; $x++){
                         <div id="hotdog2"></div>
                         <div id="hotdog3"></div>
                         </a>
-                        <h1>I Build things for The Internet</h1>
+                        <h1>Hello!<br />Welcome to my place on the Internet.</h1>
                         <!--
                     <div class="indexHeadPicWrap">
                         <img src="pics/indexBG/Scotland-1440-900.jpg" class="indexHeadPic">
@@ -115,7 +115,7 @@ for ($x=0; $x<$docDepth; $x++){
                 <?php } ?>
 
                 <!-- Top right, call to action? -->
-                <div class="pull-right top-right-btn">  
+                <div class="top-right-btn">  
                     <div class="btn-group">
                       <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
                         <span class="hidden-xs">Contact Me <span class="caret"></span></span>

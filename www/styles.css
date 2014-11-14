@@ -10,6 +10,11 @@ body {
 .hljs {
     background-color:transparent !important;
 }
+.two-cols {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+}
 @media(max-width:991px) {
     .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 
     .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, 
@@ -47,16 +52,11 @@ body {
     margin-top: 28px !important;
 }
 .top-right-btn {
-    margin-right:15px;
-    margin-top:12px;
+    position: absolute;
+    top: -1px;
+    right: 15px;
 }
 
-@media(max-width: 880px) and (min-width: 767px){
-    .top-right-btn { display: none; }
-}
-@media(max-width: 550px) {
-    .top-right-btn { display: none; }
-}
 .right-dropdown-menu {
     right:0px;
     left: inherit;
