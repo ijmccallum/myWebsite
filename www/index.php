@@ -6,9 +6,11 @@
 			<p>Pic of me</p>
 		</div>
 		<div class="col-md-8">
-			<p>I love making things that mean something, <br />
-				Born & raised in Scotland, now living in America.<br />
-				Began professional life with Design and Digital Media. I now code web applications<br />
+			<p class="two-cols">I can't stop learning things, it's brilliant!  Curiosity took a bit of a hit throughout the 
+				education phase of life but it's recovered now, everything is facinating again!  
+				For me, out of anything, the <i>most</i> interesting thing is the internet - not just designing websites or building apps, but the potential they have to impact people,
+				it's phenominal.<br />
+				This leads me to a love of making things that mean something.  The first was the game Synergy, a subtle... pshycology... <br />
 			</p>
 		</div>
 	</div>
