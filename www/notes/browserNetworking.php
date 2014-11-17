@@ -1,4 +1,4 @@
-<?php $iainPageTitle = 'Browser Networking'; $docDepth = 1; ?>
+<?php $iainPageTitle = 'Networking'; $docDepth = 1; ?>
 <?php include '../partials/head.php'; ?>
 
 

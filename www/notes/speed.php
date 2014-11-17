@@ -1,21 +1,119 @@
 <?php $iainPageTitle = 'Website speed guide'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
+<blockquote>The fastest request is a request not made</blockquote>
 
-<h2>Summary of this summary</h2>
+<p>Use <a href="http://www.webpagetest.org/">Web page test</a> to analyse speed.</p>
+
+<p>If you are loading a large resource (massive image, video, audio) you will be limited by bandwidth.  
+	But, in most cases you will be limited by network latency - round trips between client and server.</p>
+	<p>To illustrate the point, here are the results from a study by Mike Belshe:</p>
+	<div class="row">
+		<div class="col-md-6"><img src="latencyVsBandwidth.png" class="img-responsive"></div>
+	</div>
 
 <ul>
-<li>use Gzip</li>
-<li>use a CDN</li>
-<li>combine files to minimise requests (JS, CSS, Sprites)</li>
-<li>Split files between frequent and infrequent for fingerprint caching</li>
+	<li>
+		<p>The <strong>Navigation Timing</strong> API can be an interesting tool to check the real-world preformance of your site, it exposes a <code>performance.timing</code>
+		object which you can fire back to your servers.</p>
+		<div class="row">
+			<div class="col-md-6"><img src="navTimeApi.png" class="img-responsive"></div>
+			<p><a href="http://chimera.labs.oreilly.com/books/1230000000545/ch10.html#RUM">Source</a></p>
+		</div>
+	</li>
+	<li>
+		<p><strong>Resource Timing</strong> Navigation timing provides metrics for root documents, resource timing does the same for each resource.</p>
+	</li>
+	<li>
+		<p><strong>User Timing</strong> provides a simple JS API for application specific time measurments
+<pre><code>function init() {
+  performance.mark("startTask1"); 1
+  applicationCode1(); 2
+  performance.mark("endTask1");
+
+  logPerformance();
+}
+
+function logPerformance() {
+  var perfEntries = performance.getEntriesByType("mark");
+  for (var i = 0; i < perfEntries.length; i++) { 3
+    console.log("Name: " + perfEntries[i].name +
+                " Entry Type: " + perfEntries[i].entryType +
+                " Start Time: " + perfEntries[i].startTime +
+                " Duration: "   + perfEntries[i].duration  + "\n");
+  }
+  console.log(performance.timing); 4
+}</code></pre> <a href="http://chimera.labs.oreilly.com/books/1230000000545/ch10.html#RUM">Source</a>
+		</p>
+	</li>
+</ul>
+
+<hr />
+
+<h2>The <strong>Resource Waterfall</strong></h2>
+
+<p><a href="http://www.webpagetest.org/">Web page test</a> is a good tool to quickly analyse</p>
+<p>The browser parses the HTML imcrementally allowing it to discover and request required assets early, hence the waterfall.  
+	The order / timing of requests is determined mainly by the structure of the markup.  For each request there will be sevoral stages:<br />
+	DNS resolution | TCP handshake | TLS (if required) | HTTP request | Download time <br />
+These stages are represented by different colours in your browsers network inspector.  You will also see sevoral vertical lines, 
+the most important of which is the "document complete" event (the spinner stops).  This can be fired early with remaining content loading in the background
+vis asynchronous requests.</p>
+<p>The <strong>Connection View</strong> (available in WebPageTest if not in your browser) shows the activity of each TCP connection and the amount of lanency 
+that is going on in comparison to actual download time.<br />
+The last main network analysis tool is the small graph showing <strong>bandwidth utilization</strong></p>
+<hr />
+
+
+
+<h2>Summary of this summary (what to do!)</h2>
+
+<ul>
+	<li>Reduce DNS lookups (every one adds another roundtrip and more network latency)</li>
+	<li>combine files to minimise requests (JS, CSS, Sprites) <strong>Concatenation / spriting</strong>: eliminates network latency with less requests and protocal overhead (http headers), 
+		but can also create a negative affect of preformance, it's an imperfect science: consider modularity and unneccisary data transfer.</li>
+	<li>use a CDN (less distance = quicker round = big drop in latency!)</li>
+	<li>Use Caching (Split files between frequent and infrequent for fingerprint caching)</li>
+	<li>use Gzip</li>
 <li>extract resources crucial for above-the-fold rendering, defer the rest <em>(code snippet to do this included here in Loading resources > deferring)</em></li>
 <li>Load CSS before JS</li>
 <li>Images: small = GIF, Photo = JPG, else = PNG</li>
 <li>Images: specify sizes, eliminates reflow</li>
 <li>CSS: specific selectors are better</li>
 <li>design UX for <a href="https://www.youtube.com/watch?v=7ubJzEi3HuA">perception performance</a></li>
+<li>Avoid HTTP redirects</li>
 </ul>
+
+<hr />
+<p><i>To keep a user enguaged, get the percieved load tie under 250ms</i></p>
+<table>
+<thead><tr>
+<td>Delay</td>
+<td>User perception</td>
+</tr></thead>
+<tbody>
+<tr>
+<td><p>0–100 ms</p></td>
+<td><p>Instant</p></td>
+</tr>
+<tr>
+<td><p>100–300 ms</p></td>
+<td><p>Small perceptible delay</p></td>
+</tr>
+<tr>
+<td><p>300–1000 ms</p></td>
+<td><p>Machine is working</p></td>
+</tr>
+<tr>
+<td><p>1,000+ ms</p></td>
+<td><p>Likely mental context switch</p></td>
+</tr>
+<tr>
+<td><p>10,000+ ms</p></td>
+<td><p>Task is abandoned</p></td>
+</tr>
+</tbody>
+</table>
 
 <hr />
 
@@ -35,7 +133,7 @@
 
 <h5>How to set up</h5>
 
-<p>Check if Chris / Andrew / Stuart know how to do this <br />
+<p>
 Expires: 1 year <br />
 Cache-Control: max-age 3153600 <br />
 Set last modified</p>
@@ -67,7 +165,7 @@ Set last modified</p>
 <p>Combine for the same reasons as above.  3 files max, 2 preferred.</p>
 
 <ul>
-<li>1.CSS the minimum required to render the initial view</li>
+<li>1.CSS the minimum required to render the initial view.  <i>the Gmail team split their CSS between first-paint critical CSS and the rest.  They also inlined the critical CSS and JS into the HTML document.</i></li>
 <li>2.CSS all the rest</li>
 </ul>
 
@@ -78,6 +176,9 @@ Set last modified</p>
 <li>Sprite small images first, cache them.</li>
 <li>Consider reducing the resulting sprites into the same 256 colour palette to avoid the PNG truecolor type</li>
 </ul>
+
+<h5>Inlining</h5>
+<p>Inline page unique assets which are 1 - 2kb as individually they can incurr high HTTP overhead / latency.</p>
 
 <h5>Order in the head</h5>
 

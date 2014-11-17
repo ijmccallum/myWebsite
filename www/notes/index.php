@@ -75,11 +75,12 @@
   <div id="Internet" class="col-md-6">
     <h4>The Internet!</h4>
     <div class="list-group">
-      <a href="browserNetworking.php" class="list-group-item">Browser Networking (IP, TCP, UDP, TLS)</a>
+      <a href="browserNetworking.php" class="list-group-item">Networking (IP, TCP, UDP, TLS)</a>
       <a href="wirelessNetworking.php" class="list-group-item">Wireless Networking</a>
       <a href="http.php" class="list-group-item">HTTP</a>
       <a href="DNS.php" class="list-group-item">DNS</a>
       <a href="htaccess.php" class="list-group-item">.htaccess</a>
+      <a href="browsers.php" class="list-group-item">Browsers</a>
     </div>
     <h4 id="Optimisation">Optimisation</h4>
     <div class="list-group">
@@ -147,6 +148,16 @@
       <a href="XSS.php" class="list-group-item">XSS</a>
       <a href="" class="list-group-item greyout">SQL Injection</a>
       <a href="" class="list-group-item greyout">Mutation XSS</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <h4>Books / reading materials to go through:</h4>
+    <div class="list-group">
+      <a href="" class="list-group-item"><i>HTTP: The Definitive Guide</i> by David Gourley</a>
+      <a href="" class="list-group-item"><i>High Performance Web Sites</i> by Steve Souders</a>
     </div>
   </div>
 </div>
