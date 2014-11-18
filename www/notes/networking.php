@@ -4,6 +4,7 @@
 
 <ul class="list-group">
   <li class="list-group-item">Application (HTTP, ...)</li>
+  <li class="list-group-item">Binary frame (HTTP 2.0)</li>
   <li class="list-group-item">Session (TLS)</li>
   <li class="list-group-item">Transport (TCP / UDP)</li>
   <li class="list-group-item">Network (IP)</li>

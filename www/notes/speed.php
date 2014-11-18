@@ -1,16 +1,57 @@
 <?php $iainPageTitle = 'Website speed guide'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
+<h3>Before starting, it's good to understand hard preformance limits</h3>
+<p><strong>The speed of light</strong>, can't beat that - yet! It's also impacted by the material used to build the physical data link, 
+	so we're not just looking at light but actually the speed of light through fiber or other materials.  Also, <strong>Round Trips</strong>, as in 
+the TCP handshake which requires data to be sent then returned (one round trip).  Depending on network weather (the amount of traffic, preformance
+of the intermidiaries between client and server, the clients wireless situation...) you are looking at tens or hundreds of milliseconds before your application
+data even begins to be sent!  And, this happens for every connection of which (these days) there are usually many, each dealing multiple requests.  
+Until HTTP 2.0 takes over and HTTP 1.1 fades away (10 years+?) the biggest bottleneck many applications are going to be dealing with is latency (unless
+you're Netflix, YouTube or another such service streaming large amounts of data over a persistant conneciton).  So until we can teleport, instant web pages
+are not physically possible, but we can certainly make them ridiculously quick!</p>
 <blockquote>The fastest request is a request not made</blockquote>
+Failing that, at least make sure your server is is configured to use the latest TCP and TLS best practices.
+<hr />
+<p><i>To keep a user enguaged, get the percieved load tie under 250ms</i></p>
+<table>
+<thead><tr>
+<td>Delay</td>
+<td>User perception</td>
+</tr></thead>
+<tbody>
+<tr>
+<td><p>0–100 ms</p></td>
+<td><p>Instant</p></td>
+</tr>
+<tr>
+<td><p>100–300 ms</p></td>
+<td><p>Small perceptible delay</p></td>
+</tr>
+<tr>
+<td><p>300–1000 ms</p></td>
+<td><p>Machine is working</p></td>
+</tr>
+<tr>
+<td><p>1,000+ ms</p></td>
+<td><p>Likely mental context switch</p></td>
+</tr>
+<tr>
+<td><p>10,000+ ms</p></td>
+<td><p>Task is abandoned</p></td>
+</tr>
+</tbody>
+</table>
+<hr />
+
+<p>Some results from a study by Mike Belshe, bandwidth vs latency:</p>
+<div class="row">
+	<div class="col-md-6"><img src="latencyVsBandwidth.png" class="img-responsive"></div>
+</div>
+
 
 <p>Use <a href="http://www.webpagetest.org/">Web page test</a> to analyse speed.</p>
 
-<p>If you are loading a large resource (massive image, video, audio) you will be limited by bandwidth.  
-	But, in most cases you will be limited by network latency - round trips between client and server.</p>
-	<p>To illustrate the point, here are the results from a study by Mike Belshe:</p>
-	<div class="row">
-		<div class="col-md-6"><img src="latencyVsBandwidth.png" class="img-responsive"></div>
-	</div>
 
 <ul>
 	<li>
@@ -85,39 +126,17 @@ The last main network analysis tool is the small graph showing <strong>bandwidth
 </ul>
 
 <hr />
-<p><i>To keep a user enguaged, get the percieved load tie under 250ms</i></p>
-<table>
-<thead><tr>
-<td>Delay</td>
-<td>User perception</td>
-</tr></thead>
-<tbody>
-<tr>
-<td><p>0–100 ms</p></td>
-<td><p>Instant</p></td>
-</tr>
-<tr>
-<td><p>100–300 ms</p></td>
-<td><p>Small perceptible delay</p></td>
-</tr>
-<tr>
-<td><p>300–1000 ms</p></td>
-<td><p>Machine is working</p></td>
-</tr>
-<tr>
-<td><p>1,000+ ms</p></td>
-<td><p>Likely mental context switch</p></td>
-</tr>
-<tr>
-<td><p>10,000+ ms</p></td>
-<td><p>Task is abandoned</p></td>
-</tr>
-</tbody>
-</table>
-
-<hr />
 
 <h3>Caching</h3>
+
+<p>
+Caching headers:
+<ul>
+	<li>Cache-Control</li>
+	<li>ETag</li>
+	<li>Last-Modified</li>
+</ul>
+</p>
 
 <h5>Fingerprint resource URL's</h5>
 
@@ -314,10 +333,6 @@ Inline the CSS which applies to above-the-fold content into a style block in the
 
 <p><a href="http://www.webpagetest.org/"> webpagetest.org </a> <br />
 <a href="https://developers.google.com/speed/pagespeed/">Google pagespeed</a></p>
-
-<h3>SPDY</h3>
-
-<p>Networking protocol that augments HTTP</p>
 
 
 

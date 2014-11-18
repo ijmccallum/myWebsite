@@ -75,18 +75,19 @@
   <div id="Internet" class="col-md-6">
     <h4>The Internet!</h4>
     <div class="list-group">
-      <a href="browserNetworking.php" class="list-group-item">Networking (IP, TCP, UDP, TLS)</a>
-      <a href="wirelessNetworking.php" class="list-group-item">Wireless Networking</a>
-      <a href="http.php" class="list-group-item">HTTP</a>
       <a href="DNS.php" class="list-group-item">DNS</a>
       <a href="htaccess.php" class="list-group-item">.htaccess</a>
       <a href="browsers.php" class="list-group-item">Browsers</a>
+      <a href="http.php" class="list-group-item">HTTP (1.1 - 2.0)</a>
+      <a href="wirelessNetworking.php" class="list-group-item">Wireless Networking</a>
+      <a href="networking.php" class="list-group-item">Networking (IP, TCP, UDP, TLS)</a>
     </div>
     <h4 id="Optimisation">Optimisation</h4>
     <div class="list-group">
+      <a href="speed.php" class="list-group-item">Speed</a>
+      <a href="speed.php" class="list-group-item greyout">Load Balancers</a>
       <a href="seo.php" class="list-group-item">SEO</a>
       <a href="smo.php" class="list-group-item">SMO</a>
-      <a href="speed.php" class="list-group-item">Speed</a>
     </div>
   </div>
 </div>
@@ -148,21 +149,10 @@
       <a href="XSS.php" class="list-group-item">XSS</a>
       <a href="" class="list-group-item greyout">SQL Injection</a>
       <a href="" class="list-group-item greyout">Mutation XSS</a>
+      <a href="" class="list-group-item greyout">CRIME - Compression Ratio Info-leak Made Easy</a>
     </div>
   </div>
 </div>
-
-<div class="row">
-  <div class="col-md-6">
-    <h4>Books / reading materials to go through:</h4>
-    <div class="list-group">
-      <a href="" class="list-group-item"><i>HTTP: The Definitive Guide</i> by David Gourley</a>
-      <a href="" class="list-group-item"><i>High Performance Web Sites</i> by Steve Souders</a>
-    </div>
-  </div>
-</div>
-
-
 
 
 <div class="row">
@@ -218,6 +208,17 @@
       <a href="designtheory.php" class="list-group-item">Design Theory</a>
       <a href="inspiration.php" class="list-group-item">Inspiration / life theory</a>
       <a href="investing.php" class="list-group-item">Investing</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <h4>Books / reading materials to go through:</h4>
+    <div class="list-group">
+      <p class="list-group-item"><i>HTTP: The Definitive Guide</i> by David Gourley</p>
+      <p class="list-group-item"><i>High Performance Web Sites</i> by Steve Souders</p>
+      <p class="list-group-item"><i>The Tangled Web: A Guide to Securing Modern Web Applications</i> by Michal Zalewski</p>
     </div>
   </div>
 </div>
