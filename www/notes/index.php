@@ -162,6 +162,7 @@
   <div id="libraries" class="col-md-6">
     <h4>Cool libraries (and some polyfills for them)</h4>
     <div class="list-group"> 
+      <a href="famous.php" class="list-group-item">Famo.us</a>
       <a href="proximity.php" class="list-group-item">Proximity</a>
       <a href="#" class="list-group-item greyout"><strong>Twitter Bootstrap</strong><br />
         CSS framework.  A lot of very useful HTML, CSS and Javascript elements. (used on this site)</a>

@@ -6,11 +6,13 @@
 			<p>Pic of me</p>
 		</div>
 		<div class="col-md-8">
-			<p class="two-cols">I can't stop learning things, it's brilliant!  Curiosity took a bit of a hit throughout the 
-				education phase of life but it's recovered now, everything is facinating again!  
-				For me, out of anything, the <i>most</i> interesting thing is the internet - not just designing websites or building apps, but the potential they have to impact people,
-				it's phenominal.<br />
-				This leads me to a love of making things that mean something.  The first was the game Synergy, a subtle... pshycology... <br />
+			<p class="text-col-2">
+				I can't stop learning things, it's brilliant! Curiosity took a bit of a hit throughout the education phase of life 
+				but it's recovered now, everything is fascinating again! For me, out of anything, the <i>most</i> interesting thing is the 
+				internet - not just designing websites or building apps, but the potential they have to impact people, it's phenomenal.<br />
+				Took me a while to figure out this passion, but since it dawned on me I've been set on learning everything there is to 
+				learn about the web, from networking protocols to the weirdest trends/projects floating around. “Find something you love to do, 
+				and you'll never work a day in your life” - yep, I never used to believe in that!<br />
 			</p>
 		</div>
 	</div>
@@ -20,7 +22,7 @@
 			<img src="pics/webDev/wikilogic02.jpg" class="webDevScreenshot">
 			<p><strong>Wikilogic</strong> is an open source project currently being developed and looked after by myself and a few others.  
 	            The idea is to create a system that will allow us to map out all logic, or as much of it as we can fit into a sharded database.  
-	            This might seem a little wild but at a holistic level, it's actually quite simple.<br /><br />  We have a live demo running which I can supply a link to on request,
+	            This might seem a little wild at a holistic level, but it's actually quite simple.<br /><br />  We have a live demo running which I can supply a link to on request,
 	            or you can get it running locally by visiting the <a href="https://github.com/WikiLogic/WikiLogic">Github</a> page.  We'll be writing about more general progress
 	            on the <a href="http://www.wikilogicfoundation.org/" target="_blank">main site</a> and the in depth theory is being laid out in our <a href="http://www.wikilogicfoundation.org/wiki">meta wiki</a>.
 	        </p>
@@ -58,6 +60,7 @@
 -->
 	<hr ->
 	<div class="row" style="text-align:center;">
+		<h2 class="quirkyHeading">The things I do</h2>
 		<div class="col-md-6">
 
 			<h2><a href="webdev.php">Web App Development</a></h2>
@@ -163,7 +166,7 @@
 	<div class="row">
 		<div class="col-md-2"></div>
 	    <div class="col-md-8">
-	    	<p class="lead">How I got here is a bit of a story.  A series of discoveries that lead 
+	    	<p class="text-col-2">How I got here is a bit of a story.  A series of discoveries that lead 
 	    		through more than a few creative industries.  The first happened while I was training 
 	    		to be an Architect in Edinburgh, Scotland.  I discovered just how much more amazing 
 	    		drafting and 3D software is in comparison to hand drawing.  It felt like discovering 
@@ -171,7 +174,7 @@
 
 	    		I'd had a taste of the digital world and wanted more, so I finished up my 
 	    		training and moved to one of Scotland's technology hubs, the University of Abertay in Dundee.
-	    		I learnt modeling, texturing, rigging and animtaion in 3D, special effects with particle systems, 
+	    		I learnt modeling, texturing, rigging and animation in 3D, special effects with particle systems, 
 	    		lighting, stereoscopics, editing, screen writing, sound effects, and, to top it all off, 
 	    		I discovered that all this was being applied procedurally in game development.  <br /><br />
 

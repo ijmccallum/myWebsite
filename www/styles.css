@@ -10,10 +10,23 @@ body {
 .hljs {
     background-color:transparent !important;
 }
-.two-cols {
+.text-col-2 {
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
     -moz-column-count: 2; /* Firefox */
     column-count: 2;
+}
+.text-col-3 {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+}
+@media(max-width: 570px) {
+    .text-col-2,
+    .text-col-3 {
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; /* Firefox */
+    column-count: 2;
+}
 }
 @media(max-width:991px) {
     .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 

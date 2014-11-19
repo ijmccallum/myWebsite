@@ -77,7 +77,9 @@ for ($x=0; $x<$docDepth; $x++){
                         <div id="hotdog2"></div>
                         <div id="hotdog3"></div>
                         </a>
-                        <h1>Hello!<br />Welcome to my place on the Internet.</h1>
+                        <h1>Hello!<br />Welcome to my 
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> in the 
+                            <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span></h1>
                         <!--
                     <div class="indexHeadPicWrap">
                         <img src="pics/indexBG/Scotland-1440-900.jpg" class="indexHeadPic">
@@ -115,6 +117,7 @@ for ($x=0; $x<$docDepth; $x++){
                 <?php } ?>
 
                 <!-- Top right, call to action? -->
+                <!--
                 <div class="top-right-btn">  
                     <div class="btn-group">
                       <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
@@ -122,11 +125,12 @@ for ($x=0; $x<$docDepth; $x++){
                         <span class="glyphicon glyphicon-envelope visible-xs"></span>
                       </button>
                       <ul class="dropdown-menu right-dropdown-menu" role="menu">
-                        <li><a href="#">mailto:</a></li>
+                        <li><a href="mailto:ijmccallum@hotmail.co.uk">mailto:</a></li>
                         <li><a href="#">copy: ijmccallum</a></li>
                       </ul>
                     </div>
                 </div>
+            -->
 
             </div>
             <div class="page-content inset">
