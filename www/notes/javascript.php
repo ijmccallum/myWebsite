@@ -5,6 +5,8 @@
 
 
 <hr />
+<p>blob interface for efficent transmission of data</p>
+<p>Polyfill libraries</p>
 
 <h2>Ajax</h2>
 Data is sent with an <strong>XMLHttpRequest object</strong> (an ActiveXObjact for IE5 & 6):

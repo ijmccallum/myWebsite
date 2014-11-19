@@ -81,6 +81,8 @@
       <a href="http.php" class="list-group-item">HTTP (1.1 - 2.0)</a>
       <a href="wirelessNetworking.php" class="list-group-item">Wireless Networking</a>
       <a href="networking.php" class="list-group-item">Networking (IP, TCP, UDP, TLS)</a>
+      <a href="webrtc.php" class="list-group-item"><strong>WebRTC</strong><br />
+        Real time communication (out of interest, it uses UDP instead of TCP)</a>
     </div>
     <h4 id="Optimisation">Optimisation</h4>
     <div class="list-group">
@@ -150,6 +152,7 @@
       <a href="" class="list-group-item greyout">SQL Injection</a>
       <a href="" class="list-group-item greyout">Mutation XSS</a>
       <a href="" class="list-group-item greyout">CRIME - Compression Ratio Info-leak Made Easy</a>
+      <a href="" class="list-group-item greyout">cache poisoning attack (WebSockets)</a>
     </div>
   </div>
 </div>
@@ -157,10 +160,8 @@
 
 <div class="row">
   <div id="libraries" class="col-md-6">
-    <h4>Cool libraries</h4>
+    <h4>Cool libraries (and some polyfills for them)</h4>
     <div class="list-group"> 
-      <a href="#" class="list-group-item greyout"><strong>WebRTC</strong><br />
-        Real time communication (out of interest, it uses UDP instead of TCP)</a>
       <a href="proximity.php" class="list-group-item">Proximity</a>
       <a href="#" class="list-group-item greyout"><strong>Twitter Bootstrap</strong><br />
         CSS framework.  A lot of very useful HTML, CSS and Javascript elements. (used on this site)</a>
