@@ -75,12 +75,16 @@
   <div id="Internet" class="col-md-6">
     <h4>The Internet!</h4>
     <div class="list-group">
+      <a href="html.php" class="list-group-item">HTML / CSS</a>
       <a href="DNS.php" class="list-group-item">DNS</a>
       <a href="htaccess.php" class="list-group-item">.htaccess</a>
       <a href="browsers.php" class="list-group-item">Browsers</a>
       <a href="http.php" class="list-group-item">HTTP (1.1 - 2.0)</a>
       <a href="wirelessNetworking.php" class="list-group-item">Wireless Networking</a>
       <a href="networking.php" class="list-group-item">Networking (IP, TCP, UDP, TLS)</a>
+    </div>
+    <div class="list-group">
+      <a href="serviceWorker.php" class="list-group-item">ServiceWorkers</a>
       <a href="webrtc.php" class="list-group-item"><strong>WebRTC</strong><br />
         Real time communication (out of interest, it uses UDP instead of TCP)</a>
     </div>
