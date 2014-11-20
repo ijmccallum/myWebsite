@@ -4,7 +4,7 @@
 <p>Not going over the basics here, just things I like to have clear in my own head!</p>
 <hr />
 
-<h3>CSS</h3>
+<h3>CSS Layout properties</h3>
 
 <p><strong>Position</strong>
 	<ul>
@@ -38,7 +38,6 @@
 		<li><i>inline-block</i>: like inline plus the ability to set width and height!<br />
 			These are affected by the <i>vertical-align</i> property.
 		</li>
-		<li><i>flex</i></li>
 	</ul>
 </p>
 
@@ -50,6 +49,30 @@ the actual width of the element
           box-sizing: border-box;
 }</code></pre>
 </p>
+
+<p><strong>Flexbox</strong>: flexible layout module to help with responsive layouts.  It consitis of a 
+	<i>Flex container</i> (<code>display: flex;</code>) and <i>flex items</i>.<br />
+	The container:
+	<ul>
+		<li>We can set the direction: <code>flex-direction: row | row-reverse | column | column-reverse;</code></li>
+		<li>the wrap: <code>flex-wrap: nowrap | wrap | wrap-reverse;</code></li>
+		<li><i>short hand for the above: <code>flex-flow: &lt;‘flex-direction’&gt; || &lt;‘flex-wrap’&gt;</code></i></li>
+		<li>the justification: <code>justify-content: flex-start | flex-end | center | space-between | space-around;</code><br />
+			space-between will not leave any space between the container edge and the first item, ditto for the end<br />
+			space-around will add space at the edges
+		</li>
+	</ul>
+	The children:
+	<ul>
+		<li>We can manipulate the order: <code> order: &lt;integer&gt;;</code></li>
+		<li>We can set the proportional size with arbratery numbers: <code>flex-grow: &lt;number&gt;;</code></li>
+		<li></li>
+	</ul>
+	<a href="http://css-tricks.com/snippets/css/a-guide-to-flexbox/">a more visual guide to the flexbox elements</a>
+</p>
+
+<hr />
+<h3>HTML Accessibility</h3>
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
