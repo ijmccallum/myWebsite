@@ -103,7 +103,66 @@
 </ul>
 </p>
 
-<p><strong>Spies</strong>: oh my this is killing my brain - WHAT </p>
+<p><strong>Spies</strong>: checking up on calls, their arguments, return values, exceptions thrown...<br />
+In these examples, 
+<pre><code>obj = {
+	functionName: function(value) {
+		bar = value;
+	}
+}</code></pre>
+<ul>
+	<li><code>spyOn(obj, 'functionName')</code> allows us to spy on the function</li>
+	<li><code>expect(obj.functionName).toHaveBeenCalled()</code> true if <i>obj.functionName</i> was called</li>
+	<li><code>expect(obj.method).toHaveBeenCalledWith('foo', 'bar')</code> can be called at seperate times with each arg</li>
+	<li><code>obj.method.callCount</code> number of times it was called</li>
+	<li><code>obj.method.mostRecentCall.args</code> args to the most recent call</li>
+	<li><code>obj.method.reset()</code> resets calles made to the spy</li>
+	<li><code>spyOn(obj, 'functionName').and.callThrough();</code> The spy method also calls through the real method? not sure what this is</li>
+	<li><code>spyOn(obj, 'functionName').and.returnValue(745);</code> every call the <i>functionName</i> will return 745</li>
+	<li>
+<pre><code>spyOn(obj, "functionName").and.callFake(function() {
+      return 1001;
+    });</code></pre>
+    like <i>returnValue</i> but allows us to write a function in place
+	</li>
+	<li><code>spyOn(obj, 'functionName').and.throwError("errorName");</code></li>
+	<li><code>obj.method.and.stub();</code> //not sure</li>
+	<li><code></code></li>
+</ul>
+Calls to functions that we ae spying on are tracked by the <code>calls</code> property, it's an array:
+<ul>
+	<li><code>.calls.any()</code> returns true if the function has been called at least once</li>
+	<li><code>.calls.count()</code> what it says on the tin!</li>
+	<li><code>.calls.argsFor(index)</code> index number of the call you're interested in, returns the args it was passed</li>
+	<li><code>.calls.allArgs()</code> all the args sent to your function ever (in this suite)</li>
+	<li><code>.calls.all()</code> //not too sure</li>
+	<li><code>.calls.first()</code> returns the first call and it's details</li>
+	<li><code>.calls.reset()</code> resets the tracking!</li>
+	<li><code>jasmine.any</code> matches the class, eg <code>expect(foo).toHaveBeenCalledWith(jasmine.any(Number), jasmine.any(Function));</code></li>
+	<li><code>jasmine.objectContaining({ bar: "baz" })</code> returns true if the object containes this pair</li>
+</ul>
+</p>
+
+<p><strong>Manipulating time</strong>: <br />
+To set up we must have <code>jasmine.clock().install;</code>, usually in <code>beforeEach()</code>, followed by <code>jasmine.clock().uninstall();</code>
+in <code>afterEach()</code>.  Good example from the docs:
+<pre><code>it("causes a timeout to be called synchronously", function() {
+	setTimeout(function() {
+		timerCallback();
+	}, 100);
+
+	expect(timerCallback).not.toHaveBeenCalled();
+
+	jasmine.clock().tick(101);
+
+	expect(timerCallback).toHaveBeenCalled();
+});</code></pre>
+Mock the date:
+<pre><code>var baseTime = new Date(2013, 9, 23);
+jasmine.clock().mockDate(baseTime);
+</code></pre>
+<strong>It does asyncronous!</strong> but I don't understand the docs at the moment
+</p>
 
 
                 
