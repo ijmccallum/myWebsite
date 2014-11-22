@@ -82,6 +82,30 @@
 	<li><code>.not.toThrow();</code></li>
 </ul>
 </p>
+<p><strong>Setup and Teardown:</strong> a few handy functions to prepare the context (variables defined on the <i>describe</i> scope),
+<ul>
+	<li><code>beforeEach(function(){ ... };)</code></li>
+	<li><code>afterEach</code></li>
+	<li><code>beforeAll</code></li>
+	<li><code>afterAll</code></li>
+</ul>
+</p>
+<p><strong>this</strong> is an empty object on the <i>describe</i> scope, it is set to empty for each block of tests, 
+	we can use it to share objects between <i>it</i>'s, <code>this.value = "sharedThing";</code>
+</p>
+<p><strong>Nested Describe</strong> are possible! And work with <i>beforeEach</i> and whatnot</p>
+<p><strong>Disabling suites</strong> so as to skip them: <code>xdescribe</code> and <code>xit</code></p>
+<p><strong>Pending</strong> functions will show up as pending if:
+<ul>
+	<li><code>xit</code></li>
+	<li><code>pending();</code> is called within <code>it()</code></li>
+	<li><code>it('doesn't have a function')</code></li>
+</ul>
+</p>
+
+<p><strong>Spies</strong>: oh my this is killing my brain - WHAT </p>
+
+
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
