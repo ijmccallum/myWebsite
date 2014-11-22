@@ -133,10 +133,9 @@
   <div id="Testing" class="col-md-6">
     <h4>Testing</h4>
     <div class="list-group">
-      <a href="" class="list-group-item greyout">Jasmine</a>
+      <a href="angularTesting.php" class="list-group-item">Angular (Karma & Jasmine)</a>
       <a href="" class="list-group-item greyout">QUnit</a>
       <a href="" class="list-group-item greyout">Mocha</a>
-      <a href="" class="list-group-item greyout">Karma</a>
       <a href="" class="list-group-item greyout">errorception (not a unit test, it tracks errors the real users in the field are hitting.)</a>
     </div>
     <h4>Analysis tools</h4>
