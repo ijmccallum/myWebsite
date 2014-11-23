@@ -1,8 +1,69 @@
 <?php $iainPageTitle = 'Javascript'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
+<h3>JavaScript Objects</h3>
+<p>The Object data type is JavaScript's only complex one, it can contain 5 simple data types: Number, String, Boolean, Undefined, & Null.</p>
+<p><strong>Saving refrences vs primitives</strong>, simple data saved directly onto a variable is passed as raw data, objects saved onto a variable 
+are saved as refrences so two variables may each hold a refrence to the same object:
+<pre><code>​var primitive = "Kobe";  
+​var anotherPrimitive = person;
+primitive = "Bryant";
 
+console.log(anotherPrimitive); // Kobe​
+console.log(primitive); // Bryant
 
+var object = {name: "Kobe"};
+​var anotherObject = person; //this saves as a refrence to the object unlike the primitives which are saved as a new copy
+object.name = "Bryant";
+
+console.log(anotherPerson.name); // Bryant​
+console.log(person.name); // Bryant
+</code></pre>
+</p>
+<p><strong>Creating objects</strong> in a few ways:
+<ul>
+	<li><code>var object = {objectName:"John"}</code>: literal</li>
+	<li><code>var object = new Object();</code></li>
+	<li><code>function objConstructer(name){this.name = name};</code> we have just created a new prototype, now: <code> var object = new objConstructer('bubba');</code></li>
+</ul>
+There are also a few built in constructers (prototypes): <code>new Object();</code>, <code>String();</code>, <code>Number();</code>,
+<code>Boolean();</code>, <code>Array();</code>, <code>RegExp();</code>, <code>Function();</code>, and <code>Date();</code>
+</p>
+<p><strong>Object prototypes</strong> are non-existing objects created by these constructor functions. (crazy thought!).  To add a new 
+property to the constructor function you will have to write it into the function code.  But to add an inherent property to the prototype
+we can use the <strong>prototype</strong> keyword: <code>object.prototype.nationality = "Scottish";</code>, now every object created by the 
+objConstructer() function above will have {nationality:"Scottish"}</p>
+
+<p><strong>Functions in objects</strong> are easy - they're done in exactly the same way as primitives.  You can use the <code>this</code> keyword 
+to refrence data in the object itself</p>
+
+<p><strong>The <code>in</code> operator</strong> allows us to check whither an object contains a property. eg:
+<pre><code>​var school = {schoolName:"MIT"};
+console.log("schoolName" in school);  // true​
+console.log("schoolType" in school);  // false​
+console.log("toString" in school);  // true (inherited from the in-build object prototype which all objects inherit from)</code></pre>
+<strong>The <code>hasOwnProperty</code></strong> allows us to check whiter an object has a property which has not been inherited from it's prototype
+<pre><code>
+console.log(school.hasOwnProperty ("schoolName"));  // true​
+console.log(school.hasOwnProperty ("toString"));  // false </code></pre>
+</p>
+<p><strong>The for/in loop</strong> is used to iterate through an object's properties (inherited & own):
+<pre><code>​var school = {schoolName:"MIT", schoolAccredited: true, schoolLocation:"Massachusetts"};
+​for (var eachItem in school) {
+	console.log(eachItem); // Prints schoolName, schoolAccredited, schoolLocation​
+​}</code></pre>
+</p>
+<p><strong>Deleting properties</strong> can be done with <code>delete object.propertyName;</code>, we cannot delete properties inherited from 
+a constructor, properties set to  configurable, or those set in a global variable.</p>
+<p>Each property of an object (key-value pair) also has 3 <strong>object attributes</strong>:
+<ul>
+	<li> Configurable Attribute: if true property cannot be deleted</li>
+	<li>Enumerable: whither the property can be returned in a <code>for/in</code> loop</li>
+	<li>Writable: whither the property can be changed</li>
+</ul>
+</p>
+<p><code>JSON.stringify(object)</code> turns an object into a string.</p>
+<p><code>JSON.parse(string)</code> turns an appropriate string into an object.</p>
 
 <hr />
 <p>blob interface for efficent transmission of data</p>

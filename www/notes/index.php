@@ -125,6 +125,15 @@
       <a href="" class="list-group-item">prettyify minified code browser extension</a>
       <a href="" class="list-group-item">Postman</a>
     </div>
+    <h4>Code Editors</h4>
+    <div class="list-group">
+      <a href="" class="list-group-item">Sublime text<br />
+        Love it - costs money :(
+      </a>
+      <a href="" class="list-group-item">Atom<br />
+        could love it, needs a couple of things
+      </a>
+    </div>
   </div>
 </div>
 
