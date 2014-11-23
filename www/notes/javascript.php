@@ -65,6 +65,8 @@ a constructor, properties set to  configurable, or those set in a global varia
 <p><code>JSON.stringify(object)</code> turns an object into a string.</p>
 <p><code>JSON.parse(string)</code> turns an appropriate string into an object.</p>
 
+<a href="http://javascriptissexy.com/javascript-objects-in-detail/">A good going over of javascript objects</a>
+
 <hr />
 <p>blob interface for efficent transmission of data</p>
 <p>Polyfill libraries</p>
