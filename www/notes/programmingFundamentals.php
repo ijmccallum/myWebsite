@@ -16,6 +16,10 @@
 
 <hr />
 
+<h3>Object Oriented vs procedural programming</h3>
+
+<hr />
+
 <h2>Web application layers</h2>
 
 ...

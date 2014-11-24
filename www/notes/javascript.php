@@ -67,11 +67,92 @@ a constructor, properties set to  configurable, or those set in a global varia
 
 <a href="http://javascriptissexy.com/javascript-objects-in-detail/">A good going over of javascript objects</a>
 
-<hr />
-<p>blob interface for efficent transmission of data</p>
-<p>Polyfill libraries</p>
 
-<h2>Ajax</h2>
+<hr />
+
+
+<h3>scope and hoisting</h3>
+<p>The scope of a variable is defined by the location in which it is declared (or not) by <code>var</code>.  They may be <strong>global</strong>
+if defined in the global space or <strong>local</strong> if defined (<i>var</i>) in a function - JS has a function-level scope as opposed to a block-level
+</p>
+<p>Variables can have either a <i>local</i> or <i>global</i> scope.  Local variables can only be accessed in the same function or in it's child functions.</p>
+<p>Local variables have <strong>priority</strong> over globals.</p>
+<pre><code>var thisIsAglobal = 1;
+anotherGlobal = 1;
+function() {
+	thisIsStillGlobal = 1;
+	var thisIsLocal = 1;
+}
+</code></pre>
+<p><strong>setTimeout</strong> executes everything inside in the global scope.</p>
+<p>Avoid putting variables in the global scope! Mainly to avoid clashes.  If you have to, it's a good idea to follow the WP way and prefix them 
+with something unique.</p>
+<p><strong>Hoisting</strong> happens when a variable is declared further down in a function or in the global scope.
+<ul>
+	<li><code>var x;</code> decleration</li>
+	<li><code>x = 0;</code> assignment</li>
+	<li><code>var x = 0;</code> decleration & assignment</li>
+	<li><code><strong>var x</strong> = 0;</code> <strong>decleration hoisted</strong>, not assignment</li>
+</ul>
+<pre><code>//what you write
+function example(){
+	console.log(randomVar); //undefined
+	var randomVar = 'hi';
+}</code></pre>
+<pre><code>//what gets processed
+function example() {
+	var randomVar;
+	console.log(randomVar); //undefined
+	randomVar = 'hi';
+}
+</code></pre>
+</p>
+<p><strong>Hoisting functions</strong>
+<ul>
+	<li>function expression (anonymous): <code>var functionExpression = function() { ... };</code></li>
+	<li>function expression (named): <code>var functionExpression = function myFunctionExpression() { ... };</code><br />
+		<i>Function expression declerations are hoisted but not their assignment, they will be undefined if called too early.</i></li>
+	<li>function declaration (alwayse named): <code>function functionDeclaration() { ... }</code><br />
+		<i>The full function is hoisted so it can be run even before it has been declared.</i></li>
+</ul>
+in other words
+<ul>
+	<li><code><strong><i>var functionExpression = function()</i></strong> { ... };</code>: <strong><i>hoisted</i></strong> not hoisted</li>
+	<li><code><strong><i>var functionExpression = function myFunctionExpression()</i></strong> { ... }</code>: <strong><i>hoisted</i></strong> not hoisted</li>
+	<li><code><strong><i>function functionDeclaration() { ... }</i></strong></code>: <strong><i>All hoisted</i></strong></li>
+</ul>
+</p>
+
+<a href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/">The source article!</a>
+
+<hr />
+
+
+<h3>Closures</h3>
+<p>Created when you use <i>function()</i> inside another function().  An example:</p>
+<pre><code>function sayHello2(name) {
+  var text = 'Hello ' + name; // local variable
+  var sayAlert = function() { alert(text); }
+  return sayAlert;
+}
+var say2 = sayHello2('jane')</code></pre>
+
+<p><code>sayHello2</code> returns a function, the one that was declaired inside it (<code>sayAlert()</code>) so the variable <code>say2</code> now holds a refrence to that returned function (which is the closure). 
+	<code>console.log(say2.toString()); // "function() { alert(text); }" </code>.<br/ >
+You will notice that the returned function, which is <i>refrenced</i> by <code>say2</code>, has within it a refrence to the variable 'text' which 
+you might expect to have been destroyed after the original sayHello2() function was returned... not so!  The returned function (<code>sayAlert</code>) 
+keeps a refrence to it's creator in secret - this is a closure.</p>
+<a href="http://www.javascriptkit.com/javatutors/closures.shtml">the description of closures</a>
+
+<hr />
+
+<h3>Asynchronous Javascript: talking to the server (and possibly other things)</h3>
+
+<h1>TODO: sort everything below into one well done section</h1>
+<a href="http://tech.pro/blog/1402/five-patterns-to-help-you-tame-asynchronous-javascript">This looks good!</a>
+
+<h3>Ajax</h3>
+<p>This note just covers XMLHttpRequest, for Server-Sent Events and WebSockets see the browser notes section as it's really the browser's api that deals with it all.</p>
 Data is sent with an <strong>XMLHttpRequest object</strong> (an ActiveXObjact for IE5 & 6):
 <pre><code>var xmlhttp;
 if (window.XMLHttpRequest) {
@@ -101,11 +182,34 @@ The <strong>Responce</strong>:<br />
 For non-XML: <code>document.getElementById("myDiv").innerHTML=xmlhttp.responseText;</code><br />
 For XML: <code>xmlDoc=xmlhttp.responseXML;</code>
 
-
-
 <p>Source: <a href="http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp">W3 Schools tutorial on Ajax</a></p>
+
+<h3>jQuery.ajax()</h3>
+<p>promise
+
+<pre><code>var promise = $.ajax({
+  url: "/ServerResource.txt"
+});
+  
+promise.done(successFunction);
+promise.fail(errorFunction);
+promise.always(alwaysFunction);</code></pre>
+
+<pre><code>$("#div1").load("demo_test.txt"); //loads the content of "demo_test.txt" into "#div1"
+$("#div1").load("demo_test.txt #p1"); //in "demo_test.txt" there is an element #p1, it's content gets loaded into the div
+</code></pre>
+</p>
+
 <hr />
-<h2>Async & Callbacks </h2>
+
+
+<h3>Async & Callbacks </h3>
+
+<p>Sometimes functions need to wait until another has completed, so we use <i>callback functions</i>. A jQuery example:
+<pre><code> $("p").hide("slow",function(){
+    alert("The paragraph is now hidden");
+  });</code></pre>
+</p>
 <ul>
 	<li>First off - the bad way, callbacks within an Ajax request's success function - leads to the <strong>pyramid of doom / callback hell</strong> (technical term).
 <pre><code>Ajax request {
