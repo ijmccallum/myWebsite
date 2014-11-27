@@ -146,10 +146,72 @@ keeps a refrence to it's creator in secret - this is a closure.</p>
 
 <hr />
 
-<h3>Asynchronous Javascript: talking to the server (and possibly other things)</h3>
+<h3>Asynchronous Javascript, talking to the server (and possibly other things)</h3>
 
 <h1>TODO: sort everything below into one well done section</h1>
-<a href="http://tech.pro/blog/1402/five-patterns-to-help-you-tame-asynchronous-javascript">This looks good!</a>
+
+<h4>Don't block the stack!</h4>
+<p>As your code executes, every function that is stepped into pushes it's parent onto the stack to be returned to.  The stack is the system
+	used to keep track of what is curretly being executed.  The <strong>Event Loop</strong> watches the stack and handles the allocation of 
+	other tasks to the stack.  Eg, the page render: it will only allow the page to render when the stack is clear, so if you have a function
+running every time the scroll event fires the event loop is going to get clogged up with possibly hundreds of calls to your funtion, it gets worse -
+your function is given a higher priority than the page render so the event loop will throw on every call of your function (even though they may now be
+redundant) before allowing the page to render.</p>
+<p><code>setTimeout(function,0)</code> is a neat trick to take a function an pop it into the queue for the event loop to pop onto the stack one it's free to stop 
+	longer functions from blocking the stack.</p>
+
+<h4>Simple Call backs</h4>
+<p>Vanilla anonymous event handler</p>
+<pre><code>var clickity = document.getElementById("clickity");
+clickity.addEventListener("click", function (e) {
+    //console log, since it's like ALL real world scenarios, amirite?
+    console.log("Alas, someone is pressing my buttons…");
+});</code></pre>
+<p>Vanilla named event handler</p>
+<pre><code>var sortOptions = document.getElementsByClassName('sort-options')[0];
+sortOptions.addEventListener("click", handleClick, false);
+functino handleClick(){
+	...
+};</code></pre>
+<p>Jquery anonymous event handler</p>
+<pre><code>$("#clickity").on("click", function (e) {
+    console.log("Alas, someone is pressing my buttons…");
+});</code></pre>
+
+<h4>Multiple callbacks</h4>
+
+<h4>AJAX</h4>
+<ul>
+	<li>
+		<p><strong>POST</strong> ... what's post</p>
+		<p>Vanilla</p>
+		<pre><code>var r = new XMLHttpRequest(); 
+		r.open("POST", "webservice", true);
+		r.onreadystatechange = function () {
+			if (r.readyState != 4 || r.status != 200) return; 
+			console.log(r.responseText);
+		};
+		r.send("a=1&b=2&c=3");</code></pre>
+
+		<p>jQuery</p>
+		<pre><code>$.ajax({
+			url: "webservice",
+			type: "POST",
+			data: "a=1&b=2&c=3",
+			success: function(d) {
+				console.log(d);
+			}
+		});</code></pre>
+	</li>
+	<li>
+		<p><strong>GET</strong> for retrieving data from the server, </p>
+	</li>
+	<li>
+		<p><strong>Form</strong>, generally speaking it'll be a POST used for forms.</p>
+	</li>
+</ul>
+
+<a href="http://tech.pro/blog/1402/five-patterns-to-help-you-tame-asynchronous-javascript" target="_blank">Async tut in detail</a>
 
 <h3>Ajax</h3>
 <p>This note just covers XMLHttpRequest, for Server-Sent Events and WebSockets see the browser notes section as it's really the browser's api that deals with it all.</p>
