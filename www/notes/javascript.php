@@ -180,71 +180,70 @@ functino handleClick(){
 
 <h4>Multiple callbacks</h4>
 
-<h4>AJAX</h4>
-<ul>
-	<li>
-		<p><strong>POST</strong> ... what's post</p>
-		<p>Vanilla</p>
-		<pre><code>var r = new XMLHttpRequest(); 
-		r.open("POST", "webservice", true);
-		r.onreadystatechange = function () {
-			if (r.readyState != 4 || r.status != 200) return; 
-			console.log(r.responseText);
-		};
-		r.send("a=1&b=2&c=3");</code></pre>
+<h4>Making requests</h4>
+<p>Making requests asyncronously can be done using several mechanisums: <strong>XMLHttpRequest</strong> (<i>Client request, server responce</i>),
+ <strong>Server-Sent Events</strong> (SSE) (<i>Server to client, text based real time</i>),
+ and <strong>WebSockets</strong> (<i>erver to client and client to server, bio-directional realtime text and binary</i>).
+For a lower level description of how each of these works look at the browser section of my notes.  This section is on how to use them!</p>
 
-		<p>jQuery</p>
-		<pre><code>$.ajax({
-			url: "webservice",
-			type: "POST",
-			data: "a=1&b=2&c=3",
-			success: function(d) {
-				console.log(d);
-			}
-		});</code></pre>
+<p><strong>Requests with the XMLHttpRequest object.</strong> 
+<pre><code>/* Set up the request object */
+var xhr;
+if (window.XMLHttpRequest) {
+	xhr = new XMLHttpRequest();
+} else {
+	xhr = new ActiveXObject("Microsoft.XMLHTTP");
+}
+
+/* GET Request */
+var urlString = '/resource.js'; //opportunity to add in extra params
+xhr.open('GET', urlString, true);
+xhr.send();
+
+/* POST Request */
+xhr.open("POST","ajax_test.asp",true);
+xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+xhr.send("fname=Henry&lname=Ford");
+
+/* Server responce */
+xhr.onload = handleSuccessfulResponce(); //only fires on succesfull responce
+xhr.onreadystatechange = checkXhrProgress(); //gives us the option to deal with various errors
+
+function checkXhrProgress(){ 
+	if (xhr.readyStat == 4 && xhr.status == 200) {
+		handleSuccessfulResponce();
+	}
+};
+
+function handleSuccessfulResponce(){
+	var responceInXML = xhr.responseXML;
+	var responceAsString = xhr.responseText;
+}
+
+</code></pre>
+GET is faster than POST<br />
+Use POST for: Large data, user input, updating data on the server.<br />
+The functions:
+<ul>
+	<li><code>xhr.open(method,url,async)</code> defines the type of request | <i>method</i>: GET or POST | <i>url</i>: file address, can also hold paramaters | <i>async</i>: true or false</li>
+	<li><code>xhr.send(string)</code> if POST then string is added to ...</li>
+	<li><code>xhr.setRequestHeader(header,value)</code> defines a key value pair to send | <i>header</i> name | <i>value</i> ... </li>
+	<li><code>xhr.onreadystatechange</code> = a function to be called every time the <i>readyState</i> changes</li>
+	<li><code>xhr.readyState</code> Holds the status of the XMLHttpRequest. Changes from 0 to 4: 
+			0: request not initialized
+			1: server connection established
+			2: request received
+			3: processing request
+			4: request finished and response is ready
 	</li>
-	<li>
-		<p><strong>GET</strong> for retrieving data from the server, </p>
-	</li>
-	<li>
-		<p><strong>Form</strong>, generally speaking it'll be a POST used for forms.</p>
-	</li>
+	<li><code>xhr.status</code> | 200: "OK" | 404: Page not found</li>
 </ul>
+</p>
+<p><strong>XMLHttpRequest with a form</strong></p>
+
+
 
 <a href="http://tech.pro/blog/1402/five-patterns-to-help-you-tame-asynchronous-javascript" target="_blank">Async tut in detail</a>
-
-<h3>Ajax</h3>
-<p>This note just covers XMLHttpRequest, for Server-Sent Events and WebSockets see the browser notes section as it's really the browser's api that deals with it all.</p>
-Data is sent with an <strong>XMLHttpRequest object</strong> (an ActiveXObjact for IE5 & 6):
-<pre><code>var xmlhttp;
-if (window.XMLHttpRequest) {
-  xmlhttp=new XMLHttpRequest();
-} else {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-}
-</code></pre>
-
-<strong>Prepare</strong> the object with .open( (GET or POST), url, async(Boolean))<br />
-<strong>Send</strong> with .send(String(only with POST))<br />
-<ul>
-	<li>A GET:
-<pre><code>xmlhttp.open("GET","ajax_info.txt",true);
-xmlhttp.send();
-</code></pre>
-	</li>
-	<li>A POST:
-<pre><code>xmlhttp.open("POST","ajax_info.php",true);
-xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-xmlhttp.send();
-</code></pre>
-	</li>
-</ul>
-
-The <strong>Responce</strong>:<br />
-For non-XML: <code>document.getElementById("myDiv").innerHTML=xmlhttp.responseText;</code><br />
-For XML: <code>xmlDoc=xmlhttp.responseXML;</code>
-
-<p>Source: <a href="http://www.w3schools.com/ajax/ajax_xmlhttprequest_create.asp">W3 Schools tutorial on Ajax</a></p>
 
 <h3>jQuery.ajax()</h3>
 <p>promise
