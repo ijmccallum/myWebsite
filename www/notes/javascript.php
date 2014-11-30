@@ -145,11 +145,7 @@ keeps a refrence to it's creator in secret - this is a closure.</p>
 <a href="http://www.javascriptkit.com/javatutors/closures.shtml">the description of closures</a>
 
 <hr />
-
-<h3>Asynchronous Javascript, talking to the server (and possibly other things)</h3>
-
-<h1>TODO: sort everything below into one well done section</h1>
-
+<h3>Callbacks</h3>
 <h4>Don't block the stack!</h4>
 <p>As your code executes, every function that is stepped into pushes it's parent onto the stack to be returned to.  The stack is the system
 	used to keep track of what is curretly being executed.  The <strong>Event Loop</strong> watches the stack and handles the allocation of 
@@ -178,15 +174,21 @@ functino handleClick(){
     console.log("Alas, someone is pressing my buttons…");
 });</code></pre>
 
-<h4>Multiple callbacks</h4>
 
-<h4>Making requests</h4>
+<hr />
+
+
 <p>Making requests asyncronously can be done using several mechanisums: <strong>XMLHttpRequest</strong> (<i>Client request, server responce</i>),
  <strong>Server-Sent Events</strong> (SSE) (<i>Server to client, text based real time</i>),
  and <strong>WebSockets</strong> (<i>erver to client and client to server, bio-directional realtime text and binary</i>).
 For a lower level description of how each of these works look at the browser section of my notes.  This section is on how to use them!</p>
 
-<p><strong>Requests with the XMLHttpRequest object.</strong> 
+
+<hr />
+
+
+<h3>Requests with the XMLHttpRequest object.</h3>
+<p> 
 <pre><code>/* Set up the request object */
 var xhr;
 if (window.XMLHttpRequest) {
@@ -229,24 +231,147 @@ The functions:
 	<li><code>xhr.send(string)</code> if POST then string is added to ...</li>
 	<li><code>xhr.setRequestHeader(header,value)</code> defines a key value pair to send | <i>header</i> name | <i>value</i> ... </li>
 	<li><code>xhr.onreadystatechange</code> = a function to be called every time the <i>readyState</i> changes</li>
-	<li><code>xhr.readyState</code> Holds the status of the XMLHttpRequest. Changes from 0 to 4: 
-			0: request not initialized
-			1: server connection established
-			2: request received
-			3: processing request
+	<li><code>xhr.readyState</code> Holds the status of the XMLHttpRequest. Changes from 0 to 4: <br />
+			0: request not initialized<br />
+			1: server connection established<br />
+			2: request received<br />
+			3: processing request<br />
 			4: request finished and response is ready
 	</li>
 	<li><code>xhr.status</code> | 200: "OK" | 404: Page not found</li>
 </ul>
 </p>
-<p><strong>XMLHttpRequest with a form</strong></p>
 
 
+<hr />
 
-<a href="http://tech.pro/blog/1402/five-patterns-to-help-you-tame-asynchronous-javascript" target="_blank">Async tut in detail</a>
 
-<h3>jQuery.ajax()</h3>
-<p>promise
+<h3>Form submittal with XMLHttpRequest</h3>
+<pre><code>&lt;form id="form-id"&gt;
+       &lt;input id="input-id" type="text" name="name" value="previousValue"/&gt;
+       &lt;button type="submit" name="action" value="dosomething" onClick="demoRequest()"&gt;Update&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+<pre><code>//Function called by the submit btn
+function demoRequest() {
+
+	//Get an XMLHttpRequest object
+	var xhr;
+	if (window.XMLHttpRequest) {
+		xhr = new XMLHttpRequest();
+	} else {
+		xhr = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	//set up and send the POST request
+	xhr.open("POST","post-handler.php",true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+	/*encode the form data
+	var formDetails;
+	var input = document.getElementById("input-id");
+	var inputData = encodeURIComponent(input.value);
+	formDetails = "action=dosomething&" + input.name + "=" + inputData;
+	*/
+
+	//new awesome way to encode form data
+	var formDetails;
+	var formElement = document.getElementById("form-id");
+	formDetails = new FormData(formElement);
+
+	//send the request
+	xhr.send(formDetails);
+
+	//handle the responce
+	xhr.onload = handleSuccessfulResponce();
+	function handleSuccessfulResponce(){
+		var responceInXML = xhr.responseXML;
+		var responceAsString = xhr.responseText;
+	}
+}</code></pre>
+
+<h1>TODO check over this</h1>
+<p><strong>form submit with jQuery</strong></p>
+<pre><code>&lt;form id="myForm" action="comment.php" method="post"&gt;
+    Name: &lt;input type="text" name="name" /&gt;
+    Comment: &lt;textarea name="comment"&gt;&lt;/textarea&gt; 
+    &lt;input type="submit" value="Submit Comment" /&gt;
+&lt;/form&gt;</code></pre>
+
+<pre><code>$("#myForm").submit(function(e){
+	var postData = $(this).serializeArray();
+	var formURL = $(this).attr("action");
+	$.ajax({
+		url : formURL,
+		type: "POST",
+		data : postData,
+		success:function(data, textStatus, jqXHR) {
+		    //data: return data from server
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+		    //if fails      
+		}
+	});
+	e.preventDefault(); //STOP default action
+	e.unbind(); //unbind. to stop multiple form submit.
+});
+
+$("#ajaxform").submit(); //Submit  the FORM</code></pre>
+
+
+<hr />
+
+
+<h1>TODO: server sent events</h1>
+
+
+<hr />
+
+
+<h1>TODO: WebSockets </h1>
+
+
+<hr />
+
+
+<h3>Promises</h3>
+<p><strong>Vanilla Js promise</strong>
+
+<pre><code>var getPromise = $.ajax({type:'GET', url:'profile.json'}); //this variable is the promise:
+//getPromise.then(sucess, error);
+getPromise.then(
+	function(data){
+		console.log(data);
+	}, function (xhr, state, error) {
+		console.log(arguments);
+	}
+);	
+</code></pre>
+
+<strong>Chained Javascript Promises</strong>: a returned value from within a <code>.then</code> function is passed to the next <code>.then</code>.  Any errors will skip down the chain until the final function where they will be handeled.
+<pre><code>$.get('profile.json').then(function(profile){
+	return $.get('friend.json?id='+profile.id);
+}).then(function(friend){
+	//do something with friend
+}), function(xhr, status, error) {
+	//handle the errors
+});
+</code></pre>
+
+<strong>Async Javascript Promises</strong>:
+<pre><code>var getProfile = $.get('profile.json');
+var getFriend = $.get('friend.json');
+
+$.when(getProfile, getFriend).then(function(profile, friend){
+	console.log(profile[0]);
+	console.log(friend[0]);
+}, function(xhr, status, error){
+	//handle errors
+});
+</code></pre>
+Source: <a href="https://www.youtube.com/watch?v=obaSQBBWZLk">LearnCode.academy on youtube</a>
+</p>
+
+<p><strong>Promise With jQuery.ajax()</strong>
 
 <pre><code>var promise = $.ajax({
   url: "/ServerResource.txt"
@@ -261,126 +386,109 @@ $("#div1").load("demo_test.txt #p1"); //in "demo_test.txt" there is an element #
 </code></pre>
 </p>
 
+
 <hr />
 
 
-<h3>Async & Callbacks </h3>
-
-<p>Sometimes functions need to wait until another has completed, so we use <i>callback functions</i>. A jQuery example:
-<pre><code> $("p").hide("slow",function(){
-    alert("The paragraph is now hidden");
-  });</code></pre>
-</p>
+<h3><code>this</code></h3>
+<p>When <code>this</code> is used inside a function it referrs to the object that the function is bound to (the one that invoked the functino), 
+	it also contains the value of that object.  If used in the <strong>global</strong> scope <code>this</code> refers to the global window object,
+	unless you're in strick mode - then it's undefined.</p>
+<p><strong>copying</strong> vs <strong>referring</strong>.  A function can be called by refrence, in which case <i>this</i> refers to the window object
+	and we get errors.  Or a function can be copied.<br />
+Copied examples, these will work:
 <ul>
-	<li>First off - the bad way, callbacks within an Ajax request's success function - leads to the <strong>pyramid of doom / callback hell</strong> (technical term).
-<pre><code>Ajax request {
-	success function{
-		2nd Ajax request{
-			success function{
-				3rd Ajax request {
-					success function{
-
-					}
-					3rd error handler{
-
-					}
-				}
-			}
-			2nd error handler {
-
-			}
-		}
-	}
-	1st error handler{
-
-	}
-}
-</code></pre>
-	</li>
-	<li>Second - <strong>clean callbacks</strong>: 
-<pre><code>Ajax request {
-	success: successfunction
-	error: errorHandler
-}
-successFunction{
-	2nd Ajax request {
-		success: 2nd successFunction
-		error: errorHandler
-	}
-}
-2nd successFunction {
-	3rd Ajax request {
-		success: 3rd successFunction
-		error: errorHandler
-	}
-}
-3rd successFunction{
-	
-}
-errorHandler {
-	
-}
-</code></pre>
-	</li>
-	<li>3rd - <strong>Javascript Promises</strong>
-<pre><code>var getPromise = $.ajax({type:'GET', url:'profile.json'}); //this variable is the promise:
-//getPromise.then(sucess, error);
-getPromise.then(
-	function(data){
-		console.log(data);
-	}, function (xhr, state, error) {
-		console.log(arguments);
-	}
-);	
-</code></pre>
-	You can preform these individually but this doesn't turn out much different to clean callbacks, what you can also do is...
-	</li>
-	<li><strong>Chained Javascript Promises</strong>: a returned value from within a <code>.then</code> function is passed to the next <code>.then</code>.  Any errors will skip down the chain until the final function where they will be handeled.
-<pre><code>$.get('profile.json').then(function(profile){
-	return $.get('friend.json?id='+profile.id);
-}).then(function(friend){
-	//do something with friend
-}), function(xhr, status, error) {
-	//handle the errors
-});
-</code></pre>
-	And alternativley there is also...
-	</li>
-	<li><strong>Async Javascript Promises</strong>:
-<pre><code>var getProfile = $.get('profile.json');
-var getFriend = $.get('friend.json');
-
-$.when(getProfile, getFriend).then(function(profile, friend){
-	console.log(profile[0]);
-	console.log(friend[0]);
-}, function(xhr, status, error){
-	//handle errors
-});
-</code></pre>
-	</li>
-	<li>Finally, in Javascript 6 (es6 harmony), we have generators.js, it looks blocking, but it's not!
-<pre><code>Promise.coroutine(function* (){
-
-	var profile = yield $.get('profile.json');
-	$('#profile').html(JSON.stringify(profile));
-
-	var tweets = yield $.get('tweets.json');
-	$('#tweets').html(JSON.stringify(tweets));
-
-	var friend = yield $.get('friend.json');
-	$('#friend').html(JSON.stringify(friend));
-
-})().catch(function(errs){
-	//handle errors
-});
-</code></pre>
-	</li>
+	<li><code>element.onclick = doSomething</code></li>
+	<li><code>element.addEventListener('click',doSomething,false)</code></li>
+	<li><code>element.onclick = function () {this.style.color = '#cc0000';}</code></li>
+	<li><code>&lt;element onclick="this.style.color = '#cc0000';"&gt;</code></li>
+	<li><code>&lt;element onclick="doSomething(this)"&gt;</code></li>
 </ul>
-<p>Source: <a href="https://www.youtube.com/watch?v=obaSQBBWZLk">LearnCode.academy on youtube</a></p>
+Reffering examples, these will not work (<i>this will refer to the window</i>)
+<ul>
+	<li><code>element.onclick = function () {doSomething()}</code></li>
+	<li><code>element.attachEvent('onclick',doSomething)</code></li>
+	<li><code>&lt;element onclick="doSomething()"&gt;</code></li>
+</ul>
+
+</p>
+
 
 <hr />
 
-<h2>Javascript Generators</h2>
+
+<h3>Bind()</h3>
+<p><i>Not available in IE < 9</i></p>
+<p><code>Bind()</code> allows us to specify which object will be bound to <code>this</code>.
+<pre><code>​var user = {
+	data : {
+		name:"T. Woods",
+		age:37
+	},
+	clickHandler:function (event) {​
+		$ ("input").val(this.data.name + " " + this.data.age);
+	}
+}
+$ ("button").click(user.clickHandler); //error as <i>this</i> is bound to the button object
+$ ("button").click(user.clickHandler.bind(user)); //<i>user</i> is bound to <i>this</i>, so it works!</code></pre>
+</p>
+
+<a href="http://www.smashingmagazine.com/2014/01/23/understanding-javascript-function-prototype-bind/">Sashing Magazine</a> covers it well
+and gives an example (pulled from MDN) when bind() isn't supported - IE &gt;:(
+
+<hr />
+
+
+<h3>Call() and Apply()</h3>
+<p>Each does a very similar thing, quoting from the artice linked below: 
+	"they execute a function in the context, or scope, of the first argument that you pass to them" eg:
+<pre><code>var person1 = {name: 'Marvin', age: 42, size: '2xM'};
+var person2 = {name: 'Zaphod', age: 42000000000, size: '1xS'};
+
+var sayHello = function(){
+    alert('Hello, ' + this.name);
+};
+
+var sayGoodbye = function(){
+    alert('Goodbye, ' + this.name);
+};
+
+sayHello(); //error
+sayGoodbye(); //error
+
+sayHello.call(person1);
+sayGoodbye.call(person2);
+
+sayHello.apply(person1);
+sayGoodbye.apply(person2);</code></pre>
+The difference is that <code>call()</code> takes a list of arguments where as <code>apply()</code> takes an array as it's second 
+argument.<br />
+<strong>A call() example</strong>
+<pre><code>var update = function(name, age, size){
+    this.name = name;
+    this.age = age;
+    this.size = size;
+};
+
+update.call(person1, 'Slarty', 200, '1xM');</code></pre>
+<strong>an Apply() example</strong>
+<pre><code>var dispatch = function(person, method, args){
+    method.apply(person, args);
+};
+
+dispatch(person1, say, ['Hello']);
+dispatch(person2, update, ['Slarty', 200, '1xM']);</code></pre>
+</p>
+
+
+
+<a href="http://hangar.runway7.net/javascript/difference-call-apply">A good article on both</a>
+
+<hr />
+
+
+<h1>TODO review, learn properly</h1>
+<h3>Javascript Generators</h3>
 
 <p>A simple generator:</p>
 <pre><code>var myGenerator = function*(){
@@ -401,9 +509,39 @@ console.log(gen.next()); //{value:undefined, done:true}
 console.log(gen.next()); //errors
 </code></pre>
 
+Finally, in Javascript 6 (es6 harmony), we have generators.js, it looks blocking, but it's not!
+<pre><code>Promise.coroutine(function* (){
+
+	var profile = yield $.get('profile.json');
+	$('#profile').html(JSON.stringify(profile));
+
+	var tweets = yield $.get('tweets.json');
+	$('#tweets').html(JSON.stringify(tweets));
+
+	var friend = yield $.get('friend.json');
+	$('#friend').html(JSON.stringify(friend));
+
+})().catch(function(errs){
+	//handle errors
+});
+</code></pre>
+
 <p>Source: <a href="https://www.youtube.com/watch?v=QO07THdLWQo">LearnCode.academy on youtube</a></p>
 
 
+<hr />
+
+
+<h1>OOP with Javascript</h1>
+
+<p>A few pieces of terminology to get straight in my head first:
+<ul>
+	<li>Classes == functions == objects</li>
+	<li>Inheritance: objects inheriting features from other objects</li>
+	<li>Polymorphism: objects have the same interfect but different methodologies</li>
+	<li>Encapsulation: Each object is responsable for one clearly defined task, the details of which are hidden from the rest of the code.</li>
+</ul>
+</p>
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
