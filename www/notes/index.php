@@ -5,12 +5,12 @@
 <!--
 <p style="text-align:right;margin-bottom: 20px;font-size: 12px;"><a href="https://gist.github.com/ijmccallum/11146821">PHP Breadcrumb class in a gist >></a></p>
 -->
-<h2 class="quirkyHeading">The most efficent way to learn something is to learn it with the intention of teaching it.</h2>
+<h2 class="quirkyHeading">The most efficient way to learn something is to learn it with the intention of teaching it.</h2>
 <div class="row">
   <div class="col-md-6">
     <p>The Web Development Industry is filled with rapidly changing technologies - it's important not to get lost in all of it!  <br />
-      So, this is my personal repository of notes on the various things I work with and learn.  The grey ones are things I am hoping to 
-      read into more / experiance, but time will tell.</p>
+      So, this is my personal repository of notes on the various things I work with and learn.  The gray ones are things I am hoping to 
+      read into more / experience, but time will tell.</p>
   </div>
   <div class="col-md-6">
 
@@ -23,14 +23,25 @@
       <a href="#Languages">Languages</a>,
       <a href="#Security">Security</a>,
       <a href="#Internet">The Internet!</a>,
-      <a href="#Optimisation">Optimisation</a>,
+      <a href="#Optimisation">Optimization</a>,
       <a href="#libraries">Cool libraries</a>,
-      <a href="#CMS">Content Managment Systems</a>,
+      <a href="#CMS">Content Management Systems</a>,
       <a href="#Mobile">Mobile things</a>,
       <a href="#Other">Other notes</a>
 
   </div>
 </div>
+
+<hr />
+
+<h2>ToDo before Delphic Start</h2>
+<ul>
+  <li><strong>Authentication</strong></li>
+  <li><strong>CSS art</strong></li>
+  <li><strong>CSS animations</strong></li>
+  <li><strong>HTML accessibility</strong></li>
+  <li><strong>Spell check!</strong></li>
+</ul>
 
 <hr />
 
@@ -41,6 +52,7 @@
       <a href="html.php" class="list-group-item">HTML</a>
       <a href="CSS.php" class="list-group-item">CSS</a>
       <a href="javascript.php" class="list-group-item">Javascript</a>
+      <a href="ECMAScript6.php" class="list-group-item greyout">ECMAScript 6</a>
     </div>
     <div class="list-group">
       <a href="DNS.php" class="list-group-item">DNS</a>
