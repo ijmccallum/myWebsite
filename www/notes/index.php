@@ -203,11 +203,7 @@
     </div>
   </div>
    <div id="Languages" class="col-md-6">
-<<<<<<< HEAD
     <h4>Notes on Languages</h4>
-=======
-    <h4>Notes on other Programming Languages</h4>
->>>>>>> 0ef41944dbaf91fa916f1f6aa569a5603f34ba23
     <div class="list-group">
       <a href="programmingFundamentals.php" class="list-group-item">Fundamentals</a>
       <a href="php.php" class="list-group-item">PHP</a>
