@@ -107,32 +107,25 @@
       <a href="" class="list-group-item"><strong>npm, The Node package manager</strong><br />
         Keep it up to date: <code>npm update -g npm</code></a>
       <a href="bower.php" class="list-group-item">Bower</a>
-      <a href="" class="list-group-item">Gulp</a>
-      <a href="" class="list-group-item">Browserify</a>
-      <a href="" class="list-group-item">RequireJS</a>
-      <a href="" class="list-group-item">Chrmoe Dev Tools</a>
-      <a href="" class="list-group-item">Google's Web Fundamentals</a>
+      <a href="" class="list-group-item greyout">Gulp</a>
+      <a href="" class="list-group-item greyout">Browserify</a>
+      <a href="" class="list-group-item greyout">RequireJS</a>
+      <a href="" class="list-group-item greyout">Chrmoe Dev Tools</a>
+      <a href="" class="list-group-item greyout">Google's Web Fundamentals</a>
     </div>
   </div>
   <div  id="OtherTools" class="col-md-6">
     <h4>Other tools</h4>
     <div class="list-group">
-      <a href="" class="list-group-item">Z</a>
-      <a href="" class="list-group-item">Linting</a>
-      <a href="" class="list-group-item">Live Reload</a>
-      <a href="" class="list-group-item">SourceURL</a>
-      <a href="" class="list-group-item">SourceMaps</a>
-      <a href="" class="list-group-item">prettyify minified code browser extension</a>
-      <a href="" class="list-group-item">Postman</a>
-    </div>
-    <h4>Code Editors</h4>
-    <div class="list-group">
-      <a href="" class="list-group-item">Sublime text<br />
-        Love it - costs money :(
-      </a>
-      <a href="" class="list-group-item">Atom<br />
-        could love it, needs a couple of things
-      </a>
+      <a href="emmet.php" class="list-group-item">Emmet</a>
+      <a href="editors.php" class="list-group-item">Text editors</a>
+      <a href="" class="list-group-item greyout">Z</a>
+      <a href="" class="list-group-item greyout">Linting</a>
+      <a href="" class="list-group-item greyout">Live Reload</a>
+      <a href="" class="list-group-item greyout">SourceURL</a>
+      <a href="" class="list-group-item greyout">SourceMaps</a>
+      <a href="" class="list-group-item greyout">prettyify minified code browser extension</a>
+      <a href="" class="list-group-item greyout">Postman</a>
     </div>
   </div>
 </div>
@@ -202,14 +195,14 @@
     </div>
   </div>
    <div id="Languages" class="col-md-6">
-    <h4>Notes on Programming Languages</h4>
+    <h4>Notes on Languages</h4>
     <div class="list-group">
       <a href="programmingFundamentals.php" class="list-group-item">Fundamentals</a>
       <a href="javascript.php" class="list-group-item">Javascript</a>
       <a href="php.php" class="list-group-item">PHP</a>
       <a href="jade.php" class="list-group-item">Jade</a>
-      <a href="" class="list-group-item">SASS / LESS</a>
-      <a href="" class="list-group-item">Coffeescript</a>
+      <a href="" class="list-group-item greyout">SASS / LESS</a>
+      <a href="" class="list-group-item greyout">Coffeescript</a>
     </div>
     <h4 id="Mobile">Mobile things</h4>
     <div class="list-group">
