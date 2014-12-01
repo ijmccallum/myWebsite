@@ -35,47 +35,14 @@
 <hr />
 
 <div class="row">
-  <div id="Node" class="col-md-6">
-    <h4>Notes on things in the Node ecosystem</h4>
-    <div class="list-group">
-      <a href="node.php" class="list-group-item">Node</a>
-      <a href="angularjs.php" class="list-group-item">AngularJS</a>
-      <a href="express.php" class="list-group-item">ExpressJS</a>
-      <a href="keystone.php" class="list-group-item">KeystoneJS</a>
-      <a href="mean.php" class="list-group-item">MEAN.JS</a>
-      <a href="kirby.php" class="list-group-item">Kirby</a>
-    </div>
-  </div>
-  <div id="CMS" class="col-md-6">
-    <h4>WordPress & Other CMS systems</h4>
-    <div class="list-group">
-      <a href="wordpress.php" class="list-group-item">WordPress</a>
-      <a href="mediawiki.php" class="list-group-item greyout">Media Wiki</a>
-      <a href="drupal.php" class="list-group-item greyout">Drupal</a>
-      <a href="joomla.php" class="list-group-item greyout">Joomla</a>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-  <div id="Databases" class="col-md-6">
-    <h4>Databases</h4>
-    <div class="list-group">
-      <a href="" class="list-group-item greyout">Fundamentals</a>
-      <a href="hadoop.php" class="list-group-item greyout">Hadoop & Map Reduce</a>
-      <a href="mongodb.php" class="list-group-item">MongoDB</a>
-      <a href="" class="list-group-item greyout">Redis</a>
-      <a href="" class="list-group-item greyout">mySQL</a>
-      <a href="" class="list-group-item greyout">PostgreSQL</a>
-      <a href="" class="list-group-item greyout">CouchDB</a>
-      <a href="" class="list-group-item greyout">Memcached</a>
-      <a href="" class="list-group-item greyout">Flat file</a>
-    </div>
-  </div>
   <div id="Internet" class="col-md-6">
     <h4>The Internet!</h4>
     <div class="list-group">
-      <a href="html.php" class="list-group-item">HTML / CSS</a>
+      <a href="html.php" class="list-group-item">HTML</a>
+      <a href="CSS.php" class="list-group-item">CSS</a>
+      <a href="javascript.php" class="list-group-item">Javascript</a>
+    </div>
+    <div class="list-group">
       <a href="DNS.php" class="list-group-item">DNS</a>
       <a href="htaccess.php" class="list-group-item">.htaccess</a>
       <a href="browsers.php" class="list-group-item">Browsers</a>
@@ -88,6 +55,32 @@
       <a href="webrtc.php" class="list-group-item"><strong>WebRTC</strong><br />
         Real time communication (out of interest, it uses UDP instead of TCP)</a>
     </div>
+  </div>
+
+
+
+  <div id="Node" class="col-md-6">
+    <h4>Notes on things in the Node ecosystem</h4>
+    <div class="list-group">
+      <a href="node.php" class="list-group-item">Node</a>
+      <a href="angularjs.php" class="list-group-item">AngularJS</a>
+      <a href="express.php" class="list-group-item">ExpressJS</a>
+      <a href="keystone.php" class="list-group-item">KeystoneJS</a>
+      <a href="mean.php" class="list-group-item">MEAN.JS</a>
+      <a href="kirby.php" class="list-group-item">Kirby</a>
+    </div>
+    <h4 id="CMS">WordPress & Other CMS systems</h4>
+    <div class="list-group">
+      <a href="wordpress.php" class="list-group-item">WordPress</a>
+      <a href="mediawiki.php" class="list-group-item greyout">Media Wiki</a>
+      <a href="drupal.php" class="list-group-item greyout">Drupal</a>
+      <a href="joomla.php" class="list-group-item greyout">Joomla</a>
+    </div>
+  </div>
+</div> <!-- END ROW -->
+
+<div class="row">
+  <div class="col-md-6">
     <h4 id="Optimisation">Optimisation</h4>
     <div class="list-group">
       <a href="speed.php" class="list-group-item">Speed</a>
@@ -95,7 +88,33 @@
       <a href="seo.php" class="list-group-item">SEO</a>
       <a href="smo.php" class="list-group-item">SMO</a>
     </div>
+    <h4 id="Databases">Databases</h4>
+    <div class="list-group">
+      <a href="" class="list-group-item greyout">Fundamentals</a>
+      <a href="hadoop.php" class="list-group-item greyout">Hadoop & Map Reduce</a>
+      <a href="mongodb.php" class="list-group-item">MongoDB</a>
+      <a href="" class="list-group-item greyout">Redis</a>
+      <a href="" class="list-group-item greyout">mySQL</a>
+      <a href="" class="list-group-item greyout">PostgreSQL</a>
+      <a href="" class="list-group-item greyout">CouchDB</a>
+      <a href="" class="list-group-item greyout">Memcached</a>
+      <a href="" class="list-group-item greyout">Flat file</a>
+    </div>
   </div>
+  <div id="Security" class="col-md-6">
+    <h4>Security</h4>
+    <div class="list-group">
+      <a href="clickjacking.php" class="list-group-item">Click Jacking</a>
+      <a href="CSRF.php" class="list-group-item">CSRF</a>
+      <a href="mobileAppInjection.php" class="list-group-item">mobileAppInjection</a>
+      <a href="XSS.php" class="list-group-item">XSS</a>
+      <a href="" class="list-group-item greyout">SQL Injection</a>
+      <a href="" class="list-group-item greyout">Mutation XSS</a>
+      <a href="" class="list-group-item greyout">CRIME - Compression Ratio Info-leak Made Easy</a>
+      <a href="" class="list-group-item greyout">cache poisoning attack (WebSockets)</a>
+    </div>
+  </div>
+  
 </div>
 
 <div class="row">
@@ -140,24 +159,13 @@
       <a href="" class="list-group-item greyout">Mocha</a>
       <a href="" class="list-group-item greyout">errorception (not a unit test, it tracks errors the real users in the field are hitting.)</a>
     </div>
+  </div>
+  <div id="Analysis" class="col-md-6">
     <h4>Analysis tools</h4>
     <div class="list-group">
       <a href="" class="list-group-item greyout">Google Page speed</a>
       <a href="" class="list-group-item greyout">Google Tag Manager</a>
       <a href="" class="list-group-item greyout">Google Analytics</a>
-    </div>
-  </div>
-   <div id="Security" class="col-md-6">
-    <h4>Security</h4>
-    <div class="list-group">
-      <a href="clickjacking.php" class="list-group-item">Click Jacking</a>
-      <a href="CSRF.php" class="list-group-item">CSRF</a>
-      <a href="mobileAppInjection.php" class="list-group-item">mobileAppInjection</a>
-      <a href="XSS.php" class="list-group-item">XSS</a>
-      <a href="" class="list-group-item greyout">SQL Injection</a>
-      <a href="" class="list-group-item greyout">Mutation XSS</a>
-      <a href="" class="list-group-item greyout">CRIME - Compression Ratio Info-leak Made Easy</a>
-      <a href="" class="list-group-item greyout">cache poisoning attack (WebSockets)</a>
     </div>
   </div>
 </div>
@@ -195,10 +203,13 @@
     </div>
   </div>
    <div id="Languages" class="col-md-6">
+<<<<<<< HEAD
     <h4>Notes on Languages</h4>
+=======
+    <h4>Notes on other Programming Languages</h4>
+>>>>>>> 0ef41944dbaf91fa916f1f6aa569a5603f34ba23
     <div class="list-group">
       <a href="programmingFundamentals.php" class="list-group-item">Fundamentals</a>
-      <a href="javascript.php" class="list-group-item">Javascript</a>
       <a href="php.php" class="list-group-item">PHP</a>
       <a href="jade.php" class="list-group-item">Jade</a>
       <a href="" class="list-group-item greyout">SASS / LESS</a>
@@ -216,11 +227,6 @@
       <a href="inspiration.php" class="list-group-item">Inspiration / life theory</a>
       <a href="investing.php" class="list-group-item">Investing</a>
     </div>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-6">
     <h4>Books / reading materials to go through:</h4>
     <div class="list-group">
       <p class="list-group-item"><i>HTTP: The Definitive Guide</i> by David Gourley</p>
@@ -229,6 +235,7 @@
     </div>
   </div>
 </div>
+
 <!--
 <h4>Guides for web development</h4>
 <div class="list-group">
