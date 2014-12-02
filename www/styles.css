@@ -155,7 +155,7 @@ height: 100%;
     font-weight: 100;
     font-size: 20px;
     padding-top: 5px;
-    padding-left: 10px;
+    padding-left: 6px;
     line-height: 40px;
 }
 #guidesLink {
@@ -543,7 +543,7 @@ height: 100%;
     width: 180px;
 }
 .sidebar-nav li {
-    text-indent: 15px;
+    text-indent: 8px;
 }
 #sidebar-wrapper{
     width: 180px;
