@@ -116,6 +116,7 @@
   <div id="Security" class="col-md-6">
     <h4>Security</h4>
     <div class="list-group">
+      <a href="security.php" class="list-group-item">Overview</a>
       <a href="clickjacking.php" class="list-group-item">Click Jacking</a>
       <a href="CSRF.php" class="list-group-item">CSRF</a>
       <a href="mobileAppInjection.php" class="list-group-item">mobileAppInjection</a>
@@ -124,6 +125,7 @@
       <a href="" class="list-group-item greyout">Mutation XSS</a>
       <a href="" class="list-group-item greyout">CRIME - Compression Ratio Info-leak Made Easy</a>
       <a href="" class="list-group-item greyout">cache poisoning attack (WebSockets)</a>
+      <a href="" class="list-group-item greyout">Kleptographic attack</a>
     </div>
   </div>
   
@@ -279,6 +281,8 @@
 </div>
 
 -->
+
+<a href="http://en.wikipedia.org/wiki/Portal:Information_technology">Tech portal, WikiPedia</a>
                 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>

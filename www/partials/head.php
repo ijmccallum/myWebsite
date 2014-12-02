@@ -72,12 +72,14 @@ for ($x=0; $x<$docDepth; $x++){
 
                 <?php if ($iainPageTitle == "@ijmccallum"){ ?>
                 <?php //The home page ?>
-                        <a id="menu-toggle" href="#" class="btn btn-default homeTgl">
-                        <div id="hotdog1"></div>
-                        <div id="hotdog2"></div>
-                        <div id="hotdog3"></div>
-                        </a>
-                        <h1>Hello!<br />Welcome to my 
+                        <div id="menu-toggle-wrap">
+                            <a id="menu-toggle" href="#" class="btn btn-default homeTgl">
+                                <div id="hotdog1"></div>
+                                <div id="hotdog2"></div>
+                                <div id="hotdog3"></div>
+                            </a>
+                        </div>
+                        <h1>Hello! Welcome to my 
                             <span class="glyphicon glyphicon-home" aria-hidden="true"></span> in the 
                             <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span></h1>
                         <!--
@@ -102,12 +104,14 @@ for ($x=0; $x<$docDepth; $x++){
 
                 <?php } else { ?>
                 <?php //other pages ?>
-                    <h1>
-                        <a id="menu-toggle" href="#" class="btn btn-default">
-                        <div id="hotdog1"></div>
-                        <div id="hotdog2"></div>
-                        <div id="hotdog3"></div>
+                    <div id="menu-toggle-wrap">
+                        <a id="menu-toggle" href="#" class="btn btn-default homeTgl">
+                            <div id="hotdog1"></div>
+                            <div id="hotdog2"></div>
+                            <div id="hotdog3"></div>
                         </a>
+                    </div>
+                    <h1>
                         <?php if ($iainPageTitle == "Synergy") { ?>
                                 <img src="pics/SynergyLogo2.jpg" alt="">
                         <?php } else {
