@@ -99,5 +99,11 @@
 </p>
 
 <a href="http://css-tricks.com/almanac/">All the properties!</a> from CSS-Tricks.
+
+<hr />
+
+<h3>CSS animations</h3>
+
+
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
