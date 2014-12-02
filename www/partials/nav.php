@@ -11,8 +11,8 @@
               
                 <li><a href=<?php echo $homePath . 'notes"' ?>><span class="glyphicon glyphicon-folder-open"></span> Notes</a>
                 </li>
-                  <li><a href=<?php echo $homePath . 'misc.php"' ?>><span class="glyphicon glyphicon-picture"></span> Misc.</a>
-                </li>
+                 <!-- <li><a href=<?php echo $homePath . 'misc.php"' ?>><span class="glyphicon glyphicon-picture"></span> Misc.</a>
+                </li> -->
                 <!-- <li><a href=<?php echo $homePath . 'wikilogic.php"' ?>>Wikilogic</a>
                 </li> -->
                 <!-- <li><a href=<?php echo $homePath . 'synergy.php"' ?>>Synergy</a>
