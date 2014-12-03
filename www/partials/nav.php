@@ -11,7 +11,7 @@
               
                 <li><a href=<?php echo $homePath . 'notes"' ?>><span class="glyphicon glyphicon-folder-open"></span> Notes</a>
                 </li>
-                <li><a href=<?php echo $homePath . 'dash.php"' ?>><span class="glyphicon glyphicon-eye-open"></span> Dash</a>
+                <li><a href=<?php echo $homePath . 'dash.php"' ?>><span class="glyphicon glyphicon-eye-open"></span> Web News</a>
                 </li>
                  <!-- <li><a href=<?php echo $homePath . 'misc.php"' ?>><span class="glyphicon glyphicon-picture"></span> Misc.</a>
                 </li> -->
