@@ -9,6 +9,8 @@
 </ul>
 </p>
 
+<a href="../experiments/login">Login experiments</a>
+
 <hr />
 
 <p>Some useful libraries</p>
@@ -54,8 +56,10 @@ add a note to the login page informing users of the attempted attack and the loc
 <h3>Remaining Logged in</h3>
 <p><strong>Persistent log ins <i>remember me!</i> can be a massive danger given that many users won't use them safely.</strong><br />
 That said:
+
 </p>
 
+<p><strong>PHP's Session</strong>: storing variables on the server to be used across multiple pages by a single user.</p>
 
 <a href="https://stackoverflow.com/questions/549/the-definitive-guide-to-form-based-website-authentication/477578#477578?newreg=ceed7f1bbf964947962568135762f06b">the-definitive-guide-to-form-based-website-authentication</a> from stack overflow
 

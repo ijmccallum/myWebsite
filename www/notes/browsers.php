@@ -35,8 +35,42 @@ As application developers we can help out the browser by
 <p>The browser automatically manages the cach size, resource eviction, and access.  It also checks the cache before dispatching any network request.</p>
 
 <hr />
-<h3>cookie management</h3>
+<h3>Cookies</h3>
+<p>In effect: <i>small plain text files stored on the users machien.</i> The page/server instructs the browser to send the cookies back with every 
+	request.  Often used for keeping users logged in or holding info for shopping carts.</p>
+<p><strong>Cookies are set</strong> by sending a setcookie header: <code>Set-Cookie: name=name; expires=date; domain=domain; path=path; </code>
+<ul>
+	<li><code>name</code></li>
+	<li><code>value</code></li>
+	<li><code>expires</code>: <code>Wdy, DD-Mon-YYYY HH:MM:SS GMT</code> | <code>Sat, 02 May 2009 23:38:25 GMT</code><br />
+		If no expires option set then cookie lasts the lenght of a session and is deleted when the browser is shut down.</li>
+	<li><code>path</code> if set to <code>/blog</code> then cookie would be sent to /blog or /blogroll or anything beginnning with /blog</li>
+	<li><code>domain</code> automatically set to www.domain.com, so wouldn't work on me.domain.com, but can be fixed by setting to <code>domain.com</code><br />
+		Cannot set domain to <code>domain2.com</code></li>
+	<li><code>secure</code> if added (it's only a flag, no value) then cookies will only be sent over SSL and HTTPS.<br />
+		<i>note: cookies are inherently not secure and should never be used to send sensitive data</i></li>
+	<li><code>httponly</code> stops javascript from accessing the cookie in order to help prevent some XSS attacks</li>
+</ul>
+Cookie options can be set in any order:
+<pre><code>Set-Cookie: name=Nicholas; domain=nczonline.net; path=/blog
+Set-Cookie: name=Greg; domain=nczonline.net; path=/blog
+Set-Cookie: name=Nicholas; domain=nczonline.net; path=/
+//after setting these two cookies and request to  www.nczonline.net/blog will also send:
+Cookie: name=Greg; name=Nicholas
+</code></pre>
+</p>
+<p>They are <strong>returned to the server</strong> in a simple HTTP header called <i>Cookie</i> as follows: <code>Cookie: value</code>, for pages with
+multipl cookies the cookie header is more like <code>Cookie: value1; value2; name1=value1</code></p>
+<p>When the max number of cookies in the browser is reached the oldest are removed to make way for the newest.  
+<ul>
+	<li>Firefox and IE limit to 50 cookies per domain</li>
+	<li>Opera limits to 30</li>
+	<li>Safari and Chrome have no limit</li>
+	<li>The max size for all cookies sent is 4KB</li>
+</ul></p>
 <p>The browser uses 'cookie jars' for each origin.</p>
+
+
 <hr />
 <h3>session managment</h3>
 
