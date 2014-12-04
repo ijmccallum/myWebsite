@@ -117,6 +117,7 @@
     <h4>Security</h4>
     <div class="list-group">
       <a href="security.php" class="list-group-item">Overview</a>
+      <a href="authentication.php" class="list-group-item">Authentication</a>
       <a href="clickjacking.php" class="list-group-item">Click Jacking</a>
       <a href="CSRF.php" class="list-group-item">CSRF</a>
       <a href="mobileAppInjection.php" class="list-group-item">mobileAppInjection</a>
