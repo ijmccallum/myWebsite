@@ -36,7 +36,8 @@
 
 <h2>ToDo before Delphic Start</h2>
 <ul>
-  <li><strong>Authentication</strong></li>
+  <li><strong><strike>Authentication</strike></strong></li>
+  <li><strong>Form Validation</strong></li>
   <li><strong>CSS art</strong></li>
   <li><strong>CSS animations</strong></li>
   <li><strong>HTML accessibility</strong></li>
@@ -45,235 +46,222 @@
 
 <hr />
 
-<div class="row">
-  <div id="Internet" class="col-md-6">
-    <h4>The Internet!</h4>
-    <div class="list-group">
-      <a href="html.php" class="list-group-item">HTML</a>
-      <a href="CSS.php" class="list-group-item">CSS</a>
-      <a href="javascript.php" class="list-group-item">Javascript</a>
-      <a href="ECMAScript6.php" class="list-group-item greyout">ECMAScript 6</a>
-    </div>
-    <div class="list-group">
-      <a href="DNS.php" class="list-group-item">DNS</a>
-      <a href="htaccess.php" class="list-group-item">.htaccess</a>
-      <a href="browsers.php" class="list-group-item">Browsers</a>
-      <a href="http.php" class="list-group-item">HTTP (1.1 - 2.0)</a>
-      <a href="wirelessNetworking.php" class="list-group-item">Wireless Networking</a>
-      <a href="networking.php" class="list-group-item">Networking (IP, TCP, UDP, TLS)</a>
-    </div>
-    <div class="list-group">
-      <a href="serviceWorker.php" class="list-group-item">ServiceWorkers</a>
-      <a href="webrtc.php" class="list-group-item"><strong>WebRTC</strong><br />
-        Real time communication (out of interest, it uses UDP instead of TCP)</a>
-    </div>
-  </div>
-
-
-
-  <div id="Node" class="col-md-6">
-    <h4>Notes on things in the Node ecosystem</h4>
-    <div class="list-group">
-      <a href="node.php" class="list-group-item">Node</a>
-      <a href="angularjs.php" class="list-group-item">AngularJS</a>
-      <a href="express.php" class="list-group-item">ExpressJS</a>
-      <a href="keystone.php" class="list-group-item">KeystoneJS</a>
-      <a href="mean.php" class="list-group-item">MEAN.JS</a>
-      <a href="kirby.php" class="list-group-item">Kirby</a>
-    </div>
-    <h4 id="CMS">WordPress & Other CMS systems</h4>
-    <div class="list-group">
-      <a href="wordpress.php" class="list-group-item">WordPress</a>
-      <a href="mediawiki.php" class="list-group-item greyout">Media Wiki</a>
-      <a href="drupal.php" class="list-group-item greyout">Drupal</a>
-      <a href="joomla.php" class="list-group-item greyout">Joomla</a>
-    </div>
-  </div>
-</div> <!-- END ROW -->
 
 <div class="row">
-  <div class="col-md-6">
-    <h4 id="Optimisation">Optimisation</h4>
-    <div class="list-group">
-      <a href="speed.php" class="list-group-item">Speed</a>
-      <a href="speed.php" class="list-group-item greyout">Load Balancers</a>
-      <a href="seo.php" class="list-group-item">SEO</a>
-      <a href="smo.php" class="list-group-item">SMO</a>
-    </div>
-    <h4 id="Databases">Databases</h4>
-    <div class="list-group">
-      <a href="" class="list-group-item greyout">Fundamentals</a>
-      <a href="hadoop.php" class="list-group-item greyout">Hadoop & Map Reduce</a>
-      <a href="mongodb.php" class="list-group-item">MongoDB</a>
-      <a href="" class="list-group-item greyout">Redis</a>
-      <a href="" class="list-group-item greyout">mySQL</a>
-      <a href="" class="list-group-item greyout">PostgreSQL</a>
-      <a href="" class="list-group-item greyout">CouchDB</a>
-      <a href="" class="list-group-item greyout">Memcached</a>
-      <a href="" class="list-group-item greyout">Flat file</a>
-    </div>
-  </div>
-  <div id="Security" class="col-md-6">
-    <h4>Security</h4>
-    <div class="list-group">
-      <a href="security.php" class="list-group-item">Overview</a>
-      <a href="authentication.php" class="list-group-item">Authentication</a>
-      <a href="clickjacking.php" class="list-group-item">Click Jacking</a>
-      <a href="CSRF.php" class="list-group-item">CSRF</a>
-      <a href="mobileAppInjection.php" class="list-group-item">mobileAppInjection</a>
-      <a href="XSS.php" class="list-group-item">XSS</a>
-      <a href="" class="list-group-item greyout">SQL Injection</a>
-      <a href="" class="list-group-item greyout">Mutation XSS</a>
-      <a href="" class="list-group-item greyout">CRIME - Compression Ratio Info-leak Made Easy</a>
-      <a href="" class="list-group-item greyout">cache poisoning attack (WebSockets)</a>
-      <a href="" class="list-group-item greyout">Kleptographic attack</a>
-    </div>
-  </div>
-  
-</div>
 
-<div class="row">
-   <div id="DevelopmentTools" class="col-md-6">
-    <h4>Development tools</h4>
-    <div class="list-group">
-      <a href="yeoman.php" class="list-group-item">yeoman</a>
-      <a href="grunt.php" class="list-group-item">Grunt</a>
-      <a href="" class="list-group-item"><strong>npm, The Node package manager</strong><br />
-        Keep it up to date: <code>npm update -g npm</code></a>
-      <a href="bower.php" class="list-group-item">Bower</a>
-      <a href="" class="list-group-item greyout">Gulp</a>
-      <a href="" class="list-group-item greyout">Browserify</a>
-      <a href="" class="list-group-item greyout">RequireJS</a>
-      <a href="" class="list-group-item greyout">Chrmoe Dev Tools</a>
-      <a href="" class="list-group-item greyout">Google's Web Fundamentals</a>
-    </div>
+  <div class="col-md-4">
+        <h4 id="Internet">The Internet!</h4>
+        <div class="list-group">
+          <a href="html.php" class="list-group-item">HTML</a>
+          <a href="CSS.php" class="list-group-item">CSS</a>
+          <a href="javascript.php" class="list-group-item">Javascript</a>
+          <a href="ECMAScript6.php" class="list-group-item greyout">ECMAScript 6</a>
+        </div>
+        <div class="list-group">
+          <a href="DNS.php" class="list-group-item">DNS</a>
+          <a href="htaccess.php" class="list-group-item">.htaccess</a>
+          <a href="browsers.php" class="list-group-item">Browsers</a>
+          <a href="http.php" class="list-group-item">HTTP (1.1 - 2.0)</a>
+          <a href="wirelessNetworking.php" class="list-group-item">Wireless Networking</a>
+          <a href="networking.php" class="list-group-item">Networking (IP, TCP, UDP, TLS)</a>
+        </div>
+        <div class="list-group">
+          <a href="serviceWorker.php" class="list-group-item">ServiceWorkers</a>
+          <a href="webrtc.php" class="list-group-item"><strong>WebRTC</strong><br />
+            Real time communication (out of interest, it uses UDP instead of TCP)</a>
+        </div>
   </div>
-  <div  id="OtherTools" class="col-md-6">
-    <h4>Other tools</h4>
-    <div class="list-group">
-      <a href="emmet.php" class="list-group-item">Emmet</a>
-      <a href="editors.php" class="list-group-item">Text editors</a>
-      <a href="" class="list-group-item greyout">Z</a>
-      <a href="" class="list-group-item greyout">Linting</a>
-      <a href="" class="list-group-item greyout">Live Reload</a>
-      <a href="" class="list-group-item greyout">SourceURL</a>
-      <a href="" class="list-group-item greyout">SourceMaps</a>
-      <a href="" class="list-group-item greyout">prettyify minified code browser extension</a>
-      <a href="" class="list-group-item greyout">Postman</a>
-    </div>
-  </div>
-</div>
 
-<div class="row">
-  
-  <div id="Testing" class="col-md-6">
-    <h4>Testing</h4>
-    <div class="list-group">
-      <a href="angularTesting.php" class="list-group-item">Angular (Karma & Jasmine)</a>
-      <a href="" class="list-group-item greyout">QUnit</a>
-      <a href="" class="list-group-item greyout">Mocha</a>
-      <a href="" class="list-group-item greyout">errorception (not a unit test, it tracks errors the real users in the field are hitting.)</a>
-    </div>
+  <div class="col-md-4">
+        <h4 id="CMS">WordPress & Other CMS systems</h4>
+        <div class="list-group">
+          <a href="wordpress.php" class="list-group-item">WordPress</a>
+          <a href="mediawiki.php" class="list-group-item greyout">Media Wiki</a>
+          <a href="drupal.php" class="list-group-item greyout">Drupal</a>
+          <a href="joomla.php" class="list-group-item greyout">Joomla</a>
+        </div>
+        <h4 id="Node">Notes on things in the Node ecosystem</h4>
+        <div class="list-group">
+          <a href="node.php" class="list-group-item">Node</a>
+          <a href="angularjs.php" class="list-group-item">AngularJS</a>
+          <a href="express.php" class="list-group-item">ExpressJS</a>
+          <a href="keystone.php" class="list-group-item">KeystoneJS</a>
+          <a href="mean.php" class="list-group-item">MEAN.JS</a>
+          <a href="kirby.php" class="list-group-item">Kirby</a>
+        </div>
   </div>
-  <div id="Analysis" class="col-md-6">
-    <h4>Analysis tools</h4>
-    <div class="list-group">
-      <a href="" class="list-group-item greyout">Google Page speed</a>
-      <a href="" class="list-group-item greyout">Google Tag Manager</a>
-      <a href="" class="list-group-item greyout">Google Analytics</a>
-    </div>
+
+  <div class="col-md-4">
+        <h4 id="Front">Front End things</h4>
+        <div class="list-group">
+          <a href="forms.php" class="list-group-item greyout">Forms</a>
+          <a href="crossBrowser.php" class="list-group-item greyout">Cross browser gotchas</a>
+        </div>
   </div>
-</div>
+
+</div> <!-- END of the first row -->
 
 
 <div class="row">
-  <div id="libraries" class="col-md-6">
-    <h4>Cool libraries (and some polyfills for them)</h4>
-    <div class="list-group"> 
-      <a href="famous.php" class="list-group-item">Famo.us</a>
-      <a href="proximity.php" class="list-group-item">Proximity</a>
-      <a href="#" class="list-group-item greyout"><strong>Twitter Bootstrap</strong><br />
-        CSS framework.  A lot of very useful HTML, CSS and Javascript elements. (used on this site)</a>
-      <a class="list-group-item greyout"><strong>jQuery</strong><br />
-        Industry standard DOM manipulation library</a>
-      <a class="list-group-item greyout"><strong>underscore</strong><br />
-        Being replaced by Lo-Dash?</a>
-      <a class="list-group-item greyout"><strong>Modernizer</strong><br />
-        ...</a>
-      <a class="list-group-item greyout"><strong>Promises (Q)</strong><br />
-        The current (2014) industry standard for dealing with async callbacks</a>
-      <a class="list-group-item greyout"><strong>AMD</strong><br />
-        Lets you split javascript accross multiple files by requiring and listing dependencies</a>
-      <a class="list-group-item greyout"><strong>Require JS</strong><br />
-        Deals with loading required js libraries and files in the proper order</a>
 
-      <a href="#" class="list-group-item greyout">Socket.IO</a>
-      <a href="#" class="list-group-item greyout">Math Jax (http://www.mathjax.org/)<br />
-        For showing equasions without the layout headache</a>
-      <a href="#" class="list-group-item greyout">Web Audio API</a>
-      <a href="#" class="list-group-item greyout">Proximity API</a>
-      <a href="#" class="list-group-item greyout">Web Notifications API</a>
-      <a href="#" class="list-group-item greyout">Web Speech API</a>
-      <a href="#" class="list-group-item greyout"><strong>Webrtc</strong><br />Real time communication: http://www.webrtc.org/</a>
-    </div>
+  <div class="col-md-4">
+        <h4 id="Optimisation">Optimisation</h4>
+        <div class="list-group">
+          <a href="speed.php" class="list-group-item">Speed</a>
+          <a href="speed.php" class="list-group-item greyout">Load Balancers</a>
+          <a href="seo.php" class="list-group-item">SEO</a>
+          <a href="smo.php" class="list-group-item">SMO</a>
+        </div>
+        <h4 id="Databases">Databases</h4>
+        <div class="list-group">
+          <a href="" class="list-group-item greyout">Fundamentals</a>
+          <a href="hadoop.php" class="list-group-item greyout">Hadoop & Map Reduce</a>
+          <a href="mongodb.php" class="list-group-item">MongoDB</a>
+          <a href="" class="list-group-item greyout">Redis</a>
+          <a href="" class="list-group-item greyout">mySQL</a>
+          <a href="" class="list-group-item greyout">PostgreSQL</a>
+          <a href="" class="list-group-item greyout">CouchDB</a>
+          <a href="" class="list-group-item greyout">Memcached</a>
+          <a href="" class="list-group-item greyout">Flat file</a>
+        </div>
   </div>
-   <div id="Languages" class="col-md-6">
-    <h4>Notes on Languages</h4>
-    <div class="list-group">
-      <a href="programmingFundamentals.php" class="list-group-item">Fundamentals</a>
-      <a href="php.php" class="list-group-item">PHP</a>
-      <a href="jade.php" class="list-group-item">Jade</a>
-      <a href="" class="list-group-item greyout">SASS / LESS</a>
-      <a href="" class="list-group-item greyout">Coffeescript</a>
-    </div>
-    <h4 id="Mobile">Mobile things</h4>
-    <div class="list-group">
-      <a href="" class="list-group-item">Cordova / PhoneGap</a>
-      <a href="" class="list-group-item">Rho Mobile</a>
-      <a href="" class="list-group-item">Appcelerator</a>
-    </div>
-    <h4 id="Other">Other notes</h4>
-    <div class="list-group">
-      <a href="designtheory.php" class="list-group-item">Design Theory</a>
-      <a href="inspiration.php" class="list-group-item">Inspiration / life theory</a>
-      <a href="investing.php" class="list-group-item">Investing</a>
-    </div>
-    <h4>Books / reading materials to go through:</h4>
-    <div class="list-group">
-      <p class="list-group-item"><i>HTTP: The Definitive Guide</i> by David Gourley</p>
-      <p class="list-group-item"><i>High Performance Web Sites</i> by Steve Souders</p>
-      <p class="list-group-item"><i>The Tangled Web: A Guide to Securing Modern Web Applications</i> by Michal Zalewski</p>
-    </div>
+
+  <div class="col-md-4">
+        <h4 id="Security">Security</h4>
+        <div class="list-group">
+          <a href="security.php" class="list-group-item">Overview</a>
+          <a href="authentication.php" class="list-group-item">Authentication</a>
+          <a href="clickjacking.php" class="list-group-item">Click Jacking</a>
+          <a href="CSRF.php" class="list-group-item">CSRF (Cross-Site Request Forgery)</a>
+          <a href="mobileAppInjection.php" class="list-group-item">mobileAppInjection</a>
+          <a href="XSS.php" class="list-group-item">XSS</a>
+          <a href="" class="list-group-item greyout">Remote File Inclusion</a>
+          <a href="" class="list-group-item greyout">SQL Injection</a>
+          <a href="" class="list-group-item greyout">Mutation XSS</a>
+          <a href="" class="list-group-item greyout">CRIME - Compression Ratio Info-leak Made Easy</a>
+          <a href="" class="list-group-item greyout">cache poisoning attack (WebSockets)</a>
+          <a href="" class="list-group-item greyout">Kleptographic attack</a>
+        </div>
   </div>
-</div>
+
+  <div class="col-md-4">
+        <h4 id="Languages">Notes on Languages</h4>
+        <div class="list-group">
+          <a href="programmingFundamentals.php" class="list-group-item">Fundamentals</a>
+          <a href="php.php" class="list-group-item">PHP</a>
+          <a href="jade.php" class="list-group-item">Jade</a>
+          <a href="" class="list-group-item greyout">SASS / LESS</a>
+          <a href="" class="list-group-item greyout">Coffeescript</a>
+        </div>
+        <h4 id="Testing">Testing</h4>
+        <div class="list-group">
+          <a href="angularTesting.php" class="list-group-item">Angular (Karma & Jasmine)</a>
+          <a href="" class="list-group-item greyout">QUnit</a>
+          <a href="" class="list-group-item greyout">Mocha</a>
+          <a href="" class="list-group-item greyout">errorception (not a unit test, it tracks errors the real users in the field are hitting.)</a>
+        </div>
+        <h4 id="Analysis">Analysis tools</h4>
+        <div class="list-group">
+          <a href="" class="list-group-item greyout">Google Page speed</a>
+          <a href="" class="list-group-item greyout">Google Tag Manager</a>
+          <a href="" class="list-group-item greyout">Google Analytics</a>
+        </div>
+  </div>
+
+</div> <!-- END of second row -->
+
+<div class="row">
+
+  <div class="col-md-4">
+        <h4 id="DevelopmentTools">Development tools</h4>
+        <div class="list-group">
+          <a href="yeoman.php" class="list-group-item">yeoman</a>
+          <a href="grunt.php" class="list-group-item">Grunt</a>
+          <a href="" class="list-group-item"><strong>npm, The Node package manager</strong><br />
+            Keep it up to date: <code>npm update -g npm</code></a>
+          <a href="bower.php" class="list-group-item">Bower</a>
+          <a href="" class="list-group-item greyout">Gulp</a>
+          <a href="" class="list-group-item greyout">Browserify</a>
+          <a href="" class="list-group-item greyout">RequireJS</a>
+          <a href="" class="list-group-item greyout">Chrmoe Dev Tools</a>
+          <a href="" class="list-group-item greyout">Google's Web Fundamentals</a>
+        </div>
+        <h4 id="OtherTools">Other tools</h4>
+        <div class="list-group">
+          <a href="emmet.php" class="list-group-item">Emmet</a>
+          <a href="editors.php" class="list-group-item">Text editors</a>
+          <a href="" class="list-group-item greyout">Z</a>
+          <a href="" class="list-group-item greyout">Linting</a>
+          <a href="" class="list-group-item greyout">Live Reload</a>
+          <a href="" class="list-group-item greyout">SourceURL</a>
+          <a href="" class="list-group-item greyout">SourceMaps</a>
+          <a href="" class="list-group-item greyout">prettyify minified code browser extension</a>
+          <a href="" class="list-group-item greyout">Postman</a>
+        </div>
+  </div>
+
+  <div class="col-md-4">
+        <h4 id="libraries">Cool libraries (and some polyfills for them)</h4>
+        <div class="list-group"> 
+          <a href="famous.php" class="list-group-item">Famo.us</a>
+          <a href="proximity.php" class="list-group-item">Proximity</a>
+          <a href="#" class="list-group-item greyout"><strong>Twitter Bootstrap</strong><br />
+            CSS framework.  A lot of very useful HTML, CSS and Javascript elements. (used on this site)</a>
+          <a class="list-group-item greyout"><strong>jQuery</strong><br />
+            Industry standard DOM manipulation library</a>
+          <a class="list-group-item greyout"><strong>underscore</strong><br />
+            Being replaced by Lo-Dash?</a>
+          <a class="list-group-item greyout"><strong>Modernizer</strong><br />
+            ...</a>
+          <a class="list-group-item greyout"><strong>Promises (Q)</strong><br />
+            The current (2014) industry standard for dealing with async callbacks</a>
+          <a class="list-group-item greyout"><strong>AMD</strong><br />
+            Lets you split javascript accross multiple files by requiring and listing dependencies</a>
+          <a class="list-group-item greyout"><strong>Require JS</strong><br />
+            Deals with loading required js libraries and files in the proper order</a>
+          <a href="#" class="list-group-item greyout">Socket.IO</a>
+          <a href="#" class="list-group-item greyout">Math Jax (http://www.mathjax.org/)<br />
+            For showing equasions without the layout headache</a>
+          <a href="#" class="list-group-item greyout">Web Audio API</a>
+          <a href="#" class="list-group-item greyout">Proximity API</a>
+          <a href="#" class="list-group-item greyout">Web Notifications API</a>
+          <a href="#" class="list-group-item greyout">Web Speech API</a>
+          <a href="#" class="list-group-item greyout"><strong>Webrtc</strong><br />Real time communication: http://www.webrtc.org/</a>
+        </div>
+  </div>
+
+  <div class="col-md-4">
+        <h4 id="Mobile">Mobile things</h4>
+        <div class="list-group">
+          <a href="" class="list-group-item">Cordova / PhoneGap</a>
+          <a href="" class="list-group-item">Rho Mobile</a>
+          <a href="" class="list-group-item">Appcelerator</a>
+        </div>
+        <h4 id="Other">Other notes</h4>
+        <div class="list-group">
+          <a href="designtheory.php" class="list-group-item">Design Theory</a>
+          <a href="inspiration.php" class="list-group-item">Inspiration / life theory</a>
+          <a href="investing.php" class="list-group-item">Investing</a>
+        </div>
+        <h4 id="Reading">Books / reading materials to go through:</h4>
+        <div class="list-group">
+          <p class="list-group-item"><i>HTTP: The Definitive Guide</i> by David Gourley</p>
+          <p class="list-group-item"><i>High Performance Web Sites</i> by Steve Souders</p>
+          <p class="list-group-item"><i>The Tangled Web: A Guide to Securing Modern Web Applications</i> by Michal Zalewski</p>
+        </div>
+  </div>
+
+</div><!-- END of third row -->
+
+
+
+
+
+
+
+
 
 <!--
-<h4>Guides for web development</h4>
-<div class="list-group">
-  <a href="guides/languages.php" class="list-group-item"><strong>Development Stacks</strong><br />
-    Languages, Frameworks for the front & Back ends...</a>
-  <a href="guides/tools.php" class="list-group-item"><strong>Development Tools</strong><br />
-    Shell, build tools, ...</a>
-  <a href="guides/designtheory.php" class="list-group-item"><strong>Design Theory</strong><br />
-    Typography, ...</a>
-  <a href="guides/cms.php" class="list-group-item"><strong>Content Managment Systems</strong><br />
-    Handing control over to the client</a>
-  <a href="guides/databases.php" class="list-group-item"><strong>Database Systems</strong><br />
-    Designs & Interactions</a>
-  <a href="guides/webservers.php" class="list-group-item"><strong>Web servers</strong><br />
-    And a bit about how the web works</a>
-  <a href="guides/security.php" class="list-group-item"><strong>Security</strong><br />
-    Types of attacks and how to defend against them</a>
-  <a href="guides/optimisation.php" class="list-group-item"><strong>Optimisation</strong><br />
-    Speed, Search ...</a>
-  <a href="guides/cross-platform.php" class="list-group-item greyout"><strong>Cross Platform</strong><br />
-    Wrappers and things for Mobile Apps</a>
-  
-</div>
-
-<h5>Google's refrence:</h5>
-<a href="https://developers.google.com/web/fundamentals/" target="_blank" class="list-group-item greyout"><strong>Google's Web Fundamentals</strong><br />
-  https://developers.google.com/web/fundamentals/</a>
 
 <h4>Some other areas of interest</h4>
 <div class="list-group">

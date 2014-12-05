@@ -1,8 +1,10 @@
 <?php $iainPageTitle = 'Security'; $docDepth = 1; ?>
 <?php include '../partials/head.php'; ?>
-
-<a href="http://www.cert.org/">cert</a> cyber security people<br />
-<a href="http://en.wikipedia.org/wiki/Portal:Computer_security">Computer security portal on wikipedia</a>
+<ul>
+  <li><a href="http://www.cert.org/">cert</a> cyber security people<br /></li>
+  <li><a href="http://en.wikipedia.org/wiki/Portal:Computer_security">Computer security portal on wikipedia</a></li>
+  <li><a href="http://www.smashingmagazine.com/tag/security/">Smashing Mag security articles</a></li>
+</ul>
 
 <p>Types of vulnerability</p>
            
@@ -16,9 +18,15 @@
   <li><strong>Indirect attacks</strong>: Launching attacks from third party computers / anonymous networks (tor) to avoid identification</li>
   <li><strong>Human error</strong>: takign advantage of trust / misleading individuals / using the people in controll of a system in order to gain access</li>
 </ul>
+<p>There is also <i>path traversal</i>, not protecting folders form being listed in a way that you might see on localhost: effectivley allowng people to
+explore the file system on your server at will, not good!  To get an idea: <a href="http://gray-world.net/etc/passwd/googletut1.txt">Google, a Dream come true</a> - 
+note, this is old, many of the results are people trying to improve their own rankings.</p>
 
 <p>Security measures</p>
 <ul>
+  <li>Turn off folder listing</li>
+  <li>Turn off php globals (from URL's)...?</li>
+  <li>Do not take values from the URL and print them to the page, this is just inviting XSS</li>
   <li>User account access controls</li>
   <li>cryptography</li>
   <li>Firewalls</li>
@@ -34,7 +42,7 @@
 
 <hr />
 
-<h2>Examples</h2>
+<h2>Specific Examples</h2>
 
 <hr />
 

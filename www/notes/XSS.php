@@ -6,8 +6,18 @@
 	Posting a message on a website with embedded javascript that, when opened by another user, will access their cookie data (username/password...) and do something with it.  Usually sending it to a site owned by the XSS author.
 </p>
 
-<h3>How to do XSS?</h3>
+<a href="http://xssed.org/">xssed.org</a>
 
+<h3>How to do XSS?</h3>
+<p><strong>Example 1</strong></p>
+<p>Imagin creating a site that gave users the ability to customize the colour scheme via paramaters in the URL, 
+	<code>http://example.com/test.php?color=red&background=pink</code> so 'red' or 'pink' are directly placed into the stylesheet.  
+	An XSS attack might look like this: <code>http://example.com/test.php?color=green&background=&lt;/style&gt;&lt;script&gt;alert(String.fromCharCode(88,83,83))&lt;/script&gt;</code>
+	with the link being supplied by email / another site in order to attack the trusted (and vulnerable) example.com</p>
+<a href="http://www.smashingmagazine.com/2010/01/14/web-security-primer-are-you-part-of-the-problem/">Source</a>
+<p></p>
+<hr />
+<p><strong>Example 2</strong></p>
 <p>
 <ul>
 	<li>
