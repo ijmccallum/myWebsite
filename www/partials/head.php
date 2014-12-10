@@ -29,6 +29,10 @@ for ($x=0; $x<$docDepth; $x++){
     <link href='http://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise' rel='stylesheet' type='text/css'>
     <link href=<?php echo $homePath . 'highlight/highlight.css"' ?> rel="stylesheet" />
 
+    <?php if ($iainPageTitle == "Forms"){ ?>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+    <?php } ?>
+
 <!-- Universal analytics -->
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
