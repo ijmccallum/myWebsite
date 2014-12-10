@@ -63,7 +63,7 @@
 </form>
 
 
-<script src=<?php echo $homePath . "js/parsley.js" . '"' ?>></script>
+
 
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>

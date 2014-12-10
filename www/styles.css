@@ -61,8 +61,10 @@ body {
 }
 .top-right-btn {
     position: absolute;
-    top: -1px;
-    right: 15px;
+    top: 3px;
+    right: 0px;
+    padding-right: 15px;
+    cursor: pointer;
 }
 
 .right-dropdown-menu {
@@ -491,6 +493,21 @@ height: 100%;
         padding-right: 10px;
     }
 
+/* Contact boc */
+#contact-form textarea,
+#contact-form input {
+    width:100%;
+}
+#contact-form textarea {
+    min-height: 100px;
+}
+.modal-dialog {
+    margin-top: 60px;
+}
+.modal-sm {
+    min-width: 343px;
+}
+
 /*
  * Footer bar
  */ 
@@ -602,4 +619,42 @@ height: 100%;
         border-bottom-right-radius: 10px;
         z-index: 9999;
     }
+}
+
+
+/* Parsley CSS */
+input.parsley-success,
+select.parsley-success,
+textarea.parsley-success {
+  color: #468847;
+  background-color: #DFF0D8;
+  border: 1px solid #D6E9C6;
+}
+
+input.parsley-error,
+select.parsley-error,
+textarea.parsley-error {
+  color: #B94A48;
+  background-color: #F2DEDE;
+  border: 1px solid #EED3D7;
+}
+
+.parsley-errors-list {
+  margin: 2px 0 3px;
+  padding: 0;
+  list-style-type: none;
+  font-size: 0.9em;
+  line-height: 0.9em;
+  opacity: 0;
+  -moz-opacity: 0;
+  -webkit-opacity: 0;
+
+  transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+}
+
+.parsley-errors-list.filled {
+  opacity: 1;
 }

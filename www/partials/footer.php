@@ -32,9 +32,33 @@
         </div>
     </div>
 
+
+    <!-- The contact me form -->
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Contact Me</h4>
+          </div>
+          <div class="modal-body">
+            <form id="contact-form" data-parsley-validate method="POST" action=<?php echo $homePath . "submit.php" . '"' ?>>
+                <label for="email">Email</label><br />
+                <input type="email" name="email" data-parsley-trigger="change" required />
+                <label for="message">Message</label><br />
+                <textarea name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-validation-threshold="10" data-parsley-minlength-message = "That's all?"></textarea>
+                <div class="g-recaptcha" data-sitekey="6LcsE_8SAAAAAPbat4qiwoi_lID0ui7i4GvrshcC"></div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- JavaScript -->
     <script src=<?php echo $homePath . "bootstrap/js/jquery-1.10.2.js" . '"' ?>></script>
     <script src=<?php echo $homePath . "bootstrap/js/bootstrap.js" . '"' ?>></script>
+    <script src=<?php echo $homePath . "js/parsley.js" . '"' ?>></script>
     <script src=<?php echo $homePath . "highlight/highlight.js" . '"' ?>></script>
     <script>hljs.initHighlightingOnLoad();</script>
 

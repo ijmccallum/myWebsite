@@ -28,10 +28,8 @@ for ($x=0; $x<$docDepth; $x++){
     <link href=<?php echo $homePath . 'styles.css"' ?>  rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise' rel='stylesheet' type='text/css'>
     <link href=<?php echo $homePath . 'highlight/highlight.css"' ?> rel="stylesheet" />
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
-    <?php if ($iainPageTitle == "Forms"){ ?>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
-    <?php } ?>
 
 <!-- Universal analytics -->
 <script>
@@ -125,20 +123,11 @@ for ($x=0; $x<$docDepth; $x++){
                 <?php } ?>
 
                 <!-- Top right, call to action? -->
-                <!--
-                <div class="top-right-btn">  
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
-                        <span class="hidden-xs">Contact Me <span class="caret"></span></span>
-                        <span class="glyphicon glyphicon-envelope visible-xs"></span>
-                      </button>
-                      <ul class="dropdown-menu right-dropdown-menu" role="menu">
-                        <li><a href="mailto:ijmccallum@hotmail.co.uk">mailto:</a></li>
-                        <li><a href="#">copy: ijmccallum</a></li>
-                      </ul>
-                    </div>
+                
+                <div class="top-right-btn" data-toggle="modal" data-target="#contactModal">  
+                    <h1><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></h1>
                 </div>
-            -->
+            
 
             </div>
             <div class="page-content inset">
