@@ -42,7 +42,7 @@
             <h4 class="modal-title" id="myModalLabel">Contact Me</h4>
           </div>
           <div class="modal-body">
-            <form id="contact-form" data-parsley-validate method="POST" action=<?php echo $homePath . "submit.php" . '"' ?>>
+            <form id="contact-form" data-parsley-validate >
                 <label for="email">Email</label><br />
                 <input type="email" name="email" data-parsley-trigger="change" required />
                 <label for="message">Message</label><br />
@@ -61,6 +61,47 @@
     <script src=<?php echo $homePath . "js/parsley.js" . '"' ?>></script>
     <script src=<?php echo $homePath . "highlight/highlight.js" . '"' ?>></script>
     <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- Contact form -->
+    <script type="text/javascript">
+        $('#contact-form').submit(function(e) { 
+            e.preventDefault();
+            if ( $(this).parsley().isValid() ) {
+                /* Submitting the form data with Ajax */  
+
+                /* Set up the request object */
+                var xhr;
+                if (window.XMLHttpRequest) {
+                    xhr = new XMLHttpRequest();
+                } else {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+
+                console.log('xhr object created: ' + xhr);
+
+                /* POST Request */
+                xhr.open("POST", "/submit.php", true);
+                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xhr.send("fname=Henry&lname=Ford");
+
+                console.log('sent request');
+
+                /* Server responce */
+                xhr.onreadystatechange = function(){ //gives us the option to deal with various errors
+
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        console.log('xhr status: ' + xhr.status);
+                        console.log('xhr readyState: ' + xhr.readyState);
+                        handleSuccessfulResponce();
+                    }
+                };
+                function handleSuccessfulResponce(){
+                    console.log('SUCCESS! responseText: ' + xhr.responseText);
+                    var responceAsString = xhr.responseText;
+                }
+            }
+        });
+    </script>
 
     <!-- Slide sidebar -->
     <script>

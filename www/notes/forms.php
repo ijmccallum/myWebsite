@@ -58,7 +58,6 @@
   <label for="message">Message (20 chars min, 100 max) :</label>
   <textarea name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-validation-threshold="10" data-parsley-minlength-message = "Come on! You need to enter at least a 20 caracters long comment.."></textarea>
 
-	<div class="g-recaptcha" data-sitekey="6LcsE_8SAAAAAPbat4qiwoi_lID0ui7i4GvrshcC"></div>
   <input type="submit" />
 </form>
 

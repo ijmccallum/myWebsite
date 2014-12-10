@@ -212,7 +212,7 @@ xhr.onload = handleSuccessfulResponce(); //only fires on succesfull responce
 xhr.onreadystatechange = checkXhrProgress(); //gives us the option to deal with various errors
 
 function checkXhrProgress(){ 
-	if (xhr.readyStat == 4 && xhr.status == 200) {
+	if (xhr.readyState == 4 && xhr.status == 200) {
 		handleSuccessfulResponce();
 	}
 };

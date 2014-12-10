@@ -1,4 +1,5 @@
 <?php 
+
 $homePath = '"';
 for ($x=0; $x<$docDepth; $x++){
   //add ../ to paths
