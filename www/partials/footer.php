@@ -38,7 +38,7 @@
       <div class="modal-dialog modal-sm">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <button type="button" class="close" id="contactBoxClose" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <h4 class="modal-title" id="myModalLabel">Contact Me</h4>
           </div>
           <div id="contactModalBody" class="modal-body">
@@ -49,6 +49,7 @@
                 <textarea id="contact-form-message" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-validation-threshold="20" data-parsley-minlength-message = "That's all?"></textarea>
                 <div class="g-recaptcha" data-sitekey="6LcsE_8SAAAAAPbat4qiwoi_lID0ui7i4GvrshcC"></div>
                 <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Send</button>
+                <button type="button" class="btn btn-default pull-right" style="margin-top: 10px;" data-dismiss="modal">Close</button>
             </form>
           </div>
         </div>
@@ -106,6 +107,7 @@
                         document.getElementById('myModalLabel').innerHTML = "Message sent!";
                             successHTML = "<p><i><strong>Email</strong><br />" + contactFormEmail + "</i></p>";
                             successHTML += "<p><i><strong>Message</strong><br />" + contactFormMessage + "</i></p>";
+                            setTimeout(function(){ document.getElementById('contactBoxClose').click(); }, 3000);
                             break;
                         case "reCAPTCHAbot":
                             successHTML = "<h3>Hmm, google thinks you're a bot.</h3>";
