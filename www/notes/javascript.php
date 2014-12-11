@@ -208,16 +208,14 @@ xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xhr.send("fname=Henry&lname=Ford");
 
 /* Server responce */
-xhr.onload = handleSuccessfulResponce(); //only fires on succesfull responce
-xhr.onreadystatechange = checkXhrProgress(); //gives us the option to deal with various errors
 
-function checkXhrProgress(){ 
+xhr.onreadystatechange = function(){ //gives us the option to deal with various errors
 	if (xhr.readyState == 4 && xhr.status == 200) {
 		handleSuccessfulResponce();
 	}
 };
 
-function handleSuccessfulResponce(){
+xhr.onload = function(){ //only fires on succesfull responce
 	var responceInXML = xhr.responseXML;
 	var responceAsString = xhr.responseText;
 }

@@ -507,6 +507,9 @@ height: 100%;
 .modal-sm {
     min-width: 343px;
 }
+#contactModalBody i {
+    word-wrap: break-word;
+}
 
 /*
  * Footer bar

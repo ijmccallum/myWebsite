@@ -41,12 +41,12 @@
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <h4 class="modal-title" id="myModalLabel">Contact Me</h4>
           </div>
-          <div class="modal-body">
+          <div id="contactModalBody" class="modal-body">
             <form id="contact-form" data-parsley-validate >
                 <label for="email">Email</label><br />
-                <input type="email" name="email" data-parsley-trigger="change" required />
+                <input id="contact-form-email" type="email" name="email" data-parsley-trigger="change" required />
                 <label for="message">Message</label><br />
-                <textarea name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-validation-threshold="10" data-parsley-minlength-message = "That's all?"></textarea>
+                <textarea id="contact-form-message" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-validation-threshold="20" data-parsley-minlength-message = "That's all?"></textarea>
                 <div class="g-recaptcha" data-sitekey="6LcsE_8SAAAAAPbat4qiwoi_lID0ui7i4GvrshcC"></div>
                 <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Send</button>
             </form>
@@ -67,7 +67,13 @@
         $('#contact-form').submit(function(e) { 
             e.preventDefault();
             if ( $(this).parsley().isValid() ) {
-                /* Submitting the form data with Ajax */  
+                /* Submitting the form data with Ajax */ 
+
+                /* Set up the post data */ 
+                var contactFormEmail = document.getElementById('contact-form-email').value;
+                var contactFormMessage = document.getElementById('contact-form-message').value;
+                var gRecaptchaResponse = grecaptcha.getResponse();
+                var ajaxPostString = "email=" + contactFormEmail + "&message=" + contactFormMessage + "&g-recaptcha-response=" + gRecaptchaResponse;
 
                 /* Set up the request object */
                 var xhr;
@@ -77,27 +83,43 @@
                     xhr = new ActiveXObject("Microsoft.XMLHTTP");
                 }
 
-                console.log('xhr object created: ' + xhr);
-
                 /* POST Request */
                 xhr.open("POST", "/submit.php", true);
                 xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-                xhr.send("fname=Henry&lname=Ford");
-
-                console.log('sent request');
+                xhr.send(ajaxPostString);
 
                 /* Server responce */
                 xhr.onreadystatechange = function(){ //gives us the option to deal with various errors
-
                     if (xhr.readyState == 4 && xhr.status == 200) {
-                        console.log('xhr status: ' + xhr.status);
-                        console.log('xhr readyState: ' + xhr.readyState);
                         handleSuccessfulResponce();
                     }
                 };
+
                 function handleSuccessfulResponce(){
                     console.log('SUCCESS! responseText: ' + xhr.responseText);
-                    var responceAsString = xhr.responseText;
+                    var successHTML,
+                        responceResult = xhr.responseText;
+
+
+                    switch(responceResult) {
+                        case "Human":
+                        document.getElementById('myModalLabel').innerHTML = "Message sent!";
+                            successHTML = "<p><i><strong>Email</strong><br />" + contactFormEmail + "</i></p>";
+                            successHTML += "<p><i><strong>Message</strong><br />" + contactFormMessage + "</i></p>";
+                            break;
+                        case "reCAPTCHAbot":
+                            successHTML = "<h3>Hmm, google thinks you're a bot.</h3>";
+                            break;
+                        case "brokenJS":
+                            successHTML = "<h3>Something's broken, it didn't work.</h3>";
+                            break;
+                        default:
+                            successHTML = "<h3>There might be a server problem, it didn't work.</h3>";
+                    }
+
+
+                    document.getElementById('contactModalBody').innerHTML = successHTML;
+
                 }
             }
         });
