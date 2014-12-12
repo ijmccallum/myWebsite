@@ -1,0 +1,190 @@
+<h3>CSS Keyframe animations</h3>
+<h4>Config</h4>
+<p>Each element you are intending to element gets what I like to think of as a kind of config file in which you define the overall/main arc animation settings:</p>
+<pre><code>.element {
+  animation-name: whereTheKeyframesAre; //the animation itself is defined elsewhere so we can reuse specific movments, like a bounce!
+  animation-duration: 4s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite; //or set a number
+  animation-timing-function: linear;  
+  animation-direction: alternate;
+}</code></pre>
+<p>the <code><strong>animation-timing-function</strong></code> is where we can use some present animation curves rather than work it out ourselves
+<ul>
+	<li><code>linear</code>: straight - even speed from start to finish, robotic, hard start and end.</li>
+	<li><code>ease</code>: simple curve - slow start slow finish, more organic.</li>
+	<li><code>ease-in</code>: slow start</li>
+	<li><code>ease-out</code>: slow end</li>
+	<li><code>ease-in-out</code>: similar to ease but not as dramatic</li>
+	<li><code>cubic-bezier(n,n,n,n)</code>: set our own values, <a href="http://cubic-bezier.com/">here's a tool to set the bezier curves visually</a></li>
+</ul>
+The <code><strong>animation-direction</strong></code> also has a few presets for us to play with:
+<ul>
+	<li><code>normal</code> It will play from start to finish, if repeated it will jump to the start for every animation</li>
+	<li><code>reverse</code></li>
+	<li><code>alternate</code></li>
+	<li><code>alternate-reverse</code> begins with a reverse animation</li>
+</ul>
+<strong>Shorthand:</strong>
+<pre><code>animation: name duration delay iteration-count timing-function direction;</code></pre>
+</p>
+
+<br />
+
+<h4>@keyframes</h4>
+<p>This is where the work happens.  As the length/time of the animation is already defined in the 'config' above we set up the stages of the animation in %, 
+	a little foreign when coming from actual animation but great for reusability!</p>
+<pre><code>@keyframes whereTheKeyframesAre {
+    0%   {top: 0px;     left: 0px;    background: red;} //it's good to define 0 and 100 to help with cross browser stuff
+    25%  {top: 0px;     left: 100px;  background: blue;}
+    50%  {top: 100px;   left: 100px;  background: yellow;}
+    75%  {top: 100px;   left: 0px;    background: green;}
+    100% {top: 0px;     left: 0px;    background: red;}
+}</code></pre>
+
+<br />
+<h4>Vendor prefixes</h4>
+<pre><code>.element {
+    -webkit-animation: tutsFade 4s 1s infinite linear alternate;
+    -moz-animation: tutsFade 4s 1s infinite linear alternate;
+    -ms-animation: tutsFade 4s 1s infinite linear alternate;
+    -o-animation: tutsFade 4s 1s infinite linear alternate;
+    animation: tutsFade 4s 1s infinite linear alternate;
+    outline: 1px solid transparent; //for firefox when tranforming shapes, this fixes the antialiasing problem!
+}
+@-webkit-keyframes tutsFade { /* your style */ }
+@-moz-keyframes tutsFade { /* your style */ }
+@-ms-keyframes tutsFade { /* your style */ }
+@-o-keyframes tutsFade { /* your style */ }
+@keyframes tutsFade { /* your style */ }</code></pre>
+
+<br />
+
+<h4>Multiple animations</h4>
+<p>We can add a second animation in by seporating the two with a comma.  They will play simultaniously as shown in the example below:</p>
+<div class="row">
+	<div class="col-md-4">
+		<div id="animation1"></div>
+		<br />
+<pre><code>#animation1 {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  -webkit-animation: 
+      corners 2s .5s infinite ease alternate, 
+      colours 2s .5s infinite ease alternate;
+  -moz-animation: 
+      corners 2s .5s infinite ease alternate,
+      colours 2s .5s infinite ease alternate;
+  -ms-animation: 
+      corners 2s .5s infinite ease alternate,
+      colours 2s .5s infinite ease alternate;
+  -o-animation: 
+      corners 2s .5s infinite ease alternate,
+      colours 2s .5s infinite ease alternate;
+  <strong>animation: 
+      corners 2s .5s infinite ease alternate,
+      colours 2s .5s infinite ease alternate;</strong>
+}</code></pre>	
+	</div>
+	<div class="col-md-4">
+<pre><code>@-webkit-keyframes colours {
+  0% { background:coral; }
+  25% { background:darksalmon; }
+  50% { background:indianred; }
+  75% { background:lightcoral; }
+  100% { background:darksalmon; }
+}
+@-moz-keyframes colours {
+  0% { background:coral; }
+  25% { background:darksalmon; }
+  50% { background:indianred; }
+  75% { background:lightcoral; }
+  100% { background:darksalmon; }
+}
+@-ms-keyframes colours {
+  0% { background:coral; }
+  25% { background:darksalmon; }
+  50% { background:indianred; }
+  75% { background:lightcoral; }
+  100% { background:darksalmon; }
+}
+@-o-keyframes colours {
+  0% { background:coral; }
+  25% { background:darksalmon; }
+  50% { background:indianred; }
+  75% { background:lightcoral; }
+  100% { background:darksalmon; }
+}
+<strong>@keyframes colours {
+  0% { background:coral; }
+  25% { background:darksalmon; }
+  50% { background:indianred; }
+  75% { background:lightcoral; }
+  100% { background:darksalmon; }
+}</strong></code></pre>
+	</div>
+<pre><code>@-webkit-keyframes corners {
+  0%  { border-radius:0 0 0 0; }
+  25%  { border-radius:50% 0 0 0; }
+  50%  { border-radius:50% 50% 0 0; }
+  75%  { border-radius:50% 50% 50% 0; }
+  100% { border-radius:50%; }
+}
+@-moz-keyframes corners {
+  0%  { border-radius:0 0 0 0; }
+  25%  { border-radius:50% 0 0 0; }
+  50%  { border-radius:50% 50% 0 0; }
+  75%  { border-radius:50% 50% 50% 0; }
+  100% { border-radius:50%; }
+}
+@-ms-keyframes corners {
+  0%  { border-radius:0 0 0 0; }
+  25%  { border-radius:50% 0 0 0; }
+  50%  { border-radius:50% 50% 0 0; }
+  75%  { border-radius:50% 50% 50% 0; }
+  100% { border-radius:50%; }
+}
+@-o-keyframes corners {
+  0%  { border-radius:0 0 0 0; }
+  25%  { border-radius:50% 0 0 0; }
+  50%  { border-radius:50% 50% 0 0; }
+  75%  { border-radius:50% 50% 50% 0; }
+  100% { border-radius:50%; }
+}
+<strong>@keyframes corners {
+  0%  { border-radius:0 0 0 0; }
+  25%  { border-radius:50% 0 0 0; }
+  50%  { border-radius:50% 50% 0 0; }
+  75%  { border-radius:50% 50% 50% 0; }
+  100% { border-radius:50%; }
+}</strong></code></pre>
+	<div class="col-md-4"></div>
+</div>
+
+<br />
+<h4>A note for the <strong>animation-timing-function</strong></h4>
+<p>You may have realised that the timing function is applied between the movment between every defined keyframe which is why there appears to be 4 clearly
+defined transitions in the previous example.  If we take the timing defenition out of the config and apply it to the keyframes we can apply timing accros 
+the animation as a whole.</p>
+<div class="row">
+	<div class="col-md-4">
+		<div id="animationTiming"></div>
+	</div>
+	<div class="col-md-8">
+<pre><code>@keyframes corners {
+  0%  { border-radius:0 0 0 0; animation-timing-function: ease-in; }
+  25%  { border-radius:50% 0 0 0; animation-timing-function: linear; }
+  50%  { border-radius:50% 50% 0 0; animation-timing-function: linear; }
+  75%  { border-radius:50% 50% 50% 0; animation-timing-function: ease-out; }
+  100% { border-radius:50%; animation-timing-function: ease-in; }
+}</code></pre>
+	</div>
+</div>
+
+<br />
+<a href="http://webdesign.tutsplus.com/tutorials/a-beginners-introduction-to-css-animation--cms-21068">a tutorial</a>
+
+<hr />
+
+<h3>CSS Transition Animations</h3>

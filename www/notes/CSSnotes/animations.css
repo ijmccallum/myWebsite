@@ -1,0 +1,147 @@
+#animation1 {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  -webkit-animation:  corners 2s .5s infinite ease alternate,
+                      colours 2s .5s infinite ease alternate;
+  -moz-animation: corners 2s .5s infinite ease alternate,
+                  colours 2s .5s infinite ease alternate;
+  -ms-animation: corners 2s .5s infinite ease alternate,
+                 colours 2s .5s infinite ease alternate;
+  -o-animation: corners 2s .5s infinite ease alternate,
+                colours 2s .5s infinite ease alternate;
+  animation: corners 2s .5s infinite ease alternate,
+             colours 2s .5s infinite ease alternate;
+}
+ 
+@-webkit-keyframes corners {
+  0%  { border-radius:0 0 0 0; }
+  25%  { border-radius:50% 0 0 0; }
+  50%  { border-radius:50% 50% 0 0; }
+  75%  { border-radius:50% 50% 50% 0; }
+  100% { border-radius:50%; }
+}
+@-webkit-keyframes colours {
+  0% { background:coral; }
+  25% { background:darksalmon; }
+  50% { background:indianred; }
+  75% { background:lightcoral; }
+  100% { background:darksalmon; }
+}
+
+@-moz-keyframes corners {
+  0%  { border-radius:0 0 0 0; }
+  25%  { border-radius:50% 0 0 0; }
+  50%  { border-radius:50% 50% 0 0; }
+  75%  { border-radius:50% 50% 50% 0; }
+  100% { border-radius:50%; }
+}
+@-moz-keyframes colours {
+  0% { background:coral; }
+  25% { background:darksalmon; }
+  50% { background:indianred; }
+  75% { background:lightcoral; }
+  100% { background:darksalmon; }
+}
+
+@-ms-keyframes corners {
+  0%  { border-radius:0 0 0 0; }
+  25%  { border-radius:50% 0 0 0; }
+  50%  { border-radius:50% 50% 0 0; }
+  75%  { border-radius:50% 50% 50% 0; }
+  100% { border-radius:50%; }
+}
+@-ms-keyframes colours {
+  0% { background:coral; }
+  25% { background:darksalmon; }
+  50% { background:indianred; }
+  75% { background:lightcoral; }
+  100% { background:darksalmon; }
+}
+
+@-o-keyframes corners {
+  0%  { border-radius:0 0 0 0; }
+  25%  { border-radius:50% 0 0 0; }
+  50%  { border-radius:50% 50% 0 0; }
+  75%  { border-radius:50% 50% 50% 0; }
+  100% { border-radius:50%; }
+}
+@-o-keyframes colours {
+  0% { background:coral; }
+  25% { background:darksalmon; }
+  50% { background:indianred; }
+  75% { background:lightcoral; }
+  100% { background:darksalmon; }
+}
+
+@keyframes corners {
+  0%  { border-radius:0 0 0 0; }
+  25%  { border-radius:50% 0 0 0; }
+  50%  { border-radius:50% 50% 0 0; }
+  75%  { border-radius:50% 50% 50% 0; }
+  100% { border-radius:50%; }
+}
+@keyframes colours {
+  0% { background:coral; }
+  25% { background:darksalmon; }
+  50% { background:indianred; }
+  75% { background:lightcoral; }
+  100% { background:darksalmon; }
+} 
+
+
+#animationTiming {
+  width: 200px;
+  height: 200px;
+  background-color: black;
+  -webkit-animation:  cornersTimed 3s .5s infinite alternate,
+                      colours 3s .5s infinite alternate;
+  -moz-animation: cornersTimed 3s .5s infinite alternate,
+                  colours 3s .5s infinite alternate;
+  -ms-animation: cornersTimed 3s .5s infinite alternate,
+                 colours 3s .5s infinite alternate;
+  -o-animation: cornersTimed 3s .5s infinite alternate,
+                colours 3s .5s infinite alternate;
+  animation: cornersTimed 3s .5s infinite alternate,
+             colours 3s .5s infinite alternate;
+}
+ 
+@-webkit-keyframes cornersTimed {
+  0%  { border-radius:0 0 0 0; -webkit-animation-timing-function: ease-in; }
+  25%  { border-radius:50% 0 0 0; -webkit-animation-timing-function: linear; }
+  50%  { border-radius:50% 50% 0 0; -webkit-animation-timing-function: linear; }
+  75%  { border-radius:50% 50% 50% 0; -webkit-animation-timing-function: ease-out; }
+  100% { border-radius:50%; -webkit-animation-timing-function: ease-in; }
+}
+
+@-moz-keyframes cornersTimed {
+  0%  { border-radius:0 0 0 0; -moz-animation-timing-function: ease-in; }
+  25%  { border-radius:50% 0 0 0; -moz-animation-timing-function: linear; }
+  50%  { border-radius:50% 50% 0 0; -moz-animation-timing-function: linear; }
+  75%  { border-radius:50% 50% 50% 0; -moz-animation-timing-function: ease-out; }
+  100% { border-radius:50%; -moz-animation-timing-function: ease-in; }
+}
+
+@-ms-keyframes cornersTimed {
+  0%  { border-radius:0 0 0 0; -ms-animation-timing-function: ease-in; }
+  25%  { border-radius:50% 0 0 0; -ms-animation-timing-function: linear; }
+  50%  { border-radius:50% 50% 0 0; -ms-animation-timing-function: linear; }
+  75%  { border-radius:50% 50% 50% 0; -ms-animation-timing-function: ease-out; }
+  100% { border-radius:50%; -ms-animation-timing-function: ease-in; }
+}
+
+@-o-keyframes cornersTimed {
+  0%  { border-radius:0 0 0 0; -o-animation-timing-function: ease-in; }
+  25%  { border-radius:50% 0 0 0; -o-animation-timing-function: linear; }
+  50%  { border-radius:50% 50% 0 0; -o-animation-timing-function: linear; }
+  75%  { border-radius:50% 50% 50% 0; -o-animation-timing-function: ease-out; }
+  100% { border-radius:50%; -o-animation-timing-function: ease-in; }
+}
+
+@keyframes cornersTimed {
+  0%  { border-radius:0 0 0 0; animation-timing-function: ease-in; }
+  25%  { border-radius:50% 0 0 0; animation-timing-function: linear; }
+  50%  { border-radius:50% 50% 0 0; animation-timing-function: linear; }
+  75%  { border-radius:50% 50% 50% 0; animation-timing-function: ease-out; }
+  100% { border-radius:50%; animation-timing-function: ease-in; }
+}

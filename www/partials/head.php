@@ -31,7 +31,8 @@ for ($x=0; $x<$docDepth; $x++){
     <link href=<?php echo $homePath . 'highlight/highlight.css"' ?> rel="stylesheet" />
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <?php if ($iainPageTitle == "CSS") { ?>
-        <link href=<?php echo $homePath . 'notes/css.css"' ?> rel="stylesheet">
+        <link href=<?php echo $homePath . 'notes/CSSnotes/shapes.css"' ?> rel="stylesheet">
+        <link href=<?php echo $homePath . 'notes/CSSnotes/animations.css"' ?> rel="stylesheet">
     <?php } ?>
 
 <!-- Universal analytics -->

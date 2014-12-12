@@ -38,10 +38,11 @@
 <ul>
   <li><strong><strike>Authentication</strike></strong></li>
   <li><strong><strike>Form Validation</strike></strong></li>
-  <li><strong>CSS art</strong></li>
+  <li><strong><strike>CSS shapes</strike></strong></li>
   <li><strong>CSS animations</strong></li>
   <li><strong>HTML accessibility</strong></li>
   <li><strong>Spell check!</strong></li>
+  <li><a href="http://css-tricks.com/autoprefixer/">autoprefixer</a> for adding CSS vendor prefixes to CSS via grunt (or gulp?)</li>
 </ul>
 
 <hr />
