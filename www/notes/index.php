@@ -37,7 +37,7 @@
 <h2>ToDo before Delphic Start</h2>
 <ul>
   <li><strong><strike>Authentication</strike></strong></li>
-  <li><strong>Form Validation</strong></li>
+  <li><strong><strike>Form Validation</strike></strong></li>
   <li><strong>CSS art</strong></li>
   <li><strong>CSS animations</strong></li>
   <li><strong>HTML accessibility</strong></li>

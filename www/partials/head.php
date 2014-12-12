@@ -30,7 +30,9 @@ for ($x=0; $x<$docDepth; $x++){
     <link href='http://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise' rel='stylesheet' type='text/css'>
     <link href=<?php echo $homePath . 'highlight/highlight.css"' ?> rel="stylesheet" />
     <script src='https://www.google.com/recaptcha/api.js'></script>
-
+    <?php if ($iainPageTitle == "CSS") { ?>
+        <link href=<?php echo $homePath . 'notes/css.css"' ?> rel="stylesheet">
+    <?php } ?>
 
 <!-- Universal analytics -->
 <script>

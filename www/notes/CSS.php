@@ -102,7 +102,562 @@
 
 <hr />
 
-<h3>CSS Shapes</h3>
+<h3>CSS Shapes: <span style="color:red;">backgrounds are red</span>, <span style="color:green;">borders are green</span> <span style="color:transparent;">or sometimes transparent</span></h3>
+<p><i><a href="http://css-tricks.com/examples/ShapesOfCSS/">The source</a>, css-tricks. Although the examples shown there have been created without the box-sizing trick applied.  Here I have 
+tweaked them to work with it.</i></p>
+<br />
+<div class="row text-center">
+	<div class="col-md-3">
+		<p>Square</p>
+		<div class="shape" id="shapeSquare"></div>
+		<code>width: 100px;</code>
+		<code>height: 100px;</code>
+	</div>
+	<div class="col-md-3">
+		<p>Rectangle</p>
+		<div class="shape" id="shapeRectangle"></div>
+		<code>width: 200px;</code>
+		<code>height: 100px;</code>
+	</div>
+	<div class="col-md-3">
+		<p>Circle</p>
+		<div class="shape" id="shapeCircle"></div>
+		<code>width: 100px;</code>
+		<code>height: 100px;</code>
+		<code><i>-moz-border-radius: 50px;</i></code>
+		<code><i>-webkit-border-radius: 50px;</i></code>
+		<code>border-radius: 50px;</code>
+	</div>
+	<div class="col-md-3">
+		<p>Oval</p>
+		<div class="shape" id="shapeOval"></div>
+		<code>width: 200px;</code>
+		<code>height: 100px;</code>
+		<code><i>-moz-border-radius: 100px / 50px;</i></code>
+		<code><i>-webkit-border-radius: 100px / 50px;</i></code>
+		<code>border-radius: 100px / 50px;</code>
+	</div>
+</div>
+
+<hr />
+
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<p>
+			<strong>Border-radius</strong> creates a curved corner with two values for each corner (the distance between the corner point and the curve start)
+			The first value is X and the second is Y, that means the X value for left corners will move right from the corner point and for right corners will move
+			left from the corner point.  Where there is a clash, say on an 100px square in which the top right corner's x & y values are both 90px, each curve will 
+			only start at 50px.  The same will happen if one was 100px and the other 55px.  If the left x was 90 and the right x was 25, the left will be moved back
+			to 75 and the right will remain the same.  Priority goes to the curve closest to it's own corner. <i>Note: play with it, it may be even more complex</i> 
+		</p>
+		<p class="pull-left"><code>border-top-left-radius: 90px 50px;</code></p><p class="pull-right"><code>border-top-right-radius: 5px 20px;</code></p>
+		<div class="shape" id="borderRadiusEg"></div>
+		<p class="pull-left"><code>border-bottom-left-radius: 20px 0px;</code></p><p class="pull-right"><code>border-bottom-right-radius: 20px 20px;</code></p>
+	</div>
+</div>
+
+<hr />
+
+<div class="row text-center">
+	<div class="col-md-3">
+		<p>Triangle up</p>
+		<div class="shape" id="shapeTriangleUp"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border-left: 50px solid transparent;</code>
+		<code>border-right: 50px solid transparent;</code>
+		<code><strong>border-bottom: 100px solid green;</strong></code>
+	</div>
+	<div class="col-md-3">
+		<p>Triangle down</p>
+		<div class="shape" id="shapeTriangleDown"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border-left: 50px solid transparent;</code>
+		<code>border-right: 50px solid transparent;</code>
+		<code><strong>border-top: 100px solid green;</strong></code>
+	</div>
+	<div class="col-md-3">
+		<p>Triangle left</p>
+		<div class="shape" id="shapeTriangleLeft"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border-top: 50px solid transparent;</code>
+		<code><strong>border-right: 100px solid green;</strong></code>
+		<code>border-bottom: 50px solid transparent;</code>
+	</div>
+	<div class="col-md-3">
+		<p>Triangle right</p>
+		<div class="shape" id="shapeTriangleRight"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border-top: 50px solid transparent;</code>
+		<code><strong>border-left: 100px solid green;</strong></code>
+		<code>border-bottom: 50px solid transparent;</code>
+	</div>
+</div>
+
+<hr />
+
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<p><strong>Border triangles</strong>: think of it as the coloured border pushing up into the shape.  
+			So far, above, the two transparent borders have been of equal value, if we create another box with unequal transparent side borders 
+			then apply the coloured border to create the triangle we get the frist triangle below.  Another thing to note is the width & height of the divs
+			have been set to 0, this allows them to be pushed to their current size by the combined border widths.  If we set the with of the divs manually
+			part of the triangle will be cut off as in the second shape below (this will come up again later for the Trapezoid!)
+		</p>
+		<div class="row">
+			<div class="col-md-5">
+				<div class="shape" id="shapeTriangleUpSlant"></div>
+				<p>
+					<code>width: 0px;</code>
+					<code>height: 0px;</code>
+					<code>border-left: 25px solid transparent;</code>
+					<code>border-right: 50px solid transparent;</code>
+					<code>border-bottom: 100px solid green;</code>
+				</p>
+			</div>
+			<div class="col-md-2"></div>
+			<div class="col-md-5">
+				<div class="shape" id="shapeTriangleUpSlantWide"></div>
+				<p>
+					<code>width: 100px;</code>
+					<code>height: 100px;</code>
+					<code>border-left: 25px solid transparent;</code>
+					<code>border-right: 50px solid transparent;</code>
+					<code>border-bottom: 100px solid green;</code>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<hr />
+
+<br />
+<div class="row text-center">
+	<div class="col-md-3">
+		<p>Triangle top left</p>
+		<div class="shape" id="shapeTriangleTopLeft"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code><strong>border-top: 100px solid green;</strong></code>
+		<code>border-right: 100px solid transparent;</code>
+		<br />
+		<p>OR</p>
+		<div class="shape" id="shapeTriangleTopLeft2"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code><strong>border-left: 100px solid green;</strong></code>
+		<code>border-bottom: 100px solid transparent;</code>
+	</div>
+	<div class="col-md-3">
+		<p>Triangle top right</p>
+		<div class="shape" id="shapeTriangleTopRight"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code><strong>border-top: 100px solid green;</strong></code>
+		<code>border-left: 100px solid transparent;</code>
+		<br />
+		<p>OR</p>
+		<div class="shape" id="shapeTriangleTopRight2"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code><strong>border-right: 100px solid green;</strong></code>
+		<code>border-bottom: 100px solid transparent;</code>
+	</div>
+	<div class="col-md-3">
+		<p>Triangle bottom left</p>
+		<div class="shape" id="shapeTriangleBottomLeft"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code><strong>border-bottom: 100px solid green;</strong></code>
+		<code>border-right: 100px solid transparent;</code>
+		<br />
+		<p>OR</p>
+		<div class="shape" id="shapeTriangleBottomLeft2"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code><strong>border-left: 100px solid green;</strong></code>
+		<code>border-top: 100px solid transparent;</code>
+	</div>
+	<div class="col-md-3">
+		<p>Triangle bottom right</p>
+		<div class="shape" id="shapeTriangleBottomRight"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code><strong>border-bottom: 100px solid green;</strong></code>
+		<code>border-left: 100px solid transparent;</code>
+		<br />
+		<p>OR</p>
+		<div class="shape" id="shapeTriangleBottomRight2"></div>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code><strong>border-right: 100px solid green;</strong></code>
+		<code>border-top: 100px solid transparent;</code>
+	</div>
+</div>
+
+<hr />
+
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<p><strong>Corner triangles</strong>: basically the same as the up/down/left/right triangles except only one transparent border is defined.  I like to
+			think of these as the coloured border pushing it's way out from it's side then being shunted over by the transparent border.  In the examples so far
+			the borders have been of equal width, with unequal widths we get a slanted traingle (the first one below).  Also the shapes's width & height are again set 
+			to 0 allowing the size of the shape to be determined by the border width.  We can create the effect of a cut off triangle by extending the width (or height depending on orientation) to be 
+			larger then the border as in the second example below.  We cannot however cut off the triangle by decreasing the width (try it - if you know a way let me know!).</p>
+		<div class="row">
+			<div class="col-md-5">
+				<div class="shape" id="shapeTriangleBottomRightSlant"></div>
+				<code>width: 0;</code>
+				<code>height: 0;</code>
+				<code><strong>border-bottom: 50px solid green;</strong></code>
+				<code>border-left: 100px solid transparent;</code>
+			</div>
+			<div class="col-md-2"></div>
+			<div class="col-md-5">
+				<div class="shape" id="shapeTriangleBottomRightSlantCut"></div>
+				<code><strong>width: 150px;</strong></code>
+				<code><strong>height: 50px;</strong></code>
+				<code>border-bottom: 100px solid green;</code>
+				<code>border-left: 100px solid transparent;</code>
+			</div>
+		</div>
+	</div>
+</div>
+
+<hr />
+
+<div class="row text-center">
+	<div class="col-md-3">
+		<p>Trapezoid</p>
+		<div class="shape" id="shapeTrapezoid"></div>
+		<code>height: 0;</code>
+		<code>width: 200px;</code>
+		<code><strong>border-bottom: 100px solid green;</strong></code>
+		<code>border-left: 50px solid transparent;</code>
+		<code>border-right: 50px solid transparent;</code>
+	</div>
+	<div class="col-md-3">
+		<p>Parallelogram</p>
+		<div class="shape" id="shapeParallelogram"></div>
+		<code>width: 150px;</code>
+		<code>height: 100px;</code>
+		<code><strong>-webkit-transform: skew(20deg);</strong></code>
+		<code><strong>-moz-transform: skew(20deg);</strong></code>
+		<code><strong>-o-transform: skew(20deg);</strong></code>
+	</div>
+</div>
+
+<hr />
+
+<div class="row text-center">
+	<div class="col-md-3">
+		<p>Diamond</p>
+		<div class="shape" id="shapeDiamondSquare"></div>	
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border: 50px solid transparent;</code>
+		<code>border-bottom-color: green;</code>
+		<code>position: relative;</code>
+		<code>top: -50px;</code><br />
+		:after<br />
+		<code>content: '';</code>
+		<code>position: absolute;</code>
+		<code>left: -50px;</code>
+		<code>top: 50px;</code>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border: 50px solid transparent;</code>
+		<code>border-top-color: green;</code>
+		<p><strong>The top half</strong>: dimensions set to 0 so borders dictate size (50px all, so 100px box). 
+			Bottom border coloured (it pushes up creating the top green triangle).  Pushed up 50px to place it more intuativley. 
+			<strong>The bottom half</strong>: basically the same plus extra positioning and given content to it appears.
+		</p>
+	</div>
+	<div class="col-md-3">
+		<p>Alternate Diamond</p> <br />
+		<div class="shape" id="shapeDiamondSquareRot"></div>	
+		<br />
+		<code>width: 75px;</code>
+		<code>height: 75px;</code>
+		<code>-ms-transform: rotate(45deg);</code>
+	    <code>-webkit-transform: rotate(45deg);</code>
+	    <code>transform: rotate(45deg);</code>
+	    <p>Easy! A rotated square. The disadvantage to this approach is accurate width, with the other approach 50px borders == 100px wide diamond.
+	    	With this approach a 50x50 square will require a bit of pythagoras: √(50² + 50²) = 70.7106781187</p>
+	</div>
+	<div class="col-md-3">
+		<p>Shield</p>
+		<div class="shape" id="shapeDiamondShield"></div>
+		<br />
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border: 50px solid transparent;</code>
+		<code>border-bottom: 20px solid green;</code>
+		<code>position: relative;</code>
+		<code>top: -50px;</code>
+		<br />:after<br />
+		<code>content: '';</code>
+		<code>position: absolute;</code>
+		<code>left: -50px; top: 20px;</code>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border: 50px solid transparent;</code>
+		<code>border-top: 70px solid green;</code>
+		<br />
+		<p>This and the thin diamond play on the effect of increasing or decreasing the coloured border width.  
+			You could also mess with the transparent border widths and skew yoru diamond:</p>
+		<div class="shape" id="shapeDiamondShieldSkew"></div>
+	</div>
+	<div class="col-md-3">
+		<p>Thin Diamond</p>
+		<div class="shape" id="shapeDiamondThin"></div>
+		<br />
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border: 50px solid transparent;</code>
+		<code>border-bottom: 70px solid green;</code>
+		<code>position: relative;</code>
+		<code>top: -50px;</code>
+		<br />:after<br />
+		<code>content: '';</code>
+		<code>position: absolute;</code>
+		<code>left: -50px; top: 70px;</code>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border: 50px solid transparent;</code>
+		<code>border-top: 70px solid green;</code>
+
+	</div>
+</div>
+
+<hr />
+
+<div class="row text-center">
+	<div class="col-md-4">
+		<p>Hexagon</p>
+		<br />
+		<div class="shape" id="shapeHexagon"></div>
+		<br /><br />
+		<p>The same as the diamonds except the div itself has mass and we've included a <code>:before</code> element for the top triangle</p>
+		<code>width: 100px;</code>
+		<code>height: 55px;</code>
+		<code>position: relative;</code>
+		<br />before:<br />
+		<code>content: "";</code>
+		<code>position: absolute;</code>
+		<code>top: -25px;</code>
+		<code>left: 0;</code>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border-left: 50px solid transparent;</code>
+		<code>border-right: 50px solid transparent;</code>
+		<code>border-bottom: 25px solid green;</code>
+		<br />:after<br />
+		<code>content: "";</code>
+		<code>position: absolute;</code>
+		<code>bottom: -25px;</code>
+		<code>left: 0;</code>
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border-left: 50px solid transparent;</code>
+		<code>border-right: 50px solid transparent;</code>
+		<code>border-top: 25px solid green;</code>
+	</div>
+	<div class="col-md-4">
+		<p>Octagon</p>
+		<br />
+		<div class="shape" id="shapeOctagon"></div>
+		<br /><br />
+		<p>Like the hexagon but with two trapezioids above (<code>:before</code>) and below (<code>:after</code>)</p>
+		<code>width: 100px;</code>
+		<code>height: 42px;</code>
+		<code>position: relative;</code>
+		<br />before:<br />
+		<code>content: "";</code>
+		<code>position: absolute;</code>
+		<code>top: -29px;</code>
+		<code>left: 0;</code>
+		<code>border-bottom: 29px solid green;</code>
+		<code>border-left: 29px solid transparent;</code>
+		<code>border-right: 29px solid transparent;</code>
+		<code>width: 100px;</code>
+		<code>height: 0;</code>
+		<br />after:<br />
+		<code>content: "";</code>
+		<code>position: absolute;</code>
+		<code>bottom: -29px;</code>
+		<code>left: 0;</code>
+		<code>border-top: 29px solid green;</code>
+		<code>border-left: 29px solid transparent;</code>
+		<code>border-right: 29px solid transparent;</code>
+		<code>width: 100px;</code>
+		<code>height: 0;</code>
+	</div>
+	<div class="col-md-4">
+		<p>Pentagon</p>
+		<br /><br />
+		<div class="shape" id="shapePentagon"></div>
+		<br />
+		<p>Triangle on the top, trapezioid on the bottom! Note as well the border colour short hand.</p>
+		<code>position: relative;</code>
+	    <code>width: 90px;</code>
+	    <code>border-width: 50px 18px 0;</code>
+	    <code>border-style: solid;</code>
+	    <code>border-color: green transparent;</code>
+	    <br />after<br />
+		<code>content: "";</code>
+	    <code>position: absolute;</code>
+	    <code>height: 0;</code>
+	    <code>width: 0;</code>
+	    <code>top: -85px;</code>
+	    <code>left: -18px;</code>
+	    <code>border-width: 0 45px 35px;</code>
+	    <code>border-style: solid;</code>
+	    <code>border-color: transparent transparent green;</code>
+	</div>
+</div>
+
+<hr />
+
+<div class="row text-center">
+	<div class="col-md-3">
+		<p>5 Point Star</p>
+		<br /><br /><br />	
+		<div class="shape" id="shapeStar5Point"></div>
+		<br /><br /><br />
+		<code>position: relative;</code>
+		<code>background-color: transparent;</code>
+		<code>width: 0px;</code>
+		<code>height: 0px;</code>
+		<code>border-right:  100px solid transparent;</code>
+		<code>border-bottom: 70px  solid darkgreen;</code>
+		<code>border-left:   100px solid transparent;</code>
+		<code>-moz-transform:    rotate(35deg);</code>
+		<code>-webkit-transform: rotate(35deg);</code>
+		<code>-ms-transform:     rotate(35deg);</code>
+		<code>-o-transform:      rotate(35deg);</code>
+		<br />:before<br />
+		<code>border-bottom: 80px solid green;</code>
+		<code>border-left: 30px solid transparent;</code>
+		<code>border-right: 30px solid transparent;</code>
+		<code>position: absolute;</code>
+		<code>height: 0;</code>
+		<code>width: 0;</code>
+		<code>top: -45px;</code>
+		<code>left: -61px;</code>
+		<code>display: block;</code>
+		<code>content: '';</code>
+		<code>-webkit-transform: rotate(-35deg);</code>
+		<code>-moz-transform:    rotate(-35deg);</code>
+		<code>-ms-transform:     rotate(-35deg);</code>
+		<code>-o-transform:      rotate(-35deg);</code>
+		<br />:after<br />
+		<code>position: absolute;</code>
+		<code>top: 3px;</code>
+		<code>left: -105px;</code>
+		<code>width: 0px;</code>
+		<code>height: 0px;</code>
+		<code>border-right: 100px solid transparent;</code>
+		<code>border-bottom: 70px solid lightgreen;</code>
+		<code>border-left: 100px solid transparent;</code>
+		<code>-webkit-transform: rotate(-70deg);</code>
+		<code>-moz-transform:    rotate(-70deg);</code>
+		<code>-ms-transform:     rotate(-70deg);</code>
+		<code>-o-transform:      rotate(-70deg);</code>
+	</div>
+	<div class="col-md-3">
+		<p>6 Point Star</p>
+		<div class="shape" id="shapeStar6Point"></div>
+		<br /><br />
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border-left: 50px solid transparent;</code>
+		<code>border-right: 50px solid transparent;</code>
+		<code>border-bottom: 100px solid green;</code>
+		<code>position: relative;</code>
+		<br />:after<br />
+		<code>width: 0;</code>
+		<code>height: 0;</code>
+		<code>border-left: 50px solid transparent;</code>
+		<code>border-right: 50px solid transparent;</code>
+		<code>border-top: 100px solid lightgreen;</code>
+		<code>position: absolute;</code>
+		<code>content: "";</code>
+		<code>top: 30px;</code>
+		<code>left: -50px;</code>
+	</div>
+	<div class="col-md-3">
+		<p>8 Point Star</p>
+		<div class="shape" id="shapeStar8Point"></div>
+		<br />
+		<code>background: red;</code>
+	    <code>width: 80px;</code>
+	    <code>height: 80px;</code>
+	    <code>position: relative;</code>
+	    <code>-webkit-transform: rotate(20deg);</code>
+	    <code>   -moz-transform: rotate(20deg);</code>
+	    <code>    -ms-transform: rotate(20deg);</code>
+	    <code>     -o-transform: rotate(20deg);</code>
+	    <br />:before<br />
+	    <code>content: "";</code>
+	    <code>position: absolute;</code>
+	    <code>top: 0;</code>
+	    <code>left: 0;</code>
+	    <code>height: 80px;</code>
+	    <code>width: 80px;</code>
+	    <code>background: pink;</code>
+	    <code>-webkit-transform: rotate(135deg);</code>
+	    <code>   -moz-transform: rotate(135deg);</code>
+	    <code>    -ms-transform: rotate(135deg);</code>
+	    <code>     -o-transform: rotate(135deg);</code>
+	</div>
+	<div class="col-md-3">
+		<p>12 Point Star</p>
+		<div class="shape" id="shapeStar12Point"></div>
+		<br />
+		<code>background: red;</code>
+	    <code>width: 80px;</code>
+	    <code>height: 80px;</code>
+	    <code>position: relative;</code>
+	    <code>text-align: center;</code>
+	    <br />:before, :after<br />
+	    <code>content: "";</code>
+	    <code>position: absolute;</code>
+	    <code>top: 0;</code>
+	    <code>left: 0;</code>
+	    <code>height: 80px;</code>
+	    <code>width: 80px;</code>
+	    <br />:before<br />
+	    <code>background: pink;</code>
+	    <code>-webkit-transform: rotate(30deg);</code>
+	    <code>   -moz-transform: rotate(30deg);</code>
+	    <code>    -ms-transform: rotate(30deg);</code>
+	    <code>     -o-transform: rotate(30deg);</code>
+	    <br />:after<br />
+	    <code>background: darkred;</code>
+	    <code>-webkit-transform: rotate(60deg);</code>
+	    <code>   -moz-transform: rotate(60deg);</code>
+	    <code>    -ms-transform: rotate(60deg);</code>
+	    <code>     -o-transform: rotate(60deg);</code>
+	</div>
+</div>
+<hr />
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<p>So far all the shapes have been created using only a small number of tricks: corner curves, border triangles, and rotation.  We havent used much in the 
+			way of curves here (yet) and with the application of a little more maths some incredible things can be done.  You can see some of those things in the
+			<a href="http://css-tricks.com/examples/ShapesOfCSS/"> source article</a> from css-tricks
+		</p>
+	</div>
+</div>
 
 <hr />
 
