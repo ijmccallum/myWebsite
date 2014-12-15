@@ -1,92 +1,85 @@
-<?php $iainPageTitle = 'Wikilogic & my development notes'; ?>
+<?php $iainPageTitle = 'Random WikiLogic notes'; $docDepth = 0; ?>
 <?php include 'partials/head.php'; ?>
-<!--
-<div class="row">
-    <div class="col-md-6">
-        <p class="lead">
-        	One of the biggest dreams from the group behind Sophie's Games has been Wikilogic.  For so long it remained a loose concept, 
-        	but after developing Synergy and honing our various professional skill sets, we finally found ourselves 
-        	in the right position to start realising this idea.  In short: it intends to do for logic what Wikipedia is doing for knowledge.
-        	Rather than explain any further here, I would strongly encourage you to have a look at the foundation's site and, if you can, please
-        	consider getting involved too - we could use all the help we can get!
-        </p>
-    </div>
-</div> 
--->
-<div class="row" style="text-align:center;">
-    <div class="col-md-12">
-        <p>Some scratchings and scrawlings of half-complete thoughts before transferring them over to the main wiki/github.</p>
-    </div>
-</div>
 
-<hr />
+<p>Some example statements:</p>
 
-<div class="row" style="text-align:center;">
-    <h2 class="quirkyHeading">Front End Tech?</h2>
-    <div class="col-md-6">
-        <ul class="list-group">
-                <li class="list-group-item">TopCoat</li>
-                <li class="list-group-item">AngularJS</li>
-                <li class="list-group-item">Cordova</li>
-        </ul>
-        <div class="row" style="text-align:left;">
-            <div class="col-md-6">
-                <h4>Pros</h4>
-                <ul>
-                    <li>Angular is looking very cool and clean.</li>
-                    <li>Seems to run mostly in the browser - security?</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <h4>Cons</h4>
-                <ul>
-                    <li>Mobile support?</li>
-                </ul>
-            </div>
+<div class="row text-center">
+    <h3>Money can't buy happiness</h3>
+    
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <p><strong>For</strong></p>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>John Caudwell is a billionaire</p>
+            <p>John Caudwell is not happy</p>
+            <a href="http://www.dailymail.co.uk/news/article-2778696/Billionaire-s-proof-money-CAN-T-buy-happiness-He-s-mobile-phone-tycoon-money-burn-lifestyle-make-jaw-drop-But-s-worth-fmaily-s-turmoil.html">soure, the daily mail, ha!</a>
+          </div>
         </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p><a href="http://www.businessinsider.com/people-are-happiest-the-moment-right-before-they-buy-something-2013-1#ixzz3Lj66OIES">Most people return to their baseline level of happieness after positive and negative life events</a></p>
+            <p>Buying something with money is a life event</p>
+          </div>
+        </div>
+        
+
+
+    
     </div>
-    <div class="col-md-6">
-        <ul class="list-group">
-                <li class="list-group-item">Sencha</li>
-                <li class="list-group-item">...</li>
-                <li class="list-group-item">...</li>
-        </ul>
-        <div class="row" style="text-align:left;">
-            <div class="col-md-6">
-                <h4>Pros</h4>
-                <ul>
-                    <li>Works well accross all mobile platforms (we'll reach a greater population)</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <h4>Cons</h4>
-                <ul>
-                    <li>A bit of div bloat from past experiances, annoying for custom styling</li>
-                    <li>Haven't seen great evidence for it being nice for desktop/laptops</li>
-                </ul>
-            </div>
+    <div class="col-md-4">
+        <p><strong>Against</strong></p>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>Donating money makes people happy</p>
+            <p>Donating is a form of buying?</p>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>Investing in others can make you feel healthier and wealthier</p>
+            <p>Investing is a form of buying?</p>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>You can buy a life experiance you want</p>
+            <p>A life experiance you want can make you happy</p>
+          </div>
         </div>
     </div>
 </div>
 
 <hr />
 
-<div class="row" style="text-align:center;">
-    <h2 class="quirkyHeading">Server Tech? Do we need a back end?</h2>
+<div class="row text-center">
+    <h3>The rings of Saturn are composed entirley of lost luggage</h3>
+    
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <p><strong>For</strong></p>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>Lost luggage is made up from many elements</p>
+            <p>Many elements have been detected in Saturn's rings</p>
+          </div>
+        </div>
+    
+    </div>
+    <div class="col-md-4">
+        <p><strong>Against</strong></p>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>Saturn's rings are made of ice and rock</p>
+            <p>Lost luggage is not made of ice and rock</p>
+          </div>
+        </div>
+    </div>
 </div>
-
-<hr />
-
-<div class="row" style="text-align:center;">
-    <h2 class="quirkyHeading">Database Tech?</h2>
-</div>
-
-<hr />
-
-<div class="col-md-6 text-center">
-    <code><a target="_blank" href="http://www.wikilogicfoundation.org/">www.WikiLogicFoundation.com</a></code>
-</div> <!-- END column -->
-
-
                 
 <?php include 'partials/footer.php'; ?>
