@@ -39,9 +39,13 @@
   <li><strong><strike>Authentication</strike></strong></li>
   <li><strong><strike>Form Validation</strike></strong></li>
   <li><strong><strike>CSS shapes</strike></strong></li>
-  <li><strong>CSS animations</strong></li>
-  <li><strong>HTML accessibility</strong></li>
-  <li><strong>Spell check!</strong></li>
+  <li><strong><strike>CSS animations</strike></strong></li>
+  <li><strong>HTML accessibility (ARIA)</strong></li>
+  <li><strong>Drag and drop</strong></li>
+  <li><strong>Tiny .net project</strong></li>
+  <li><strong>CSS transitions in depth</strong></li>
+  <li><strong>Set up Atom through choclaty</strong></li>
+  <li><strong>Spell check all the pages!</strong></li>
   <li><a href="http://css-tricks.com/autoprefixer/">autoprefixer</a> for adding CSS vendor prefixes to CSS via grunt (or gulp?)</li>
 </ul>
 
@@ -97,6 +101,7 @@
         <div class="list-group">
           <a href="forms.php" class="list-group-item greyout">Forms</a>
           <a href="crossBrowser.php" class="list-group-item greyout">Cross browser gotchas</a>
+          <a href="responsive.php" class="list-group-item greyout">Responsive gotchas</a>
         </div>
   </div>
 
