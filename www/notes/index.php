@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-md-6">
     <p>The Web Development Industry is filled with rapidly changing technologies - it's important not to get lost in all of it!  <br />
-      So, this is my personal repository of notes on the various things I work with and learn.  The gray ones are things I am hoping to 
+      So, this is my personal repository of notes on the various things I work with and learn.  The gray ones are things I am hoping to
       read into more / experience, but time will tell.</p>
   </div>
   <div class="col-md-6">
@@ -40,13 +40,12 @@
   <li><strong><strike>Form Validation</strike></strong></li>
   <li><strong><strike>CSS shapes</strike></strong></li>
   <li><strong><strike>CSS animations</strike></strong></li>
-  <li><strong>HTML accessibility (ARIA)</strong></li>
+  <li><strong><strike>HTML accessibility (ARIA)</strike></strong></li>
   <li><strong>Drag and drop</strong></li>
   <li><strong>Tiny .net project</strong></li>
   <li><strong>CSS transitions in depth</strong></li>
-  <li><strong>Set up Atom through choclaty</strong></li>
+  <li><strong><strike>Set up Atom</strike></strong></li>
   <li><strong>Spell check all the pages!</strong></li>
-  <li><a href="http://css-tricks.com/autoprefixer/">autoprefixer</a> for adding CSS vendor prefixes to CSS via grunt (or gulp?)</li>
 </ul>
 
 <hr />
@@ -208,7 +207,7 @@
 
   <div class="col-md-4">
         <h4 id="libraries">Cool libraries (and some polyfills for them)</h4>
-        <div class="list-group"> 
+        <div class="list-group">
           <a href="famous.php" class="list-group-item">Famo.us</a>
           <a href="proximity.php" class="list-group-item">Proximity</a>
           <a href="#" class="list-group-item greyout"><strong>Twitter Bootstrap</strong><br />
@@ -278,6 +277,6 @@
 -->
 
 <a href="http://en.wikipedia.org/wiki/Portal:Information_technology">Tech portal, WikiPedia</a>
-                
+
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>

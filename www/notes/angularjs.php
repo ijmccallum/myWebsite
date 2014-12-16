@@ -11,7 +11,7 @@
 	<li>Routing handled into the shell view.</li>
 </ul>
 
-It also includes small versions of other libraries: q for promises, jqlite for jquery, dependencie injection kind of inspired by AMD, and a templatng language similar to handlebars. 
+It also includes small versions of other libraries: q for promises, jqlite for jquery, dependencie injection kind of inspired by AMD, and a templatng language similar to handlebars.
 
 <hr />
 
@@ -26,8 +26,8 @@ It also includes small versions of other libraries: q for promises, jqlite for j
 <h3>Directives</h3>
 
 
-<p>Elements which can be added to HTML in order to extend it (teach it new tricks!).  
-	A little like the functions you get in Jade but these are incorporated into the HTML tags and they are a lot more powerful.  
+<p>Elements which can be added to HTML in order to extend it (teach it new tricks!).
+	A little like the functions you get in Jade but these are incorporated into the HTML tags and they are a lot more powerful.
 	Anything starting with <code>ng-</code> is a built in directive, you can also start with <code>data-ng-</code> if you like.</p>
 <ul>
 	<li>
@@ -56,8 +56,8 @@ It also includes small versions of other libraries: q for promises, jqlite for j
 		<h4>ng-submit</h4>
 		This bindes an angular function to the submit action of a form.<br />
 		In the HTML:
-<pre><code>&lt;form ng-submit="functionName()"&gt; 
-	... 
+<pre><code>&lt;form ng-submit="functionName()"&gt;
+	...
 	&lt;input type="submit"&gt;
 &lt;/form&gt;</code></pre>
 		and in the relevant controller:
@@ -118,8 +118,8 @@ And another very cool example, this one lists out elements from initialised data
 
 <h3>Views, Controllers & Scope</h3>
 
-<p><strong>Controllers</strong>, as usual, handling the data getting passed to, or returned from, 
-	the <strong>view</strong> via the <strong>$scope</strong> (which can be referred to as a <em>ViewModel</em>. 
+<p><strong>Controllers</strong>, as usual, handling the data getting passed to, or returned from,
+	the <strong>view</strong> via the <strong>$scope</strong> (which can be referred to as a <em>ViewModel</em>.
 	Neither the controller, nor the view know about each other - loose coupling!</p>
 
 <p>An example controller:
@@ -137,7 +137,7 @@ And another very cool example, this one lists out elements from initialised data
 &lt;/script&gt;
 </code></pre>
 
-And the view.  A cool thing to note: only the elements within the div work with the specified controller, 
+And the view.  A cool thing to note: only the elements within the div work with the specified controller,
 we can specify different controllers in different divs so they're not bound to 1 controller per view.
 <pre><code>&lt;div <strong>ng-controller="SimpleController"</strong>&gt; //Angular automatically binds $scope here
 	&lt;ul&gt;
@@ -287,10 +287,10 @@ appName.config(function ($stateProvider, $urlRouterProvider) {
 
 <h3>Services</h3>
 
-<p>They stick around until the application is closed (controllers are tidied when no longer needed).	
+<p>They stick around until the application is closed (controllers are tidied when no longer needed).
 This allows them to courier data between controllers.</p>
 
-<h4>factory()</h4> 
+<h4>factory()</h4>
 <p>Used to create a service.  Can be injected into controllers at run time.  Great to create simple functions and data.</p>
 <pre><code>//Creating a service with factory()
 angular.module('myApp.services').factory('serviceName', function(dependancies) {
@@ -377,7 +377,7 @@ Then later on you can:
 <h3>Testing</h3>
 <strong>Karma</strong><br />
 <p>
-	To begin make sure any bower components are listed within the files array of the karma.conf.js file 
+	To begin make sure any bower components are listed within the files array of the karma.conf.js file
 	(their file paths).<br />
 	The individual tests are set up in <strong>test/spec/controllers/___.js</strong>
 </p>
@@ -385,8 +385,8 @@ Then later on you can:
 
 <hr />
 
-<p>Source: 
-	<a href="https://docs.angularjs.org/guide/introduction">The Docs</a>, 
+<p>Source:
+	<a href="https://docs.angularjs.org/guide/introduction">The Docs</a>,
 	<a href="https://www.youtube.com/watch?v=i9MHigUZKEM">Fundamentals tutorial</a></p>
 
 
