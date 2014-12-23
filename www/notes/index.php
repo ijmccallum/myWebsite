@@ -102,6 +102,10 @@
           <a href="crossBrowser.php" class="list-group-item greyout">Cross browser gotchas</a>
           <a href="responsive.php" class="list-group-item greyout">Responsive gotchas</a>
         </div>
+        <h4 id="Front">Out of interest</h4>
+        <div class="list-group">
+            <a href="deepLearning.php" class="list-group-item greyout">Deep learning</a>
+        </div>
   </div>
 
 </div> <!-- END of the first row -->
