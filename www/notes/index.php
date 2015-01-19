@@ -34,22 +34,6 @@
 
 <hr />
 
-<h2>ToDo before Delphic Start</h2>
-<ul>
-  <li><strong><strike>Authentication</strike></strong></li>
-  <li><strong><strike>Form Validation</strike></strong></li>
-  <li><strong><strike>CSS shapes</strike></strong></li>
-  <li><strong><strike>CSS animations</strike></strong></li>
-  <li><strong><strike>HTML accessibility (ARIA)</strike></strong></li>
-  <li><strong>Drag and drop</strong></li>
-  <li><strong>Tiny .net project</strong></li>
-  <li><strong>CSS transitions in depth</strong></li>
-  <li><strong><strike>Set up Atom</strike></strong></li>
-  <li><strong>Spell check all the pages!</strong></li>
-</ul>
-
-<hr />
-
 
 <div class="row">
 
@@ -98,6 +82,8 @@
   <div class="col-md-4">
         <h4 id="Front">Front End things</h4>
         <div class="list-group">
+          <a href="webcomponents.php" class="list-group-item greyout">Parallax</a>
+          <a href="webcomponents.php" class="list-group-item">Web Components</a>
           <a href="forms.php" class="list-group-item greyout">Forms</a>
           <a href="crossBrowser.php" class="list-group-item greyout">Cross browser gotchas</a>
           <a href="responsive.php" class="list-group-item greyout">Responsive gotchas</a>
