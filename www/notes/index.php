@@ -87,7 +87,6 @@
         <h4 id="Node">Notes on things in the Node ecosystem</h4>
         <div class="list-group">
           <a href="node.php" class="list-group-item">Node</a>
-          <a href="angularjs.php" class="list-group-item">AngularJS</a>
           <a href="express.php" class="list-group-item">ExpressJS</a>
           <a href="keystone.php" class="list-group-item">KeystoneJS</a>
           <a href="mean.php" class="list-group-item">MEAN.JS</a>
@@ -102,7 +101,12 @@
           <a href="crossBrowser.php" class="list-group-item greyout">Cross browser gotchas</a>
           <a href="responsive.php" class="list-group-item greyout">Responsive gotchas</a>
         </div>
-        <h4 id="Front">Out of interest</h4>
+        <h4 id="Angular">AngularJS</h4>
+        <div class="list-group">
+          <a href="angularjs.php" class="list-group-item">AngularJS</a>
+          <a href="angular-events.php" class="list-group-item">Angular: Events</a>
+        </div>
+        <h4 id="Interest">Out of interest</h4>
         <div class="list-group">
             <a href="deepLearning.php" class="list-group-item greyout">Deep learning</a>
         </div>
