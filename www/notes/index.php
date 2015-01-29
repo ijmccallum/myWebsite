@@ -44,6 +44,7 @@
 </div>
 
 <hr />
+Add to the todo: ReactJS, WikiLogic styles convert into less
 
 
 <div class="row">
