@@ -34,6 +34,17 @@
 
 <hr />
 
+<div class="row">
+  <div class="col-md-12">
+    My todo list:
+    <ul>
+      <li>Velocity.js</li>
+    </ul>
+  </div>
+</div>
+
+<hr />
+
 
 <div class="row">
 
