@@ -73,40 +73,49 @@ Add to the todo: ReactJS, WikiLogic styles convert into less
   </div>
 
   <div class="col-md-4">
-        <h4 id="CMS">WordPress & Other CMS systems</h4>
+        <h4 id="CMS">WordPress</h4>
         <div class="list-group">
-          <a href="wordpress.php" class="list-group-item">WordPress</a>
+          <a href="wordpress.php" class="list-group-item">Overview</a>
+        </div>
+        <h4 id="CMS">Umbraco</h4>
+        <div class="list-group">
+          <a href="umbraco.php" class="list-group-item greyout">Overview</a>
+          <a href="#" class="list-group-item greyout">Packages</a>
+          <a href="#" class="list-group-item greyout">Macros</a>
+          <a href="#" class="list-group-item greyout">Microsoft's Razor syntax</a>
+        </div>
+        <h4 id="CMS">Other CMS systems</h4>
+        <div class="list-group">
           <a href="mediawiki.php" class="list-group-item greyout">Media Wiki</a>
           <a href="drupal.php" class="list-group-item greyout">Drupal</a>
           <a href="joomla.php" class="list-group-item greyout">Joomla</a>
         </div>
-        <h4 id="Node">Notes on things in the Node ecosystem</h4>
-        <div class="list-group">
-          <a href="node.php" class="list-group-item">Node</a>
-          <a href="express.php" class="list-group-item">ExpressJS</a>
-          <a href="keystone.php" class="list-group-item">KeystoneJS</a>
-          <a href="mean.php" class="list-group-item">MEAN.JS</a>
-          <a href="kirby.php" class="list-group-item">Kirby</a>
-        </div>
+
   </div>
 
   <div class="col-md-4">
-        <h4 id="Front">Front End things</h4>
+
+        <h4 id="Front">Front End Development</h4>
         <div class="list-group">
           <a href="webcomponents.php" class="list-group-item greyout">Parallax</a>
           <a href="webcomponents.php" class="list-group-item">Web Components</a>
           <a href="forms.php" class="list-group-item greyout">Forms</a>
           <a href="crossBrowser.php" class="list-group-item greyout">Cross browser gotchas</a>
           <a href="responsive.php" class="list-group-item greyout">Responsive gotchas</a>
+          <a href="emails.php" class="list-group-item greyout">Emails</a>
         </div>
         <h4 id="Angular">AngularJS</h4>
         <div class="list-group">
           <a href="angularjs.php" class="list-group-item">AngularJS</a>
           <a href="angular-events.php" class="list-group-item">Angular: Events</a>
         </div>
-        <h4 id="Interest">Out of interest</h4>
+        <h4 id="Node">Node.js things</h4>
         <div class="list-group">
-            <a href="deepLearning.php" class="list-group-item greyout">Deep learning</a>
+          <a href="node.php" class="list-group-item">Node</a>
+          <a href="express.php" class="list-group-item">ExpressJS</a>
+          <a href="keystone.php" class="list-group-item">KeystoneJS</a>
+          <a href="mean.php" class="list-group-item">MEAN.JS</a>
+          <a href="kirby.php" class="list-group-item">Kirby</a>
         </div>
   </div>
 
