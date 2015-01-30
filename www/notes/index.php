@@ -45,6 +45,8 @@
       <li>ReactJS</li>
       <li>WL organise styles</li>
       <li>WL logicBot</li>
+      <li>Sitecore notes</li>
+      <li>Accessibility notes</li>
     </ul>
   </div>
 </div>
@@ -88,11 +90,19 @@
           <a href="#" class="list-group-item greyout">Macros</a>
           <a href="#" class="list-group-item greyout">Microsoft's Razor syntax</a>
         </div>
+        <h4 id="CMS">Sitecore</h4>
+        <div class="list-group">
+          <a href="sitecore.php" class="list-group-item greyout">Overview</a>
+        </div>
         <h4 id="CMS">Other CMS systems</h4>
         <div class="list-group">
           <a href="mediawiki.php" class="list-group-item greyout">Media Wiki</a>
           <a href="drupal.php" class="list-group-item greyout">Drupal</a>
           <a href="joomla.php" class="list-group-item greyout">Joomla</a>
+        </div>
+
+        <div class="list-group">
+          <a href="visualstudio.php" class="list-group-item greyout">Visual Studio</a>
         </div>
 
   </div>
