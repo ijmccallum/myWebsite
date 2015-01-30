@@ -38,7 +38,10 @@
   <div class="col-md-12">
     My todo list:
     <ul>
-      <li>Velocity.js</li>
+      <li>Velocity.js: need an example project</li>
+      <li>D3 / Plottable.js</li>
+      <li>WL mobile friendly</li>
+      <li>WL pamphlet</li>
     </ul>
   </div>
 </div>
