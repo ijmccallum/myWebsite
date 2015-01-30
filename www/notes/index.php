@@ -38,17 +38,18 @@
   <div class="col-md-12">
     My todo list:
     <ul>
-      <li>Velocity.js: need an example project</li>
-      <li>D3 / Plottable.js</li>
+      <li>Velocity.js: need an example project (my home page!): http://julian.com/research/velocity/#vmd</li>
+      <li>D3 / Plottable.js: Wikilogic stats</li>
       <li>WL mobile friendly</li>
       <li>WL pamphlet</li>
+      <li>ReactJS</li>
+      <li>WL organise styles</li>
+      <li>WL logicBot</li>
     </ul>
   </div>
 </div>
 
 <hr />
-Add to the todo: ReactJS, WikiLogic styles convert into less
-
 
 <div class="row">
 
