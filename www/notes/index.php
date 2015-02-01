@@ -113,10 +113,11 @@
         <div class="list-group">
           <a href="webcomponents.php" class="list-group-item greyout">Parallax</a>
           <a href="webcomponents.php" class="list-group-item">Web Components</a>
+          <a href="polymer.php" class="list-group-item">Polymer</a>
           <a href="forms.php" class="list-group-item greyout">Forms</a>
-          <a href="crossBrowser.php" class="list-group-item greyout">Cross browser gotchas</a>
-          <a href="responsive.php" class="list-group-item greyout">Responsive gotchas</a>
+          <a href="support.php" class="list-group-item greyout">Support</a>
           <a href="emails.php" class="list-group-item greyout">Emails</a>
+          <a href="css-preprocessors.php" class="list-group-item greyout">css-preprocessors</a>
         </div>
         <h4 id="Angular">AngularJS</h4>
         <div class="list-group">
@@ -184,7 +185,6 @@
           <a href="programmingFundamentals.php" class="list-group-item">Fundamentals</a>
           <a href="php.php" class="list-group-item">PHP</a>
           <a href="jade.php" class="list-group-item">Jade</a>
-          <a href="" class="list-group-item greyout">SASS / LESS</a>
           <a href="" class="list-group-item greyout">Coffeescript</a>
         </div>
         <h4 id="Testing">Testing</h4>

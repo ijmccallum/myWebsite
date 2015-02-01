@@ -1,0 +1,20 @@
+{
+  "name": "mySite-2015",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ijmccallum/myWebsite",
+  "authors": [
+    "Iain J McCallum <ijmccallum@hotmail.co.uk>"
+  ],
+  "description": "First big polymer project!",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.4"
+  }
+}

@@ -1,17 +1,17 @@
-<?php 
+<?php
 
 $homePath = '"';
 for ($x=0; $x<$docDepth; $x++){
   //add ../ to paths
     $homePath = $homePath . "../";
-} 
+}
 ?>
  <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<link rel="icon" 
-      type="image/png" 
+	<link rel="icon"
+      type="image/png"
       href=<?php echo $homePath . 'favicon.ico"' ?>>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,7 @@ for ($x=0; $x<$docDepth; $x++){
     <!-- Add custom CSS here -->
     <link href=<?php echo $homePath . 'bootstrap/css/simple-sidebar.css"' ?> rel="stylesheet">
     <link href=<?php echo $homePath . 'bootstrap/css/font-awesome.min.css"' ?> rel="stylesheet">
-    <link href=<?php echo $homePath . 'styles.css"' ?>  rel="stylesheet">
+    <link href=<?php echo $homePath . 'styles/style.css"' ?>  rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise' rel='stylesheet' type='text/css'>
     <link href=<?php echo $homePath . 'highlight/highlight.css"' ?> rel="stylesheet" />
     <script src='https://www.google.com/recaptcha/api.js'></script>
@@ -49,7 +49,7 @@ for ($x=0; $x<$docDepth; $x++){
 
 
 </head>
-    
+
 
 <body class="language-js">
 
@@ -57,9 +57,9 @@ for ($x=0; $x<$docDepth; $x++){
         <?php $navLocation = (ltrim($homePath,'"')) . 'partials/nav.php' ?>
         <?php include $navLocation; ?>
 
-        <?php 
+        <?php
             //Setting up the page wrapper class
-            if ($iainPageTitle == "Tools"){ 
+            if ($iainPageTitle == "Tools"){
                 $iainPageClass="psdTexture";
             } else if ($iainPageTitle == "Threadless") {
                 $iainPageClass="threadlessBG";
@@ -71,7 +71,7 @@ for ($x=0; $x<$docDepth; $x++){
                 $iainPageClass = "makeSmallPageFullHeight";
             }
         ?>
-        
+
         <!-- Page content -->
         <div id="page-content-wrapper" class="<?php echo $iainPageClass; ?>">
             <div class="content-header">
@@ -85,8 +85,8 @@ for ($x=0; $x<$docDepth; $x++){
                                 <div id="hotdog3"></div>
                             </a>
                         </div>
-                        <h1>Hello! Welcome to my 
-                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> in the 
+                        <h1>Hello! Welcome to my
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span> in the
                             <span class="glyphicon glyphicon-cloud" aria-hidden="true"></span></h1>
                         <!--
                     <div class="indexHeadPicWrap">
@@ -121,17 +121,17 @@ for ($x=0; $x<$docDepth; $x++){
                         <?php if ($iainPageTitle == "Synergy") { ?>
                                 <img src="pics/SynergyLogo2.jpg" alt="">
                         <?php } else {
-                                echo $iainPageTitle; 
-                        } ?> 
+                                echo $iainPageTitle;
+                        } ?>
                     </h1>
                 <?php } ?>
 
                 <!-- Top right, call to action? -->
-                
-                <div class="top-right-btn" data-toggle="modal" data-target="#contactModal">  
+
+                <div class="top-right-btn" data-toggle="modal" data-target="#contactModal">
                     <h1><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></h1>
                 </div>
-            
+
 
             </div>
             <div class="page-content inset">

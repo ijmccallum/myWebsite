@@ -79,24 +79,41 @@
 
 <hr />
 
-<h3>Delivering Web Components: HTML import</h3>
+<h3>Delivering Web Components: <strong>HTML import</strong></h3>
+<p>Basically the same as including a JS or CSS file.  You define a &lt;link&gt; tag and point it to a .html file. Easy!</p>
+
 <p>
-	The above example tempate can be saved within it's own file and imported as follows:
-	<code>&lt;link rel="import" href="/path/to/imports/stuff.html"&gt;</code> <br />
-	This gives us a few awesome advances:
+	<strong>Firefox</strong> <a href="https://hacks.mozilla.org/2014/12/mozilla-and-web-components/">will not support HTML imports</a>,
+	but there are polyfills that will solve this problem: eg, Polymer's polyfill.
+</p>
+
+<p>To check <a href="http://caniuse.com/#feat=imports">support</a>:</p>
+<pre><code>function supportsImports() {
+  return 'import' in document.createElement('link');
+}
+
+if (supportsImports()) {
+  // Good to go!
+} else {
+  // Use other libraries/require systems to load files.
+}</code></pre>
+
+<p>
+	So HTML imports give us a few awesome advances:
 	<ul>
 		<li>This html file can include all the JS and CSS required for the component -
 			one import link for all the goodies, no more juggling multiples with JS, CSS and pasting markup in.</li>
 		<li>The CSS, JS and it's own import links are inert (not loaded) unless the component is actually used.</li>
 	</ul>
 
+	They also give us a few things to think about:
+	<ul>
+		<li>More requests = more round trips between client and server = more time. Unless you precompile?</li>
+	</ul>
+
 </p>
 
-<h3>One issue this creates: more TCP round trips, unless...</h3>
-<p>
-	Pre compile (grunt) the components you use into one / few html file(s).  Might be especially handy if the JS and CSS were all brought together
-	into a few files, less round trips, more speed! 
-</p>
+
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
