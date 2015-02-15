@@ -126,25 +126,6 @@ in other words
 <a href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/">The source article!</a>
 
 <hr />
-
-
-<h3>Closures</h3>
-<p>Created when you use <i>function()</i> inside another function().  An example:</p>
-<pre><code>function sayHello2(name) {
-  var text = 'Hello ' + name; // local variable
-  var sayAlert = function() { alert(text); }
-  return sayAlert;
-}
-var say2 = sayHello2('jane')</code></pre>
-
-<p><code>sayHello2</code> returns a function, the one that was declaired inside it (<code>sayAlert()</code>) so the variable <code>say2</code> now holds a refrence to that returned function (which is the closure). 
-	<code>console.log(say2.toString()); // "function() { alert(text); }" </code>.<br/ >
-You will notice that the returned function, which is <i>refrenced</i> by <code>say2</code>, has within it a refrence to the variable 'text' which 
-you might expect to have been destroyed after the original sayHello2() function was returned... not so!  The returned function (<code>sayAlert</code>) 
-keeps a refrence to it's creator in secret - this is a closure.</p>
-<a href="http://www.javascriptkit.com/javatutors/closures.shtml">the description of closures</a>
-
-<hr />
 <h3>Callbacks</h3>
 <h4>Don't block the stack!</h4>
 <p>As your code executes, every function that is stepped into pushes it's parent onto the stack to be returned to.  The stack is the system

@@ -56,13 +56,16 @@
 <div class="row">
 
   <div class="col-md-4">
-        <h4 id="Internet">The Internet!</h4>
+        <h4 id="Internet">The ground rules</h4>
         <div class="list-group">
           <a href="html.php" class="list-group-item">HTML</a>
           <a href="CSS.php" class="list-group-item">CSS</a>
           <a href="javascript.php" class="list-group-item">Javascript</a>
+          <a href="javascript-patterns.php" class="list-group-item">Javascript:patterns</a>
+          <a href="javascript-closures.php" class="list-group-item">Javascript:closures</a>
           <a href="ECMAScript6.php" class="list-group-item greyout">ECMAScript 6</a>
         </div>
+        <h4 id="Internet">The Internet!</h4>
         <div class="list-group">
           <a href="DNS.php" class="list-group-item">DNS</a>
           <a href="htaccess.php" class="list-group-item">.htaccess</a>
