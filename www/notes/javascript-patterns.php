@@ -111,8 +111,8 @@ testModule.publicFunction();</code></pre>
 
 <hr id="singleton" />
 
-<h2>Singleton <small>creation of a single instance</small></h2>
-<p>If </p>
+<h2>Singleton <small>a single object of a give type, globally acessible, to be used accross the system.</small></h2>
+<p>Generally speaking, not usually a good idea - especially with JavaScript.  There are those who would consider it an anti-pattern.</p>
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>

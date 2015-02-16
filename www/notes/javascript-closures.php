@@ -44,7 +44,7 @@ closure.publicRefToFunction;</code></pre>
 
 How cool is that? 'x' is essentially a private variable while 'add1toX' has a public refrence.  We can make private functions
 and public variables this way too.  As a bonus, this last example is also a programming pattern called the 
-<a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript">Revealing Module Pattern</a>
+<a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript">Revealing Module Pattern</a>, double win!
 
 
 <!--  Old notes on closures

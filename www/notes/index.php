@@ -38,15 +38,19 @@
   <div class="col-md-12">
     My todo list:
     <ul>
-      <li>Velocity.js: need an example project (my home page!): http://julian.com/research/velocity/#vmd</li>
-      <li>D3 / Plottable.js: Wikilogic stats</li>
-      <li>WL mobile friendly</li>
-      <li>WL pamphlet</li>
-      <li>ReactJS</li>
-      <li>WL organise styles</li>
-      <li>WL logicBot</li>
-      <li>Sitecore notes</li>
-      <li>Accessibility notes</li>
+      <li>High: Finish the paatterns book</li>
+      <li>High: Figure out namespacing</li>
+      <li>High: WL logicBot</li>
+      <br />
+      <li>Med: WL mobile friendly</li>
+      <li>Med: WL pamphlet</li>
+      <li>Med; WL organise styles</li>
+      <br />
+      <li>Low: ReactJS</li>
+      <li>Low: Velocity.js: need an example project (my home page!): http://julian.com/research/velocity/#vmd</li>
+      <li>Low: D3 / Plottable.js: Wikilogic stats</li>
+      <li>Low: Sitecore notes</li>
+      <li>Low: Accessibility notes</li>
     </ul>
   </div>
 </div>
