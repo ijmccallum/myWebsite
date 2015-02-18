@@ -7,6 +7,7 @@
   <li><strong>Templates:</strong> Holds the html and contains fields (fields are .net tags?), these fields determin the item's inputs in the backend</li>
   <li><strong>Fields:</strong> fields, fields everywhere!</li>
   <li><strong>Masters:</strong> types of items, when a new item is created from a master, the master is basically copied </li>
+  <br />
   <li><strong>Layouts:</strong> each page has a layout file (.NET / .aspx)<br />
   <i>Layout files can have sub layouts (.ascx) and renderings (.xslt). So use a layout for the page outline</i></li>
   <li><strong>Rendering:</strong> Should be used for presenting content only</li>
