@@ -9,34 +9,37 @@
 		<td><h3>Behavioral Design Patterns <br /><small>communication between objects</small></h3></td>
 	</tr>
 	<tr>
-		<td><a href="#constructor">Constructor</a></td>
+		<td><a href="#constructor">Constructor</a> creating many similar objects</td>
 		<td>Decorator</td>
 		<td>Iterator</td>
 	</tr>
 	<tr>
-		<td>Factory</td>
+		<td><a href="#module">Module</a> creating objects with public and private properties</td>
 		<td>Facade</td>
 		<td>Mediator</td>
 	</tr>
 	<tr>
-		<td>Abstract</td>
+		<td><a href="#singleton">Singleton</a>: many refrences to a single object(or Module) (there can only be one!)</td>
 		<td>Flyweight</td>
-		<td>Observer</td>
+		<td><a href="#observer">Observer</a></td>
 	</tr>
 	<tr>
-		<td>Prototype</td>
+		<td>Factory</td>
 		<td>Adapter</td>
 		<td>Visitor</td>
 	</tr>
 	<tr>
-		<td><a href="#singleton">Singleton</a>: An object that can have only one instance (all objs in js are like this)</td>
+		<td>Abstract</td>
 		<td>Proxy</td>
 		<td>-</td>
 	</tr>
 	<tr>
+		<td>Prototype</td>
+		<td>-</td>
+		<td>-</td>
+	</tr>
+	<tr>
 		<td>Builder</td>
-		<td>-</td>
-		<td>-</td>
 	</tr>
 </table>
 
@@ -113,6 +116,189 @@ testModule.publicFunction();</code></pre>
 
 <h2>Singleton <small>a single object of a give type, globally acessible, to be used accross the system.</small></h2>
 <p>Generally speaking, not usually a good idea - especially with JavaScript.  There are those who would consider it an anti-pattern.</p>
+<p>It is essentially a Module pattern with an extra bit: if it has already been instantiated, the singleton will return a refrence to that instance.</p>
+<pre><code>var mySingleton = (function () {
+
+	// 1. We keep note of whither this singleton has been created
+	var instance;
+
+	function init() {
+
+		// 4. The Singleton is created, much like a Module
+
+		// Private methods and variables
+		function privateMethod(){ ... }
+		var privateVariable = "Im also private";
+
+		return {
+
+		// Public methods and variables
+		publicMethod: function () { ... },
+		publicProperty: "I am also public",
+
+		};
+
+	};
+
+	// 2. the Anonymous function declaration executes and returns getInstance
+	return {
+
+		getInstance: function () {
+			// 3. init() is only every called once
+			if ( !instance ) { instance = init(); }
+			return instance;
+		}
+
+	};
+ 
+})();
+
+// 3. we get a refrence to the singleton 
+var singletonRef = mySingleton.getInstance();</code></pre>
+
+<hr id="observer" />
+
+<h2>The Observer Pattern <small>One 'Subject' many 'Observers'</small></h2>
+
+<p>The 'Subject' keeps a list of 'Observers' to notify when things happen.</p>
+<div class="row">
+	<div class="col-md-6">Using the modular pattern to create our subject
+<pre><code>var subject = (function(){
+	observerList = [];
+
+	function subscribe(fn) {
+		observerList.push(fn);
+	};
+
+	function unsubscribe(fn) {
+		this.observerList = this.observerList.filter(
+			function(item) {
+				if (item !== fn) {
+					return item;
+				}
+			}
+		);
+	};
+
+	function publish(notification) {
+		for(var i=0; i&lt;observerList.length; i++) {
+			observerList[i](notification);
+		}
+	};
+
+	return {
+		subscribe:subscribe,
+		unsubscribe:unsubscribe,
+		publish:publish
+	};
+})();
+</code></pre>	
+	</div>
+	<div class="col-md-6">Using the costructor pattern to create our subject
+<pre><code>function subject(){
+	this.observerlist = [];	
+};
+
+subject.prototype = {
+
+	subscribe: function(fn) {
+		this.observerlist.push(fn);
+	},
+
+	unsubscribe: function(fn) {
+		this.observerlist = this.observerlist.filter(
+			function(item) {
+				if (item !== fn) {
+					return item;
+				}
+			}
+		);
+	},
+
+	publish: function(notification) {
+		for(var i=0; i&lt;observerList.length; i++) {
+			observerList[i](notification);
+		}
+	}
+};
+</code></pre>		
+	</div>
+</div>
+
+<p>A little demo:</p>
+
+<div class="row">
+	<div class="col-md-6">
+		<div id="subjectDemo" class="subject btn btn-primary" onClick="fire()">I am the subject</div>
+	</div>
+	<div class="col-md-6">
+		<div id="observer1" class="observer btn btn-primary">I am an observer</div>
+		<div id="observer2" class="observer btn btn-primary">I am an observer</div>
+		<div id="observer3" class="observer btn btn-primary">I am an observer</div>
+	</div>
+	<script>
+		//========================================================The Subject
+		function subject(){
+			this.observerlist = [];	
+		};
+
+		subject.prototype = {
+
+			subscribe: function(fn) {
+				this.observerlist.push(fn);
+				console.log('subscription recieved');
+				console.log(this.observerlist);
+			},
+
+			unsubscribe: function(fn) {
+				this.observerlist = this.observerlist.filter(
+					function(item) {
+						if (item !== fn) {
+							return item;
+						}
+					}
+				);
+				console.log('subscription cancelled');
+				console.log(this.observerlist);
+			},
+
+			publish: function(notification) {
+				console.log('event: ' + notification);
+				for(var i=0; i<this.observerList.length; i++) {
+					this.observerList[i](notification);
+				}
+			}
+		};
+
+		var demoEvent = new subject();
+
+		function fire(){
+			demoEvent.publish('fired!');
+		};
+
+		//========================================================The Observers
+		function observer(element_ID){
+			var subscribed = false;
+			this.domElement = document.getElementById(element_ID);
+			this.domElement.addEventListener("click", function(){
+				if (!subscribed) {
+					demoEvent.subscribe(this.recieve);
+					subscribed = true;
+				} else {
+					demoEvent.unsubscribe(this.recieve);
+					subscribed = false;
+				}
+			});
+			this.recieve = function(notification){
+				console.log('observer:' + this.domElement.id + ' recieved:' + notification);
+			}
+		};
+
+		var observer1 = new observer('observer1');
+		var observer2 = new observer('observer2');
+		var observer3 = new observer('observer3');
+	</script>
+</div>
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>

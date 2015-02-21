@@ -51,6 +51,13 @@
       <li>Low: D3 / Plottable.js: Wikilogic stats</li>
       <li>Low: Sitecore notes</li>
       <li>Low: Accessibility notes</li>
+      <br />
+      <li>Login page on my site: lifeboard!
+        <ul>
+          <li>Learning the internet book</li>
+          <li>Move this todo list there</li>
+        </ul>
+      </li>
     </ul>
   </div>
 </div>
