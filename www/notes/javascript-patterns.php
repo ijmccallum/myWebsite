@@ -163,7 +163,11 @@ var singletonRef = mySingleton.getInstance();</code></pre>
 <p>The 'Subject' keeps a list of 'Observers' to notify when things happen.</p>
 <div class="row">
 	<div class="col-md-6">
-<pre><code>function subject(){
+		<p>Check out this wee demo I worked out to showcase this pattern.  Click on one of the 'observers' to subscribe them to the 'subject', 
+			then click on the 'subject' to publish a random number.</p>
+<pre><code>// 1. I use the constructor pattern to create the subject and it's functions
+function subject(){
+	//All those who subscribe submit a function to be added into this array
 	this.observerlist = [];
 };
 
@@ -183,11 +187,16 @@ subject.prototype = {
 	},
 	publish: function(notification) {
 		for(var i=0; i < this.observerlist.length; i++) { 
+			/*on publish, every function in the 'observerlist' 
+			  is passed 'notification' and executes */
 			this.observerlist[i](notification);
 		}
 	}
 };
 
+/* Creating an instance of the subject object
+   it didn't need to be a constructor, I'm just 
+   in the spirit of patterns right now! */
 var demoEvent = new subject();
 
 //called on click, dirty but quick!
@@ -207,29 +216,33 @@ function fire(){
 		<hr />
 		<p>The code below is the rest of what makes this demo run</p>
 <pre><code>function observer(element_ID){
+	//Used to toggle the subscription
 	var subscribed = false;
+	//Getting the DOM element to chenge the innerHTML
 	this.domElement = document.getElementById(element_ID);
 };
-
-observer.prototype.recieve = function(notification){
-	console.log(notification);
-}
-
 
 var observer1 = new observer('observer1');
 var observer2 = new observer('observer2');
 var observer3 = new observer('observer3');
 
+/*The recieve functions of each observer are not added to the 
+  prototype for a couple of reasons:
+  1: the unsubscribe function will remove any duplicates 
+  2: I tried to use 'this' to define the DOM element, but 'this' 
+      (when called by the subject) refers to the receieve function,
+      not the observer object. */
 observer1.recieve = function(notification){
-	document.getElementById('observer1').innerHTML = notification;
+	observer1.domElement.innerHTML = notification;
 }
 observer2.recieve = function(notification){
-	document.getElementById('observer2').innerHTML = notification;
+	observer2.domElement.innerHTML = notification;
 }
 observer3.recieve = function(notification){
-	document.getElementById('observer3').innerHTML = notification;
+	observer3.domElement.innerHTML = notification;
 }
 
+//The subscription toggle
 function subscribeMe(elementObserver) {
 	if (!elementObserver.subscribed) {
 		demoEvent.subscribe(elementObserver.recieve);
@@ -297,13 +310,13 @@ function subscribeMe(elementObserver) {
 		var observer3 = new observer('observer3');
 
 		observer1.recieve = function(notification){
-			document.getElementById('observer1').innerHTML = notification;
+			observer1.domElement.innerHTML = notification;
 		}
 		observer2.recieve = function(notification){
-			document.getElementById('observer2').innerHTML = notification;
+			observer2.domElement.innerHTML = notification;
 		}
 		observer3.recieve = function(notification){
-			document.getElementById('observer3').innerHTML = notification;
+			observer3.domElement.innerHTML = notification;
 		}
 
 		function subscribeMe(elementObserver) {
