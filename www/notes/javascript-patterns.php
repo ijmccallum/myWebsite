@@ -162,41 +162,9 @@ var singletonRef = mySingleton.getInstance();</code></pre>
 
 <p>The 'Subject' keeps a list of 'Observers' to notify when things happen.</p>
 <div class="row">
-	<div class="col-md-6">Using the modular pattern to create our subject
-<pre><code>var subject = (function(){
-	observerList = [];
-
-	function subscribe(fn) {
-		observerList.push(fn);
-	};
-
-	function unsubscribe(fn) {
-		this.observerList = this.observerList.filter(
-			function(item) {
-				if (item !== fn) {
-					return item;
-				}
-			}
-		);
-	};
-
-	function publish(notification) {
-		for(var i=0; i&lt;observerList.length; i++) {
-			observerList[i](notification);
-		}
-	};
-
-	return {
-		subscribe:subscribe,
-		unsubscribe:unsubscribe,
-		publish:publish
-	};
-})();
-</code></pre>	
-	</div>
-	<div class="col-md-6">Using the costructor pattern to create our subject
+	<div class="col-md-6">
 <pre><code>function subject(){
-	this.observerlist = [];	
+	this.observerlist = [];
 };
 
 subject.prototype = {
@@ -204,7 +172,6 @@ subject.prototype = {
 	subscribe: function(fn) {
 		this.observerlist.push(fn);
 	},
-
 	unsubscribe: function(fn) {
 		this.observerlist = this.observerlist.filter(
 			function(item) {
@@ -214,39 +181,76 @@ subject.prototype = {
 			}
 		);
 	},
-
 	publish: function(notification) {
-		for(var i=0; i&lt;observerList.length; i++) {
-			observerList[i](notification);
+		for(var i=0; i < this.observerlist.length; i++) { 
+			this.observerlist[i](notification);
 		}
 	}
 };
-</code></pre>		
+
+var demoEvent = new subject();
+
+//called on click, dirty but quick!
+function fire(){
+	var notification = Math.random();
+	demoEvent.publish(notification);
+};
+</code></pre>	
 	</div>
-</div>
 
-<p>A little demo:</p>
-
-<div class="row">
 	<div class="col-md-6">
+		<p>A little demo: (also in a <a href="http://codepen.io/ijmccallum/pen/GgdJBr">codepen</a>)</p>
 		<div id="subjectDemo" class="subject btn btn-primary" onClick="fire()">I am the subject</div>
-	</div>
-	<div class="col-md-6">
-		<div id="observer1" class="observer btn btn-primary">I am an observer</div>
-		<div id="observer2" class="observer btn btn-primary">I am an observer</div>
-		<div id="observer3" class="observer btn btn-primary">I am an observer</div>
+		<div id="observer1" class="observer btn btn-primary" onClick="subscribeMe(observer1)">I am an observer</div>
+		<div id="observer2" class="observer btn btn-primary" onClick="subscribeMe(observer2)">I am an observer</div>
+		<div id="observer3" class="observer btn btn-primary" onClick="subscribeMe(observer3)">I am an observer</div>
+		<hr />
+		<p>The code below is the rest of what makes this demo run</p>
+<pre><code>function observer(element_ID){
+	var subscribed = false;
+	this.domElement = document.getElementById(element_ID);
+};
+
+observer.prototype.recieve = function(notification){
+	console.log(notification);
+}
+
+
+var observer1 = new observer('observer1');
+var observer2 = new observer('observer2');
+var observer3 = new observer('observer3');
+
+observer1.recieve = function(notification){
+	document.getElementById('observer1').innerHTML = notification;
+}
+observer2.recieve = function(notification){
+	document.getElementById('observer2').innerHTML = notification;
+}
+observer3.recieve = function(notification){
+	document.getElementById('observer3').innerHTML = notification;
+}
+
+function subscribeMe(elementObserver) {
+	if (!elementObserver.subscribed) {
+		demoEvent.subscribe(elementObserver.recieve);
+		elementObserver.subscribed = true;
+	} else {
+		demoEvent.unsubscribe(elementObserver.recieve);
+		elementObserver.subscribed = false;
+	}		
+}</code></pre>
 	</div>
 	<script>
 		//========================================================The Subject
 		function subject(){
-			this.observerlist = [];	
+			this.observerlist = [];
 		};
 
 		subject.prototype = {
 
 			subscribe: function(fn) {
 				this.observerlist.push(fn);
-				console.log('subscription recieved');
+				console.log('subscribe: ');
 				console.log(this.observerlist);
 			},
 
@@ -258,47 +262,68 @@ subject.prototype = {
 						}
 					}
 				);
-				console.log('subscription cancelled');
+				console.log('unsubscribe: ');
 				console.log(this.observerlist);
 			},
-
 			publish: function(notification) {
-				console.log('event: ' + notification);
-				for(var i=0; i<this.observerList.length; i++) {
-					this.observerList[i](notification);
+				for(var i=0; i < this.observerlist.length; i++) { 
+					this.observerlist[i](notification);
 				}
 			}
 		};
 
 		var demoEvent = new subject();
 
+		//called on click, dirty but quick!
 		function fire(){
-			demoEvent.publish('fired!');
+			var notification = Math.random();
+			demoEvent.publish(notification);
 		};
 
 		//========================================================The Observers
 		function observer(element_ID){
 			var subscribed = false;
 			this.domElement = document.getElementById(element_ID);
-			this.domElement.addEventListener("click", function(){
-				if (!subscribed) {
-					demoEvent.subscribe(this.recieve);
-					subscribed = true;
-				} else {
-					demoEvent.unsubscribe(this.recieve);
-					subscribed = false;
-				}
-			});
-			this.recieve = function(notification){
-				console.log('observer:' + this.domElement.id + ' recieved:' + notification);
-			}
+			//this.domElement.addEventListener("click", subscribeMe(element_ID));
 		};
+
+		observer.prototype.recieve = function(notification){
+			console.log(notification);
+		}
+
 
 		var observer1 = new observer('observer1');
 		var observer2 = new observer('observer2');
 		var observer3 = new observer('observer3');
+
+		observer1.recieve = function(notification){
+			document.getElementById('observer1').innerHTML = notification;
+		}
+		observer2.recieve = function(notification){
+			document.getElementById('observer2').innerHTML = notification;
+		}
+		observer3.recieve = function(notification){
+			document.getElementById('observer3').innerHTML = notification;
+		}
+
+		function subscribeMe(elementObserver) {
+			if (!elementObserver.subscribed) {
+				demoEvent.subscribe(elementObserver.recieve);//subscribe the function we want
+				elementObserver.subscribed = true;
+			} else {
+				demoEvent.unsubscribe(elementObserver.recieve);
+				elementObserver.subscribed = false;
+			}		
+		}
+
+
 	</script>
 </div>
+
+
+<hr />
+
+<h2>Publish/Subscribe</h2>
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
