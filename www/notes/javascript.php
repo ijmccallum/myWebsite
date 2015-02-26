@@ -70,6 +70,68 @@ a constructor, properties set to  configurable, or those set in a global varia
 
 <hr />
 
+<h3>Functions</h3>
+<div class="row">
+
+	<div class="col-md-3">
+		<p><strong>Function Decleration:</strong> Only executed when called.</p>
+<pre><code>function myFunction(a, b) {
+    return a * b;
+}</code></pre>
+	</div>
+
+	<div class="col-md-3">
+		<p><strong>Function Expression:</strong> Stores the function in a variable, again not executed until called.</p>
+<pre><code>var x = function (a, b) {return a * b};
+var z = x(4, 3);</code></pre>
+	</div>
+
+	<div class="col-md-3">
+		<p><strong>Self invoking anonymous function</strong> this will run immediatly</p>
+<pre><code>(function () {
+    //...
+})();</code></pre>
+	</div>
+
+	<div class="col-md-3">
+		<p><strong>Self invoking named function</strong> this will run immediatly and we will have a refrence to whtever it may return. (foo.returedObjName)</p>
+<pre><code>(function foo() {
+    //...
+})();</code></pre>
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="col-md-4">
+		<p>When placing () after a function's name, it will run <br />
+		- functionName(); will run<br />
+		- functionName will not and can be used as a callback.<br /><br />
+
+		Wrapping a functin in () is essentially the same as calling the function:<br />
+		<code><strong>functionName</strong>();</code> = <code><strong>(</strong>function functionName(){}<strong>)</strong>();</code><br />
+		Look carefully at what is bold here.</p>
+	</div>
+	<div class="col-md-4">
+		<p>Extra note, placing a ; before a self invoking function prevents it from becoming an argument when files are concatanated/minified. (it shouldn't happen
+anyway, this is just preventitive medicine for JS.)</p>
+<pre><code>;(function foo() {
+    //...
+})();</code></pre>
+	</div>
+	<div class="col-md-4">
+		<p>Adding arguments to self invoking functions:</p>
+<pre><code>;(function foo(window) {
+    //...
+})(window);</code></pre>
+		<p>args added to the last () will be passed to the function's args.</p>
+	</div>
+</div>
+
+
+
+
+<hr />
+
 
 <h3>scope and hoisting</h3>
 <p>The scope of a variable is defined by the location in which it is declared (or not) by <code>var</code>.  They may be <strong>global</strong>
