@@ -15,7 +15,7 @@
 	</tr>
 	<tr>
 		<td><a href="#module">Module</a>: creating objects with public and private properties</td>
-		<td>Facade</td>
+		<td><a href="<span id="f"></span>acade">Facade</a>: a simple interface for complex actions</td>
 		<td><a href="#pubsub">Pubsub</a>: Publisher > channel < subscriber</td>
 	</tr>
 	<tr>
@@ -467,15 +467,86 @@ the constructor pattern at the very top of this page!</p>
 
 <hr id="command" />
 
-<h2>Command</h2>
-
-<p>4 parts:
+<h2>The Command Pattern</h2>
+<p>The idea with this pattern is to abstract an action from an object.<br />
+So you can have a page full of objects and a couple of buttons that preform actions.</p>
+<p>All command objects have one method in common: execute
+They also all have 4 parts:</p>
 <ul>
 	<li>The command object</li>
-	<li>The client</li>
-	<li>The invoker</li>
-	<li>The reciever</li>
+	<li>The client: Creates the command object and passes to the invoker</li>
+	<li>The invoker: uses the command object and calls it's args</li>
+	<li>The reciever: the object the command object is making calls on</li>
 </ul>
+
+<p>Example from <a href="http://www.joezimjs.com/javascript/javascript-design-patterns-command/">joezimjs</a>:<br />
 </p>
+
+<pre><code>var alarmList = [];
+
+/* Here we create the enableAlarm and disableAlarm command objects,
+ * they don't actually care what kind object gets passed to them as
+ * long as those objects 
+ */
+	
+var enableAlarm = function(alarm) {
+    this.alarm = alarm;
+}
+enableAlarm.prototype.execute = function () {
+    this.alarm.enable();
+}
+
+
+var DisableAlarm = function(alarm) {
+    this.alarm = alarm;
+}
+DisableAlarm.prototype.execute = function () {
+    this.alarm.disable();
+}
+
+
+//loop through all the alarms 
+for (i=0; i&lt;alarmList.length; i++) {
+	
+	//Pass the alarm object, we get enable_alarm.alarm.execute
+	var enable_alarm = new enableAlarm( alarmList[i] );
+	var disable_alarm = new DisableAlarm(alarms[i]);
+
+	/* the button object also doesn't care how the command class is implemented, 
+	 * as long as it has an execute method 
+	 */
+	new Button('enable', enable_alarm);
+	new Button('disable', disable_alarm);
+}
+
+</code></pre>
+
+<p>Often used for undo/redo functionality</p>
+
+<hr id="facade" />
+
+<h2>Facade <small>a simple interface for complex actions</small></h2>
+<p>All the complexity of an operation taken care of within the funciton.</p>
+
+<pre><code>
+function addEvent( element, event, callback ) {
+  
+  if( window.addEventListener ) {
+    element.addEventListener( event, callback, false );
+  } else if( document.attachEvent ) {
+    element.attachEvent( 'on' + event, callback );
+  } else {
+    element[ 'on' + event ] = callback;
+  }
+  
+}</code></pre>
+<p>source: <a href="https://carldanley.com/js-facade-pattern/">Carl Danly's example</a></p>
+
+<hr id="factory" />
+
+<h2>Factory Pattern</h2>
+<p>Another way of instantiating objects, good if the creation process is complex.</p>
+
+
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
