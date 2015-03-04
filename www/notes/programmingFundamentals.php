@@ -3,6 +3,7 @@
 
 <p>The Jargon:	
 <ul>
+	<li>Bootstrap: </li>
 	<li>Constructor: </li>
 	<li>Checksum: </li>
 	<li>Dynamically typed: You don't - the system figures out what the type is by itself.</li>

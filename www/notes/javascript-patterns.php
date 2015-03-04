@@ -545,8 +545,71 @@ function addEvent( element, event, callback ) {
 <hr id="factory" />
 
 <h2>Factory Pattern</h2>
-<p>Another way of instantiating objects, good if the creation process is complex.</p>
+<p>Another way of instantiating objects, <br />
+If there are many types of objects to be created (in this example, types of spaceships)
+it lets us decouple the creation calls from the indiviual constructors.  Instead we just
+call the factory and ask it for a type of object, the factory deals with calling the 
+individual constructors.</p>
 
+<pre><code>//Basic constructors for various different types of objects, each with their own defaults
+function spaceShip( options ) {
+	this.lifeSupport = options.lifeSupport || "1 person";
+	this.color = options.color || "silver";
+	this.speed = options.speed || "warp 1";
+}
+ 
+function fireflyShip(options){
+	this.lifeSupport = options.lifeSupport || "5 people";
+	this.cargoHold = options.cargoHold || "Really big";
+	this.color = options.color || "brown";
+}
+
+function theEnterprise(options){
+	this.lifeSupport = options.lifeSupport || "200 people";
+	this.speed = options.speed || "warp 9";
+}
+
+function xWing(options){
+	this.speed = options.speed || "warp 5";
+	this.wings = options.wings || 4;
+}
+
+
+//The factory gives us a single place to call when creating a new object of whatever type
+function spaceShipFactory() {};
+spaceshipFactory.prototype.createShip = function (options) {
+
+	//Determin the type of object to be created
+	switch (options.shipType) {
+		case "firefly":
+			this.shipType = fireflyShip;
+			break;
+		case "enterprise":
+			this.shipType = theEnterprise;
+			break;
+		case "xwing":
+			this.shipType = xWing;
+			break;
+		default:
+			this.shipType = spaceShip;
+	}
+
+	//now we know the type of object, return a new one
+	return new this.shipType(options);
+}
+
+
+//Now we create a new factory and use it without having to call the objects individual functionx
+var mySpaceShipFactory = new spaceShipFactory();
+var myNewShip = spaceShipFactory.createShip({
+	shipType:"firefly",
+	speed:"warp 99"
+});
+</code></pre>
+
+<hr id="mixin" />
+
+<h2>Mixin</h2>
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
