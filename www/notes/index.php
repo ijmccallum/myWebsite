@@ -38,8 +38,7 @@
   <div class="col-md-12">
     My todo list:
     <ul>
-      <li>High: Finish the paatterns book</li>
-      <li>High: Figure out namespacing</li>
+      <li>High: Finish the patterns book</li>
       <li>High: WL logicBot</li>
       <br />
       <li>Med: WL mobile friendly</li>
@@ -67,13 +66,14 @@
 <div class="row">
 
   <div class="col-md-4">
-        <h4 id="Internet">The ground rules</h4>
+        <h4 id="basics">The ground rules</h4>
         <div class="list-group">
           <a href="html.php" class="list-group-item">HTML</a>
           <a href="CSS.php" class="list-group-item">CSS</a>
           <a href="javascript.php" class="list-group-item">Javascript</a>
           <a href="javascript-patterns.php" class="list-group-item">Javascript:patterns</a>
           <a href="javascript-closures.php" class="list-group-item">Javascript:closures</a>
+          <a href="emails.php" class="list-group-item greyout">Emails</a>
           <a href="ECMAScript6.php" class="list-group-item greyout">ECMAScript 6</a>
         </div>
         <h4 id="Internet">The Internet!</h4>
@@ -85,6 +85,7 @@
           <a href="wirelessNetworking.php" class="list-group-item">Wireless Networking</a>
           <a href="networking.php" class="list-group-item">Networking (IP, TCP, UDP, TLS)</a>
         </div>
+        <h4 id="fancy">Fancy New JS things</h4>
         <div class="list-group">
           <a href="serviceWorker.php" class="list-group-item">ServiceWorkers</a>
           <a href="webrtc.php" class="list-group-item"><strong>WebRTC</strong><br />

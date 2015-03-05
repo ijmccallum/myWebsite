@@ -10,32 +10,32 @@
 	</tr>
 	<tr>
 		<td><a href="#constructor">Constructor</a>: creating many similar objects</td>
-		<td>Decorator</td>
+		<td><a href="facade">Facade</a>: a simple interface for complex actions</td>
 		<td><a href="#observer">Observer</a>: One 'Subject' many 'Observers'</td>
 	</tr>
 	<tr>
 		<td><a href="#module">Module</a>: creating objects with public and private properties</td>
-		<td><a href="<span id="f"></span>acade">Facade</a>: a simple interface for complex actions</td>
+		<td><a href="#mixin">Mixin</a>: code additives, one jar many dishes</td>
 		<td><a href="#pubsub">Pubsub</a>: Publisher > channel < subscriber</td>
 	</tr>
 	<tr>
 		<td><a href="#singleton">Singleton</a>: many refrences to a single object(or Module) (there can only be one!)</td>
-		<td>Flyweight</td>
+		<td>Decorator</td>
 		<td><a href="#mediator">Mediator</a>: A central point of control</td>
 	</tr>
 	<tr>
-		<td>Factory</td>
-		<td>Adapter</td>
+		<td><a href="factory">Factory</a>: Make me a sandwich (of the pb&j variety)</td>
+		<td>Flyweight</td>
 		<td>Iterator</td>
 	</tr>
 	<tr>
 		<td>Abstract</td>
-		<td>Proxy</td>
+		<td>Adapter</td>
 		<td>Visitor</td>
 	</tr>
 	<tr>
 		<td>Prototype</td>
-		<td>-</td>
+		<td>Proxy</td>
 		<td>-</td>
 	</tr>
 	<tr>
@@ -544,7 +544,7 @@ function addEvent( element, event, callback ) {
 
 <hr id="factory" />
 
-<h2>Factory Pattern</h2>
+<h2>Factory Pattern <small>Make me a sandwich (of the pb&j variety)</small></h2>
 <p>Another way of instantiating objects, <br />
 If there are many types of objects to be created (in this example, types of spaceships)
 it lets us decouple the creation calls from the indiviual constructors.  Instead we just
@@ -609,7 +609,48 @@ var myNewShip = spaceShipFactory.createShip({
 
 <hr id="mixin" />
 
-<h2>Mixin</h2>
+<h2>Mixin <small>code additives, one jar many dishes</small></h2>
+
+<p>Storing comon functionality in a mixin function to be mixed into other object prototypes as required.</p>
+<div class="row">
+	<div class="col-md-6">
+		<p>This example adds in all the objects within a mixin to the plain object that is recieveing the mixin.
+		For these I'd think it's a good idea to define many mixins each with a small number of functions.</p>
+<pre><code>//a simple object constructor
+var thing = function(){
+	this.name = "the thingy";
+} 
+
+//mixin
+var mixin = function() {};
+mixin.prototype = {
+	functionToInherit: function(){
+		console.log('mixed in!');
+	};
+}
+
+//mixingInFunction, note we're working with prototypes
+function mix(plain, additive){
+
+	//runs through every object in the additives (mixins) prototype
+	for ( var methodName in additive.prototype ) {
+
+		//Don't overwrite existing functions if there is a clash
+		if (!plain.prototype[methodName]) {
+			plain.prototype[methodName] = additive.prototype[methodName];
+		}
+
+	}
+}
+</code></pre>
+	</div>
+	<div class="col-md-6">
+		<p>The alternative is to have one massive mixin and give your mixer function the ability to define which 
+		functions from within the mixin to include.  But, I'm not going to do that example as it seems the first example,
+		to me at least, is a better way of working.</p>
+	</div>
+</div>
+
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
