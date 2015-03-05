@@ -20,7 +20,7 @@
 	</tr>
 	<tr>
 		<td><a href="#singleton">Singleton</a>: many refrences to a single object(or Module) (there can only be one!)</td>
-		<td>Decorator</td>
+		<td><a href="#decorator">Decorator</a>: upgrading specific objects</td>
 		<td><a href="#mediator">Mediator</a>: A central point of control</td>
 	</tr>
 	<tr>
@@ -651,6 +651,37 @@ function mix(plain, additive){
 	</div>
 </div>
 
+<hr id="decorator" />
+
+<h2>Decorator <small>upgrading specific objects</small></h2>
+
+<p>Adding extra functions to objects (not their prototypes as in the mixin above)</p>
+
+<pre><code>//The basic object
+function basicLaptop() {
+	this.speed = 1;
+	this.memory = 60;
+	this.cost = 200;
+}
+
+//augmenting an existing object within laptop
+function memoryUpgrade(laptop) {
+	var memory = laptop.memory;
+	laptop.memory = (memory * 2);
+}
+
+//adding an extra object to laptop
+function dualMonitors(laptop) {
+	laptop.screenPorts = 2;
+}
+
+var myLaptop = new basicLaptop;
+
+//decorate 'myLaptop' with the decorators - note, though they are only values here remember a function is just an object so can be added in the same way
+memoryUpgrade(myLaptop);
+dualMonitors(myLaptop);
+	
+</code></pre>
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
