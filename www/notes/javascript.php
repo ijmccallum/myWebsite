@@ -1,6 +1,50 @@
 <?php $iainPageTitle = 'Javascript'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
+
+<table class="table table-bordered table-condensed">
+	<tr>
+		<td>Basics</td>
+		<td>New/Es6?</td>
+		<td>3rd party/browsers?</td>
+	</tr>
+	<tr>
+		<td>Objects</td>
+		<td>Promises</td>
+		<td>Requests with the XMLHttpRequest object.</td>
+	</tr>
+	<tr>
+		<td>Functions</td>
+		<td>Generators</td>
+		<td>Form submittal with XMLHttpRequest</td>
+	</tr>
+	<tr>
+		<td>Closures</td>
+		<td>-</td>
+		<td>form submit with jQuery</td>
+	</tr>
+	<tr>
+		<td>Scope and Hoisting</td>
+	</tr>
+	<tr>
+		<td>Callbacks</td>
+	</tr>
+	<tr>
+		<td>this</td>
+	</tr>
+	<tr>
+		<td>Bind()</td>
+	</tr>
+	<tr>
+		<td>Call() and Apply()</td>
+	</tr>
+	<tr>
+		
+	</tr>
+</table>
+
+<hr />
+
 <h3>JavaScript Objects</h3>
 <p>The Object data type is JavaScript's only complex one, it can contain 5 simple data types: Number, String, Boolean, Undefined, & Null.</p>
 <p><strong>Saving refrences vs primitives</strong>, simple data saved directly onto a variable is passed as raw data, objects saved onto a variable 
@@ -127,6 +171,56 @@ anyway, this is just preventitive medicine for JS.)</p>
 	</div>
 </div>
 
+
+<hr />
+
+
+<h3>Closures</h3>
+
+<p>In Javascript, closures arn't actually closures.<br />
+Instead function scope is used to simulate the closure.<br />
+<code>function closure() { ... }</code> Everything in this function is within the function's scope.<br />
+<br />
+So <code>function closure() { var x = 0; }</code> 'x' is not available in the global scope.<br />
+If we expand this example:
+<pre><code>function closure() {
+	var x = 0; 
+	//'x' is still not available to the global scope
+
+	function add1toX() {
+		//but we can edit 'x' in here
+		x ++;
+	}
+}</code></pre>
+This is normal - nothing interesting yet.
+<br />
+<br />
+Now we do something special
+<pre><code>//1. We turn the <strong>normal function decleration</strong> 'function closure() {...' 
+//   into an <strong>Anonymous function declaration</strong>  'var closure = (function () {...'
+//   This gives us a refrence to it later on plus it gets executed immediatly
+var closure = (function () {
+
+	//Same as before, we still cannot access these from the global scope
+	var x = 0;
+	function add1toX() {
+		x ++;
+	}
+	
+	//2. We return an object that has a refrence to the 'add1toX' function
+	//   This anonymous function we're in has now executed but 'add1toX' holds onto the scope (it still thinks it's here).
+	return {
+		publicRefToFunction: add1toX
+	}
+})();
+
+// Now we're back in the global scope we cannot edit 'x' nor can we directly run 'add1toX'
+// But! We do have 'closure.publicRefToFunction' which will run 'add1toX'
+closure.publicRefToFunction;</code></pre>
+
+How cool is that? 'x' is essentially a private variable while 'add1toX' has a public refrence.  We can make private functions
+and public variables this way too.  As a bonus, this last example is also a programming pattern called the 
+<a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#revealingmodulepatternjavascript">Revealing Module Pattern</a>, double win!
 
 
 

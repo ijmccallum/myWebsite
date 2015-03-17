@@ -2,24 +2,13 @@
 <?php include '../partials/head.php'; ?>
 
 
-<h2 class="quirkyHeading"> hmm.</h2>
-<div class="row">
-  <div class="col-md-6">
-    <p>It would be arrogat to assume that this life of ours has a purpose to it,</p>
-  </div>
-  <div class="col-md-6">
-
-
-  </div>
-</div>
-
-<hr />
-
-<div class="row">
-  <div class="col-md-12">
-    My todo list:
-  </div>
-</div>
+<p><i> Perhaps I'm old and tired,<br />
+but I think that the chances of<br />
+finding out what's actually going on<br />
+are so absurdly remote that the<br />
+ only thing to do is to say,<br />
+ "Hang the sense of it," <br />
+ and keep yourself busy! </i></p>
 
 <hr />
 

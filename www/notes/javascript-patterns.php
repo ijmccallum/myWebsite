@@ -10,7 +10,7 @@
 	</tr>
 	<tr>
 		<td><a href="#constructor">Constructor</a>: creating many similar objects</td>
-		<td><a href="facade">Facade</a>: a simple interface for complex actions</td>
+		<td><a href="#facade">Facade</a>: a simple interface for complex actions</td>
 		<td><a href="#observer">Observer</a>: One 'Subject' many 'Observers'</td>
 	</tr>
 	<tr>
@@ -24,22 +24,18 @@
 		<td><a href="#mediator">Mediator</a>: A central point of control</td>
 	</tr>
 	<tr>
-		<td><a href="factory">Factory</a>: Make me a sandwich (of the pb&j variety)</td>
-		<td>Flyweight</td>
+		<td><a href="#factory">Factory</a>: Make me a sandwich (of the pb&j variety)</td>
+		<td><a href="#flyweight">Flyweight</a>: share the common objects, like carshare!</td>
 		<td>Iterator</td>
 	</tr>
 	<tr>
-		<td>Abstract</td>
+		<td><a href="protoype">Prototype</a>: less repetition through cloning</td>
 		<td>Adapter</td>
 		<td>Visitor</td>
 	</tr>
 	<tr>
-		<td>Prototype</td>
-		<td>Proxy</td>
-		<td>-</td>
-	</tr>
-	<tr>
 		<td>Builder</td>
+		<td>Proxy</td>
 	</tr>
 </table>
 
@@ -465,6 +461,15 @@ completion the first step refers back to the Mediator who then initiates the sec
 <p>Each object has a .prototype that we can use as a base for creating new ones, all about inheritnce here!  We've actually already used it in
 the constructor pattern at the very top of this page!</p>
 
+<pre><code>var objectConstructor = function() {
+	this.variable = "this will be copied with every new";
+}
+
+objectConstructor.prototype.fancyFunction = function(){
+	console.log('this log function will only be refrenced by every new, saves memory!');
+}
+</code></pre>
+
 <hr id="command" />
 
 <h2>The Command Pattern</h2>
@@ -682,6 +687,63 @@ memoryUpgrade(myLaptop);
 dualMonitors(myLaptop);
 	
 </code></pre>
+
+
+<hr id="flyweight" />
+
+<h2>Flyweight <small>share the common objects, like carshare!</small></h2>
+
+<p>Used to share common code/variables accross objects.  For example, people and cars (as objects)</p>
+<div class="row">
+	<div class="col-md-6">
+		<p>The bad example (like real life)</p>
+<pre><code>//car object
+var car = function(){
+	this.color = red;
+	this.make = volvo;
+}
+
+//every person we create has their own car
+var person = function(){
+	this.name = "bob";
+	this.car = new car();
+}
+	
+</code></pre>
+	</div>
+	<div class="col-md-6">
+		<p>The good example (what real life should be like)</p>
+<pre><code>//todo tidy this example up!
+var car = function(type){
+	this.type = type || 'volvo';
+}
+
+function carSupplyer(){
+
+	this.carList = {
+		'volvo':car
+	};
+
+	this.getCar =  function(type){
+		//if the car defined in the options exists in the carList, return that car instead of making a new one!
+		if (this.carList.type) {
+			return this.carList.type;
+		} else {
+			//only make a new one if needed
+			this.carList.type = new car(type);
+		}
+	}
+
+}
+
+</code></pre>
+	</div>
+</div>
+
+
+<hr />
+
+<h2></h2>
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>

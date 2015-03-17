@@ -40,23 +40,25 @@
     <ul>
       <li>High: Finish the patterns book</li>
       <li>High: WL logicBot</li>
+      <li>High: basic web dev mini-book</li>
+      <li>Script loaders:<br />
+      https://msdn.microsoft.com/en-us/magazine/hh227261.aspx<br />
+      http://unscriptable.com/2011/03/30/curl-js-yet-another-amd-loader/<br />
+      http://requirejs.org/docs/api.html
+      </li>
       <br />
       <li>Med: WL mobile friendly</li>
       <li>Med: WL pamphlet</li>
-      <li>Med; WL organise styles</li>
+      <li>Med: WL organise styles</li>
+      <li>Med: Nginx in detail</li>
+      <li>Med: service workers</li>
       <br />
-      <li>Low: ReactJS</li>
+      <li>Low: Typescript</li>
+      <li>Low: Angular 2</li>
+      <li>Low: Backbone</li>
       <li>Low: Velocity.js: need an example project (my home page!): http://julian.com/research/velocity/#vmd</li>
       <li>Low: D3 / Plottable.js: Wikilogic stats</li>
-      <li>Low: Sitecore notes</li>
-      <li>Low: Accessibility notes</li>
       <br />
-      <li>Login page on my site: lifeboard!
-        <ul>
-          <li>Learning the internet book</li>
-          <li>Move this todo list there</li>
-        </ul>
-      </li>
     </ul>
   </div>
 </div>
@@ -71,10 +73,11 @@
           <a href="html.php" class="list-group-item">HTML</a>
           <a href="CSS.php" class="list-group-item">CSS</a>
           <a href="javascript.php" class="list-group-item">Javascript</a>
-          <a href="javascript-patterns.php" class="list-group-item">Javascript:patterns</a>
-          <a href="javascript-closures.php" class="list-group-item">Javascript:closures</a>
+          <a href="javascript-patterns.php" class="list-group-item">Javascript: Basic Patterns</a>
+          <a href="javascript-architecture-patterns.php" class="list-group-item">Javascript: Architectural Patterns -MV*</a>
           <a href="emails.php" class="list-group-item greyout">Emails</a>
           <a href="ECMAScript6.php" class="list-group-item greyout">ECMAScript 6</a>
+          <a href="jargon.php" class="list-group-item">Jargon</a>
         </div>
         <h4 id="Internet">The Internet!</h4>
         <div class="list-group">
