@@ -5,7 +5,9 @@ html, body, #wrapper {
 	background-color: #f3f4f5;
 }
 body {
-	font-weight: 300;
+	font-weight: 400;
+	font-family: 'Lato', sans-serif;
+	font-size: 15px;
 }
 .iframe-wrapper {
 	padding:10px;
@@ -19,6 +21,12 @@ body {
 }
 iframe {
 
+}
+.article-meta {
+  text-align: right;
+  margin-bottom: 0px;
+  font-size: 12px;
+  color: #999;
 }
 .hljs {
 	background-color:transparent !important;
@@ -185,7 +193,7 @@ height: 100%;
 }
 
 .quirkyHeading {
-	font-family: 'Waiting for the Sunrise', cursive;
+	// font-family: 'Waiting for the Sunrise', cursive;
 	margin-bottom: 40px;
 	margin-top: 50px;
 }

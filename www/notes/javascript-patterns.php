@@ -79,6 +79,11 @@ Car.prototype.toString = function () {
 var civic = new Car( "Honda Civic", 2009, 20000 );
 console.log( civic.toString() );</code></pre>	
 
+<p>these objects also have a property that points back to their constructor:
+<pre><code>civic.constructor == Car; //true
+</code></pre>
+</p>
+
 
 <hr id="module" />
 

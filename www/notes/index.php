@@ -1,64 +1,36 @@
-<?php $iainPageTitle = 'Notes on Web Development'; $docDepth = 1;?>
+<?php $iainPageTitle = 'Notes'; $docDepth = 1;?>
 <?php include '../partials/head.php'; ?>
 
 
 <!--
 <p style="text-align:right;margin-bottom: 20px;font-size: 12px;"><a href="https://gist.github.com/ijmccallum/11146821">PHP Breadcrumb class in a gist >></a></p>
 -->
-<h2 class="quirkyHeading">The most efficient way to learn something is to learn it with the intention of teaching it.</h2>
-<div class="row">
-  <div class="col-md-6">
-    <p>The Web Development Industry is filled with rapidly changing technologies - it's important not to get lost in all of it!  <br />
-      So, this is my personal repository of notes on the various things I work with and learn.  The gray ones are things I am hoping to
-      read into more / experience, but time will tell.</p>
-  </div>
-  <div class="col-md-6">
-
-      <a href="#Node">Node</a>,
-      <a href="#Databases">Databases</a>,
-      <a href="#DevelopmentTools">Development tools</a>,
-      <a href="#OtherTools">Other tools</a>,
-      <a href="#Testing">Testing</a>,
-      <a href="#Analysis">Analysis tools</a>,
-      <a href="#Languages">Languages</a>,
-      <a href="#Security">Security</a>,
-      <a href="#Internet">The Internet!</a>,
-      <a href="#Optimisation">Optimization</a>,
-      <a href="#libraries">Cool libraries</a>,
-      <a href="#CMS">Content Management Systems</a>,
-      <a href="#Mobile">Mobile things</a>,
-      <a href="#Other">Other notes</a>
-
-  </div>
-</div>
-
-<hr />
 
 <div class="row">
-  <div class="col-md-12">
-    My todo list:
+  <div class="col-md-6">
+
+      <h4>This is my digital scrap book of knowledge. <br />
+      <br />
+          I've found that taking notes with the intention of teaching it 
+          to someone else is the most effective way of learning anything.
+          So these are all my notes!  They can be a bit messy at times, but
+          this is a living document.  For the more polished and completed
+          articles, look to the <a href="../articles.php">articles</a> section.</h4 >
+
+  </div>
+
+  <div class="col-md-6">
+    My project list:
     <ul>
-      <li>High: Finish the patterns book</li>
-      <li>High: WL logicBot</li>
-      <li>High: basic web dev mini-book</li>
-      <li>Script loaders:<br />
+      <!-- <li>Mini-book explaining the internet</li> -->
+      <li>WikiLogic 3</li>
+      <li>Article on Web components</li>
+      <li>Article on service workers (web workers?)</li>
+      <li>Article on script loaders:<br />
       https://msdn.microsoft.com/en-us/magazine/hh227261.aspx<br />
       http://unscriptable.com/2011/03/30/curl-js-yet-another-amd-loader/<br />
       http://requirejs.org/docs/api.html
       </li>
-      <br />
-      <li>Med: WL mobile friendly</li>
-      <li>Med: WL pamphlet</li>
-      <li>Med: WL organise styles</li>
-      <li>Med: Nginx in detail</li>
-      <li>Med: service workers</li>
-      <br />
-      <li>Low: Typescript</li>
-      <li>Low: Angular 2</li>
-      <li>Low: Backbone</li>
-      <li>Low: Velocity.js: need an example project (my home page!): http://julian.com/research/velocity/#vmd</li>
-      <li>Low: D3 / Plottable.js: Wikilogic stats</li>
-      <br />
     </ul>
   </div>
 </div>
@@ -75,9 +47,16 @@
           <a href="javascript.php" class="list-group-item">Javascript</a>
           <a href="javascript-patterns.php" class="list-group-item">Javascript: Basic Patterns</a>
           <a href="javascript-architecture-patterns.php" class="list-group-item">Javascript: Architectural Patterns -MV*</a>
+          <a href="javascript-club.php" class="list-group-item">Javascript - club notes</a>
           <a href="emails.php" class="list-group-item greyout">Emails</a>
           <a href="ECMAScript6.php" class="list-group-item greyout">ECMAScript 6</a>
           <a href="jargon.php" class="list-group-item">Jargon</a>
+        </div>
+
+        <h4>Delphic JS club</h4>
+        <div class="list-group">
+           <a href="js-club-1.php" class="list-group-item">Week 1: Data Types and Operators</a>
+           <a href="js-club-2.php" class="list-group-item">Week 2: Statements, Functions, Primitives & References</a>
         </div>
         <h4 id="Internet">The Internet!</h4>
         <div class="list-group">

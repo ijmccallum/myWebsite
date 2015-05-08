@@ -27,7 +27,7 @@ for ($x=0; $x<$docDepth; $x++){
     <link href=<?php echo $homePath . 'bootstrap/css/simple-sidebar.css"' ?> rel="stylesheet">
     <link href=<?php echo $homePath . 'bootstrap/css/font-awesome.min.css"' ?> rel="stylesheet">
     <link href=<?php echo $homePath . 'styles/style.css"' ?>  rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
     <link href=<?php echo $homePath . 'highlight/highlight.css"' ?> rel="stylesheet" />
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <?php if ($iainPageTitle == "CSS") { ?>

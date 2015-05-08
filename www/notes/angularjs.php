@@ -2,6 +2,9 @@
 <?php include '../partials/head.php'; ?>
 
 
+<p>Keep your data in the services, use controllers to expose it to the views</p>
+<p>Don't split into modues (yet, this may change in the future)</p>
+
 <p>It is primarily a front end framework for single page web apps. It is a data binding frameworrk.</p>
 <ul>
 	<li>Routing (for any changes in the URL after the #)</li>

@@ -10,6 +10,7 @@ tada!
 	</tr>
 </table>
 
+
 <hr />
 
 <h2>MVC</h2>
@@ -26,18 +27,19 @@ Referred to as 'dumb'.
 The presentation Layer.
 This is the part the user interacts with.
 
+<hr />
+
+<h2>MV<strong>*</strong></h2>
+
+* = Controller / Presenter / ViewModel
+
 <h4>Controller</h4>
 Handles actions from the view.
 Manipulates data in the Model.
 
-<hr />
+<h4>Presenter</h4>
 
-<h2>MVP</h2>
-
-Model, View, Presentor.  
-Presentor is the important one here (after running through MVC).
-It's 
-
+<h4>ViewModel</h4>
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
