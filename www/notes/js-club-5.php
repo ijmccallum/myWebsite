@@ -98,11 +98,67 @@ When calling a property on an instance, a search begins.
 2 - does the prototype have that property
 
 So any properties on the instance 'shadow' those on the prototype.
-we can remove them onl with the delete operator:
+we can remove them only with the delete operator:
 delete object.propertyName;
 
 We can also check if a property is only on an instance with 
 objectName.hasOwnProperty('propertyName');
+
+We can check if an object has a property by
+<pre><code>var obj = {name:'hi'};
+console.log('name' in obj);</code></pre>
+
+We can get a list of properties from an object by
+<pre><code>	var obj = { 1:'1',2:'2',3:'3'};
+console.log(Object.keys(obj));</code></pre>
+
+<pre><code>console.log(Object.keys(String.prototype));</code></pre>
+
+<hr />
+
+<h3>Prototype chaining</h3>
+<pre><code>
+function human(){
+	//basic human things	
+}
+function woman(){
+	//basic woman things
+}
+woman.prototype = new human(); //basic woman now inherits basic human things
+//and so on
+
+var lady = new woman();
+
+console.log(lady instanceof Object);//true
+console.log(lady instanceof human);//true
+console.log(lady instanceof woman);//true
+</code></pre>
+note - human inherits from Object.
+
+
+example from https://alexsexton.com/blog/2013/04/understanding-javascript-inheritance/
+
+var defaults = {
+  zero: 0,
+  one: 1
+};
+
+var myOptions = Object.create(defaults);
+var yourOptions = Object.create(defaults);
+
+// When I want to change *just* my options
+myOptions.zero = 1000;
+
+// When you wanna change yours
+yourOptions.one = 42;
+
+// When we wanna change the **defaults** even after we've got our options
+// even **AFTER** we've already created our instances
+defaults.two = 2;
+
+myOptions.two; // 2
+yourOptions.two; // 2
+
 
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
