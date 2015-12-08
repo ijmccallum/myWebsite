@@ -118,48 +118,35 @@ console.log(Object.keys(obj));</code></pre>
 
 <h3>Prototype chaining</h3>
 <pre><code>
-function human(){
-	//basic human things	
+function human(){ /*basic human things*/ }
+human.prototype.walk = function(){
+	console.log('from the human prototype: walking');
 }
-function woman(){
-	//basic woman things
+
+function man(){ /*basic man things*/ }
+man.prototype = new human();
+man.prototype.manThing = function(){
+	console.log('from the man prototype: manThing');
 }
-woman.prototype = new human(); //basic woman now inherits basic human things
-//and so on
 
-var lady = new woman();
+function actor(){ /* basic actor things*/ }
+actor.prototype = new man();
+actor.prototype.sing = function(){
+	console.log('from the actor prototype: yep I can sing!');
+}
 
-console.log(lady instanceof Object);//true
-console.log(lady instanceof human);//true
-console.log(lady instanceof woman);//true
+var bob = new actor();
+
+bob.walk();
+bob.manThing();
+bob.sing();
+
+console.log(bob instanceof Object);//true
+console.log(bob instanceof human);//true
+console.log(bob instanceof man);//true
+console.log(bob instanceof actor);//true
 </code></pre>
 note - human inherits from Object.
-
-
-example from https://alexsexton.com/blog/2013/04/understanding-javascript-inheritance/
-
-var defaults = {
-  zero: 0,
-  one: 1
-};
-
-var myOptions = Object.create(defaults);
-var yourOptions = Object.create(defaults);
-
-// When I want to change *just* my options
-myOptions.zero = 1000;
-
-// When you wanna change yours
-yourOptions.one = 42;
-
-// When we wanna change the **defaults** even after we've got our options
-// even **AFTER** we've already created our instances
-defaults.two = 2;
-
-myOptions.two; // 2
-yourOptions.two; // 2
-
-
 
 <?php $footerAddress = (ltrim($homePath,'"')) . 'partials/footer.php'; ?>
 <?php include $footerAddress; ?>
